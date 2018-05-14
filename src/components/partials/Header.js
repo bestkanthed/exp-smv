@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import { showPopupFrame } from '../../actions/popup';
+import { loadPopup } from '../../actions/popup'
 
 import Location from './header/Location'
+import { batchActions } from '../../actions/utilities'
 
 const mapStateToProps = state => {
     return {
@@ -14,8 +15,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         showLoginPopup: event => {
-            e.preventDefault();
-            dispatch();
+            event.preventDefault()
+            loadPopup('Login')
         }
     }
 }

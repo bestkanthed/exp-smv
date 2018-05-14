@@ -1,10 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import Footer from './partials/Footer';
+import Popup from './partials/Popup'
+import Header from './partials/Header'
+import Footer from './partials/Footer'
 
-import { fetchUser } from '../actions/user';
-import { fetchLocation } from '../actions/location';
+import { fetchUser } from '../actions/user'
+import { fetchLocation } from '../actions/location'
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -15,22 +17,24 @@ const mapDispatchToProps = dispatch => {
 
 class Layout extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
     componentWillMount() {
-        this.props.fetchUser();
-        this.props.fetchLocation();
+        this.props.fetchUser()
+        this.props.fetchLocation()
     }
 
     render() {
         return (
             <div>
+                <Popup />
+                <Header />
                 {this.props.children}
                 <Footer />
             </div>
-        );
+        )
     }
 }
 
-export default connect(null, mapDispatchToProps)(Layout);
+export default connect(null, mapDispatchToProps)(Layout)
