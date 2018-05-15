@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import Popup from './partials/Popup'
 import Header from './partials/Header'
@@ -37,4 +38,4 @@ class Layout extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Layout)
+export default withRouter(connect(null, mapDispatchToProps)(Layout))

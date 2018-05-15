@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
 
@@ -7,6 +8,7 @@ import Location from './header/Location'
 import { batchActions } from '../../actions/utilities'
 
 const mapStateToProps = state => {
+    console.log("Logging the state form HEADER", state.user.user);
     return {
         user : state.user.user
     }
@@ -16,7 +18,7 @@ const mapDispatchToProps = dispatch => {
     return {
         showLoginPopup: event => {
             event.preventDefault()
-            loadPopup('Login')
+            dispatch(loadPopup('Login'))
         }
     }
 }
@@ -26,7 +28,8 @@ const Header = ({user, showLoginPopup}) => (
         <div class="container">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <Link to="/" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></Link>
+                <NavLink to="/" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></NavLink>
+                <NavLink to="/test" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></NavLink>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -34,7 +37,7 @@ const Header = ({user, showLoginPopup}) => (
                         user ?
                         [
                             user.teams.map(role =>
-                                <li><Link to={'/'+role} key={role}>{role}</Link></li>
+                                <li key={role}><NavLink to={'/'+role}>{role}</NavLink></li>
                             )
                             ,
                             <li class="dropdown" key='dropdown'>
@@ -43,7 +46,7 @@ const Header = ({user, showLoginPopup}) => (
                                     <i class="caret"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><Link to="/account">Account</Link></li>
+                                    <li><NavLink to="/account">Account</NavLink></li>
                                     <li class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
@@ -52,11 +55,10 @@ const Header = ({user, showLoginPopup}) => (
                         :
                         <li><a href="#" onClick = {showLoginPopup}>Login</a></li>
                     }
-                    <Location />
                 </ul>
             </div>
         </div>
     </div>
 );
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 fetching: false,
                 fetched: true,
-                error: true 
+                error: true
             }
         }
         default : return state;
