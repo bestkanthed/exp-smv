@@ -1,3 +1,1 @@
-If things go bad import form css as required
-/** Import main scss if things go bad */
-//import './test.scss';
+Set make the componentWillUnmount to set values to null.

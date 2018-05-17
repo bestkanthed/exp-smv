@@ -29,7 +29,6 @@ const Header = ({user, showLoginPopup}) => (
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <NavLink to="/" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></NavLink>
-                <NavLink to="/test" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></NavLink>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -37,7 +36,7 @@ const Header = ({user, showLoginPopup}) => (
                         user ?
                         [
                             user.teams.map(role =>
-                                <li key={role}><NavLink to={'/'+role}>{role}</NavLink></li>
+                                <li key={role}><NavLink to={'/expert/orders'}>{role}</NavLink></li>
                             )
                             ,
                             <li class="dropdown" key='dropdown'>

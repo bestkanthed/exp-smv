@@ -10,7 +10,7 @@ export function fetchUser () {
             id: 0,
             email: 'abhishek@stampmyvisa.com',
             name: 'Abhishek Kanthed',
-            teams: ['admin', 'support']
+            teams: ['admin', 'expert']
         }
     }
 }

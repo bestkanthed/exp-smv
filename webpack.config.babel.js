@@ -10,6 +10,11 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  devServer: {
+    port: 8080,
+    contentBase: './dist',
+    historyApiFallback: true
+  },
   module: {
     rules: [
       {
@@ -27,5 +32,11 @@ module.exports = {
       }
     ],
   },
-  plugins: [new HtmlWebpackPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './dist/index.html',
+      inject: false
+    }),
+    new webpack.NamedModulesPlugin()
+  ],
 }

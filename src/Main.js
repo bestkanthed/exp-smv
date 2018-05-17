@@ -25,8 +25,14 @@ let Main = () =>
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route path='/unauthorized' component={Unauthorized} team='admin'/>
-                    <Route exact path='/admin' render={() => <Authorize team='admin' page='main'/>}/>
-                    <Route path='/admin/:id' render={props => <Authorize {...props} team='admin' page='profile'/>}/>
+
+                    <Route exact path='/admin/teams' render={() => <Authorize team='admin' page='teams'/>}/>
+                    <Route exact path='/admin/profile/:id' render={props => <Authorize {...props} team='admin' page='profile'/>}/>
+                
+                    <Route exact path='/expert/orders' render={() => <Authorize team='expert' page='orders'/>}/>           
+                    <Route exact path='/expert/order/:id' render={props => <Authorize {...props} team='expert' page='order'/>}/>     
+                    <Route exact path='/expert/application/:id' render={props => <Authorize {...props} team='expert' page='application'/>}/>
+                    <Route exact path='/expert/document/:id' render={props => <Authorize {...props} team='expert' page='document'/>}/>
                 </Switch>
             </Layout>
         </Router>
