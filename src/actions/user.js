@@ -4,13 +4,23 @@ import axios from 'axios';
  * Dummy payload to be replaced with axios request.
  */
 export function fetchUser () {
+    
+    /*
+    return {
+        type: 'FETCH_USER',
+        payload: axios.get('http://localhost:1169/user', {withCredentials: true})
+    }
+    */
+
     return {
         type: 'FETCH_USER_FULFILLED',
         payload: {
-            id: 0,
-            email: 'abhishek@stampmyvisa.com',
-            name: 'Abhishek Kanthed',
-            teams: ['admin', 'expert']
+            data: {
+                name: 'Abhishek Kanthed',
+                email: 'abhishek@stampmyvisa.com',
+                teams: ['admin', 'expert']
+            }
         }
     }
+
 }

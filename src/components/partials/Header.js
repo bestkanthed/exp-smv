@@ -35,9 +35,11 @@ const Header = ({user, showLoginPopup}) => (
                     {
                         user ?
                         [
+                            user.teams ?
                             user.teams.map(role =>
-                                <li key={role}><NavLink to={'/expert/orders'}>{role}</NavLink></li>
-                            )
+                                <li key={role}><NavLink to={'/'+role}>{role}</NavLink></li>
+                            ) :
+                            null
                             ,
                             <li class="dropdown" key='dropdown'>
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">

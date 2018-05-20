@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 
 import store from './store'
 
@@ -25,10 +25,12 @@ let Main = () =>
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route path='/unauthorized' component={Unauthorized} team='admin'/>
-
+                    
+                    <Route exact path='/admin' render={() => <Redirect to='/admin/teams'/>}/>
                     <Route exact path='/admin/teams' render={() => <Authorize team='admin' page='teams'/>}/>
                     <Route exact path='/admin/profile/:id' render={props => <Authorize {...props} team='admin' page='profile'/>}/>
                 
+                    <Route exact path='/expert' render={() => <Redirect to='/expert/orders'/>}/>
                     <Route exact path='/expert/orders' render={() => <Authorize team='expert' page='orders'/>}/>           
                     <Route exact path='/expert/order/:id' render={props => <Authorize {...props} team='expert' page='order'/>}/>     
                     <Route exact path='/expert/application/:id' render={props => <Authorize {...props} team='expert' page='application'/>}/>

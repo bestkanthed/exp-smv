@@ -17,15 +17,7 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_USER_FULFILLED' : {
-            return {
-                ...state,
-                fetching: false,
-                fetched: true,
-                user: action.payload
-            }
-        }
-        case 'LOGIN_REQUEST_FULFILLED' : {
-            console.log("Login request is FULFILLED");
+            console.log('FETCH_USER_FULFILLED', action.payload.data);
             return {
                 ...state,
                 fetching: false,
@@ -33,17 +25,40 @@ export default function reducer(state = initialState, action) {
                 user: action.payload.data
             }
         }
+        case 'LOGIN_REQUEST' : {
+            return {
+                ...state,
+                fetching: true,
+                fetched: true,
+                user: action.payload.data
+            }
+        }
         case 'LOGIN_REQUEST_PENDING' : {
-            console.log("Login request is FULFILLED");
             return {...state, fetching: true}
         }
         case 'LOGIN_REQUEST_REJECTED' : {
-            console.log("Login request is REJECTED");
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
                 error: true
+            }
+        }
+        case 'LOGIN_REQUEST_FULFILLED' : {
+
+            console.log('LOGIN_REQUEST_FULFILLED', action.payload.data);
+
+            if(action.payload.data.error) return {
+                ...state,
+                fetching: false,
+                fetched: true,
+            }
+
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                user: action.payload.data
             }
         }
         default : return state;
