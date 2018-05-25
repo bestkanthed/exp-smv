@@ -6,17 +6,23 @@ let initialState = {
 export default function reducer(state = initialState, action) {
     
     let { type, payload } = action
+    let postResponse = type.startsWith('POST_') && type.endsWith('_FULFILLED')
+    let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
+    let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
+    let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
 
-    if(type.startsWith('FETCH_') && type.endsWith('_FULFILLED')) {
-        /*
-        console.log('Logging data flash', action)
-
-        if(payload.data.error) return {
+    if( postResponse || deleteResponse || uploadResponse || updateResponse) {
+        console.log('Logging data flash after response fullfiled', action, payload)
+        if(payload.data && payload.data.error) return {
             ...state,
             messageType: 'error',
             message: payload.data.error.message
         }
-        */
+        else if (payload.data) return {
+            ...state,
+            messageType: 'info',
+            message: payload.data
+        }
     }
     
     switch (type) {

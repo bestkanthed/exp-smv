@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { fetchTeams } from '../../actions/admin'
 
@@ -35,9 +35,9 @@ class Teams extends React.Component {
                                 <div class='row'>
                                     { 
                                         team.users.map((user, index) =>
-                                            <NavLink to={`/admin/profile/${user.id}`} key={index}>
+                                            <Link to={`/admin/profile/${user.id}`} key={index}>
                                                 <TeamMember teamMember={user} />
-                                            </NavLink>
+                                            </Link>
                                         )
                                     }
                                 </div>

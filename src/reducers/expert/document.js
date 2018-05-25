@@ -2,7 +2,8 @@ const initialState = {
     document: null,
     fetching: false,
     fetched: false,
-    error: null
+    error: null,
+    rerender: false
 }
 
 export default function reducer(state = initialState, action) {
@@ -11,17 +12,37 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: true}
         }
         case 'FETCH_DOCUMENT_PENDING' : {
-            return {...state, fetching: true}
+            return {...state, fetching: true, rerender: false}
         }
         case 'FETCH_DOCUMENT_REJECTED' : {
             return {...state, fetching: false}
         }
         case 'FETCH_DOCUMENT_FULFILLED' : {
-            return {
+            return action.payload.data.error ? {
                 ...state,
                 fetching: false,
                 fetched: true,
-                document: action.payload
+                error: action.payload.data.error
+            } :
+            {
+                ...state,
+                fetching: false,
+                fetched: true,
+                document: action.payload.data
+            }
+        }
+        case 'UPLOAD_DOCUMENT_FULFILLED' : {
+            return {...state, rerender: true}
+        }
+        case 'CHANGE_DOCUMENT_STATUS_FULFILLED' : {
+            return action.payload.data.error ? 
+            state :
+            {
+                ...state,
+                document: {
+                    ...state.document,
+                    status : action.payload.data
+                }
             }
         }
         default : return state;

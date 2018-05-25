@@ -1,5 +1,5 @@
 const initialState = {
-    orders: null,
+    experts: null,
     fetching: false,
     fetched: false,
     error: null
@@ -7,27 +7,21 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case 'FETCH_ORDERS' : {
+        case 'FETCH_EXPERTS' : {
             return {...state, fetching: true}
         }
-        case 'FETCH_ORDERS_PENDING' : {
+        case 'FETCH_EXPERTS_PENDING' : {
             return {...state, fetching: true}
         }
-        case 'FETCH_ORDERS_REJECTED' : {
+        case 'FETCH_EXPERTS_REJECTED' : {
             return {...state, fetching: false}
         }
-        case 'FETCH_ORDERS_FULFILLED' : {
-            return action.payload.data.error ? {
+        case 'FETCH_EXPERTS_FULFILLED' : {
+            return {
                 ...state,
                 fetching: false,
                 fetched: true,
-                error: action.payload.data.error
-            } :
-            {
-                ...state,
-                fetching: false,
-                fetched: true,
-                orders: action.payload.data
+                experts: action.payload.data
             }
         }
         default : return state;

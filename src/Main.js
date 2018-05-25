@@ -32,9 +32,12 @@ let Main = () =>
                 
                     <Route exact path='/expert' render={() => <Redirect to='/expert/orders'/>}/>
                     <Route exact path='/expert/orders' render={() => <Authorize team='expert' page='orders'/>}/>           
-                    <Route exact path='/expert/order/:id' render={props => <Authorize {...props} team='expert' page='order'/>}/>     
-                    <Route exact path='/expert/application/:id' render={props => <Authorize {...props} team='expert' page='application'/>}/>
-                    <Route exact path='/expert/document/:id' render={props => <Authorize {...props} team='expert' page='document'/>}/>
+                    <Route exact path='/expert/orders/:id' render={props => <Authorize {...props} team='expert' page='order'/>}/>     
+                    <Route exact path='/expert/applications/:id' render={props => <Authorize {...props} team='expert' page='application'/>}/>
+                    <Route exact path='/expert/documents/:id' render={props => <Authorize {...props} team='expert' page='document'/>}/>
+
+                    <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
+                    <Route exact path='/support/generate' render={() => <Authorize team='support' page='generate'/>}/>
                 </Switch>
             </Layout>
         </Router>

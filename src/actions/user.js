@@ -5,22 +5,21 @@ import axios from 'axios';
  */
 export function fetchUser () {
     
-    /*
     return {
         type: 'FETCH_USER',
         payload: axios.get('http://localhost:1169/user', {withCredentials: true})
     }
-    */
 
+    /*
     return {
         type: 'FETCH_USER_FULFILLED',
         payload: {
             data: {
                 name: 'Abhishek Kanthed',
                 email: 'abhishek@stampmyvisa.com',
-                teams: ['admin', 'expert']
+                teams: ['admin', 'expert', 'support']
             }
         }
     }
-
+    */
 }

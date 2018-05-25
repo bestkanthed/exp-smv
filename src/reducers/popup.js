@@ -23,14 +23,16 @@ const popupReducer = (state = initialState, action) => {
     
     let { type, payload } = action
 
-    if(type.startsWith('FETCH_') && type.endsWith('_FULFILLED')) {
-        /*
-        if(payload.data.error) return {
-            content: 'Flash',
-            display: true,
-            animation: showAnimation
-        }
-        */
+    let postResponse = type.startsWith('POST_') && type.endsWith('_FULFILLED')
+    let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
+    let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
+    let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
+
+    if( postResponse || deleteResponse || uploadResponse || updateResponse) return {
+        ...state,
+        content: 'Flash',
+        display: true,
+        animation: showAnimation
     }
 
     switch (type) {

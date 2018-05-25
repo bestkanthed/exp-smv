@@ -1,148 +1,142 @@
 import axios from 'axios';
 
-/**
- * Fetch real data later
- */
-
-export function postComment (comment) {
+export function postComment (formData) {
     return {
-        type: 'POST_COMMENT_FULFILLED',
-        payload : axios.post('/comment', {
-            body: {
-                idUser,
-                idDocument,
-                text
-            }
+        type: 'POST_COMMENT',
+        payload : axios('http://localhost:1169/expert/comment', {
+            method: 'post',
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function fetchComments (idDocument) {
+    return {
+        type: 'FETCH_COMMENTS',
+        payload : axios.get('http://localhost:1169/expert/comments/'+idDocument, { withCredentials: true })
+    }
+}
+
+export function postDocument (formData) {
+    return {
+        type: 'POST_DOCUMENT',
+        payload: axios('http://localhost:1169/expert/documents', {
+            method: 'post',
+            data: formData,
+            withCredentials: true
         })
     }
 }
 
 export function fetchDocument (idDocument) {
     return {
-        type: 'FETCH_DOCUMENT_FULFILLED',
-        payload: {
-            id: 1,
-            name: 'Passport',
-            status: 'Perfect',
-            link: '/refund-and-cancellation-policy.pdf',
-            comments: [
-                {
-                    id: 1,
-                    sentBy: 'Pravin',
-                    time: '6:46 PM 18-05-17',
-                    seenBy: ['Mike', 'Pravin'],
-                    text: 'This passport is prefect'
-                },
-                {
-                    id: 2,
-                    sentBy: 'Mike',
-                    time: '6:46 PM 19-05-17',
-                    seenBy: ['Mike'],
-                    text: 'Thanks'
-                }
-            ]
-        }
+        type: 'FETCH_DOCUMENT',
+        payload: axios.get('http://localhost:1169/expert/documents/'+idDocument, { withCredentials: true })
+    }
+}
+
+export function loadDocument (idDocument) {
+    return {
+        type: 'LOAD_DOCUMENT',
+        payload: axios.get('http://localhost:1169/expert/documents/'+idDocument+'/file', { withCredentials: true })
+    }
+}
+
+export function uploadDocument (documents, idDocument) {
+    let formData = new FormData()
+    formData.append('file', documents[0])
+    return {
+        type: 'UPLOAD_DOCUMENT',
+        payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/upload', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function changeDocumentStatus (status, idDocument) {
+    return {
+        type: 'CHANGE_DOCUMENT_STATUS',
+        payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/status', {
+            method: 'post',
+            data: { status },
+            withCredentials: true
+        })
+    }
+}
+
+export function changeDocumentCategory (category, idDocument) {
+    return {
+        type: 'CHANGE_DOCUMENT_CATEGORY',
+        payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/category', {
+            method: 'post',
+            data: { category },
+            withCredentials: true
+        })
+    }
+}
+
+export function deleteDocument (idDocument) {
+    return {
+        type: 'DELETE_DOCUMENT',
+        payload: axios.delete('http://localhost:1169/expert/documents/'+idDocument, { withCredentials: true })
     }
 }
 
 export function fetchApplication (idApplication) {
+    console.log('Logging id application', idApplication);
     return {
-        type: 'FETCH_APPLICATION_FULFILLED',
-        payload: {
-            id: 1,
-            name: 'Mike Holloway',
-            profession: 'Employed',
-            visa: 'Singapore - Tourist 30 Day',
-            travelDate: '2018-06-18',
-            submissionDate: '2018-05-19',
-            status: 'Pickup Scheduled',
-            documents: [
-                {
-                    category: 'Passport',
-                    documents: [
-                        {
-                            id: 1,
-                            name: 'Passport',
-                            status: 'Perfect',
-                            unseenComments: 5
-                        }
-                    ]
-                },
-                {
-                    category: 'Photograph',
-                    documents: [
-                        {
-                            id: 2,
-                            name: 'Photograph',
-                            status: 'Perfect',
-                            unseenComments: 0
-                        }
-                    ]
-                }
-            ]
-        }
+        type: 'FETCH_APPLICATION',
+        payload: axios.get('http://localhost:1169/expert/applications/'+idApplication, { withCredentials: true })
+        /* unseenComments: 5 in documents */
+    }
+}
+
+export function postApplication (formData) {
+    return {
+        type: 'POST_APPLICATION',
+        payload: axios('http://localhost:1169/expert/applications', {
+            method: 'post',
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function updateApplication (formData) {
+    return {
+        type: 'UPDATE_APPLICATION',
+        payload: axios('http://localhost:1169/expert/applications', {
+            method: 'put',
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function deleteApplication (id) {
+    return {
+        type: 'DELETE_APPLICATION',
+        payload: axios.delete('http://localhost:1169/expert/applications/'+id, { withCredentials: true })
     }
 }
 
 export function fetchOrder (idOrder) {
+    console.log('Logging idOrder', idOrder)
     return {
-        type: 'FETCH_ORDER_FULFILLED',
-        payload: {
-            id: '1',
-            orderId: 'SGVA0001',
-            orderType: 'eVisa',
-            status: 'New',
-            countries: ['Singapore', 'Thailand'],
-            customer: {
-                name: 'Mike Holloway'
-            },
-            noOfApplications: 1,
-            travelDate: '2018-06-18',
-            applications: [
-                {
-                    id: 1,
-                    name: 'Mike Holloway',
-                    profession: 'Employed',
-                    visa: 'Singapore - Tourist 30 Day',
-                    travelDate: '2018-06-18',
-                    submissionDate: '2018-05-19',
-                    status: 'Pickup Scheduled'
-                }
-            ]
-        }
+        type: 'FETCH_ORDER',
+        payload: axios.get('http://localhost:1169/expert/orders/'+idOrder, { withCredentials: true })
     }
 }
 
 export function fetchOrders (idUser) {
     return {
-        type: 'FETCH_ORDERS_FULFILLED',
-        payload: [
-            {
-                id: '1',
-                orderId: 'SGVA0001',
-                orderType: 'eVisa',
-                status: 'New',
-                countries: ['Singapore', 'Thailand'],
-                customer: {
-                    name: 'Mike Holloway'
-                },
-                noOfApplications: 1,
-                travelDate: '2018-06-18',
-                invoiceNo: 1
-            },
-            {
-                id: '2',
-                orderId: 'SGVA0002',
-                orderType: 'eVisa',
-                status: 'New',
-                countries: ['Singapore'],
-                customer: {
-                    name: 'Ramesh Hirani'
-                },
-                noOfApplications: 2,
-                travelDate: '2018-06-21',
-                invoiceNo: 2
-            }
-        ]
+        type: 'FETCH_ORDERS',
+        payload: axios.get('http://localhost:1169/expert/orders', { withCredentials: true })
     }
 }

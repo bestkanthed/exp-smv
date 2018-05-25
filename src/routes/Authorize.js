@@ -10,6 +10,8 @@ import Order from './Expert/Order'
 import Application from './Expert/Application'
 import Document from './Expert/Document'
 
+import Generate from './Support/Generate'
+
 function renderRoute (props) {
   
   let { user, team, page, match } = props
@@ -31,6 +33,13 @@ function renderRoute (props) {
         case 'order': return <Order idOrder={match.params.id}/>
         case 'application': return <Application idApplication={match.params.id}/>
         case 'document': return <Document idDocument={match.params.id}/>
+        default: return <div> Invalid Page </div>
+      }
+    }
+
+    case 'support': {
+      switch (page) { 
+        case 'generate': return <Generate />
         default: return <div> Invalid Page </div>
       }
     }

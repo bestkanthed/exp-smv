@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import admin from './admin'
 import expert from './expert'
+import support from './support'
 
 import user from './user'
 
@@ -12,6 +13,7 @@ import popup from './popup'
 export default combineReducers({
     admin,
     expert,
+    support,
     user,
     flash,
     location,

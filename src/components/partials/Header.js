@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
 
 import Location from './header/Location'
-import { batchActions } from '../../actions/utilities'
 
 const mapStateToProps = state => {
     console.log("Logging the state form HEADER", state.user.user);
@@ -28,7 +27,7 @@ const Header = ({user, showLoginPopup}) => (
         <div class="container">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <NavLink to="/" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></NavLink>
+                <Link to="/" class="navbar-brand"><img src="/images/smv_logo.png" width="180"/></Link>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -37,7 +36,7 @@ const Header = ({user, showLoginPopup}) => (
                         [
                             user.teams ?
                             user.teams.map(role =>
-                                <li key={role}><NavLink to={'/'+role}>{role}</NavLink></li>
+                                <li key={role}><Link to={'/'+role}>{role}</Link></li>
                             ) :
                             null
                             ,
@@ -47,7 +46,7 @@ const Header = ({user, showLoginPopup}) => (
                                     <i class="caret"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><NavLink to="/account">Account</NavLink></li>
+                                    <li><Link to="/account">Account</Link></li>
                                     <li class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>

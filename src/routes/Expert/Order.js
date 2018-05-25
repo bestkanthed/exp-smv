@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 
 import { fetchOrder } from '../../actions/expert'
 
 import ApplicationsSummary from './order/ApplicationsSummary'
+import ApplicationAdd from './order/ApplicationAdd'
 
 const mapStateToProps = state => ({
-    expert: state.expert,
+    order: state.expert.order,
     user: state.user
 })
 
@@ -21,15 +21,27 @@ class Order extends React.Component {
     }
 
     render() {
-        let { order } = this.props.expert.order
+        let { order, fetching, fetched, rerender } = this.props.order
+        let { fetchOrder, idOrder } = this.props
+        if(rerender) fetchOrder(idOrder)
+         
         return (
-            order ?
             <div class='container expert'>
-                <h1 style={{paddingTop : '32px'}}>Order</h1>
+                <h2>Exesting Applications</h2>
                 <hr/>
-                <ApplicationsSummary applications={order.applications} />
-            </div> :
-            <h2>Error connecting to the server</h2>
+                {
+                    fetching ?
+                    null :
+                    fetched ?
+                    order ?
+                    <div>
+                        <ApplicationsSummary applications={order.applications} />
+                        <ApplicationAdd idOrder={order._id} />
+                    </div> :
+                    null :
+                    <div> Loading </div>
+                }
+            </div>
         );
     }
 }

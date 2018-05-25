@@ -1,5 +1,5 @@
 const initialState = {
-    application: null,
+    comments: null,
     fetching: false,
     fetched: false,
     error: null,
@@ -8,16 +8,16 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case 'FETCH_APPLICATION' : {
+        case 'FETCH_COMMENTS' : {
             return {...state, fetching: true}
         }
-        case 'FETCH_APPLICATION_PENDING' : {
+        case 'FETCH_COMMENTS_PENDING' : {
             return {...state, fetching: true, rerender: false}
         }
-        case 'FETCH_APPLICATION_REJECTED' : {
+        case 'FETCH_COMMENTS_REJECTED' : {
             return {...state, fetching: false}
         }
-        case 'FETCH_APPLICATION_FULFILLED' : {
+        case 'FETCH_COMMENTS_FULFILLED' : {
             return action.payload.data.error ? {
                 ...state,
                 fetching: false,
@@ -28,20 +28,14 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 fetching: false,
                 fetched: true,
-                application: action.payload.data
+                comments: action.payload.data
             }
         }
-        case 'CHANGE_DOCUMENT_CATEGORY_FULFILLED' : {
-            return {...state, rerender: true}
-        }
-        case 'UPLOAD_DOCUMENT_FULFILLED' : {
-            return {...state, rerender: true}
-        }
-        case 'DELETE_DOCUMENT_FULFILLED' : {
-            return {...state, rerender: true}
-        }
-        case 'POST_DOCUMENT_FULFILLED' : {
-            return {...state, rerender: true}
+        case 'POST_COMMENT_FULFILLED' : {
+            return {
+                ...state,
+                rerender: true
+            }
         }
         default : return state;
     }

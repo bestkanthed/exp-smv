@@ -5,9 +5,11 @@ import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
 import { fetchApplication } from '../../actions/expert'
 
 import DocumentsPreview from './application/DocumentsPreview'
+import DocumentAdd from './application/DocumentAdd'
+import ApplicationUpdate from './application/ApplicationUpdate';
 
 const mapStateToProps = state => ({
-    expert: state.expert,
+    application: state.expert.application,
     user: state.user
 })
 
@@ -21,37 +23,47 @@ class Application extends React.Component {
     }
 
     render() {
+        let name, idCountry, idVisa, travelDate, employmentStatus, submissionDate, status
         let categories = null
         let documents = null
-        let { application } = this.props.expert.application
+        let { fetchApplication, idApplication } = this.props        
+        let { application, fetching, fetched, error, rerender } = this.props.application
         
         if (application) documents  = application.documents
         if(documents) categories = documents.map(document => document.category)
 
+        if(rerender) fetchApplication(idApplication) 
         return (
-            application ?
             <div class='container expert'>
-                <h1 style={{paddingTop : '32px'}}>Application</h1>
-                <hr/>
-                
-                <Tabs>
-                    <TabList>
-                    {
-                        categories.map(category => 
-                            <Tab key={category}>{category}</Tab>
-                        )
-                    }
-                    </TabList>
-                    {
-                        documents.map(document => 
-                            <TabPanel key={document.category}>
-                                <DocumentsPreview documents={document.documents}/>
-                            </TabPanel>
-                        )
-                    }
-                </Tabs>
-            </div> :
-            <h2>Error connecting to the server</h2>
+                {
+                    fetched ?
+                    application ?
+                    <div class='application-view'>
+                        <ApplicationUpdate application={application}/>
+                        <Tabs>
+                            <TabList>
+                            {
+                                categories.map(category => 
+                                    <Tab key={category}>{category}</Tab>
+                                )
+                            }
+                            </TabList>
+                            {
+                                documents.map(document => 
+                                    <TabPanel key={document.category}>
+                                        <DocumentsPreview documents={document.documents}/>
+                                    </TabPanel>
+                                )
+                            }
+                        </Tabs>
+                        <DocumentAdd idApplication = {idApplication}/>
+                    </div>:
+                    <div> This application does not exist </div> :
+                    fetching ?
+                    <div> Loading </div> :
+                    <div> Failed to load </div>
+                }
+            </div>
         );
     }
 }

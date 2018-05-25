@@ -1,31 +1,26 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import Dropzone from 'react-dropzone'
 import PdfViewer from '../../../components/utilities/PdfViewer'
 
-const mapDispatchToProps = dispatch => ({ documentfilter})
+import { uploadDocument } from '../../../actions/expert'
+import DocumentPreview from './DocumentPreview';
 
-/**
- * The link to documnet.id will only be acessible by respective visa expert and customer
- */
+const mapDispatchToProps = dispatch => ({ uploadDocument: (document, id) => dispatch(uploadDocument(document, id)) })
 
-const DocumentsPreview = ({ documents }) => {
+const DocumentsPreview = ({ documents, uploadDocument }) => {
+    let documentFile;
     return (
         <div class='documents-preview'>
             {
                 documents ?
-                documents.map(document => 
-                    <Link to={'/expert/document/'+document.id} key={document.id}>
-                        <p>{document.name}</p>
-                        <PdfViewer file={'/refund-and-cancellation-policy.pdf'} />
-                        <p>{document.unseenComments}</p>
-                        <p>{document.status}</p>
-                    </Link>
-                ) :
+                documents.map(document => <DocumentPreview document={document} key={document._id}/>) :
                 <h2> Error connecting the server </h2>
             }
         </div>
     )
 }
 
-export default DocumentsPreview
+export default connect(null, mapDispatchToProps)(DocumentsPreview)

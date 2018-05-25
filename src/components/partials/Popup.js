@@ -1,15 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Login from '../forms/Login'
 import Flash from './popup/Flash'
+import Login from '../forms/Login'
+
+import CreateCustomerCumOrder from '../forms/CreateCustomerCumOrder'
+
+import UploadDocument from '../forms/UploadDocument'
 
 import { hidePopupDone, hidePopupStart } from '../../actions/popup'
+import { uploadDocument } from '../../actions/expert';
 
 function setPopupContent(content) {
     switch(content) {
-        case 'Login': return <Login />
         case 'Flash': return <Flash />
+        case 'Login': return <Login />
+
+        case 'CreateCustomerCumOrder': return <CreateCustomerCumOrder />
+        
+        case 'UploadDocument': return <UploadDocument />
         default: return null
     }
 }

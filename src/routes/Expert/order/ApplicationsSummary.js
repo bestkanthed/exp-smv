@@ -6,13 +6,15 @@ const ApplicationsSummary = ({applications}) => (
         {
             applications ?
             applications.map(application =>
-                <Link to={'/expert/application/'+application.id} key={application.id}>
+                <Link to={'/expert/applications/'+application._id} key={application._id}>
                     <div class='col-md-6 col-sm-12 col-lg-3'>
-                        <p>{application.name}</p>
-                        <p>{application.travelDate}</p>
-                        <p>{application.profession}</p>
-                        <p>{application.submissionDate}</p>
-                        <p>{application.status}</p>
+                        <p>Name : {application.name}</p>
+                        <p>Country : {application.idCountry}</p>
+                        <p>Visa : {application.idVisa}</p>
+                        <p>Travel Date : {application.travelDate ? application.travelDate.substring(0, 10) : null}</p>
+                        <p>Employment Status : {application.employmentStatus}</p>
+                        <p>Submission Date : {application.submissionDate ? application.submissionDate.substring(0, 10) : null}</p>
+                        <p>Status: {application.status}</p>
                     </div>
                 </Link>
             ) :
