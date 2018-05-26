@@ -1,16 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
-import Dropzone from 'react-dropzone'
-import PdfViewer from '../../../components/utilities/PdfViewer'
-
-import { uploadDocument } from '../../../actions/expert'
 import DocumentPreview from './DocumentPreview';
 
-const mapDispatchToProps = dispatch => ({ uploadDocument: (document, id) => dispatch(uploadDocument(document, id)) })
-
-const DocumentsPreview = ({ documents, uploadDocument }) => {
+const DocumentsPreview = ({ documents }) => {
     let documentFile;
     return (
         <div class='documents-preview'>
@@ -23,4 +14,4 @@ const DocumentsPreview = ({ documents, uploadDocument }) => {
     )
 }
 
-export default connect(null, mapDispatchToProps)(DocumentsPreview)
+export default DocumentsPreview

@@ -41,7 +41,7 @@ let DocumentAdd = ({postDocument, idApplication}) => {
             </div>
             <div class="col-sm-6">
                 <button type='button' onClick = {() => postDocument({
-                    idApplication: idApplication, name: name.value, category: category.value, uploaded: false, status: false
+                    idApplication: idApplication, name: name.value, category: category.value, uploaded: false, status: null
                 })} id='submitDocument' class="btn btn-primary show-requirements-button">
                     Add Document
                 </button>

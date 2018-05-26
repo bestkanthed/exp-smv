@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+
+import { clickedNotification } from '../../../actions/notification'
 
 const mapDispatchToProps = dispatch => ({
-    clickedNotifications: idNotification => dispatch(clickedNotifications(idNotification))
+    clickedNotification: idNotification => dispatch(clickedNotification(idNotification))
 })
 
-const Notification = ({notification, clickedNotifications}) => (
-    <div>
-        <p>{notification.content}</p>
-        <a>{notification.link}</a>
-    </div>
+const Notification = ({notification, clickedNotification}) => (
+    <li>
+        <Link to={notification.link} onClick={() => clickedNotification(notification._id)}>
+            <p>{notification.content}</p>
+        </Link>
+    </li>
 )
 
 export default connect(null, mapDispatchToProps)(Notification);

@@ -7,6 +7,7 @@ import { fetchDocument, deleteDocument, changeDocumentStatus } from '../../actio
 
 import PdfViewer from '../../components/utilities/PdfViewer'
 import Comments from './document/Comments'
+import FilesView from './document/FilesView'
 import Switch from 'react-switch'
 
 const mapStateToProps = state => ({ document: state.expert.document })
@@ -26,7 +27,7 @@ class Document extends React.Component {
     
     render() {
         
-        let { deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument,     idDocument } = this.props
+        let { deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument } = this.props
         let { fetching, fetched, document, rerender } = this.props.document
         if (rerender) fetchDocument(idDocument)
         return (
@@ -44,7 +45,6 @@ class Document extends React.Component {
                                 <h3>{document.name}</h3>
                             </div>
                             <div class='shift-right'>
-                                <button onClick={() => {deleteDocument(document._id); window.history.back()} }> Delete </button>
                                 <button onClick={() => showUploadDocumentPopup()}> Upload </button>
                                 <Switch
                                     onChange={status => changeDocumentStatus(status, document._id)}
@@ -53,11 +53,7 @@ class Document extends React.Component {
                                 />
                             </div>
                         </div>
-                        {
-                            (document.uploadedName.split('.').pop()).toLowerCase() === 'pdf' ?
-                            <PdfViewer file={'http://localhost:1169/expert/documents/'+document._id+'/file'} /> :
-                            <img src={'http://localhost:1169/expert/documents/'+document._id+'/file'} />
-                        }
+                        <FilesView files={document.files} idDocument={document._id}/>
                         <Comments comments={document.comments} idDocument={document._id}/>
                     </div> :
                     null :

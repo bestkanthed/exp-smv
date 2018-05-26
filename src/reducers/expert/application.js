@@ -34,7 +34,7 @@ export default function reducer(state = initialState, action) {
         case 'CHANGE_DOCUMENT_CATEGORY_FULFILLED' : {
             return {...state, rerender: true}
         }
-        case 'UPLOAD_DOCUMENT_FULFILLED' : {
+        case 'UPLOAD_FILE_FULFILLED' : {
             return {...state, rerender: true}
         }
         case 'DELETE_DOCUMENT_FULFILLED' : {

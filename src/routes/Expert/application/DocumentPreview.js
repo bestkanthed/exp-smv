@@ -2,35 +2,35 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { uploadDocument, changeDocumentCategory, deleteDocument } from '../../../actions/expert'
+import { uploadFile, changeDocumentCategory, deleteDocument } from '../../../actions/expert'
 
 import Dropzone from 'react-dropzone'
 import PdfViewer from '../../../components/utilities/PdfViewer'
 
 const mapDispatchToProps = dispatch => ({
-    uploadDocument: (file, idDocument) => dispatch(uploadDocument(file, idDocument)),
+    uploadFiles: (files, idDocument) => files.map(file => dispatch(uploadFile(file, idDocument))),
     changeDocumentCategory: (category, idDocument) => dispatch(changeDocumentCategory(category, idDocument)),
-    deleteDocument: (idDocument) => dispatch(deleteDocument(idDocument))
+    deleteDocument: idDocument => dispatch(deleteDocument(idDocument))
 })
 
 class DocumentPreview extends React.Component {
     render() {
         let category
-        let { uploadDocument, changeDocumentCategory, deleteDocument } = this.props
+        let { uploadFiles, changeDocumentCategory, deleteDocument } = this.props
         let document = this.props.document
         return (
             <div class='document-view' key={document._id}>
                 <p>{document.name}</p>
                     {
-                        document.uploadedName ?
+                        document.previewFileName ?
                         <Link to={'/expert/documents/'+document._id}>
                             {
-                                (document.uploadedName.split('.').pop()).toLowerCase() === 'pdf' ?
-                                <PdfViewer file={'http://localhost:1169/expert/documents/'+document._id+'/file'} /> :
-                                <img src={'http://localhost:1169/expert/documents/'+document._id+'/file'} />
+                                (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
+                                <PdfViewer file={'http://localhost:1169/expert/documents/'+document._id+'/preview'} /> :
+                                <img src={'http://localhost:1169/expert/documents/'+document._id+'/preview'} />
                             }
                         </Link> :
-                        <Dropzone onDrop={file => uploadDocument(file, document._id)}/>
+                        <Dropzone onDrop={files => uploadFiles(files, document._id)}/>
                     }
                 <p>{document.unseenComments}</p>
                 <p>{document.status ? "OK" : "NOT OKAY"}</p>

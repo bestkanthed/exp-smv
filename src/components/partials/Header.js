@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { loadPopup } from '../../actions/popup'
 
 import Location from './header/Location'
+import NotificationTab from './header/NotificationTab';
 
 const mapStateToProps = state => {
     console.log("Logging the state form HEADER", state.user.user);
@@ -40,8 +41,10 @@ const Header = ({user, showLoginPopup}) => (
                             ) :
                             null
                             ,
+                            <NotificationTab />
+                            ,
                             <li class="dropdown" key='dropdown'>
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <a data-toggle="dropdown" class="dropdown-toggle">
                                     <span>{user.email}</span>
                                     <i class="caret"></i>
                                 </a>
@@ -53,7 +56,7 @@ const Header = ({user, showLoginPopup}) => (
                             </li>
                         ]
                         :
-                        <li><a href="#" onClick = {showLoginPopup}>Login</a></li>
+                        <li><a href="#" onClick = {e => {e.preventDefault(); showLoginPopup()}}>Login</a></li>
                     }
                 </ul>
             </div>

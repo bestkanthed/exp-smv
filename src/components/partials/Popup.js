@@ -9,7 +9,6 @@ import CreateCustomerCumOrder from '../forms/CreateCustomerCumOrder'
 import UploadDocument from '../forms/UploadDocument'
 
 import { hidePopupDone, hidePopupStart } from '../../actions/popup'
-import { uploadDocument } from '../../actions/expert';
 
 function setPopupContent(content) {
     switch(content) {

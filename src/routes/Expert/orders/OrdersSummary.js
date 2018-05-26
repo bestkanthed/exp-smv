@@ -7,7 +7,6 @@ const OrdersSummary = ({orders}) => (
             orders ?
             orders.map(order =>
                 <Link to={'/expert/orders/'+order._id} key={order._id}>
-                    <div>{JSON.stringify(order)}</div>
                     <div class='col-md-6 col-sm-12 col-lg-3'>
                         <p>{order.customer[0].name}</p>
                         <p>{order.noOfApplications}</p>

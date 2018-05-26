@@ -18,6 +18,29 @@ export function fetchComments (idDocument) {
     }
 }
 
+export function uploadFile (file, idDocument) {
+    let formData = new FormData()
+    formData.append('file', file)
+    return {
+        type: 'UPLOAD_FILE',
+        payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/upload', {
+            method: 'post',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            },
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function deleteFile (idFile) {
+    return {
+        type: 'DELETE_FILE',
+        payload: axios.delete('http://localhost:1169/expert/files/'+idFile, { withCredentials: true })
+    }
+}
+
 export function postDocument (formData) {
     return {
         type: 'POST_DOCUMENT',
@@ -40,22 +63,6 @@ export function loadDocument (idDocument) {
     return {
         type: 'LOAD_DOCUMENT',
         payload: axios.get('http://localhost:1169/expert/documents/'+idDocument+'/file', { withCredentials: true })
-    }
-}
-
-export function uploadDocument (documents, idDocument) {
-    let formData = new FormData()
-    formData.append('file', documents[0])
-    return {
-        type: 'UPLOAD_DOCUMENT',
-        payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/upload', {
-            method: 'post',
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            },
-            data: formData,
-            withCredentials: true
-        })
     }
 }
 

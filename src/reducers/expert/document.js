@@ -31,7 +31,10 @@ export default function reducer(state = initialState, action) {
                 document: action.payload.data
             }
         }
-        case 'UPLOAD_DOCUMENT_FULFILLED' : {
+        case 'UPLOAD_FILE_FULFILLED' : {
+            return {...state, rerender: true}
+        }
+        case 'DELETE_FILE_FULFILLED' : {
             return {...state, rerender: true}
         }
         case 'CHANGE_DOCUMENT_STATUS_FULFILLED' : {
