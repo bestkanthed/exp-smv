@@ -1,5 +1,5 @@
 const initialState = {
-    user: null,
+    simulate: null,
     fetching: false,
     fetched: false,
     error: null

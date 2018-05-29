@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
+import { logout } from '../../actions/login'
 
 import Location from './header/Location'
 import NotificationTab from './header/NotificationTab';
+
+import { UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 const mapStateToProps = state => {
     console.log("Logging the state form HEADER", state.user.user);
@@ -16,14 +19,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        showLoginPopup: event => {
-            event.preventDefault()
-            dispatch(loadPopup('Login'))
-        }
+        showLoginPopup: () => dispatch(loadPopup('Login')),
+        logout: () => dispatch(logout())
     }
 }
 
-const Header = ({user, showLoginPopup}) => (
+const Header = ({user, showLoginPopup, logout}) => (
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -41,10 +42,23 @@ const Header = ({user, showLoginPopup}) => (
                             ) :
                             null
                             ,
-                            <NotificationTab />
+                            <NotificationTab key='notifications'/>
                             ,
-                            <li class="dropdown" key='dropdown'>
-                                <a data-toggle="dropdown" class="dropdown-toggle">
+                            <UncontrolledDropdown nav inNavbar key='account'>
+                                <DropdownToggle nav caret>
+                                    {user.email}
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        <Link to="/account">Account</Link>
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                        <Link to='' onClick={e => {e.preventDefault(); logout()}}>Logout</Link>
+                                    </DropdownItem>
+                                </DropdownMenu>
+                                {null/*<li class="dropdown" key='dropdown'>
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                     <span>{user.email}</span>
                                     <i class="caret"></i>
                                 </a>
@@ -53,7 +67,8 @@ const Header = ({user, showLoginPopup}) => (
                                     <li class="divider"></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
-                            </li>
+                            </li>*/}
+                            </UncontrolledDropdown>
                         ]
                         :
                         <li><a href="#" onClick = {e => {e.preventDefault(); showLoginPopup()}}>Login</a></li>

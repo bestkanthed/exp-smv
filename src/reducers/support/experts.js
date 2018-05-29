@@ -17,7 +17,13 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_EXPERTS_FULFILLED' : {
-            return {
+            return action.payload.data.error ? {
+                ...state,
+                fetching: false,
+                fetched: true,
+                error: action.payload.data.error
+            } :
+            {
                 ...state,
                 fetching: false,
                 fetched: true,

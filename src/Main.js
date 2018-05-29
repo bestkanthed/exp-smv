@@ -24,20 +24,20 @@ let Main = () =>
             <Layout>
                 <Switch>
                     <Route exact path='/' component={Home} />
-                    <Route path='/unauthorized' component={Unauthorized} team='admin'/>
+                    <Route path='/unauthorized' component={Unauthorized} />
                     
                     <Route exact path='/admin' render={() => <Redirect to='/admin/teams'/>}/>
-                    <Route exact path='/admin/teams' render={() => <Authorize team='admin' page='teams'/>}/>
-                    <Route exact path='/admin/profile/:id' render={props => <Authorize {...props} team='admin' page='profile'/>}/>
+                    <Route exact path='/admin/teams' render={() => <Authorize teams={['admin']} page='teams'/>}/>
+                    <Route exact path='/admin/profile/:id' render={props => <Authorize {...props} teams={['admin']} page='profile'/>}/>
                 
                     <Route exact path='/expert' render={() => <Redirect to='/expert/orders'/>}/>
-                    <Route exact path='/expert/orders' render={() => <Authorize team='expert' page='orders'/>}/>           
-                    <Route exact path='/expert/orders/:id' render={props => <Authorize {...props} team='expert' page='order'/>}/>     
-                    <Route exact path='/expert/applications/:id' render={props => <Authorize {...props} team='expert' page='application'/>}/>
-                    <Route exact path='/expert/documents/:id' render={props => <Authorize {...props} team='expert' page='document'/>}/>
+                    <Route exact path='/expert/orders' render={props => <Authorize {...props} teams={['expert', 'support']} page='orders'/>}/>           
+                    <Route exact path='/expert/orders/:id' render={props => <Authorize {...props} teams={['expert', 'support']} page='order'/>}/>     
+                    <Route exact path='/expert/applications/:id' render={props => <Authorize {...props} teams={['expert', 'support']} page='application'/>}/>
+                    <Route exact path='/expert/documents/:id' render={props => <Authorize {...props} teams={['expert', 'support']} page='document'/>}/>
 
                     <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
-                    <Route exact path='/support/generate' render={() => <Authorize team='support' page='generate'/>}/>
+                    <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
                 </Switch>
             </Layout>
         </Router>

@@ -6,33 +6,32 @@ import { fetchOrders } from '../../actions/expert'
 import OrdersSummary from './orders/OrdersSummary'
 import OrderFilters from './orders/OrderFilters'
 
-const mapStateToProps = state => ({
-    orders: state.expert.orders,
-    user: state.user
-})
+const mapStateToProps = state => ({ orders: state.expert.orders })
 
 const mapDispatchToProps = dispatch => ({ fetchOrders: idUser => dispatch(fetchOrders(idUser)) })
 
 class Orders extends React.Component {
     
     componentWillMount() {
-        let { user } = this.props.user;
-        this.props.fetchOrders(user.id)
+        let { idExpert, fetchOrders } = this.props
+        if(idExpert) fetchOrders(idExpert)
+        else fetchOrders(null)
     }
 
     render() {
-        let orders = this.props.orders
+        let { idExpert } = this.props
+        let { orders, fetching, fetched } = this.props.orders
         return (
             <div class='container expert'>
                 <h1>Expert Dashboard</h1>
                 <hr/>
                 <OrderFilters />
                 {
-                    orders.fetching ?
+                    fetching ?
                     null :
-                    orders.fetched ?
-                    orders.orders ?
-                    <OrdersSummary orders={orders.orders} /> :
+                    fetched ?
+                    orders ?
+                    <OrdersSummary orders={orders} allowUpdate={idExpert ? true : false}/> :
                     null :
                     null
                 }

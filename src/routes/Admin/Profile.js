@@ -1,26 +1,44 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 
-import { fetchUserProfile } from '../../actions/admin'
+import { fetchUserProfile, updateUserProfile, deleteUserProfile } from '../../actions/admin'
 
 const mapStateToProps = state => ({
     profile: state.admin.profile
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchUserProfile: idUser => dispatch(fetchUserProfile(idUser))
+    fetchUserProfile: idUser => dispatch(fetchUserProfile(idUser)),
+    updateUserProfile: idUser => dispatch(updateUserProfile(idUser)),
+    deleteUserProfile: idUser => dispatch(deleteUserProfile(idUser))
 })
 
 class Profile extends React.Component {
 
     componentWillMount () {
         let { fetchUserProfile, idUser } = this.props
+        console.log('Loggin id from profile', idUser)
         fetchUserProfile(idUser);
     }
     render () {
-        let { user } = this.props.profile;
+        let { user, fetching, fetched } = this.props.profile
+        let { deleteUserProfile } = this.props
         return (
-            <div>{ user ? user.name : 'take care of this lazy loading' }</div>
+            <div>
+                { 
+                    fetching ?
+                    null :
+                    fetched ?
+                    user ?
+                    <div class='profile-view'>                        
+                        <p>{ JSON.stringify(user) }</p>
+                        <p>{ user.name }</p>
+                        <button type='button' onClick = { () => {deleteUserProfile(user._id); window.location.replace('/admin/teams')}}> Delete User </button>
+                    </div> :
+                    <p> No such user </p> :
+                    <h2>Error connecting to the server</h2> 
+                }
+            </div>
         )
     }
 } 

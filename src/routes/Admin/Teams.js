@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { fetchTeams } from '../../actions/admin'
 
 import TeamMember from './teams/TeamMember'
+import UserAdd from './teams/UserAdd'
 
 const mapStateToProps = state => ({ teams: state.admin.teams })
 const mapDispatchToProps = dispatch => ({ fetchTeams: () => dispatch(fetchTeams()) })
@@ -19,8 +20,9 @@ class Teams extends React.Component {
         let { teams, fetching, error } = this.props.teams
         return (
             <div class="container faq">
-                <h1 style={{paddingTop : '32px'}}>Admin Pannel</h1>
+                <h1>Admin Pannel</h1>
                 <hr/>
+                <UserAdd />
                 <div class="row manage">
                     {
                         
@@ -35,7 +37,7 @@ class Teams extends React.Component {
                                 <div class='row'>
                                     { 
                                         team.users.map((user, index) =>
-                                            <Link to={`/admin/profile/${user.id}`} key={index}>
+                                            <Link to={`/admin/profile/${user._id}`} key={index}>
                                                 <TeamMember teamMember={user} />
                                             </Link>
                                         )

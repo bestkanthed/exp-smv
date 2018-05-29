@@ -24,8 +24,9 @@ class NotificationTab extends React.Component {
         let {user, fetchNotifications} = this.props
         fetchNotifications(user._id)
         this.socket = io('localhost:2319')
-        this.socket.emit('join', {
-            email: user.email
+        this.socket.emit('join', user._id)
+        this.socket.on('NEW_NOTIFICATION', () => {
+            console.log('there is a new notification');
         })
     }
     

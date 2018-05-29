@@ -141,8 +141,30 @@ export function fetchOrder (idOrder) {
     }
 }
 
-export function fetchOrders (idUser) {
+export function updateOrder (formData) {
     return {
+        type: 'UPDATE_ORDER',
+        payload: axios('http://localhost:1169/expert/orders', {
+            method: 'put',
+            data: formData,
+            withCredentials: true
+        })
+    }
+}
+
+export function deleteOrder (id) {
+    return {
+        type: 'DELETE_ORDER',
+        payload: axios.delete('http://localhost:1169/expert/orders/'+id, { withCredentials: true })
+    }
+}
+
+export function fetchOrders (idExpert) {
+    if (idExpert) return {
+        type: 'FETCH_ORDERS',
+        payload: axios.get('http://localhost:1169/expert/orders?idExpert='+idExpert, { withCredentials: true })
+    } 
+    else return {
         type: 'FETCH_ORDERS',
         payload: axios.get('http://localhost:1169/expert/orders', { withCredentials: true })
     }

@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { loadPopup } from '../../actions/popup'
 import { fetchExperts } from '../../actions/support'
 
+import Experts from './generate/Experts'
+
 const mapDispatchToProps = dispatch => {
     return {
         showCreateCustomerCumOrderPopup: () => dispatch(loadPopup('CreateCustomerCumOrder')),
@@ -23,6 +25,7 @@ class Generate extends React.Component {
                 <button onClick={this.props.showCreateCustomerCumOrderPopup}>
                     CreateCustomerCumOrder
                 </button>
+                <Experts />
             </div>
         );
     }

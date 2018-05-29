@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { fetchOrder } from '../../actions/expert'
 
+import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
 import ApplicationAdd from './order/ApplicationAdd'
 
@@ -22,7 +23,7 @@ class Order extends React.Component {
 
     render() {
         let { order, fetching, fetched, rerender } = this.props.order
-        let { fetchOrder, idOrder } = this.props
+        let { fetchOrder, idOrder, supportView } = this.props
         if(rerender) fetchOrder(idOrder)
          
         return (
@@ -35,6 +36,7 @@ class Order extends React.Component {
                     fetched ?
                     order ?
                     <div>
+                        <OrderUpdate supportView={supportView} order={order}/>
                         <ApplicationsSummary applications={order.applications} />
                         <ApplicationAdd idOrder={order._id} />
                     </div> :

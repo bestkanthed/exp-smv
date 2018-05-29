@@ -17,11 +17,17 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_USER_PROFILE_FULFILLED' : {
-            return {
+            return action.payload.data.error ? {
                 ...state,
                 fetching: false,
                 fetched: true,
-                user: action.payload
+                error: action.payload.data.error
+            } :
+            {
+                ...state,
+                fetching: false,
+                fetched: true,
+                user: action.payload.data
             }
         }
         default : return state;

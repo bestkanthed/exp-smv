@@ -14,10 +14,16 @@ import Generate from './Support/Generate'
 
 function renderRoute (props) {
   
-  let { user, team, page, match } = props
-  if (!user.user || user.user.teams.indexOf(team) === -1) return <Redirect to='/unauthorized' />
-
-  switch (team) {
+  let { user, teams, page, match, location } = props
+  if (!user.user) return <Redirect to='/unauthorized' />
+  
+  let authorize = false;
+  for (let team of teams) {
+    if (user.user.teams.indexOf(team) !== -1) authorize = true
+  }
+  if(!authorize) <Redirect to='/unauthorized' />
+  
+  switch (teams[0]) {
     
     case 'admin': {
       switch (page) { 
@@ -29,8 +35,8 @@ function renderRoute (props) {
 
     case 'expert': {
       switch (page) { 
-        case 'orders': return <Orders />
-        case 'order': return <Order idOrder={match.params.id}/>
+        case 'orders': return <Orders idExpert={user.user.teams.indexOf('support') !== -1 ? location.search ? location.search.substring(location.search.indexOf('=')+1) : null : null}/>
+        case 'order': return <Order idOrder={match.params.id} supportView = {user.user.teams.indexOf('support') !== -1 ? location.search.indexOf('supportView=true') !== -1 ? true : false : false}/>
         case 'application': return <Application idApplication={match.params.id}/>
         case 'document': return <Document idDocument={match.params.id}/>
         default: return <div> Invalid Page </div>
@@ -49,10 +55,6 @@ function renderRoute (props) {
 }
 
 const mapStateToProp = state => ({
-  user: state.user
-})
-
-const mapDispatchToProp = dispatch => ({
   user: state.user
 })
 

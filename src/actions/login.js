@@ -11,3 +11,10 @@ export function sendLoginRequest (credentials) {
         })
     }
 }
+
+export function logout () {
+    return {
+        type: 'LOGOUT_REQUEST',
+        payload: axios.get('http://localhost:1169/logout', { withCredentials: true })
+    }
+}
