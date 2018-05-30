@@ -159,11 +159,12 @@ export function deleteOrder (id) {
     }
 }
 
-export function fetchOrders (idExpert) {
-    if (idExpert) return {
+export function fetchOrders (query) {
+    console.log('loggig query from fetchOrders', query)
+    if (query) return {
         type: 'FETCH_ORDERS',
-        payload: axios.get('http://localhost:1169/expert/orders?idExpert='+idExpert, { withCredentials: true })
-    } 
+        payload: axios.get('http://localhost:1169/expert/orders?'+query, { withCredentials: true })
+    }
     else return {
         type: 'FETCH_ORDERS',
         payload: axios.get('http://localhost:1169/expert/orders', { withCredentials: true })

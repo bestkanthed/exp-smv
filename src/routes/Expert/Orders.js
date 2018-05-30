@@ -8,13 +8,13 @@ import OrderFilters from './orders/OrderFilters'
 
 const mapStateToProps = state => ({ orders: state.expert.orders })
 
-const mapDispatchToProps = dispatch => ({ fetchOrders: idUser => dispatch(fetchOrders(idUser)) })
+const mapDispatchToProps = dispatch => ({ fetchOrders: query => dispatch(fetchOrders(query)) })
 
 class Orders extends React.Component {
     
     componentWillMount() {
         let { idExpert, fetchOrders } = this.props
-        if(idExpert) fetchOrders(idExpert)
+        if(idExpert) fetchOrders('idExpert='+idExpert)
         else fetchOrders(null)
     }
 
@@ -25,7 +25,7 @@ class Orders extends React.Component {
             <div class='container expert'>
                 <h1>Expert Dashboard</h1>
                 <hr/>
-                <OrderFilters />
+                <OrderFilters idExpert={idExpert}/>
                 {
                     fetching ?
                     null :

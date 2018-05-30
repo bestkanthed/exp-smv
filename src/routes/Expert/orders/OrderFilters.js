@@ -1,16 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import { fetchOrders } from '../../../actions/expert';
 
-/**
- * The selection will fire an action that will fire a specific query that will change the orders in the state
- */
+const mapDispatchToProps = dispatch => ({
+    fetchOrders: query => dispatch(fetchOrders(query))
+})
 
-const OrderFilters = ({idExpert}) => (
+const OrderFilters = ({idExpert, fetchOrders}) => (
     <div class="col-md-12 col-lg-12 col-sm-12">
         <label>Status :</label><select defaultValue={status} onChange={event => {
-            let query = event.target.value
-            fetchOrders(idExpert)
-            }}>
+            if(idExpert) fetchOrders('idExpert='+idExpert+'&status='+event.target.value)
+            else fetchOrders('status='+event.target.value)
+        }}>
             <option value='To be Reviewed'>To be Reviewed</option>            
             <option value='Pickup Scheduled'>Pickup Scheduled</option>
             <option value='Ready to Submit'>Ready to Submit</option>
@@ -21,4 +23,4 @@ const OrderFilters = ({idExpert}) => (
     </div>
 );
 
-export default OrderFilters;
+export default connect(null, mapDispatchToProps)(OrderFilters)

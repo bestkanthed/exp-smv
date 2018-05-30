@@ -17,6 +17,7 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_ORDERS_FULFILLED' : {
+            console.log('fetch orders fulfilled', action.payload.data)
             return action.payload.data.error ? {
                 ...state,
                 fetching: false,
