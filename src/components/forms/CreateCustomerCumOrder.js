@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const mapStateToProps = state => {
     return {
-        experts: state.support.experts
+        experts: state.support.experts,
+        database: state.database
     }
 }
 
@@ -49,7 +50,8 @@ class CreateCustomerCumOrder extends React.Component {
     }
 
     render () {
-        let { experts, postCustomerCumOrder } = this.props
+        let { experts, postCustomerCumOrder, database } = this.props
+        let { countries, purposes } = database
         
         return (
             <div class="row login-form">
@@ -127,8 +129,8 @@ class CreateCustomerCumOrder extends React.Component {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
                                 name: 'Customer'+(index+1),
-                                country: 'Singapore',
-                                visaType: 'Tourist',
+                                country: undefined,
+                                visaType: undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
                             })
                         )
@@ -151,18 +153,17 @@ class CreateCustomerCumOrder extends React.Component {
                                 this.setState({...this.state, apps})
                             }}/>
                             <select onChange = {event => {
-                                    let apps = [...this.state.apps];
-                                    for(let i=index; i<apps.length; i++) {
-                                        let application = {...apps[i]};
-                                        application.country = event.target.value;
-                                        apps[i] = application;
-                                    }
-                                    this.setState({...this.state, apps});
-                                }} value={this.state.apps[index].country}>
-                                <option value='Singapore'> Singapore </option>
-                                <option value='Malaysia'> Malaysia </option>
-                                <option value='US'> USA </option>
-                                <option value='Thailand'> Thailand </option>
+                                let apps = [...this.state.apps];
+                                for(let i=index; i<apps.length; i++) {
+                                    let application = {...apps[i]};
+                                    application.country = event.target.value;
+                                    apps[i] = application;
+                                }
+                                this.setState({...this.state, apps});
+                            }} value={this.state.apps[index].country}>
+                                {countries.countries.map(country => 
+                                    <option value={country.name} key={country._id}> {country.name} </option> 
+                                )}
                             </select>
                             <select onChange = {event => {
                                     let apps = [...this.state.apps];
@@ -173,10 +174,9 @@ class CreateCustomerCumOrder extends React.Component {
                                     }
                                     this.setState({...this.state, apps});
                                 }} value={this.state.apps[index].visaType}>
-                                <option value='Tourist'> Tourist </option>
-                                <option value='Business'> Business </option>
-                                <option value='Family & Friends'> Family & Friends </option>
-                                <option value='Honeymoon'> Honeymoon </option>
+                                {purposes.purposes.map(purpose => 
+                                    <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
+                                )}
                             </select>
                             <input type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {
