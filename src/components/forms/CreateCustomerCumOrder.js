@@ -31,17 +31,18 @@ class CreateCustomerCumOrder extends React.Component {
             },
             order: {
                 idExpert: null,
-                orderType: 'eVisa',
+                orderType: 'Pickup Drop',
                 invoiceNo: null,
                 noOfApplications: null,
-                story: null
+                story: null,
+                status: 'New'
             },
         }
     }
     
     componentDidMount () {
         let { experts } = this.props.experts
-        if(experts.length) this.setState({...this.state,
+        if(experts) this.setState({...this.state,
             order: {
                 ...this.state.order,
                 idExpert: experts[0]._id 
@@ -102,10 +103,9 @@ class CreateCustomerCumOrder extends React.Component {
                         }
                     })
                 }}>
+                    <option value='Pickup Drop'>Pickup Drop</option>
                     <option value='eVisa'>eVisa</option>
-                    <option value='Pickup & Drop'>Pickup & Drop</option>
                     <option value='Online Consultation'>Online Consultation</option>
-                    <option value='Mixed'>Mixed</option>
                 </select>
                 <label>Invoice No : </label><input type="text" required="required"  onChange={event => {
                     this.setState({...this.state,
@@ -129,8 +129,8 @@ class CreateCustomerCumOrder extends React.Component {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
                                 name: 'Customer'+(index+1),
-                                country: undefined,
-                                visaType: undefined,
+                                country: countries.countries ? countries.countries[0].name : undefined,
+                                visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
                             })
                         )
@@ -161,9 +161,9 @@ class CreateCustomerCumOrder extends React.Component {
                                 }
                                 this.setState({...this.state, apps});
                             }} value={this.state.apps[index].country}>
-                                {countries.countries.map(country => 
+                                {countries.countries ? countries.countries.map(country => 
                                     <option value={country.name} key={country._id}> {country.name} </option> 
-                                )}
+                                ) : null}
                             </select>
                             <select onChange = {event => {
                                     let apps = [...this.state.apps];
@@ -174,9 +174,9 @@ class CreateCustomerCumOrder extends React.Component {
                                     }
                                     this.setState({...this.state, apps});
                                 }} value={this.state.apps[index].visaType}>
-                                {purposes.purposes.map(purpose => 
+                                {purposes.purposes ? purposes.purposes.map(purpose => 
                                     <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
-                                )}
+                                ) : null}
                             </select>
                             <input type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {

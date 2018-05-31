@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
 import { logout } from '../../actions/login'
+import { seenNotifications } from '../../actions/notification'
 
 import Location from './header/Location'
-import NotificationTab from './header/NotificationTab';
 
 import { UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 
@@ -19,12 +19,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        seenNotifications: idUser => dispatch(seenNotifications(idUser)),
         showLoginPopup: () => dispatch(loadPopup('Login')),
         logout: () => dispatch(logout())
     }
 }
 
-const Header = ({user, showLoginPopup, logout}) => (
+const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -42,7 +43,7 @@ const Header = ({user, showLoginPopup, logout}) => (
                             ) :
                             null
                             ,
-                            <NotificationTab key='notifications'/>
+                            <li key='notifications' onClick={() => seenNotifications(user._id)}><Link to='/notifications'>Notifications</Link></li>
                             ,
                             <UncontrolledDropdown nav inNavbar key='account'>
                                 <DropdownToggle nav caret>

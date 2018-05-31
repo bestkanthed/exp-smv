@@ -28,12 +28,36 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) 
             <option value='Unemployed'>Unemployed</option>
         </select>
         Submission Date : <input type="date" defaultValue={application.submissionDate ? application.submissionDate.substring(0,10) : null } ref = {node => { submissionDate = node}} />
-        Status: <select defaultValue={application.status} ref = {node => { status = node }}>
-            <option value='Pickup Scheduled'>Pickup Scheduled</option>
-            <option value='Ready to Submit'>Ready to Submit</option>
-            <option value='Reviewed: NOT OKAY'>Reviewed: NOT OKAY</option>
-            <option value='Submitted'>Submitted</option>
-        </select>
+        Status: {
+            application.orderType === 'Pickup Drop' ?
+            <select defaultValue={application.status} ref = {node => { status = node }}>
+                <option value='Pickup Scheduled'>Pickup Scheduled</option>
+                <option value='Under Review'>Under Review</option>
+                <option value='Ready to Submit'>Ready to Submit</option>
+                <option value='Submitted'>Submitted</option>
+                <option value='Collected'>Collected</option>
+                <option value='Delivered'>Delivered</option>
+            </select> : null
+        }
+        {
+            application.orderType === 'eVisa' ?
+            <select defaultValue={application.status} ref = {node => { status = node }}>
+                <option value='Under Review'>Under Review</option>
+                <option value='Ready to Submit'>Ready to Submit</option>
+                <option value='Submitted'>Submitted</option>
+                <option value='Decision Made'>Decision Made</option>
+            </select> : null
+        }
+        {
+            application.orderType === 'Online Consultation' ?
+            <select defaultValue={application.status} ref = {node => { status = node }}>
+                <option value='Under Review'>Under Review</option>
+                <option value='Application Pack Couriered'>Application Pack Couriered</option>
+                <option value='Ready to Submit'>Ready to Submit</option>
+                <option value='Submitted'>Submitted</option>
+                <option value='Decision Made'>Decision Made</option>                
+            </select> : null
+        }
         <button type='button' onClick = {() => updateApplication({
             idOrder: application.idOrder, id: application._id,
             name: name.value, idCountry: idCountry.value, idVisa: idVisa.value, travelDate: travelDate.value,

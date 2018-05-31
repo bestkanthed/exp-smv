@@ -33,13 +33,6 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
         
         <label>Invoice No:</label><input type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
         <label>Story :</label><input type="text" defaultValue={order.story} ref = {node => { story = node }}/>
-        <label>Status :</label><select defaultValue={order.status} ref = {node => { status = node }}>
-            <option value='To be Reviewed'>To be Reviewed</option>
-            <option value='Reviewed: NOT OKAY'>Reviewed: NOT OKAY</option>
-            <option value='Pickup Scheduled'>Pickup Scheduled</option>
-            <option value='Ready to Submit'>Ready to Submit</option>
-            <option value='Submitted'>Submitted</option>
-        </select>
         <label>Travel Date :</label><input type="date" defaultValue={order.travelDate  ? order.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} />
         <button type='button' onClick = {() => {
             supportView ?

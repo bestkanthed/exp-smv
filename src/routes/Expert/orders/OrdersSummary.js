@@ -8,10 +8,11 @@ const OrdersSummary = ({orders, allowUpdate}) => (
             orders.map(order =>
                 <div class='col-md-6 col-sm-12 col-lg-3' key={order._id}>
                     <Link to={'/expert/orders/'+order._id} >
-                        <p>{JSON.stringify(order.customer)}</p>
-                        <p>{order.noOfApplications}</p>
-                        <p>{order.countries.map(country => country)}</p>
-                        <p>{order.travelDate} - {order.status}</p>
+                        <p>Name : {order.customer[0].name}</p>
+                        <p>No of Apps : {order.noOfApplications}</p>
+                        <p>Countries : {order.countries.map(country => country)}</p>
+                        <p>Travel Date : {order.travelDate}</p>
+                        <p>Status : {order.status}</p>
                     </Link>
                     {
                         allowUpdate ?
