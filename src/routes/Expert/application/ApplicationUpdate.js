@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) => {
-  let name, idCountry, idVisa, travelDate, employmentStatus, submissionDate, status, updateForm
+  let name, country, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
   return (
 <div class='application-update-form'>
     <div>
@@ -37,7 +37,7 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) 
                     </span>
                     <br/>
                     <span>
-                        {`${application.idCountry} - ${application.idVisa}`}
+                        {`${application.country} - ${application.visaType}`}
                     </span>
                 </span>
                 <span class='col-lg-2'>
@@ -78,11 +78,11 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) 
 </div>
 <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
         Name : <input type="text" defaultValue={application.name} required="required" ref = {node => { name = node}} />
-        Country : <select defaultValue={application.idCountry} ref = {node => { idCountry = node }}>
+        Country : <select defaultValue={application.country} ref = {node => { country = node }}>
             <option value='Singapore'>Singapore</option>
             <option value='Malaysia'>Malaysia</option>
         </select>
-        Visa : <select defaultValue={application.idVisa} ref = {node => { idVisa = node }}>
+        Visa : <select defaultValue={application.visaType} ref = {node => { visaType = node }}>
             <option value='Tourist'>Tourist</option>
             <option value='Business'>Business</option>
         </select>
@@ -126,7 +126,7 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) 
         }
         <button type='button' onClick = {() => { updateApplication({
             idOrder: application.idOrder, id: application._id,
-            name: name.value, idCountry: idCountry.value, idVisa: idVisa.value, travelDate: travelDate.value,
+            name: name.value, country: country.value, visaType: visaType.value, travelDate: travelDate.value,
             employmentStatus: employmentStatus.value, submissionDate: submissionDate.value, status: status.value
         }); updateForm.style.display='none'}} id='updateApplication' class="btn btn-primary show-requirements-button">
             Update

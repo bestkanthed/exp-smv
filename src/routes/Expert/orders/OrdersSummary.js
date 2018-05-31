@@ -27,7 +27,7 @@ const OrdersSummary = ({orders, allowUpdate}) => (
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`}}>
                             <div class='sub-mask row'>
                                 <div class='col-lg-6'>
-                                    {order.customer[0].name}  x{order.noOfApplications}<br/>
+                                    {order.customer[0] ? order.customer[0].name : null }  x{order.noOfApplications}<br/>
                                     {order.orderType}
                                 </div>
                                 <div class='col-lg-4'>

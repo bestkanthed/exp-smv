@@ -83,7 +83,7 @@ let ApplicationAdd = ({postApplication, idOrder}) => {
             <div class="col-sm-6">
                 <button type='button' onClick = {() => postApplication({
                     idOrder: idOrder,
-                    name: name.value, idCountry: country.value, idVisa: visa.value, travelDate: travelDate.value,
+                    name: name.value, counrty: country.value, visaType: visa.value, travelDate: travelDate.value,
                     employmentStatus: employmentStatus.value, submissionDate: submissionDate.value, status: 'New Application'
                 })} id='submitApplication' class="btn btn-primary show-requirements-button">
                     Add Application

@@ -23,7 +23,7 @@ class Application extends React.Component {
     }
 
     render() {
-        let name, idCountry, idVisa, travelDate, employmentStatus, submissionDate, status
+        let name, country, visaType, travelDate, employmentStatus, submissionDate, status
         let categories = null
         let documents = null
         let { fetchApplication, idApplication } = this.props        

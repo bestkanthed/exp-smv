@@ -41,7 +41,7 @@ class Notification extends React.Component {
                     fetched ?
                     notifications ?
                     notifications.map(notification =>
-                        <li>
+                        <li key={notification._id}>
                             <Link to={notification.link} onClick={() => clickedNotification(notification._id)}>
                                 <p>{notification.notification}</p>
                             </Link>

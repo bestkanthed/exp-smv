@@ -24,7 +24,7 @@ const ApplicationsSummary = ({applications}, name="Shahaji") => (
                             <div>
                                 <div class='col-lg-2 col-md-2'>
                                     <p>{application.name}</p>
-                                    <p>{application.idCountry} - {application.idVisa}</p>
+                                    <p>{application.country} - {application.visaType}</p>
                                 </div>
                                 <div class='col-lg-2 col-md-3'>
                                 <p>Travel Date : <br/>{application.travelDate ? application.travelDate.substring(0, 10) : null}</p>
