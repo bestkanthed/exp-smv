@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const mapStateToProps = state => {
     return {
-        experts: state.support.experts
+        experts: state.support.experts,
+        database: state.database
     }
 }
 
@@ -30,17 +31,18 @@ class CreateCustomerCumOrder extends React.Component {
             },
             order: {
                 idExpert: null,
-                orderType: 'eVisa',
+                orderType: 'Pickup Drop',
                 invoiceNo: null,
                 noOfApplications: null,
-                story: null
+                story: null,
+                status: 'New'
             },
         }
     }
     
     componentDidMount () {
         let { experts } = this.props.experts
-        if(experts.length) this.setState({...this.state,
+        if(experts) this.setState({...this.state,
             order: {
                 ...this.state.order,
                 idExpert: experts[0]._id 
@@ -49,7 +51,8 @@ class CreateCustomerCumOrder extends React.Component {
     }
 
     render () {
-        let { experts, postCustomerCumOrder } = this.props
+        let { experts, postCustomerCumOrder, database } = this.props
+        let { countries, purposes } = database
         
         return (
             <div class="row login-form">
@@ -100,10 +103,9 @@ class CreateCustomerCumOrder extends React.Component {
                         }
                     })
                 }}>
+                    <option value='Pickup Drop'>Pickup Drop</option>
                     <option value='eVisa'>eVisa</option>
-                    <option value='Pickup & Drop'>Pickup & Drop</option>
                     <option value='Online Consultation'>Online Consultation</option>
-                    <option value='Mixed'>Mixed</option>
                 </select>
                 <label>Invoice No : </label><input type="text" required="required"  onChange={event => {
                     this.setState({...this.state,
@@ -127,8 +129,8 @@ class CreateCustomerCumOrder extends React.Component {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
                                 name: 'Customer'+(index+1),
-                                country: 'Singapore',
-                                visaType: 'Tourist',
+                                country: countries.countries ? countries.countries[0].name : undefined,
+                                visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
                             })
                         )
@@ -151,18 +153,17 @@ class CreateCustomerCumOrder extends React.Component {
                                 this.setState({...this.state, apps})
                             }}/>
                             <select onChange = {event => {
-                                    let apps = [...this.state.apps];
-                                    for(let i=index; i<apps.length; i++) {
-                                        let application = {...apps[i]};
-                                        application.country = event.target.value;
-                                        apps[i] = application;
-                                    }
-                                    this.setState({...this.state, apps});
-                                }} value={this.state.apps[index].country}>
-                                <option value='Singapore'> Singapore </option>
-                                <option value='Malaysia'> Malaysia </option>
-                                <option value='US'> USA </option>
-                                <option value='Thailand'> Thailand </option>
+                                let apps = [...this.state.apps];
+                                for(let i=index; i<apps.length; i++) {
+                                    let application = {...apps[i]};
+                                    application.country = event.target.value;
+                                    apps[i] = application;
+                                }
+                                this.setState({...this.state, apps});
+                            }} value={this.state.apps[index].country}>
+                                {countries.countries ? countries.countries.map(country => 
+                                    <option value={country.name} key={country._id}> {country.name} </option> 
+                                ) : null}
                             </select>
                             <select onChange = {event => {
                                     let apps = [...this.state.apps];
@@ -173,10 +174,9 @@ class CreateCustomerCumOrder extends React.Component {
                                     }
                                     this.setState({...this.state, apps});
                                 }} value={this.state.apps[index].visaType}>
-                                <option value='Tourist'> Tourist </option>
-                                <option value='Business'> Business </option>
-                                <option value='Family & Friends'> Family & Friends </option>
-                                <option value='Honeymoon'> Honeymoon </option>
+                                {purposes.purposes ? purposes.purposes.map(purpose => 
+                                    <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
+                                ) : null}
                             </select>
                             <input type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {

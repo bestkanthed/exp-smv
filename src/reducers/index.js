@@ -4,6 +4,7 @@ import admin from './admin'
 import expert from './expert'
 import support from './support'
 
+import database from './database'
 import user from './user'
 import notifications from './notifications'
 
@@ -15,6 +16,7 @@ export default combineReducers({
     admin,
     expert,
     support,
+    database,
     user,
     notifications,
     flash,

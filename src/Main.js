@@ -13,6 +13,7 @@ import './styles/css/main.scss'
 import Home from './routes/Home'
 import Authorize from './routes/Authorize'
 import Unauthorized from './routes/Unauthorized'
+import Notification from './routes/Notification'
 
 store.subscribe(() =>{
     console.log(store.getState())
@@ -25,6 +26,7 @@ let Main = () =>
                 <Switch>
                     <Route exact path='/' component={Home} />
                     <Route path='/unauthorized' component={Unauthorized} />
+                    <Route path='/notifications' component={Notification} />
                     
                     <Route exact path='/admin' render={() => <Redirect to='/admin/teams'/>}/>
                     <Route exact path='/admin/teams' render={() => <Authorize teams={['admin']} page='teams'/>}/>
