@@ -124,11 +124,11 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application }) 
                 <option value='Decision Made'>Decision Made</option>                
             </select> : null
         }
-        <button type='button' onClick = {() => updateApplication({
+        <button type='button' onClick = {() => { updateApplication({
             idOrder: application.idOrder, id: application._id,
             name: name.value, idCountry: idCountry.value, idVisa: idVisa.value, travelDate: travelDate.value,
             employmentStatus: employmentStatus.value, submissionDate: submissionDate.value, status: status.value
-        });updateForm.style.display='none'}} id='updateApplication' class="btn btn-primary show-requirements-button">
+        }); updateForm.style.display='none'}} id='updateApplication' class="btn btn-primary show-requirements-button">
             Update
         </button>
         <button type='button' onClick = {() => {deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} class="btn btn-primary show-requirements-button"> Delete </button>
