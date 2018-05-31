@@ -13,7 +13,7 @@ function BorderColor(status){
 }
 
 function prettyDate(date){
-    return date.substring(1,11);
+    return date ? date.substring(1,11) : null;
 }
 
 const OrdersSummary = ({orders, allowUpdate}) => (
