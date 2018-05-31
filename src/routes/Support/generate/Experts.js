@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { fetchExperts } from '../../../actions/support'
 
+import '../support.scss';
+
 const mapStateToProps = state => ({
     experts: state.support.experts
 })
@@ -21,15 +23,17 @@ class Experts extends React.Component {
         return (
             fetched ?
             experts ?
-            <div class='row experts'>
+            <div class='row'>
                 {
                     experts.map(expert => 
-                        <div class='col-lg-3 col-md-4 col-sm-12' key={expert._id}>
+                        
                             <Link to={'/expert/orders?idExpert='+expert._id}>
+                                <div class='col-lg-2 col-md-4 col-sm-12 mask' key={expert._id}>
                                 <p>{expert.name}</p>
-                                <p>{expert.onGoingOrders}</p>
+                                <span >Ongoing Orders</span>
+                                <span style={{paddingLeft:'60%'}}>{expert.onGoingOrders}</span>
+                                </div>
                             </Link>
-                        </div>
                     )
                 }
             </div>:
