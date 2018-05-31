@@ -6,6 +6,8 @@ import { fetchExperts } from '../../actions/support'
 
 import Experts from './generate/Experts'
 
+import './support.scss';
+
 const mapDispatchToProps = dispatch => {
     return {
         showCreateCustomerCumOrderPopup: () => dispatch(loadPopup('CreateCustomerCumOrder')),
@@ -22,10 +24,19 @@ class Generate extends React.Component {
     render() {
         return (
             <div class="container support">
-                <button onClick={this.props.showCreateCustomerCumOrderPopup}>
-                    CreateCustomerCumOrder
+                <div>
+                    <br/><br/>
+                <button class='button-mask' onClick={this.props.showCreateCustomerCumOrderPopup}>
+                    Create Order
                 </button>
+                <button class='button-mask' style={{marginLeft:'2%'}}>
+                    Change Visa Expert
+                </button>
+                <br/><br/>
+                </div>
+                <div>
                 <Experts />
+                </div>
             </div>
         );
     }
