@@ -11,30 +11,55 @@ const mapDispatchToProps = dispatch => ({
     fetchOrders: query => dispatch(fetchOrders(query))
 })
 
-const OrderFilters = ({idExpert, fetchOrders, countries}) => (
-    <div class="col-md-12 col-lg-12 col-sm-12">
-        <label>Sort by : Status</label><select defaultValue={'All'} onChange={event => {
-            let status = event.target.value === 'All' ? null : 'status='+event.target.value
-            if(idExpert) fetchOrders('idExpert='+idExpert+'&'+status)
-            else fetchOrders(status)
-        }}>
-            <option value='All'>All</option>
-            <option value='New'>New</option>
-            <option value='In Process'>In Process</option>
-            <option value='Submitted'>Submitted</option>
-            <option value='Completed'>Completed</option>
-        </select>
-        <label>Country</label><select defaultValue={'All'} onChange={event => {
-            let country = event.target.value === 'All' ? null : 'country='+event.target.value
-            if(idExpert) fetchOrders('idExpert='+idExpert+'&'+country)
-            else fetchOrders(country)
-        }}>
-            <option value='All'>All</option>
-            {countries.countries ? countries.countries.map(country => 
-                <option value={country.name} key={country._id}> {country.name} </option> 
-            ) : null}
-        </select>
-    </div>
-);
+const serialize = object => {
+    let query = ""
+    for (let property in object) {
+        if (object[property] && object[property]!=='All') query = query.concat(property, '=', object[property], '&')
+    }
+    return query
+  }
+
+const OrderFilters = ({idExpert, fetchOrders, countries}) => {
+    
+    let query = {
+        idExpert,
+        orderType : null,
+        status: null,
+        country: null
+    }
+
+    return (
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <label>Sort by : Order Type</label><select defaultValue={undefined} onChange={event => {
+                query.orderType = event.target.value
+                fetchOrders(serialize(query))
+            }}>
+                <option value='All'>All</option>
+                <option value='Pickup Drop'>Pickup Drop</option>
+                <option value='Online Consultation'>Online Consultation</option>
+                <option value='eVisa'>eVisa</option>
+            </select>
+            <label>Status</label><select defaultValue='All' onChange={event => {
+                query.status = event.target.value
+                fetchOrders(serialize(query))
+            }}>
+                <option value='All'>All</option>
+                <option value='New'>New</option>
+                <option value='In Process'>In Process</option>
+                <option value='Submitted'>Submitted</option>
+                <option value='Completed'>Completed</option>
+            </select>
+            <label>Country</label><select defaultValue='All' onChange={event => {
+                query.country = event.target.value
+                fetchOrders(serialize(query))
+            }}>
+                <option value='All'>All</option>
+                {countries.countries ? countries.countries.map(country => 
+                    <option value={country.name} key={country._id}> {country.name} </option> 
+                ) : null}
+            </select>
+        </div>
+    )
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderFilters)
