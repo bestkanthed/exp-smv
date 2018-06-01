@@ -132,6 +132,7 @@ class CreateCustomerCumOrder extends React.Component {
                                 country: countries.countries ? countries.countries[0].name : undefined,
                                 visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
+                                status: 'New Application'
                             })
                         )
                         this.setState({...this.state,
@@ -219,7 +220,7 @@ class CreateCustomerCumOrder extends React.Component {
                     if(!name) return alert('Enter customer name')
                     if(!email) return alert('Enter customer email')
                     if(!phone) return alert('Enter customer phone')
-                    if(!noOfApplications) return alert('Enter no of Applications                                                                                                                                ')
+                    if(!noOfApplications) return alert('Enter no of Applications')
                     postCustomerCumOrder(this.state)}} class="btn btn-primary show-requirements-button">
                     Create Customer and Order
                 </button>

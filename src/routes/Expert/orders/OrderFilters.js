@@ -47,7 +47,7 @@ const OrderFilters = ({idExpert, fetchOrders, countries}) => {
                 <option value='New'>New</option>
                 <option value='In Process'>In Process</option>
                 <option value='Submitted'>Submitted</option>
-                <option value='Completed'>Completed</option>
+                <option value='Complete'>Complete</option>
             </select>
             <label>Country</label><select defaultValue='All' onChange={event => {
                 query.country = event.target.value

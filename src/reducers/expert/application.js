@@ -43,6 +43,9 @@ export default function reducer(state = initialState, action) {
         case 'POST_DOCUMENT_FULFILLED' : {
             return {...state, rerender: true}
         }
+        case 'UPDATE_APPLICATION_FULFILLED' : {
+            return {...state, rerender: true}
+        }
         default : return state;
     }
 }
