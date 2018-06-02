@@ -27,8 +27,9 @@ const popupReducer = (state = initialState, action) => {
     let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
     let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
     let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
+    let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'    
 
-    if( postResponse || deleteResponse || uploadResponse || updateResponse) return {
+    if( postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse ) return {
         ...state,
         content: 'Flash',
         display: true,

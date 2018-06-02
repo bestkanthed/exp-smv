@@ -55,7 +55,7 @@ const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem>
-                                        <Link to='' onClick={e => {e.preventDefault(); logout()}}>Logout</Link>
+                                        <Link to='' onClick={e => {e.preventDefault(); logout(); window.location.href = '/'}}>Logout</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
                                 {null/*<li class="dropdown" key='dropdown'>

@@ -7,9 +7,10 @@ import support from './support'
 import database from './database'
 import user from './user'
 import notifications from './notifications'
+import reset from './reset'
+import location from './location'
 
 import flash from './flash'
-import location from './location'
 import popup from './popup'
 
 export default combineReducers({
@@ -19,7 +20,8 @@ export default combineReducers({
     database,
     user,
     notifications,
-    flash,
+    reset,
     location,
+    flash,
     popup
 });

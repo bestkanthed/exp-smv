@@ -17,8 +17,12 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_NOTIFICATIONS_FULFILLED' : {
-            console.log('FETCH_NOTIFICATIONS_FULFILLED', action.payload.data);
-            return {
+            return action.payload.data.error ? {
+                ...state,
+                fetching: false,
+                fetched: true,
+                error: action.payload.data.error
+            } : {
                 ...state,
                 fetching: false,
                 fetched: true,

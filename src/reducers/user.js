@@ -17,8 +17,12 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_USER_FULFILLED' : {
-            console.log('FETCH_USER_FULFILLED', action.payload.data);
-            return {
+            return action.payload.data.error ? {
+                ...state,
+                fetching: false,
+                fetched: true,
+                error: action.payload.data.error
+            } : {
                 ...state,
                 fetching: false,
                 fetched: true,
@@ -55,7 +59,22 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 fetching: false,
                 fetched: true,
-                user: null
+                user: action.payload.data
+            }
+        }
+
+        case 'RESET_PASSWORD_FULFILLED' : {
+            if(action.payload.data.error) return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                error: action.payload.data.error.message
+            }
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                user: action.payload.data
             }
         }
         
@@ -69,7 +88,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 fetching: false,
                 fetched: true,
-                user: action.payload.data
+                user: null
             }
         }
 

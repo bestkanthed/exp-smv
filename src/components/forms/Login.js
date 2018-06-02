@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { sendLoginRequest } from '../../actions/login';
+import { sendLoginRequest, forgotPassword } from '../../actions/login';
 import axios from 'axios';
 
 /**This should be user action rather as it MAY change the state of the user */
 
 const mapDispatchToProps = dispatch => {
   return {
-    sendLoginRequest: credentials => dispatch(sendLoginRequest(credentials))
+    sendLoginRequest: credentials => dispatch(sendLoginRequest(credentials)),
+    forgotPassword: credentials => dispatch(forgotPassword(credentials))
   }
 }
 
 /** Handle login post */
 
-let Login = ({sendLoginRequest}) => {
+let Login = ({sendLoginRequest, forgotPassword}) => {
   let email, password;
   return (
     <div class="row login-form">
@@ -39,7 +40,7 @@ let Login = ({sendLoginRequest}) => {
               <button type='button' onClick = {() => sendLoginRequest({email: email.value, password: password.value})} id='submitLogin' class="btn btn-primary show-requirements-button">LOGIN</button>
             </div>
             <div class="col-sm-6">
-              <a id='forgotPassword'>Forgot?</a>
+              <button type='button' onClick = {() => forgotPassword({email: email.value})} id='forgotPassword' class="btn btn-primary show-requirements-button">Forgot Password</button>
             </div>
           </div>
         </form>

@@ -10,8 +10,9 @@ export default function reducer(state = initialState, action) {
     let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
     let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
     let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
+    let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'
 
-    if( postResponse || deleteResponse || uploadResponse || updateResponse) {
+    if( postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse) {
         console.log('Logging data flash after response fullfiled', action, payload)
         if(payload.data && payload.data.error) return {
             ...state,
