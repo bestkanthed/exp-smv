@@ -11,24 +11,31 @@ import Layout from './components/Layout'
 import './styles/css/main.scss'
 
 import Home from './routes/Home'
+import About from './routes/About';
+import Faq from './routes/Faq';
+import Result from './routes/Result';
+
 import Authorize from './routes/Authorize'
 import Unauthorized from './routes/Unauthorized'
 import Notification from './routes/Notification'
 import Reset from './routes/Reset'
 
-store.subscribe(() =>{
+store.subscribe(() => {
     console.log(store.getState())
 });
 
-let Main = () => 
+let Main = () =>
     <Provider store = {store}>
         <Router>
             <Layout>
                 <Switch>
                     <Route exact path='/' component={Home} />
+                    <Route exact path='/about' component={About}></Route>
+                    <Route exact path='/faq' component={Faq}></Route>
+                    <Route exact path='/requirements/:country/:purpose' component={Result}></Route>
                     <Route path='/unauthorized' component={Unauthorized} />
-                    <Route path='/notifications' component={Notification} />
-                    <Route path='/reset/:token' component={Reset} />
+                    <Route exact path='/notifications' component={Notification} />
+                    <Route exact path='/reset/:token' component={Reset} />
                     
                     <Route exact path='/admin' render={() => <Redirect to='/admin/teams'/>}/>
                     <Route exact path='/admin/teams' render={() => <Authorize teams={['admin']} page='teams'/>}/>

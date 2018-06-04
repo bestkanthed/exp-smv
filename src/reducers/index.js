@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import admin from './admin'
 import expert from './expert'
 import support from './support'
+import customer from './customer'
 
 import database from './database'
 import user from './user'
@@ -17,6 +18,7 @@ export default combineReducers({
     admin,
     expert,
     support,
+    customer,
     database,
     user,
     notifications,

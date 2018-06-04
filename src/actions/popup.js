@@ -1,5 +1,4 @@
 export function loadPopup (content) {
-    console.log("Load popup called");
     return {
         type: 'LOAD_POPUP',
         payload: content

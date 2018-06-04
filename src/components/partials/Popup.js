@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import Flash from './popup/Flash'
 import Login from '../forms/Login'
 
+import GetStarted from '../forms/GetStarted'
+
 import CreateCustomerCumOrder from '../forms/CreateCustomerCumOrder'
 
 import UploadDocument from '../forms/UploadDocument'
@@ -14,6 +16,8 @@ function setPopupContent(content) {
     switch(content) {
         case 'Flash': return <Flash />
         case 'Login': return <Login />
+
+        case 'GetStarted': return <GetStarted />
 
         case 'CreateCustomerCumOrder': return <CreateCustomerCumOrder />
         

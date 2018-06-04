@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export function fetchVisas (params) {
+    return {
+        type: 'FETCH_VISAS',
+        payload: axios.get('http://localhost:1169/visas?country='+params.country+'&purpose='+params.purpose)
+    }
+}
+
 export function fetchCountries () {    
     return {
         type: 'FETCH_COUNTRIES',
