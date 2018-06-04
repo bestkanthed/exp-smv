@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
     deleteApplication: id => dispatch(deleteApplication(id))
 })
 
-let ApplicationUpdate = ({ updateApplication, deleteApplication, application, database }) => {
+let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, application, database }) => {
   let name, country, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
   let { countries, purposes } = database
   return (
@@ -73,9 +73,13 @@ let ApplicationUpdate = ({ updateApplication, deleteApplication, application, da
                         <span class='col-lg-2'>
                             Status:<br/>{application.status}            
                         </span>
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
-                            Edit
-                        </span>
+                        {
+                            idCustomer ?
+                            null :
+                            <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
+                                Edit
+                            </span>
+                        }
             </div>
         </div>
     </div>

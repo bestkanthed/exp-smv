@@ -26,7 +26,7 @@ class Application extends React.Component {
         let name, country, visaType, travelDate, employmentStatus, submissionDate, status
         let categories = null
         let documents = null
-        let { fetchApplication, idApplication } = this.props        
+        let { fetchApplication, idApplication, idCustomer } = this.props        
         let { application, fetching, fetched, error, rerender } = this.props.application
         
         if (application) documents  = application.documents
@@ -39,7 +39,7 @@ class Application extends React.Component {
                     fetched ?
                     application ?
                     <div class='application-view'>
-                        <ApplicationUpdate application={application}/>
+                        <ApplicationUpdate idCustomer={idCustomer} application={application}/>
                         <Tabs>
                             <TabList>
                             {
@@ -51,12 +51,14 @@ class Application extends React.Component {
                             {
                                 documents.map(document => 
                                     <TabPanel key={document.category}>
-                                        <DocumentsPreview documents={document.documents}/>
+                                        <DocumentsPreview idCustomer={idCustomer} documents={document.documents}/>
                                     </TabPanel>
                                 )
                             }
                         </Tabs>
-                        <DocumentAdd idApplication = {idApplication}/>
+                        {
+                            idCustomer ? null : <DocumentAdd idApplication = {idApplication}/>
+                        }
                     </div>:
                     <div> This application does not exist </div> :
                     fetching ?

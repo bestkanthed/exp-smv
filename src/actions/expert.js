@@ -18,9 +18,10 @@ export function fetchComments (idDocument) {
     }
 }
 
-export function uploadFile (file, idDocument) {
+export function uploadFile (file, idDocument, idCustomer) {
     let formData = new FormData()
     formData.append('file', file)
+    if (idCustomer) formData.append('idCustomer', idCustomer)
     return {
         type: 'UPLOAD_FILE',
         payload: axios('http://localhost:1169/expert/documents/'+idDocument+'/upload', {

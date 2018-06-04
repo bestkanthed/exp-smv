@@ -27,7 +27,7 @@ class Document extends React.Component {
     
     render() {
         
-        let { deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument } = this.props
+        let { idCustomer ,deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument, idComment } = this.props
         let { fetching, fetched, document, rerender } = this.props.document
         if (rerender) fetchDocument(idDocument)
         return (
@@ -46,15 +46,19 @@ class Document extends React.Component {
                             </div>
                             <div class='shift-right'>
                                 <button onClick={() => showUploadDocumentPopup()}> Upload </button>
-                                <Switch
-                                    onChange={status => changeDocumentStatus(status, document._id)}
-                                    checked={typeof(document.status) === "boolean"? document.status : false}
-                                    id="status-switch"
-                                />
+                                {
+                                    idCustomer ?
+                                    null :
+                                    <Switch
+                                        onChange={status => changeDocumentStatus(status, document._id)}
+                                        checked={typeof(document.status) === "boolean"? document.status : false}
+                                        id="status-switch"
+                                    />
+                                }
                             </div>
                         </div>
-                        <FilesView files={document.files} idDocument={document._id}/>
-                        <Comments comments={document.comments} idDocument={document._id}/>
+                        <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
+                        <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                     </div> :
                     null :
                     <h2>Error connecting to the server</h2>

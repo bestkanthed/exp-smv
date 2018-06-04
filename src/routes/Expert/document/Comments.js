@@ -18,7 +18,7 @@ class Comments extends React.Component {
     
     render () {
         let newComment
-        let { idDocument, postComment, fetchComments } = this.props
+        let { idDocument, postComment, fetchComments, idCustomer } = this.props
         let { fetching, fetched, comments, rerender } = this.props.comments
         if (rerender) fetchComments(idDocument)
         return (
@@ -46,7 +46,7 @@ class Comments extends React.Component {
                     />
                     <button class='post-comment-button' onClick={e => {
                         e.preventDefault();
-                        postComment({text :newComment.value, idDocument});
+                        postComment({text :newComment.value, idDocument, idCustomer});
                         newComment.value = '';
                         console.log('logging new comment', newComment.value)
                     }}>Fly</button>

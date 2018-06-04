@@ -19,9 +19,10 @@ function renderRoute (props) {
   
   let authorize = false;
   for (let team of teams) {
+    console.log('Checking teams for user', user.user.name, team, user.user.teams)
     if (user.user.teams.indexOf(team) !== -1) authorize = true
   }
-  if(!authorize) <Redirect to='/unauthorized' />
+  if(!authorize) return <Redirect to='/unauthorized' />
   
   switch (teams[0]) {
     
@@ -46,6 +47,16 @@ function renderRoute (props) {
     case 'support': {
       switch (page) { 
         case 'generate': return <Generate />
+        default: return <div> Invalid Page </div>
+      }
+    }
+
+    case 'customer': {
+      switch (page) {
+        case 'orders': return <Orders idCustomer={user.user._id}/>
+        case 'order': return <Order idOrder={match.params.id} idCustomer={user.user._id}/>
+        case 'application': return <Application idApplication={match.params.id} idCustomer={user.user._id}/>
+        case 'document': return <Document idDocument={match.params.id} idCustomer={user.user._id}/>
         default: return <div> Invalid Page </div>
       }
     }
