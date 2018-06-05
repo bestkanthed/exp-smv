@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
+import {deleteFile} from '../../actions/expert'
+
 import { fetchDocument, deleteDocument, changeDocumentStatus } from '../../actions/expert'
 
 import PdfViewer from '../../components/utilities/PdfViewer'
@@ -10,12 +12,15 @@ import Comments from './document/Comments'
 import FilesView from './document/FilesView'
 import Switch from 'react-switch'
 
+import './document/Document.scss';
+
 const mapStateToProps = state => ({ document: state.expert.document })
 const mapDispatchToProps = dispatch => ({
     fetchDocument: idDocument => dispatch(fetchDocument(idDocument)),
     deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
     showUploadDocumentPopup: () => dispatch(loadPopup('UploadDocument')),
-    changeDocumentStatus: (status, idDocument) => dispatch(changeDocumentStatus(status, idDocument))
+    changeDocumentStatus: (status, idDocument) => dispatch(changeDocumentStatus(status, idDocument)),
+    deleteFile: idFile => dispatch(deleteFile(idFile))
 })
 
 class Document extends React.Component {
@@ -32,20 +37,27 @@ class Document extends React.Component {
         if (rerender) fetchDocument(idDocument)
         return (
             <div class='container document'>
-                <h1 style={{paddingTop : '32px'}}>Document</h1>
-                <hr/>
                 {
                     fetching ?
                     null :
                     fetched ?
                     document ?
                     <div class='document-page-view'>
-                        <div class='document-header'>
-                            <div class='shift-left'>
-                                <h3>{document.name}</h3>
-                            </div>
-                            <div class='shift-right'>
-                                <button onClick={() => showUploadDocumentPopup()}> Upload </button>
+                        <div class='document-header'style={{paddingLeft:'1%'}}>
+                        <br/>
+                            <div class='header-mask row'>
+                                <div class='col-lg-2'>
+                                {document.category}
+                                </div>
+                                <div class='col-lg-5'>
+                                {document.name===null ? document.name:'doc1'}
+                                </div>
+                                {console.log('This is the document object--------*******',document)}
+                                <div class='col-lg-3'>
+                                <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
+                                <button class='button-mask-btn' onClick={() => deleteFile(document.files[0]._id) }> Delete </button>
+                                </div>
+                                <div class='col-lg-1'>
                                 {
                                     idCustomer ?
                                     null :
@@ -55,10 +67,18 @@ class Document extends React.Component {
                                         id="status-switch"
                                     />
                                 }
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+                        <div class='row'>
+                            <div class='col-lg-7'>
+                                <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
+                            </div>
+                            <div class='col-lg-5'>
+                                <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
-                        <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
-                        <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                     </div> :
                     null :
                     <h2>Error connecting to the server</h2>

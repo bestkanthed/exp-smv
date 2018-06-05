@@ -4,10 +4,10 @@ import '../order/ApplicationSummary.scss';
 
 function BorderColor(status){
     switch(status){
-        case "Submitted": return "#2196f3";
-        case "Pickup Scheduled": return "#ffc107";
-        case "Ready to Submit": return "#00bcd4";
-        case "Reviewed: NOT OKAY": return"#f44336";
+        case "Complete": return "#2196f3";
+        case "Submitted": return "#00bcd4";
+        case "In Process": return "#ffc107";
+        case "New": return"#f44336";
         default: return "#ffffff";
     }
 }
@@ -26,7 +26,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
                     <Link to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`}}>
                             <div class='sub-mask row'>
-                                <div class='col-lg-6'>
+                                <div class='col-lg-7'>
                                     {order.customer[0] ? order.customer[0].name : null }  x{order.noOfApplications}<br/>
                                     {order.orderType}
                                 </div>
@@ -40,7 +40,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
                             </div>
                             <br/>
                             <div class='sub-mask row'>
-                                <div class='col-lg-6'>
+                                <div class='col-lg-7'>
                                     {`Travel Date:
                                     ${prettyDate(JSON.stringify(order.travelDate))}`}
                                 </div>

@@ -51,6 +51,7 @@ class PdfViewer extends React.Component {
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}
+          fillWidth
         />
         {pagination}
       </div>

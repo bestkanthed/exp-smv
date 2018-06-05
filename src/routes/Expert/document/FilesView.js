@@ -15,9 +15,6 @@ const FilesView = ({idCustomer, files, idDocument, fetchDocument, deleteFile}) =
             files.map(file =>
                 <div key={file._id}>
                     {
-                        idCustomer ? null : <button onClick={() => deleteFile(file._id) }> Delete </button>
-                    }
-                    {
                         (file.uploadName.split('.').pop()).toLowerCase() === 'pdf' ?
                         <PdfViewer file={'http://localhost:1169/expert/files/'+file._id} /> :
                         <img src={'http://localhost:1169/expert/files/'+file._id} />

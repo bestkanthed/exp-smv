@@ -46,6 +46,21 @@ let Login = ({sendLoginRequest, forgotPassword}) => {
         </form>
       </div>
     </div>
+    // <div class='container'>
+    //   <div>
+    //     <span>
+    //     Login
+    //     </span>
+    //   </div>
+    //   <div class='row' style={{display:'inline-block'}}>
+    //   <div class='col-lg-2'/>
+    //     <input class='col-lg-2' type="email" name="email" id="email" placeholder="Email ID" required="required" class="form-control"
+    //             ref = {node => {
+    //               email = node;
+    //             }}/>
+    //   </div>
+    //   <div class='col-lg-2'/>
+    // </div>
   );
 };
 
