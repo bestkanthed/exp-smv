@@ -8,6 +8,8 @@ import DocumentsPreview from './application/DocumentsPreview'
 import DocumentAdd from './application/DocumentAdd'
 import ApplicationUpdate from './application/ApplicationUpdate';
 
+
+
 const mapStateToProps = state => ({
     application: state.expert.application,
     user: state.user
@@ -43,16 +45,16 @@ class Application extends React.Component {
                         <Tabs>
                             <TabList>
                             {
-                                categories.map(category => 
+                             categories.map(category => 
                                     <Tab key={category}>{category}</Tab>
                                 )
                             }
                             </TabList>
                             {
                                 documents.map(document => 
-                                    <TabPanel key={document.category}>
+                                    <span key={document.category}><TabPanel >
                                         <DocumentsPreview documents={document.documents}/>
-                                    </TabPanel>
+                                    </TabPanel></span>
                                 )
                             }
                         </Tabs>

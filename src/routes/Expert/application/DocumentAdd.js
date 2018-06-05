@@ -8,10 +8,16 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+
 let DocumentAdd = ({postDocument, idApplication}) => {
-  let name, category;
+  let name, category,addDocument;
   return (
-    <div class="row add-document">
+    <div>
+    <div class='button-mask' onClick={()=>{addDocument.style.display='block'}}>
+      Add New Document
+      </div>
+      
+    <div class="row add-document" style={{display:'none'}} ref={node=>{addDocument=node}}>
       <div class="col-lg-12">
         <form id="add-document-form" >
           <h1>Add Document</h1>
@@ -40,15 +46,16 @@ let DocumentAdd = ({postDocument, idApplication}) => {
               </select>
             </div>
             <div class="col-sm-6">
-                <button type='button' onClick = {() => postDocument({
+                <button type='button' onClick = {() => {postDocument({
                     idApplication: idApplication, name: name.value, category: category.value, status: null
-                })} id='submitDocument' class="btn btn-primary show-requirements-button">
+                });addDocument.style.display='none'}} id='submitDocument' class="btn btn-primary show-requirements-button">
                     Add Document
                 </button>
             </div>
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

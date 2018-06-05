@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { fetchOrders } from '../../../actions/expert';
 
+import './OrderFilter.scss';
+
 const mapStateToProps = state => ({
     countries: state.database.countries
 })
@@ -28,28 +30,48 @@ const OrderFilters = ({idExpert, fetchOrders, countries}) => {
         country: null
     }
 
+function handleServiceTypeChange(service, selectedFilter){
+    query.orderType=service;
+    fetchOrders(serialize(query));
+}
+
+function handleStatusTypeChange(status){
+    query.status=status;
+    fetchOrders(serialize(query));
+}
     return (
+        <div>
         <div class="col-md-12 col-lg-12 col-sm-12">
-            <label>Sort by : Order Type</label><select defaultValue={undefined} onChange={event => {
-                query.orderType = event.target.value
-                fetchOrders(serialize(query))
-            }}>
-                <option value='All'>All</option>
-                <option value='Pickup Drop'>Pickup Drop</option>
-                <option value='Online Consultation'>Online Consultation</option>
-                <option value='eVisa'>eVisa</option>
-            </select>
-            <label>Status</label><select defaultValue='All' onChange={event => {
-                query.status = event.target.value
-                fetchOrders(serialize(query))
-            }}>
-                <option value='All'>All</option>
-                <option value='New'>New</option>
-                <option value='In Process'>In Process</option>
-                <option value='Submitted'>Submitted</option>
-                <option value='Complete'>Complete</option>
-            </select>
-            <label>Country</label><select defaultValue='All' onChange={event => {
+            <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All')}}>
+                All
+            </div>
+            <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>
+                Pickup Drop
+            </div>
+            <div class='filter-mask' onClick={()=>handleServiceTypeChange('Online Consultation')}>
+                Online Consulatation
+            </div>
+            <div class='filter-mask' onClick={()=>handleServiceTypeChange('eVisa')}>
+                eVisa
+            </div>
+        </div>
+        <div>
+            sort by status:
+            <div class='status-filter-mask 'onClick={handleStatusTypeChange('All')}>
+                All
+            </div>
+            <div class='status-filter-mask 'onClick={()=>handleStatusTypeChange('New')}>
+                New
+            </div>
+            <div  style={{backgroundColor:'#ffc107'}} class='status-filter-mask 'onClick={()=>handleStatusTypeChange('In Process')}>
+                
+            </div>
+            <div style={{backgroundColor:'#00bcd4'}} class='status-filter-mask 'onClick={()=>handleStatusTypeChange('Submitted')}>
+                
+            </div>
+            <div style={{backgroundColor:'#2196f3'}} class='status-filter-mask ' onClick={()=>handleStatusTypeChange('Complete')}>
+            </div>
+            <label style={{marginLeft:'2%'}}>Country</label><select defaultValue='All' onChange={event => {
                 query.country = event.target.value
                 fetchOrders(serialize(query))
             }}>
@@ -58,7 +80,8 @@ const OrderFilters = ({idExpert, fetchOrders, countries}) => {
                     <option value={country.name} key={country._id}> {country.name} </option> 
                 ) : null}
             </select>
-        </div>
+        </div> 
+    </div>
     )
 }
 

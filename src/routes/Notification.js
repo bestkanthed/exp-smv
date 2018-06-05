@@ -41,11 +41,11 @@ class Notification extends React.Component {
                     fetched ?
                     notifications ?
                     notifications.map(notification =>
-                        <li key={notification._id}>
+                        <div class={notification.clicked ? 'alert alert-success':'alert alert-warning'} key={notification._id}>
                             <Link to={notification.link} onClick={() => clickedNotification(notification._id)}>
-                                <p>{notification.notification}</p>
+                                <p>{notification.notification}{console.log("--------------------", notification)}</p>
                             </Link>
-                        </li>
+                        </div>
                     ) :
                     null :
                     <div> Loading </div>   

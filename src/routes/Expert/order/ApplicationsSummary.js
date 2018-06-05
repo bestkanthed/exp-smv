@@ -5,10 +5,10 @@ import './ApplicationSummary.scss';
 
 function BorderColor(status){
     switch(status){
-        case "Submitted": return "#2196f3";
-        case "Pickup Scheduled": return "#ffc107";
-        case "Ready to Submit": return "#00bcd4";
-        case "Reviewed: NOT OKAY": return"#f44336";
+        case "Complete": return "#2196f3";
+        case "Submitted": return "#00bcd4";
+        case "In Process": return "#ffc107";
+        case "New": return"#f44336";
         default: return "#ffffff";
     }
 }

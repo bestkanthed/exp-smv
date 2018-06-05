@@ -22,14 +22,15 @@ class Comments extends React.Component {
         let { fetching, fetched, comments, rerender } = this.props.comments
         if (rerender) fetchComments(idDocument)
         return (
-            <div class='comments'>
+            <div >
+            <div class='comments' style={{height:'100%'}}>
                 {
                     fetching ?
                     null :
                     fetched ?
                     document ?
                     comments.map(comment => 
-                        <div class='comment' key={comment._id}>
+                        <div class='comment alert alert-info' key={comment._id}>
                             <p>{comment.text}</p>
                             <p>{comment.time}</p>
                             <p>{comment.sentBy[0].name}</p>
@@ -38,13 +39,15 @@ class Comments extends React.Component {
                     null :
                     <h2>Error connecting to the server</h2>
                 }
-                <form class='post-comment'>
-                    <input type="text" name="comment" id="comment" placeholder="Add comment" required="required"
+                </div>
+                <div style={{bottom: '20%'}}>
+                <form class='post-comment row'>
+                    <input class='col-lg-11'type="text" name="comment" id="comment" placeholder="Add comment" required="required"
                         ref = {node => {
                         newComment = node;
                         }}
                     />
-                    <button class='post-comment-button' onClick={e => {
+                    <button class='post-comment-button col-lg-1' onClick={e => {
                         e.preventDefault();
                         postComment({text :newComment.value, idDocument});
                         newComment.value = '';
@@ -52,6 +55,7 @@ class Comments extends React.Component {
                     }}>Fly</button>
                 </form>
             </div>
+        </div>
         )
     }
 }
