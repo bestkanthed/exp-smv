@@ -13,12 +13,12 @@ function BorderColor(status){
     }
 }
 
-const ApplicationsSummary = ({applications}, name="Shahaji") => (
+const ApplicationsSummary = ({applications, idCustomer}, name="Shahaji") => (
     <div class="expert-applications row">
         {
             applications ?
             applications.map(application =>
-                <Link to={'/expert/applications/'+application._id} key={application._id}>
+                <Link to={(idCustomer ? '/customer' : '/expert') + '/applications/'+application._id} key={application._id}>
                     <div class='col-md-6 col-sm-12 col-lg-8'>
                         <div class= "mask row" style={{borderRight:`solid 6px ${BorderColor(application.status)}`}}>
                             <div>

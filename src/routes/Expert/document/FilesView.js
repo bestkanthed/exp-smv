@@ -9,7 +9,7 @@ import PdfViewer from '../../../components/utilities/PdfViewer'
 
 const mapDispatchToProps = dispatch => ({ deleteFile: idFile => dispatch(deleteFile(idFile)) })
 
-const FilesView = ({files, idDocument, fetchDocument, deleteFile}) => (
+const FilesView = ({idCustomer, files, idDocument, fetchDocument, deleteFile}) => (
     <div>
         {
             files.map(file =>

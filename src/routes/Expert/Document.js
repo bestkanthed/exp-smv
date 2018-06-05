@@ -32,7 +32,7 @@ class Document extends React.Component {
     
     render() {
         
-        let { deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument } = this.props
+        let { idCustomer ,deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument, idComment } = this.props
         let { fetching, fetched, document, rerender } = this.props.document
         if (rerender) fetchDocument(idDocument)
         return (
@@ -58,21 +58,25 @@ class Document extends React.Component {
                                 <button class='button-mask-btn' onClick={() => deleteFile(document.files[0]._id) }> Delete </button>
                                 </div>
                                 <div class='col-lg-1'>
-                                <Switch
-                                    onChange={status => changeDocumentStatus(status, document._id)}
-                                    checked={typeof(document.status) === "boolean"? document.status : false}
-                                    id="status-switch"
-                                />
+                                {
+                                    idCustomer ?
+                                    null :
+                                    <Switch
+                                        onChange={status => changeDocumentStatus(status, document._id)}
+                                        checked={typeof(document.status) === "boolean"? document.status : false}
+                                        id="status-switch"
+                                    />
+                                }
                                 </div>
                             </div>
                             <br/>
                         </div>
                         <div class='row'>
                             <div class='col-lg-7'>
-                                <FilesView files={document.files} idDocument={document._id}/>
+                                <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
                             </div>
                             <div class='col-lg-5'>
-                                <Comments comments={document.comments} idDocument={document._id}/>
+                                <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
                     </div> :

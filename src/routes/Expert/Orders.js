@@ -19,19 +19,19 @@ class Orders extends React.Component {
     }
 
     render() {
-        let { idExpert } = this.props
+        let { idExpert, idCustomer } = this.props
         let { orders, fetching, fetched } = this.props.orders
         return (
             <div class='container expert'>
-                <h1>Expert Dashboard</h1>
+                { idCustomer ? <h1>Your Orders</h1> : <h1>Expert Dashboard</h1> }
                 <hr/>
-                <OrderFilters idExpert={idExpert}/>
+                <OrderFilters idExpert={idExpert} />
                 {
                     fetching ?
                     null :
                     fetched ?
                     orders ?
-                    <OrdersSummary orders={orders} allowUpdate={idExpert ? true : false}/> :
+                    <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/> :
                     null :
                     null
                 }

@@ -16,14 +16,14 @@ function prettyDate(date){
     return date ? date.substring(1,11) : null;
 }
 
-const OrdersSummary = ({orders, allowUpdate}) => (
+const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
     <div class="expert-orders row">
         {
             orders ?
             orders.map(order =>
                 <div class='col-md-6 col-sm-12 col-lg-3' key={order._id}>
                     {console.log("this is the order object", order)}
-                    <Link to={'/expert/orders/'+order._id} >
+                    <Link to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`}}>
                             <div class='sub-mask row'>
                                 <div class='col-lg-7'>

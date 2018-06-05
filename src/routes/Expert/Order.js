@@ -23,22 +23,23 @@ class Order extends React.Component {
 
     render() {
         let { order, fetching, fetched, rerender } = this.props.order
-        let { fetchOrder, idOrder, supportView } = this.props
+        let { fetchOrder, idOrder, supportView, idCustomer } = this.props
         if(rerender) fetchOrder(idOrder)
-         
+        
         return (
             <div class='container expert'>
-                <h2>Exesting Applications</h2>
-                <hr/>
                 {
                     fetching ?
                     null :
                     fetched ?
                     order ?
                     <div>
-                        <OrderUpdate supportView={supportView} order={order}/>
-                        <ApplicationsSummary applications={order.applications} />
-                        <ApplicationAdd idOrder={order._id} />
+                        <h3>Order : {order.country}</h3>
+                        <hr/>
+                        <h4>Exesting Applications</h4>
+                        {idCustomer ? null : <OrderUpdate supportView={supportView} order={order}/>}
+                        <ApplicationsSummary idCustomer={idCustomer} applications={order.applications} />
+                        {idCustomer ? null : <ApplicationAdd idOrder={order._id} />}
                     </div> :
                     null :
                     <div> Loading </div>
