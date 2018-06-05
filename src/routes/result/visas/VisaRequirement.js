@@ -1,23 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { showSignupPopup } from '../../../actions/popup';
+import { loadPopup } from '../../../actions/popup';
 
 const mapStateToProps = state => ({ visas : state.database.visas })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    applyForVisa : index => {
-        if(false) {
-            /**has user go to dashboard and start Application */
-        } else {
-            showSignupPopup(dispatch, index);
-        }
-    }
-  }
-};
+const mapDispatchToProps = dispatch => ({ loadPopup : content => dispatch(loadPopup(content)) })
 
-let VisaRequirement = ({visas, applyForVisa}) => (
+let VisaRequirement = ({visas, applyForVisa, loadPopup}) => (
     <div class="col-md-9">
         <div class="tab-content">
             {visas.visas ? visas.visas.map((visa, index1) => 
@@ -33,7 +23,7 @@ let VisaRequirement = ({visas, applyForVisa}) => (
                     <div style={{textAlign: 'center'}} class="requirements">
                         <div class="row">
                             <div class="col-sm-12">
-                            <button onClick={() => applyForVisa(index1)} class="button_yellow">Apply</button>
+                            <button onClick={() => loadPopup('Signup')} class="button_yellow">Apply</button>
                             </div>
                         </div>
                     </div>
