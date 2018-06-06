@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import Popup from './partials/Popup'
 import Header from './partials/Header'
 import Footer from './partials/Footer'
+import SideBar from './partials/SideBar'
 
 import { fetchCountries, fetchPurposes } from '../actions/database'
 import { fetchUser } from '../actions/user'
@@ -33,10 +34,17 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{backgroundColor:'white', height:'100vh'}}>
                 <Popup />
-                <Header />
-                {this.props.children}
+                <div class='row'>
+                    <div class='col-lg-3'>
+                        <SideBar />
+                    </div>
+                    <div class='col-lg-8'>
+                    {/*<Header />*/}
+                    {this.props.children}
+                    </div>
+                </div>
                 <Footer />
             </div>
         )

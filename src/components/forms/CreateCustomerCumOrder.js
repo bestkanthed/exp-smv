@@ -455,14 +455,14 @@ class CreateCustomerCumOrder extends React.Component {
                             experts.fetched ?
                             experts.experts ?
                             experts.experts.map(exp => 
-                                <div  key={exp._id} value={exp._id} onClick={event => {
+                                <button  key={exp._id} value={exp._id} onClick={event => {
                                     this.setState({...this.state,
                                         order: {
                                             ...this.state.order,
                                             idExpert: event.target.value
                                         }
                                     })
-                                }} ><br/> {exp.name}</div>
+                                }} ><br/> {exp.name}</button>
                             ) :
                             null :
                             null

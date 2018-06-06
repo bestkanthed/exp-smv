@@ -39,7 +39,7 @@ class Order extends React.Component {
                         <h4>Exesting Applications</h4>
                         {idCustomer ? null : <OrderUpdate supportView={supportView} order={order}/>}
                         <ApplicationsSummary idCustomer={idCustomer} applications={order.applications} />
-                        {idCustomer ? null : <ApplicationAdd idOrder={order._id} />}
+                        {/* {idCustomer ? null : <ApplicationAdd idOrder={order._id} />} */}
                     </div> :
                     null :
                     <div> Loading </div>

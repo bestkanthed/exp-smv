@@ -23,7 +23,9 @@ class DocumentPreview extends React.Component {
         let document = this.props.document
         let details
         return (
+
             <div class='document-view' key={document._id}>
+            
                 {
                     document.previewFileName ?
                     

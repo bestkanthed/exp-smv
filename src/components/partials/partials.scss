@@ -1,0 +1,44 @@
+.side-bar{
+    height: 100vh;
+    background-color:#eceff1;
+
+}
+
+.side-bar-content{
+    font-size: 25px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 10px;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: normal;
+    color: #000000;
+    padding: 8%;
+    border: 1px solid #cfd8dc 
+}
+
+.side-bar-content:hover{
+    background-color:#cfd8dc 
+}
+
+.side-bar-logout-option:hover{
+    background-color:#cfd8dc 
+}
+
+.side-bar-logout-option{
+    position: absolute;
+    bottom: 8%;
+    left: 27%;
+    font-size: 25px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: normal;
+    color: #000000;
+    border: 1px solid #cfd8dc;
+    padding: 8%;
+}
