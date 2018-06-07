@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateOrder, deleteOrder } from '../../../actions/expert';
+import './ApplicationSummary.scss';
 
 const mapStateToProps = state => ({ experts : state.support.experts.experts })
 
@@ -26,26 +27,38 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                         null
                     }
                 </select>
+                <br/>
                 <button type='button' onClick = {() => {deleteOrder(order._id); window.location.href = '/expert/orders?idExpert='+order.idExpert}} class="btn btn-primary show-requirements-button"> Delete </button>
             </div> :
             null
         }
-        
-        <label>Invoice No:</label><input type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
-        <label>Story :</label><input type="text" defaultValue={order.story} ref = {node => { story = node }}/>
-        <label>Travel Date :</label><input type="date" defaultValue={order.travelDate  ? order.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} />
-        <button type='button' onClick = {() => {
-            supportView ?
-            updateOrder({
-                _id: order._id, noOfApplications: noOfApplications.value, idExpert: idExpert.value, invoiceNo: invoiceNo.value,
-                story: story.value, status: status.value, travelDate: travelDate.value
-            }) :
-            updateOrder({
-                _id: order._id, invoiceNo: invoiceNo.value, story: story.value, status: status.value, travelDate: travelDate.value
-            })
-        }} class="btn btn-primary show-requirements-button">
-            Update
-        </button>
+            <div class='mask' style={{display:'inline'}}>
+                <div class='sub-mask row'>
+                    <p class='col-lg-1'>InvoiceNo:</p> 
+                    <input class='col-lg-3'type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
+                </div>
+                <div class='sub-mask row'>
+                    <p class='col-lg-1'>Story:</p> 
+                    <input class='col-lg-3' type="text" defaultValue={order.story} ref = {node => { story = node }}/>
+                </div>
+                <div class='sub-mask row'>
+                    <p class='col-lg-1'>Travel Date:</p> 
+                    <input class='col-lg-3' type="date" defaultValue={order.travelDate  ? order.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} />
+                </div>
+                <br/>
+                <button type='button' onClick = {() => {
+                    supportView ?
+                    updateOrder({
+                        _id: order._id, noOfApplications: noOfApplications.value, idExpert: idExpert.value, invoiceNo: invoiceNo.value,
+                        story: story.value, status: status.value, travelDate: travelDate.value
+                    }) :
+                    updateOrder({
+                        _id: order._id, invoiceNo: invoiceNo.value, story: story.value, status: status.value, travelDate: travelDate.value
+                    })
+                }} class="btn btn-primary show-requirements-button">
+                    Update
+                </button>
+            </div>
     </div>
   );
 };

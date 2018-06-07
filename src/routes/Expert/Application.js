@@ -42,6 +42,7 @@ class Application extends React.Component {
                     application ?
                     <div class='application-view'>
                         <ApplicationUpdate idCustomer={idCustomer} application={application}/>
+                        <hr />
                         <Tabs>
                             <TabList>
                             {
@@ -58,6 +59,7 @@ class Application extends React.Component {
                                 )
                             }
                         </Tabs>
+                        <hr/>
                         {
                             idCustomer ? null : <DocumentAdd idApplication = {idApplication}/>
                         }

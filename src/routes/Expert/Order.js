@@ -34,12 +34,12 @@ class Order extends React.Component {
                     fetched ?
                     order ?
                     <div>
-                        <h3>Order : {order.country}</h3>
                         <hr/>
-                        <h4>Exesting Applications</h4>
+                        <h4>Existing Applications</h4>
                         {idCustomer ? null : <OrderUpdate supportView={supportView} order={order}/>}
+                        <hr/>
                         <ApplicationsSummary idCustomer={idCustomer} applications={order.applications} />
-                        {/* {idCustomer ? null : <ApplicationAdd idOrder={order._id} />} */}
+                        {/* {idCustomer ? null : <ApplicationAdd idOrder={order._id} />}  */}
                     </div> :
                     null :
                     <div> Loading </div>

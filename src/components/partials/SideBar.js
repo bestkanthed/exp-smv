@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
-        <div class='side-bar row navbar'>
+        <div class='side-bar'>
             {
                 
                 user ?

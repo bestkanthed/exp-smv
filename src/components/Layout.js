@@ -6,6 +6,7 @@ import Popup from './partials/Popup'
 import Header from './partials/Header'
 import Footer from './partials/Footer'
 import SideBar from './partials/SideBar'
+import SearchBar from './partials/SearchBar'
 
 import { fetchCountries, fetchPurposes } from '../actions/database'
 import { fetchUser } from '../actions/user'
@@ -42,6 +43,7 @@ class Layout extends React.Component {
                     </div>
                     <div class='col-lg-8'>
                     {/*<Header />*/}
+                    <SearchBar path={window.location.pathname}/>
                     {this.props.children}
                     </div>
                 </div>
