@@ -7,6 +7,6 @@ WORKDIR /starter
 
 ENV NODE_ENV production
 
-CMD ["node index.js"]
+CMD ["node","index.js"]
 
 EXPOSE 7357
