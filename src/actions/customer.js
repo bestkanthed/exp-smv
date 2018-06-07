@@ -3,7 +3,7 @@ import axios from 'axios'
 export function registerCustomer (formData) {
     return {
         type: 'POST_CUSTOMER',
-        payload : axios('http://localhost:1169/customer/register', {
+        payload : axios('/api/customer/register', {
             method: 'post',
             data: formData,
             withCredentials: true
@@ -28,7 +28,7 @@ export function setSendOtp (value) {
 export function sendOtp (phone) {
     return {
         type: 'SEND_OTP',
-        payload: axios.get('http://localhost:1169/customer/otp/'+phone, {withCredentials: true})
+        payload: axios.get('/api/customer/otp/'+phone, {withCredentials: true})
     }
 }
 

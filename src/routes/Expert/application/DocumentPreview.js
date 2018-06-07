@@ -33,10 +33,10 @@ class DocumentPreview extends React.Component {
                             <div>
                                 <p>{document.name}</p>
                                 <div class='pdf-view'>
-                                    <PdfViewer file={'http://localhost:1169/expert/documents/'+document._id+'/preview'} />
+                                    <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
                                 </div>
                             </div> :
-                            <img src={'http://localhost:1169/expert/documents/'+document._id+'/preview'} />
+                            <img src={'/api/expert/documents/'+document._id+'/preview'} />
                         }
                     </Link> :
                     <Dropzone onDrop={files => uploadFiles(files, document._id, idCustomer)}/>

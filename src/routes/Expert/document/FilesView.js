@@ -16,8 +16,8 @@ const FilesView = ({idCustomer, files, idDocument, fetchDocument, deleteFile}) =
                 <div key={file._id}>
                     {
                         (file.uploadName.split('.').pop()).toLowerCase() === 'pdf' ?
-                        <PdfViewer file={'http://localhost:1169/expert/files/'+file._id} /> :
-                        <img src={'http://localhost:1169/expert/files/'+file._id} />
+                        <PdfViewer file={'/api/expert/files/'+file._id} /> :
+                        <img src={'/api/expert/files/'+file._id} />
                     }
                 </div>
             )
