@@ -6,9 +6,7 @@ COPY package.json /starter/package.json
 WORKDIR /starter
 
 ENV NODE_ENV production
-RUN npm install --production
-RUN npm install webpack webpack-dev-server -g
 
-CMD ["webpack-dev-server"]
+CMD ["node index.js"]
 
 EXPOSE 7357
