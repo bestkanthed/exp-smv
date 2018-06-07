@@ -6,6 +6,7 @@ COPY package.json /starter/package.json
 WORKDIR /starter
 
 ENV NODE_ENV production
+RUN npm install express
 
 CMD ["node","index.js"]
 
