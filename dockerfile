@@ -2,7 +2,6 @@ FROM node:8-slim
 
 COPY . /starter
 COPY package.json /starter/package.json
-COPY .env.example /starter/.env.example
 
 WORKDIR /starter
 
