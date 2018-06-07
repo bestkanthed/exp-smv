@@ -9,6 +9,7 @@ import Login from '../forms/Login'
 
 import CreateCustomerCumOrder from '../forms/CreateCustomerCumOrder'
 import UploadDocument from '../forms/UploadDocument'
+import ProcessOrder from '../forms/ProcessOrder'
 
 import { hidePopupDone, hidePopupStart } from '../../actions/popup'
 
@@ -22,6 +23,7 @@ function setPopupContent(content) {
 
         case 'CreateCustomerCumOrder': return <CreateCustomerCumOrder />
         case 'UploadDocument': return <UploadDocument />
+        case 'ProcessOrder': return <ProcessOrder />
         default: return null
     }
 }

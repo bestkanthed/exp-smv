@@ -54,6 +54,7 @@ let Main = () =>
                     <Route exact path='/expert/documents/:id' render={props => <Authorize {...props} teams={['expert', 'support']} page='document'/>}/>
 
                     <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
+                    <Route exact path='/support/new' render={() => <Authorize teams={['support']} page='new'/>}/>
                     <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
                 </Switch>
             </Layout>

@@ -11,6 +11,7 @@ import Application from './Expert/Application'
 import Document from './Expert/Document'
 
 import Generate from './Support/Generate'
+import News from './Support/News'
 
 function renderRoute (props) {
   
@@ -19,7 +20,6 @@ function renderRoute (props) {
   
   let authorize = false;
   for (let team of teams) {
-    console.log('Checking teams for user', user.user.name, team, user.user.teams)
     if (user.user.teams.indexOf(team) !== -1) authorize = true
   }
   if(!authorize) return <Redirect to='/unauthorized' />
@@ -47,6 +47,7 @@ function renderRoute (props) {
     case 'support': {
       switch (page) { 
         case 'generate': return <Generate />
+        case 'new': return <News />
         default: return <div> Invalid Page </div>
       }
     }

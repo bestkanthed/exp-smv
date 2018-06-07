@@ -29,6 +29,8 @@ const popupReducer = (state = initialState, action) => {
     let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
     let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'    
 
+    console.log('Logging form popup reducer', action, payload, postResponse)
+
     if( postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse ) return {
         ...state,
         content: 'Flash',

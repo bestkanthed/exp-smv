@@ -1,63 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//import SendOtp from 'sendotp';
 
-//const sendOtp = new SendOtp('201993AhfXTDCNZ6OR5aa3a3a5');
+import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
 
-class Signup extends React.Component { 
-    
-    constructor () {
-        super()
-        this.state = {
-            phone: null,
-            otp: null,
-            sendOtpEnabled: false,
-            verifyOtpEnabled: false
-        }
-    }
+import { sendOtp, setSendOtp, setOtpVerified, registerCustomer } from '../../actions/customer'
 
+const mapStateToProps = state => ({
+    otp: state.customer.otp,
+    getStarted: state.customer.getStarted
+})
+
+const mapDispatchToProps = dispatch => ({
+    sendOtp: phone => dispatch(sendOtp(phone)),
+    setSendOtp : value => dispatch(setSendOtp(value)),
+    setOtpVerified : value => dispatch(setOtpVerified(value)),
+    registerCustomer: form => dispatch(registerCustomer(form))
+})
+
+class Signup extends React.Component {
     render () {
+        let { otp, sendOtp, setSendOtp, setOtpVerified, getStarted, registerCustomer } = this.props
+        let name, email, password, phone, userOtp
         return (
             <div class='container login-register'>
                 <div class='row brand-icon'><img src="/images/smv_logo.png" width="180" /></div>
-                <div class='row login-register-switch'></div>
-                <div class='row phone'>
-                    <input type='number' onChange = { e => {
-                        let phone = e.target.value
-                        let sendOtpEnabled = false
-                        console.log('Logging nu,ber and the type of nubmer', phone, typeof phone)
-                        if(e.target.value && e.target.value.length === 10) sendOtpEnabled = true
-                        this.setState({...this.state, phone, sendOtpEnabled})
-                    }}/>
-                    <button onClick={() => {
-                        let otp = Math.floor(1000 + Math.random() * 9000)
-                        sendOtp.send(this.state.phone, 'SMVIND', otp, (err, data, response) => {
-                            if(err) return alert('Error in sending sms')    
-                            this.setState({...this.state, otp, verifyOtpEnabled: true})
-                            console.log(data);
-                            console.log(response.data);
-                        });
-                    }} style={{display: sendOtpEnabled ? 'inline-block' : 'none'}}>VERIFY</button>
-                    <input type='number' onChange = { e => {
-                        if(!otp) this.setState() //disable everything
-                        let inputOtp = e.target.value
-                        
-                        if(e.target.value && e.target.value.length === 10) sendOtpEnabled = true
-                        this.setState({...this.state, phone, sendOtpEnabled})
-                    }}/>
-                    <button onClick={() => {
-                        let otp = Math.floor(1000 + Math.random() * 9000)
-                        sendOtp.send(this.state.phone, 'SMVIND', otp, (err, data, response) => {
-                            if(err) return alert('Error in sending sms')    
-                            this.setState({...this.state, otp, verifyOtpEnabled: true})
-                            console.log(data);
-                            console.log(response.data);
-                        });
-                    }} style={{display: sendOtpEnabled ? 'inline-block' : 'none'}}>VERIFY</button>
-                </div>
+                <Tabs style={{backgroundColor:'rgba(0, 0, 0, 0.05)'}}>
+                    <TabList>
+                        <Tab>Login</Tab>
+                        <Tab>Register</Tab>
+                    </TabList>
+                    <TabPanel>
+                        Login
+                    </TabPanel>
+                    <TabPanel>
+                        <div class='row register'>
+                            <input type='text' ref = {node => { name = node }} placeholder='Full Name' />
+                            <input type='email' ref = {node => { email = node }} placeholder='Email' />
+                            <input type='number' ref = {node => { phone = node }} placeholder='Phone' onChange = { e => {
+                                let { value } = phone
+                                console.log('Logging nu,ber and the type of nubmer', phone.value, typeof phone.value)
+                                if(value && value.length === 10) setSendOtp(true)
+                                else setSendOtp(false)
+                            }} />
+                            <button onClick={() => sendOtp(phone.value)} disabled={!otp.sendOtpEnabled}>SEND OTP</button>
+                            <input type='number' style={{display : otp.otp ? 'inline-block' : 'none'}} ref = {node => { userOtp = node }}/>
+                            <button onClick={() => { if (userOtp.value === otp.otp.toString()) setOtpVerified(true); else alert('OTP sent does not match') }} style={{display : otp.otp ? 'inline-block' : 'none'}}>VERIFY</button>
+                            <input type='password' ref = { node => { password = node }} placeholder='Password' />
+                            <button onClick={() => { registerCustomer({
+                                customer : {
+                                    name: name.value,
+                                    email: email.value,
+                                    phone: phone.value,
+                                    password: password.value
+                                },
+                                order : {
+                                    country: getStarted.country
+                                }
+                            })}} disabled={!otp.otpVerified}>REGISTER</button>                            
+                        </div>
+                    </TabPanel>
+                </Tabs>
             </div>
         );
     }
 }
 
-export default Signup;
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
