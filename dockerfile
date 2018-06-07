@@ -7,7 +7,7 @@ WORKDIR /starter
 
 ENV NODE_ENV production
 RUN npm install --production
-RUN npm install webpack-dev-server -g
+RUN npm install webpack webpack-dev-server -g
 
 CMD ["webpack-dev-server"]
 
