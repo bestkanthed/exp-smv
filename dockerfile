@@ -9,6 +9,6 @@ WORKDIR /starter
 ENV NODE_ENV production
 RUN npm install --production
 
-CMD ["npm","start"]
+CMD ["webpack-dev-server"]
 
 EXPOSE 7357
