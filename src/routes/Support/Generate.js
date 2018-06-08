@@ -32,6 +32,9 @@ class Generate extends React.Component {
                 <button class='button-mask' style={{marginLeft:'2%'}}>
                     Change Visa Expert
                 </button>
+                <button class='button-mask' style={{marginLeft:'2%'}}>
+                    <Link to='/support/new'>New Orders</Link>
+                </button>
                 <br/><br/>
                 </div>
                 <div>
