@@ -8,6 +8,7 @@ function BorderColor(status){
         case "Complete": return "#2196f3";
         case "Submitted": return "#00bcd4";
         case "In Process": return "#ffc107";
+        case "Ready to Submit": return 'purple';
         case "New": return"#f44336";
         default: return "#ffffff";
     }
@@ -20,6 +21,7 @@ const ApplicationsSummary = ({applications, idCustomer}, name="Shahaji") => (
             applications.map(application =>
                 <Link to={(idCustomer ? '/customer' : '/expert') + '/applications/'+application._id} key={application._id}>
                     <div class='col-md-6 col-sm-12 col-lg-8'>
+                        {console.log('----------------&&&&&&&&&&&&&&&&&&', application)}
                         <div class= "mask row" style={{borderRight:`solid 6px ${BorderColor(application.status)}`}}>
                             <div>
                                 <div class='col-lg-2 col-md-2'>

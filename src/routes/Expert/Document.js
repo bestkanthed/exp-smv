@@ -50,7 +50,7 @@ class Document extends React.Component {
                                 {document.category}
                                 </div>
                                 <div class='col-lg-5'>
-                                {document.name===null ? document.name:'doc1'}
+                                {document.name===null ? 'doc' :`${document.name}`}
                                 </div>
                                 {console.log('This is the document object--------*******',document)}
                                 <div class='col-lg-3'>

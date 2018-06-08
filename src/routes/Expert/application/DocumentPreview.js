@@ -31,7 +31,6 @@ class DocumentPreview extends React.Component {
                         {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
                             <div>
-                                <p>{document.name}</p>
                                 <div class='pdf-view'>
                                     <PdfViewer file={'http://localhost:1169/expert/documents/'+document._id+'/preview'} />
                                 </div>
@@ -48,9 +47,9 @@ class DocumentPreview extends React.Component {
                 </div>
                 
                 <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
+                    <p>{document.name}</p>
                     <p>{document.comments}</p>
                     <p>Status:{document.status ? "OK" : "NOT OKAY"}</p>
-                </div>
                 { 
                     idCustomer ? 
                     null : 
@@ -76,6 +75,7 @@ class DocumentPreview extends React.Component {
                         </div>
                     </div>
                 }
+                </div>
             </div>
         );
     }

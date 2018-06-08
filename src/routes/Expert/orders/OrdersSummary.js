@@ -7,6 +7,7 @@ function BorderColor(status){
         case "Complete": return "#2196f3";
         case "Submitted": return "#00bcd4";
         case "In Process": return "#ffc107";
+        case "Ready to Submit": return 'purple';
         case "New": return"#f44336";
         default: return "#ffffff";
     }
@@ -24,6 +25,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
                 <div class='col-md-6 col-sm-12 col-lg-3' key={order._id}>
                     {console.log("this is the order object", order)}
                     <Link to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
+                    
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`}}>
                             <div class='sub-mask row'>
                                 <div class='col-lg-7'>
