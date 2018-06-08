@@ -7,6 +7,7 @@ WORKDIR /starter
 
 ENV NODE_ENV production
 RUN npm install express
+RUN npm install path
 
 CMD ["node","index.js"]
 
