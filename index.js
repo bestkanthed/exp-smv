@@ -5,7 +5,7 @@ const app = express()
 app.use(express.static('dist'))
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index.html'))
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'))
 })
 
 let server = app.listen( 7357, () => {
