@@ -32,7 +32,7 @@ class Orders extends React.Component {
                         null :
                         fetched ?
                         orders ?
-                        <div style={{overflow:'auto'}}>
+                        <div>
                         <hr/>
                         <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/> 
                         </div>:

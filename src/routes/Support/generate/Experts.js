@@ -28,7 +28,7 @@ class Experts extends React.Component {
                     experts.map(expert => 
                         
                             <Link to={'/expert/orders?idExpert='+expert._id}>
-                                <div class='col-lg-2 col-md-4 col-sm-12 mask' key={expert._id}>
+                                <div class='col-lg-2 col-md-4 col-sm-12 mask support' key={expert._id}>
                                 <p>{expert.name}</p>
                                 <span >Ongoing Orders</span>
                                 <span style={{paddingLeft:'60%'}}>{expert.onGoingOrders}</span>

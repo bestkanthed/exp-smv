@@ -27,12 +27,7 @@ const ApplicationsSummary = ({applications, idCustomer}) => (
             applications.map(application =>
                 <Link  style={{color:'black'}} to={(idCustomer ? '/customer' : '/expert') + '/applications/'+application._id} key={application._id}>
                     <div class='col-md-6 col-sm-12 col-lg-8'>
-<<<<<<< HEAD
-                        {console.log('----------------&&&&&&&&&&&&&&&&&&', application)}
-                        <div class= "mask row" style={{borderRight:`solid 6px ${BorderColor(application.status)}`}}>
-=======
                         <div class= "mask row" style={{borderRight:`solid 6px ${BorderColor(application.status)}`, padding:'2%'}}>
->>>>>>> adding-sidebar-menu
                             <div>
                                 <div class='col-lg-2 col-md-2'>
                                     <p>{application.name}</p>

@@ -48,35 +48,6 @@ class DocumentPreview extends React.Component {
                     <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span>
                 </div>
-<<<<<<< HEAD
-                
-                <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
-                    <p>{document.name}</p>
-                    <p>{document.comments}</p>
-                    <p>Status:{document.status ? "OK" : "NOT OKAY"}</p>
-                { 
-                    idCustomer ? 
-                    null : 
-                    <div>
-                        Move to : <select name="category" id="category"
-                            ref = {node => {
-                            category = node;
-                            }}
-                        >
-                            <option value='Passport'>Passport</option>
-                            <option value='Photograph'>Photograph</option>
-                            <option value='Forms & Letters'>Forms & Letters</option>
-                            <option value='Financials'>Financials</option>
-                            <option value='Employment Proofs'>Employment Proofs</option>
-                            <option value='Booking'>Booking</option>
-                            <option value='Insurance'>Insurance</option>
-                            <option value='Additional'>Additional</option>
-                        </select>
-                        
-                        <div class='row' style={{paddingLeft:'13%'}}>
-                            <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
-                            <button type='button' style={{marginLeft:'3%'}} onClick = {() => deleteDocument(document._id)} class="btn btn-primary col-lg-5"> Delete </button>  
-=======
                     <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                         <p>{document.comments}</p>
                         <p>Status:{document.status ? "OK" : "NOT OKAY"}</p>
@@ -102,15 +73,9 @@ class DocumentPreview extends React.Component {
                                 <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
                                 <button type='button' style={{marginLeft:'3%'}} onClick = {() => deleteDocument(document._id)} class="btn btn-primary col-lg-5"> Delete </button>  
                             </div>
->>>>>>> adding-sidebar-menu
                         </div>
                     }
                     </div>
-<<<<<<< HEAD
-                }
-                </div>
-=======
->>>>>>> adding-sidebar-menu
             </div>
         );
     }
