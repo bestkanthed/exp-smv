@@ -1,0 +1,82 @@
+.side-bar{
+    height: 100vh;
+    background-color:#eceff1;
+    padding-right:'1%'
+
+}
+
+.side-bar-content{
+    font-size: 25px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 10px;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: normal;
+    color: #000000;
+    padding: 10%;
+    border: 1px solid #cfd8dc 
+}
+
+.side-bar-content:hover{
+    background-color:#cfd8dc 
+}
+
+.side-bar-logout-option:hover{
+    background-color:#cfd8dc 
+}
+
+.side-bar-logout-option{
+    position: absolute;
+    bottom: 8%;
+    left: 27%;
+    font-size: 25px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: normal;
+    color: #000000;
+    border: 1px solid #cfd8dc;
+    padding: 8%;
+}
+
+.serach-bar-image{
+    background-image: url('/images/smv_logo.png');
+}
+
+.active-link{
+    color:'orange';
+    font-size: 20px;
+}
+
+input.search-bar{
+    border:none;
+    padding: 10%;
+    width: 535px;
+    height: 101PX;
+    background-color: #fafafa;
+    font-size: 24px;
+}
+
+.search-bar-image{
+  padding-top: 1%
+}
+
+.search-button{
+    width: 100px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #4a90e2;
+    font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #ffffff;
+}

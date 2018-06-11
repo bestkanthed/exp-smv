@@ -41,7 +41,7 @@ function handleStatusTypeChange(status){
 }
     return (
         <div>
-        <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12" style={{margin:'1%'}}>
             <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All')}}>
                 All
             </div>
@@ -55,7 +55,7 @@ function handleStatusTypeChange(status){
                 eVisa
             </div>
         </div>
-        <div>
+        <div style={{paddingLeft:'3%'}}>
             sort by status:
             <div class='status-filter-mask 'onClick={handleStatusTypeChange('All')}>
                 All
@@ -71,7 +71,7 @@ function handleStatusTypeChange(status){
             </div>
             <div style={{backgroundColor:'#2196f3'}} class='status-filter-mask ' onClick={()=>handleStatusTypeChange('Complete')}>
             </div>
-            <label style={{marginLeft:'2%'}}>Country</label><select defaultValue='All' onChange={event => {
+            <label style={{marginLeft:'2%', marginRight:'2%'}}>Country</label><select defaultValue='All' onChange={event => {
                 query.country = event.target.value
                 fetchOrders(serialize(query))
             }}>

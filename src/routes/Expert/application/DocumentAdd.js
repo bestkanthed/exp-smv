@@ -23,14 +23,14 @@ let DocumentAdd = ({postDocument, idApplication}) => {
           <h1>Add Document</h1>
           <div class="row document-form">
           <div class="col-sm-12">
-              <input type="name" name="name" id="name" placeholder="Name" required="required" class="form-control"
+              <input type="name" name="name" id="name" placeholder="Document Name" defaultValue='Document Name' required="required" class="form-control"
                 ref = {node => {
                   name = node;
                 }}
               />
             </div>
             <div class="col-sm-12">
-              <select name="category" id="category" required="required" class="form-control"
+              <select name="category" id="category" defaultValue='Passport' required="required" class="form-control"
                 ref = {node => {
                   category = node;
                 }}
