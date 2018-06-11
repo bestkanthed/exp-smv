@@ -238,17 +238,15 @@ class CreateCustomerCumOrder extends React.Component {
         return(
             <div>
                 <br/>
-                <div>
-                Create Order
-                </div>
-                <br/>
-        <Tabs style={{backgroundColor:'rgba(0, 0, 0, 0.05)'}}>
-            <TabList>
-                <Tab>Basic Info</Tab>
-                <Tab>Visa Detail</Tab>
-                <Tab>Assign To</Tab>
+                <div class='dimensions'>
+                <h4>Create Order</h4>
+        <Tabs style={{backgroundColor:'#ffffff'}}>
+            <TabList style={{padding:'5%'}}>
+                <Tab style={{padding:'5%'}}>Basic Info</Tab>
+                <Tab style={{padding:'5%'}}>Visa Detail</Tab>
+                <Tab style={{padding:'5%'}}>Assign To</Tab>
             </TabList>
-            <TabPanel>
+            <TabPanel style={{padding:'5%'}}>
                 <div>
                     Channel:
                 <div class='channel' onClick={event => {
@@ -257,7 +255,8 @@ class CreateCustomerCumOrder extends React.Component {
                             ...this.state.customer,
                             channel: event.target.value
                         }
-                    })}}> B2B</div>
+                    });
+                    }}> B2B</div>
                 <div class='channel' onClick={event => {
                     this.setState({...this.state,
                         customer: {
@@ -275,7 +274,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                    Invoice No :<div><input type="text" required="required"  onChange={event => {
+                    Invoice No :<div><input class='createOrder' type="text" required="required"  onChange={event => {
                     this.setState({...this.state,
                         order: {
                             ...this.state.order,
@@ -287,7 +286,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Customer Name : <div><input type="text" required="required" onChange={event => {
+                Customer Name : <div><input class='createOrder'type="text" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -299,7 +298,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Email : <div><input type="email" required="required" onChange={event => {
+                Email : <div><input class='createOrder' type="email" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -311,7 +310,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Phone : <div><input type="text" required="required" onChange={event => {
+                Phone : <div><input class='createOrder' type="text" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -337,7 +336,7 @@ class CreateCustomerCumOrder extends React.Component {
                     <option value='Online Consultation'>Online Consultation</option>
                 </select>
                 </div>
-            <div>Story :<input type="text" required="required" onChange={event => {
+            <div>Story :<input type="text" class='createOrder' required="required" onChange={event => {
                     this.setState({...this.state,
                         order: {
                             ...this.state.order,
@@ -346,7 +345,7 @@ class CreateCustomerCumOrder extends React.Component {
                     })
                     console.log('Logging state from story', this.state)
                 }}/></div>
-            <div>No of Applications:<br/><input type="number" required="required"
+            <div>No of Applications:<br/><input class='createOrder' type="number" required="required"
                     onChange={event => {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
@@ -372,7 +371,7 @@ class CreateCustomerCumOrder extends React.Component {
                     this.state.apps.map((app, index) =>
                         <div key={index}>
                             <div class='row moveLeft'>
-                            <input class='col-lg-3'type='text' defaultValue={app.name} onChange = {event => {
+                            <input class='col-lg-3 createOrder' type='text' defaultValue={app.name} onChange = {event => {
                                 let apps = [...this.state.apps]
                                 let application = {...apps[index]}
                                 application.name = event.target.value
@@ -406,7 +405,7 @@ class CreateCustomerCumOrder extends React.Component {
                                 ) : null}
                             </select>
                             
-                            <input class='col-lg-3' style={{paddingLeft:'2%'}} type='date' value={this.state.apps[index].travelDate}
+                            <input class='col-lg-3 createOrder' style={{paddingLeft:'2%'}} type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {
                                     console.log('logging date from date', event.target.value)
                                     let apps = [...this.state.apps];
@@ -455,14 +454,16 @@ class CreateCustomerCumOrder extends React.Component {
                             experts.fetched ?
                             experts.experts ?
                             experts.experts.map(exp => 
-                                <button  key={exp._id} value={exp._id} onClick={event => {
-                                    this.setState({...this.state,
-                                        order: {
-                                            ...this.state.order,
-                                            idExpert: event.target.value
-                                        }
-                                    })
-                                }} ><br/> {exp.name}</button>
+                                <div>
+                                    <input  type='radio' name='Visa-Expert' checked key={exp._id} value={exp._id} onChange={event => {
+                                        this.setState({...this.state,
+                                            order: {
+                                                ...this.state.order,
+                                                idExpert: event.target.value
+                                            }
+                                        })
+                                    }}/>{exp.name}
+                                </div>
                             ) :
                             null :
                             null
@@ -482,6 +483,8 @@ class CreateCustomerCumOrder extends React.Component {
                 </button>
             </TabPanel>
         </Tabs>
+                </div>
+                <br/>
         </div>
         )
     }

@@ -22,8 +22,9 @@ class DocumentPreview extends React.Component {
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
         let details
+        console.log('-----000))))))))', document)
         return (
-
+            
             <div class='document-view' key={document._id}>
             
                 {

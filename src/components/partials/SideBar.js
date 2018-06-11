@@ -45,6 +45,7 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                 :
                 <div>oops</div>
             }
+            <div class='side-bar-content' onClick= {e=>{e.preventDefault; showLoginPopup()}}>Login</div>
             <div class='side-bar-logout-option' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}><Link style={{textDecoration:'none', color:'black'}} to='/'>Log Out</Link></div>
         </div>
 );

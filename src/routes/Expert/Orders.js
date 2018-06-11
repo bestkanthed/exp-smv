@@ -26,13 +26,16 @@ class Orders extends React.Component {
                 {/* idCustomer ? <h1>Your Orders</h1> : <h1>Expert Dashboard</h1> */}
                 <hr/>
                 <div>
-                    <OrderFilters idExpert={idExpert} />
+                    {idCustomer ? null : <OrderFilters idExpert={idExpert} />}
                     {
                         fetching ?
                         null :
                         fetched ?
                         orders ?
-                        <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/> :
+                        <div style={{overflow:'auto'}}>
+                        <hr/>
+                        <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/> 
+                        </div>:
                         null :
                         null
                     }

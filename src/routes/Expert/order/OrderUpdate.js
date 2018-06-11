@@ -27,7 +27,6 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                         null
                     }
                 </select>
-                <br/>
                 <button type='button' onClick = {() => {deleteOrder(order._id); window.location.href = '/expert/orders?idExpert='+order.idExpert}} class="btn btn-primary show-requirements-button"> Delete </button>
             </div> :
             null

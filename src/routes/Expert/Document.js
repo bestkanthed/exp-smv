@@ -72,10 +72,12 @@ class Document extends React.Component {
                             <br/>
                         </div>
                         <div class='row'>
-                            <div class='col-lg-7'>
-                                <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
+                            <div>
+                                    <div class='col-lg-7 pdf-border'>
+                                    <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
+                                    </div>
                             </div>
-                            <div class='col-lg-5'>
+                            <div class='col-lg-3'>
                                 <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
@@ -83,6 +85,7 @@ class Document extends React.Component {
                     null :
                     <h2>Error connecting to the server</h2>
                 }
+                {console.log('These are the props',this.props)}
             </div>
         );
     }

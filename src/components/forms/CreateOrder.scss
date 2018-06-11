@@ -1,23 +1,25 @@
 .channel{
-  width: 70px;
-  height: 36px;
+  width: 90px;
+  height: 56px;
   border-radius: 4px;
   background-color: #4a90e2;
   border: solid 1px white;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  line-height: 36px; 
+  line-height: 56px; 
   font-size: 10px;
-  margin: 4px;
+  margin: 8px;
+}
+.channel:hover{
+    background-color: #eceff1;
+  border: solid 1px #e0e0e0;
 }
 
-input{
+input.createOrder{
     border: none;
     outline:none;
-    width: 70%;
-    border-bottom: 2px solid grey;
-    background-color:rgba(0,0,0,0.05)
+    border-bottom: 1px solid #bdbdbd;
 }
 
 .marginleft{
@@ -25,5 +27,14 @@ input{
 }
 .moveLeft{
     padding-left:3%;
+}
+
+.dimensions{
+    width: 630px;
+    height: 700px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.3);
+  
 }
 

@@ -1,6 +1,7 @@
 .side-bar{
     height: 100vh;
     background-color:#eceff1;
+    padding-right:'1%'
 
 }
 
@@ -14,7 +15,7 @@
     vertical-align: middle;
     letter-spacing: normal;
     color: #000000;
-    padding: 8%;
+    padding: 10%;
     border: 1px solid #cfd8dc 
 }
 
@@ -44,10 +45,38 @@
 }
 
 .serach-bar-image{
-    background-image: url('/dist/images/smv_logo.png');
+    background-image: url('/images/smv_logo.png');
 }
 
 .active-link{
     color:'orange';
     font-size: 20px;
+}
+
+input.search-bar{
+    border:none;
+    padding: 10%;
+    width: 535px;
+    height: 101PX;
+    background-color: #fafafa;
+    font-size: 24px;
+}
+
+.search-bar-image{
+  padding-top: 1%
+}
+
+.search-button{
+    width: 100px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #4a90e2;
+    font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #ffffff;
 }

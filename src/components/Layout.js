@@ -42,8 +42,8 @@ class Layout extends React.Component {
                         <SideBar />
                     </div>
                     <div class='col-lg-8'>
+                    <SearchBar/>
                     {/*<Header />*/}
-                    <SearchBar path={window.location.pathname}/>
                     {this.props.children}
                     </div>
                 </div>
