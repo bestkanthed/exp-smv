@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
+// import {ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 
 import { uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected } from '../../../actions/expert'
 
