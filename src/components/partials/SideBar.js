@@ -43,10 +43,10 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     <div class='side-bar-content' key='notifications' onClick={() => seenNotifications(user._id)}><Link style={{textDecoration:'none', color:'black'}} to='/notifications'><img src='../../../images/ic/timeline/grey600.png' /><span style={{marginLeft:'15%', marginRight:'25%'}}>Past Applications</span></Link></div>
                     ]
                 :
-                <div>oops</div>
+                null
             }
             {
-                user ? <div class='side-bar-logout-option' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}><Link style={{textDecoration:'none', color:'black'}} to='/'>Log Out</Link></div>:
+                user ? <div class='side-bar-logout-option' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}><Link style={{textDecoration:'none', color:'black'}} to='/'><span>Log Out</span></Link></div>:
             <div class='side-bar-content' onClick= {e=>{e.preventDefault; showLoginPopup()}}>Login</div>
             }
             

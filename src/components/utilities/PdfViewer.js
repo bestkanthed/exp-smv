@@ -1,5 +1,6 @@
 import React from 'react';
 import PDF from 'react-pdf-js';
+import {PacmanLoader} from 'react-spinners';
  
 class PdfViewer extends React.Component {
   state = {};
@@ -52,6 +53,7 @@ class PdfViewer extends React.Component {
           onPageComplete={this.onPageComplete}
           page={this.state.page}
           fillWidth
+          loading={<div style={{margin:'40%'}}><PacmanLoader color={'#2196f3'}/></div>}
         />
         {pagination}
       </div>

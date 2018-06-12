@@ -30,7 +30,6 @@
 .side-bar-logout-option{
     position: absolute;
     bottom: 8%;
-    left: 27%;
     font-size: 25px;
     font-weight: normal;
     font-style: normal;
@@ -41,7 +40,10 @@
     letter-spacing: normal;
     color: #000000;
     border: 1px solid #cfd8dc;
-    padding: 8%;
+    padding-top: 10%;
+    padding-bottom:10%;
+    padding-left:30%;
+    padding-right:47%; 
 }
 
 .serach-bar-image{

@@ -38,7 +38,7 @@ function renderRoute (props) {
       switch (page) { 
         case 'orders': return <Orders idExpert={user.user.teams.indexOf('support') !== -1 ? location.search ? location.search.substring(location.search.indexOf('=')+1) : null : null}/>
         case 'order': return <Order idOrder={match.params.id} supportView = {user.user.teams.indexOf('support') !== -1 ? location.search.indexOf('supportView=true') !== -1 ? true : false : false}/>
-        case 'application': return <Application idApplication={match.params.id}/>
+        case 'application':  console.log('Will this work?',match.params.Orderid); return <Application idApplication={match.params.id}/>
         case 'document': return <Document idDocument={match.params.id}/>
         default: return <div> Invalid Page </div>
       }

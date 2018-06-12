@@ -29,6 +29,7 @@ let Main = () =>
         <Router>
             <Layout>
                 <Switch>
+                {console.log('this is the store of app======',store)}
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About}></Route>
                     <Route exact path='/faq' component={Faq}></Route>
