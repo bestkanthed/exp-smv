@@ -1,7 +1,12 @@
 import React from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+<<<<<<< HEAD
 import { fetchOrder, fetchLinkedOrders, linkedOrderClicked } from '../../actions/expert'
+=======
+
+import { fetchOrder, fetchLinkedOrders } from '../../actions/expert'
+>>>>>>> oldstate
 
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'

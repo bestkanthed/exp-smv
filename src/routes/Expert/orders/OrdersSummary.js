@@ -32,7 +32,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
         {
             orders ?
             orders.map(order =>
-                <div class='col-md-6 col-sm-12 col-lg-4' key={order._id}>
+                <div class='col-md-6 col-sm-12 col-lg-3' key={order._id}>
                     <Link style={{textDecoration:'none', color:'black'}}to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`,padding:'5%'}}>
                             <div class='sub-mask row'>
