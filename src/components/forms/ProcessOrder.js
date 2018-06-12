@@ -75,7 +75,9 @@ class ProcessOrder extends React.Component {
                             ({
                                 name: 'Customer'+(index+1),
                                 country: countries.countries ? countries.countries[0].name : undefined,
-                                visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
+                                countryCode: countries.countries ? countries.countries[0].countryId : undefined,
+                                visas: countries.countries ? countries.countries[0].visas : undefined,
+                                visaType: countries.countries ? countries.countries[0].visas[0] ? countries.countries[0].visas[0].name : undefined : undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
                                 status: 'New Application'
                             })
@@ -103,10 +105,13 @@ class ProcessOrder extends React.Component {
                                 this.setState({...this.state, apps})
                             }}/>
                             <select class='col-lg-2' style={{paddingLeft:'2%'}} onChange = {event => {
-                                let apps = [...this.state.apps];
+                                
+                                let apps = [...this.state.apps]
                                 for(let i=index; i<apps.length; i++) {
                                     let application = {...apps[i]};
                                     application.country = event.target.value;
+                                    application.countryCode = (countries.countries.find(c => c.name === event.target.value)).countryId                                    
+                                    application.visas = (countries.countries.find(c => c.name === event.target.value)).visas
                                     apps[i] = application;
                                 }
                                 this.setState({...this.state, apps});
@@ -124,8 +129,8 @@ class ProcessOrder extends React.Component {
                                     }
                                     this.setState({...this.state, apps});
                                 }} value={this.state.apps[index].visaType}>
-                                {purposes.purposes ? purposes.purposes.map(purpose => 
-                                    <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
+                                {this.state.apps[index].visas ? this.state.apps[index].visas.map(visa => 
+                                    <option value={visa.name} key={visa._id}> {visa.name} </option> 
                                 ) : null}
                             </select>
                             

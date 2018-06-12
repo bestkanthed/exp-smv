@@ -1,5 +1,22 @@
 import axios from 'axios';
 
+export function fileTypeRejected () {
+    return {
+        type: 'SET_FLASH_MESSAGE',
+        payload : {
+            messageType: 'error',
+            message: 'Unable to upload because the file type is incompatiple. Accepted file types are images, .pdf, .doc, .docx, .xls, .xlsx'
+        }
+    }
+}
+
+export function setQuery (query) {
+    return {
+        type: 'SET_QUERY',
+        payload : query
+    }
+}
+
 export function postComment (formData) {
     return {
         type: 'POST_COMMENT',
@@ -131,6 +148,20 @@ export function deleteApplication (id) {
     return {
         type: 'DELETE_APPLICATION',
         payload: axios.delete('/api/expert/applications/'+id, { withCredentials: true })
+    }
+}
+
+export function fetchOrderByIdApplication (idApplication) {
+    return {
+        type: 'FETCH_ORDER',
+        payload: axios.get('/api/expert/orderByIdApplication/'+idApplication, { withCredentials: true })
+    }
+}
+
+export function fetchLinkedOrders (idOrder) {
+    return {
+        type: 'FETCH_LINKED_ORDERS',
+        payload: axios.get('/api/expert/linkedOrders/'+idOrder, { withCredentials: true })
     }
 }
 

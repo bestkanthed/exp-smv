@@ -23,6 +23,8 @@ const popupReducer = (state = initialState, action) => {
     
     let { type, payload } = action
 
+
+    let flashMessage = type === 'SET_FLASH_MESSAGE'
     let postResponse = type.startsWith('POST_') && type.endsWith('_FULFILLED')
     let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
     let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
@@ -31,7 +33,7 @@ const popupReducer = (state = initialState, action) => {
 
     console.log('Logging form popup reducer', action, payload, postResponse)
 
-    if( postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse ) return {
+    if( flashMessage || postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse ) return {
         ...state,
         content: 'Flash',
         display: true,

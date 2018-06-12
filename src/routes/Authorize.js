@@ -13,9 +13,11 @@ import Document from './Expert/Document'
 import Generate from './Support/Generate'
 import News from './Support/News'
 
+import { setQuery } from '../actions/expert'
+
 function renderRoute (props) {
   
-  let { user, teams, page, match, location } = props
+  let { user, teams, page, match, location, setQuery } = props
   if (!user.user) return <Redirect to='/unauthorized' />
   
   let authorize = false;
@@ -36,7 +38,10 @@ function renderRoute (props) {
 
     case 'expert': {
       switch (page) { 
-        case 'orders': return <Orders idExpert={user.user.teams.indexOf('support') !== -1 ? location.search ? location.search.substring(location.search.indexOf('=')+1) : null : null}/>
+        case 'orders': {
+          user.user.teams.indexOf('support') !== -1 ? location.search ? setQuery({idExpert : location.search.substring(location.search.indexOf('=')+1)}) : setQuery({idExpert : null}) : setQuery({idExpert : null})
+          return <Orders idExpert={user.user.teams.indexOf('support') !== -1 ? location.search ? location.search.substring(location.search.indexOf('=')+1) : null : null}/>
+        }
         case 'order': return <Order idOrder={match.params.id} supportView = {user.user.teams.indexOf('support') !== -1 ? location.search.indexOf('supportView=true') !== -1 ? true : false : false}/>
         case 'application': return <Application idApplication={match.params.id}/>
         case 'document': return <Document idDocument={match.params.id}/>
@@ -54,20 +59,26 @@ function renderRoute (props) {
 
     case 'customer': {
       switch (page) {
-        case 'orders': return <Orders idCustomer={user.user._id}/>
+        case 'orders': {
+          user.user.teams.indexOf('support') !== -1 ? location.search ? setQuery({idCustomer : location.search.substring(location.search.indexOf('=')+1)}) : setQuery({idCustomer : null}) : setQuery({idCustomer : null})          
+          return <Orders idCustomer={user.user._id}/>
+        }
         case 'order': return <Order idOrder={match.params.id} idCustomer={user.user._id}/>
         case 'application': return <Application idApplication={match.params.id} idCustomer={user.user._id}/>
         case 'document': return <Document idDocument={match.params.id} idCustomer={user.user._id}/>
         default: return <div> Invalid Page </div>
       }
     }
-
     default: return <div> Invalid team </div>
   }
 }
 
 const mapStateToProp = state => ({
   user: state.user
+})
+
+const mapDispatchToProp = dispatch => ({
+  setQuery: query => dispatch(setQuery(query))
 })
 
 class Authorize extends React.Component {
@@ -77,4 +88,4 @@ class Authorize extends React.Component {
   }
 }
 
-export default connect(mapStateToProp)(Authorize)
+export default connect(mapStateToProp, mapDispatchToProp)(Authorize)

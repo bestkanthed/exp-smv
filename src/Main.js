@@ -42,10 +42,10 @@ let Main = () =>
                     <Route exact path='/admin/profile/:id' render={props => <Authorize {...props} teams={['admin']} page='profile'/>}/>
                 
                     <Route exact path='/customer' render={() => <Redirect to='/customer/orders'/>}/>
-                    <Route exact path='/customer/orders' render={props => <Authorize {...props} teams={['customer']} page='orders'/>}/>           
-                    <Route exact path='/customer/orders/:id' render={props => <Authorize {...props} teams={['customer']} page='order'/>}/>     
-                    <Route exact path='/customer/applications/:id' render={props => <Authorize {...props} teams={['customer']} page='application'/>}/>
-                    <Route exact path='/customer/documents/:id' render={props => <Authorize {...props} teams={['customer']} page='document'/>}/>
+                    <Route exact path='/customer/orders' render={props => <Authorize {...props} teams={['customer', 'support']} page='orders'/>}/>           
+                    <Route exact path='/customer/orders/:id' render={props => <Authorize {...props} teams={['customer', 'support']} page='order'/>}/>     
+                    <Route exact path='/customer/applications/:id' render={props => <Authorize {...props} teams={['customer', 'support']} page='application'/>}/>
+                    <Route exact path='/customer/documents/:id' render={props => <Authorize {...props} teams={['customer', 'support']} page='document'/>}/>
 
                     <Route exact path='/expert' render={() => <Redirect to='/expert/orders'/>}/>
                     <Route exact path='/expert/orders' render={props => <Authorize {...props} teams={['expert', 'support']} page='orders'/>}/>           

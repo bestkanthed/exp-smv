@@ -6,10 +6,15 @@ import application from './expert/application'
 import document from './expert/document'
 import comments from './expert/comments'
 
+import linkedOrders from './expert/linkedOrders'
+import query from './expert/query'
+
 export default combineReducers({
     orders,
     order,
     application,
     document,
-    comments
+    comments,
+    linkedOrders,
+    query
 });

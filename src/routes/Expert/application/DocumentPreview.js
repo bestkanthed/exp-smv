@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { uploadFile, changeDocumentCategory, deleteDocument } from '../../../actions/expert'
+import { uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected } from '../../../actions/expert'
 
 import Dropzone from 'react-dropzone'
 import PdfViewer from '../../../components/utilities/PdfViewer'
@@ -10,8 +10,31 @@ import PdfViewer from '../../../components/utilities/PdfViewer'
 import './Application.scss';
 import { Z_BLOCK } from 'zlib';
 
+const accpectedFileTypes = [
+    'jpeg',
+    'jpg',
+    'png',
+    'pdf',
+    'doc',
+    'docx',
+    'xls',
+    'xlsx',
+]
+
+const imageTypes = [
+    'jpeg',
+    'jpg',
+    'png'
+]
+
 const mapDispatchToProps = dispatch => ({
-    uploadFiles: (files, idDocument, idCustomer) => files.map(file => dispatch(uploadFile(file, idDocument, idCustomer))),
+    uploadFiles: (files, idDocument, idCustomer) => files.map(file => {
+        let extension = file.name.split('.').pop()
+        extension = extension ? extension.toLowerCase() : 'none'
+        console.log('Logging file name and extension', file.name, file.name.split('.').pop())
+        if ( accpectedFileTypes.indexOf(extension) === -1 ) dispatch(fileTypeRejected())
+        else dispatch(uploadFile(file, idDocument, idCustomer))
+    }),
     changeDocumentCategory: (category, idDocument) => dispatch(changeDocumentCategory(category, idDocument)),
     deleteDocument: idDocument => dispatch(deleteDocument(idDocument))
 })
@@ -36,7 +59,9 @@ class DocumentPreview extends React.Component {
                                     <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
                                 </div>
                             </div> :
-                            <img src={'/api/expert/documents/'+document._id+'/preview'} />
+                            imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
+                            <img src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                            <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
                         }
                     </Link> :
                     <Dropzone onDrop={files => uploadFiles(files, document._id, idCustomer)}/>
@@ -49,7 +74,7 @@ class DocumentPreview extends React.Component {
                 
                 <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                     <p>{document.comments}</p>
-                    <p>Status:{document.status ? "OK" : "NOT OKAY"}</p>
+                    <p>Status:{document.status}</p>
                 </div>
                 { 
                     idCustomer ? 

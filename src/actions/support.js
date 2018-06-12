@@ -7,6 +7,13 @@ export function setIdOrder (idOrder) {
     }
 }
 
+export function fetchCustomers () {
+    return {
+        type: 'FETCH_CUSTOMERS',
+        payload : axios.get('/api/support/customers', { withCredentials: true })
+    }
+}
+
 export function fetchExperts () {
     return {
         type: 'FETCH_EXPERTS',
