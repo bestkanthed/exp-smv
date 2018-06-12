@@ -65,11 +65,7 @@ class OrderFilters extends React.Component {
                                 eVisa
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div class='testing'>
-=======
                         <div>
->>>>>>> oldstate
                             Status:
                             <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('All')}>
                                 All
