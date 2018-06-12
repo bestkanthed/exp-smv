@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 
 let CountryRevise = ({countries, getStarted, setGetStartedCountry, setGetStartedPurpose, fetchVisas}) => {
     return (
-        <div class="container">
+        <div>
             <div style={{padding : "8px"}} class="row">
                 <div style={{paddingLeft: "8px"}} class="col-sm-offset-3 col-sm-9">
                 <form method="POST" id="get_visa_form" action="/" class="revise-country">

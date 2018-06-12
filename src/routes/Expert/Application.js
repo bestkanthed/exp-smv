@@ -50,7 +50,7 @@ class Application extends React.Component {
 
         if(rerender) fetchApplication(idApplication) 
         return (
-            <div class='container expert'>
+            <div class='expert'>
                 {
                     fetched ?
                     application ?

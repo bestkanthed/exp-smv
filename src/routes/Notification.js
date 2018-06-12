@@ -36,7 +36,7 @@ class Notification extends React.Component {
         let {user, seenNotifications, clickedNotification} = this.props
         let {notifications, fetching, fetched} = this.props.notifications
         return (
-            <div class="container notifications">
+            <div class="notifications">
                 {
                     fetching ?
                     null :

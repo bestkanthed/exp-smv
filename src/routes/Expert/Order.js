@@ -52,7 +52,7 @@ class Order extends React.Component {
         if(rerender) fetchOrder(idOrder)
         
         return (
-            <div class='container expert'>
+            <div class='expert'>
                 {
                     fetching ?
                     null :

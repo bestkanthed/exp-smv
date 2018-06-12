@@ -35,7 +35,7 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor:'white', height:'100vh'}}>
+            <div style={{backgroundColor:'white', width:'97%'}}>
                 <Popup />
                 <div class='row'>
                     <div class='col-lg-3'>

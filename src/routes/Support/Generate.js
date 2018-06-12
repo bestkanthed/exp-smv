@@ -25,7 +25,7 @@ class Generate extends React.Component {
 
     render() {
         return (
-            <div class="container support">
+            <div class=" support">
                 <div>
                     <br/><br/>
                     <button class='button-mask' onClick={this.props.showCreateCustomerCumOrderPopup}>

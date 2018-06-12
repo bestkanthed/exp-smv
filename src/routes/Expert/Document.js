@@ -36,7 +36,7 @@ class Document extends React.Component {
         let { fetching, fetched, document, rerender } = this.props.document
         if (rerender) fetchDocument(idDocument)
         return (
-            <div class='container document'>
+            <div class='document'>
                 {
                     fetching ?
                     null :

@@ -7,7 +7,7 @@ export default function SearchBar(props) {
         <div class='row'>
             <div class='col-lg-6 search-bar-image'>
             <Link to='/'>
-                <img src='../../images/logos.png'/>
+                <img  style={{width:'60%'}} src='../../images/logos.png'/>
             </Link>
             </div>
             <div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>

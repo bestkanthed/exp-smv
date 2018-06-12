@@ -31,7 +31,7 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
             </div> :
             null
         }
-            <div class='mask' style={{display:'inline'}}>
+            <div class='mask'>
                 <div class='sub-mask row'>
                     <p class='col-lg-1'>InvoiceNo:</p> 
                     <input class='col-lg-3'type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>

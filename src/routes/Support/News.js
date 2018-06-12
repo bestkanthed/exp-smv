@@ -27,7 +27,7 @@ class News extends React.Component {
         let { setIdOrder, loadPopup, deleteOrder } = this.props
         let { news, fetching, fetched } = this.props.news
         return (
-            <div class='container expert'>
+            <div class='expert'>
                 <h1>New Orders</h1>
                 <hr/>
                 {

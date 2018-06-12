@@ -19,7 +19,7 @@ class Teams extends React.Component {
     render() {
         let { teams, fetching, error } = this.props.teams
         return (
-            <div class="container faq">
+            <div class="faq">
                 <h1>Admin Pannel</h1>
                 <hr/>
                 <UserAdd />
