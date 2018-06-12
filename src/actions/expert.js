@@ -158,6 +158,12 @@ export function fetchOrderByIdApplication (idApplication) {
     }
 }
 
+export function linkedOrderClicked () {
+    return {
+        type: 'LINKED_ORDER_CLICKED'
+    }
+}
+
 export function fetchLinkedOrders (idOrder) {
     return {
         type: 'FETCH_LINKED_ORDERS',

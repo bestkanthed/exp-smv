@@ -36,7 +36,7 @@ class Orders extends React.Component {
                 {/* idCustomer ? <h1>Your Orders</h1> : <h1>Expert Dashboard</h1> */}
                 <hr/>
                 <div>
-                    {idCustomer ? null : <OrderFilters idExpert={idExpert} />}
+                     <OrderFilters idCustomer={idCustomer} idExpert={idExpert} />
                     {
                         fetching ?
                         null :

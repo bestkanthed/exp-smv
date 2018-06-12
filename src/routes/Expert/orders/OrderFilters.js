@@ -26,8 +26,8 @@ const serialize = object => {
 class OrderFilters extends React.Component {
 
     render () {
-
         let { idExpert, idCustomer, fetchOrders, countries, query, setQuery } = this.props
+        console.log('33333333333333333', idCustomer)
 
         function handleServiceTypeChange(service){
             setQuery({ orderType: service })
@@ -44,6 +44,7 @@ class OrderFilters extends React.Component {
                 {
                     idCustomer ?
                     <div>
+                        
                         Orders:
                         <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Active')}>
                             Active
@@ -54,7 +55,7 @@ class OrderFilters extends React.Component {
                     </div> :
                     <div>
                         <div class="col-md-12 col-lg-12 col-sm-12">
-                            <div class='filter-mask col-md-12 col-lg-12 col-sm-12' style={{margin:'1%'}}onClick={()=>{handleServiceTypeChange('All')}}>
+                            <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All')}}>
                                 All
                             </div>
                             <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>

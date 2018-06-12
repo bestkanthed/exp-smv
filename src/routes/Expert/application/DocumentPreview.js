@@ -57,7 +57,7 @@ class DocumentPreview extends React.Component {
         console.log('-----000))))))))', document)
         return (
             <div key={document._id}>
-                <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
+                {/* <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
                     <DropdownToggle caret>
                         <img src='../../../images/ic/more_vert/grey600.png'/>
                     </DropdownToggle>
@@ -90,7 +90,7 @@ class DocumentPreview extends React.Component {
                         </DropdownItem>
                         <DropdownItem>Another Action</DropdownItem>
                     </DropdownMenu>
-                </ButtonDropdown>
+                </ButtonDropdown> */}
                 {
                     document.previewFileName ?
                     

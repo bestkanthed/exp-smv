@@ -34,6 +34,9 @@ export default function reducer(state = initialState, action) {
         case 'POST_APPLICATION_FULFILLED' : {
             return {...state, rerender: true}
         }
+        case 'LINKED_ORDER_CLICKED' : {
+            return {...state, rerender: true}
+        }
         default : return state;
     }
 }

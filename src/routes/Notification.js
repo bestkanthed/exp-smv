@@ -22,7 +22,7 @@ class Notification extends React.Component {
     
     componentDidMount() {
         let {user, fetchNotifications} = this.props
-        fetchNotifications(user._id)
+        user? fetchNotifications(user._id): null;
         /*
         this.socket = io('http://socket.stampmyvisa.com') //WS web socket
         this.socket.emit('join', user._id)

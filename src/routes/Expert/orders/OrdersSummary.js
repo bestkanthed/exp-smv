@@ -8,7 +8,7 @@ function BorderColor(status){
         case "Complete": return "#1ddaae";
         case "Submitted": return "#1ddaae";
         case "In Process": return "#ffc107";
-        case "Ready to Submit": return 'purple';
+        case "Ready to Submit": return '#ffc107';
         case "New": return"#f44336";
         case 'Pickup Scheduled': return '#ffc107';
         case 'Under Review': return '#ffc107';
@@ -38,7 +38,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.customer[0] ? order.customer[0].name : null }  x{order.noOfApplications}<br/>
-                                    {`${order.orderType}-${order.country}`}
+                                    {`${order.orderType}-${order.country}`} {console.log('999999999', order)}
                                 </div>
                                 <div class='col-lg-4'>
                                 Order Id: {order.orderCode}

@@ -1,9 +1,7 @@
 import React from 'react'
-import {NavLink as Link} from 'react-router-dom'
+import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
-import { fetchOrder, fetchLinkedOrders } from '../../actions/expert'
+import { fetchOrder, fetchLinkedOrders, linkedOrderClicked } from '../../actions/expert'
 
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
@@ -19,6 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchOrder: idOrder => dispatch(fetchOrder(idOrder)),
     fetchLinkedOrders: idOrder => dispatch(fetchLinkedOrders(idOrder)),
+    linkedOrderClicked: () => dispatch(linkedOrderClicked())
 })
 
 function BorderColor(status){
@@ -26,7 +25,7 @@ function BorderColor(status){
         case "Complete": return "#1ddaae";
         case "Submitted": return "#1ddaae";
         case "In Process": return "#ffc107";
-        case "New": return"#f44336";
+        case "New Application": return"#f44336";
         case 'Pickup Scheduled': return '#ffc107';
         case 'Under Review': return '#ffc107';
         case 'Ready To Submit': return '#ffc107';
@@ -49,7 +48,7 @@ class Order extends React.Component {
     render() {
         let { order, fetching, fetched, rerender } = this.props.order
         let { linkedOrders } = this.props.linkedOrders
-        let { fetchOrder, idOrder, supportView, idCustomer, user } = this.props
+        let { fetchOrder, idOrder, supportView, idCustomer, user, linkedOrderClicked } = this.props
         if(rerender) fetchOrder(idOrder)
         
         return (
@@ -73,7 +72,7 @@ class Order extends React.Component {
                                         <li key={index}>
                                             {
                                                 linkedOrder.idExpert === user._id ?
-                                                <Link to={'/expert/orders/'+linkedOrder._id}>Assigned to You : {linkedOrder.country}</Link> :
+                                                <Link to={'/expert/orders/'+linkedOrder._id} onClick={() => linkedOrderClicked() } >Assigned to You : {linkedOrder.country}</Link> :
                                                 <div> Assigned to {linkedOrder.expert[0] ? linkedOrder.expert[0].name : null} : {linkedOrder.country} </div>
                                             }
                                         </li>

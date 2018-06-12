@@ -9,7 +9,7 @@ const DocumentsPreview = ({ documents, idCustomer }) => {
             {
                 documents ?
                 documents.map(document => 
-                <div style={{marginRight:'120px', marginBottom:'30px'}} key={document._id} class='col-lg-1'>
+                <div style={{marginRight:'150px', marginBottom:'30px'}} key={document._id} class='col-lg-1'>
                     <DocumentPreview idCustomer={idCustomer} document={document} />
                 </div>) :
                 <h2> Error connecting the server </h2>
