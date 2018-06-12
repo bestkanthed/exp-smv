@@ -1,7 +1,6 @@
 import React from 'react'
 import {NavLink as Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { fetchOrder, fetchLinkedOrders } from '../../actions/expert'
 

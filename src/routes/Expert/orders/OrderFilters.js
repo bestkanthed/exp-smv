@@ -53,8 +53,8 @@ class OrderFilters extends React.Component {
                         </div>
                     </div> :
                     <div>
-                        <div class="col-md-12 col-lg-12 col-sm-12">
-                            <div class='filter-mask col-md-12 col-lg-12 col-sm-12' style={{margin:'1%'}}onClick={()=>{handleServiceTypeChange('All')}}>
+                        <div class="col-md-12 col-lg-12 col-sm-12" style={{marginBottom:'2%'}}>
+                            <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All')}}>
                                 All
                             </div>
                             <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>
@@ -68,7 +68,7 @@ class OrderFilters extends React.Component {
                             </div>
                         </div>
                         <div>
-                            sort by status:
+                            Status:
                             <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('All')}>
                                 All
                             </div>
