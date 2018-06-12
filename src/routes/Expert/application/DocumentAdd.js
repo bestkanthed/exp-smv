@@ -35,19 +35,19 @@ let DocumentAdd = ({postDocument, idApplication}) => {
                   category = node;
                 }}
               >
-                <option value='Passport'>Passport</option>
-                <option value='Photograph'>Photograph</option>
+                <option value='Mandatory Documents'>Mandatory Documents</option>
                 <option value='Forms & Letters'>Forms & Letters</option>
-                <option value='Financials'>Financials</option>
-                <option value='Employment Proofs'>Employment Proofs</option>
-                <option value='Booking'>Booking</option>
-                <option value='Insurance'>Insurance</option>
-                <option value='Additional'>Additional</option>
+                <option value='Travel Proofs'>Travel Proofs</option>
+                <option value='Financial Documents'>Financial Documents</option>
+                <option value='Occupation Proofs'>Occupation Proofs</option>
+                <option value='Others'>Others</option>
               </select>
             </div>
             <div class="col-sm-6">
-                <button type='button' onClick = {() => {postDocument({
-                    idApplication: idApplication, name: name.value, category: category.value, status: null
+                <button type='button' onClick = {() => {
+                  if(!name.value) return alert('Document name not entered')
+                  postDocument({
+                    idApplication: idApplication, name: name.value, category: category.value, status: 'Pending'
                 });addDocument.style.display='none'}} id='submitDocument' class="btn btn-primary show-requirements-button">
                     Add Document
                 </button>

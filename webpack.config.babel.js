@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: ['./src/index'],
@@ -11,7 +12,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    port: 8080,
+    port: 7357,
     contentBase: './dist',
     historyApiFallback: true
   },
@@ -37,6 +38,19 @@ module.exports = {
       template: './dist/index.html',
       inject: false
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    /*
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: true
+        },
+        output: {
+          comments: false
+        },
+        sourceMap: false
+      }
+    })
+    */
   ],
 }

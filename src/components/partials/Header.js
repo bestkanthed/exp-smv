@@ -60,21 +60,15 @@ const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
                                         <Link to='' onClick={e => {e.preventDefault(); logout(); window.location.href = '/'}}>Logout</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
-                                {null/*<li class="dropdown" key='dropdown'>
-                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                    <span>{user.email}</span>
-                                    <i class="caret"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><Link to="/account">Account</Link></li>
-                                    <li class="divider"></li>
-                                    <li><a href="/logout">Logout</a></li>
-                                </ul>
-                            </li>*/}
                             </UncontrolledDropdown>
                         ]
                         :
-                        <li><a href="#" onClick = {e => {e.preventDefault(); showLoginPopup()}}>Login</a></li>
+                        [
+                            <li key='about'><Link to={'/about'}>ABOUT US</Link></li>,
+                            <li key='faq'><Link to={'/faq'}>FAQ</Link></li>,
+                            <li key='login'><a href="#" onClick = {e => {e.preventDefault(); showLoginPopup()}}>Login</a></li>,
+
+                        ]
                     }
                 </ul>
             </div>

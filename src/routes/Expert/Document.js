@@ -52,7 +52,6 @@ class Document extends React.Component {
                                 <div class='col-lg-5'>
                                 {document.name===null ? 'doc' :`${document.name}`}
                                 </div>
-                                {console.log('This is the document object--------*******',document)}
                                 <div class='col-lg-3'>
                                 <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
                                 <button class='button-mask-btn' onClick={() => deleteFile(document.files[0]._id) }> Delete </button>
@@ -62,8 +61,8 @@ class Document extends React.Component {
                                     idCustomer ?
                                     null :
                                     <Switch
-                                        onChange={status => changeDocumentStatus(status, document._id)}
-                                        checked={typeof(document.status) === "boolean"? document.status : false}
+                                        onChange={status => changeDocumentStatus(status ? "Perfect" : "NOT OKAY", document._id)}
+                                        checked={document.status === "Perfect" ? true : false}
                                         id="status-switch"
                                     />
                                 }

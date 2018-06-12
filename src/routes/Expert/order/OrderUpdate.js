@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) => {
-  let idExpert, invoiceNo, status, travelDate, noOfApplications, story
+  let idExpert, invoiceNo, travelDate, noOfApplications, story
   return (
     <div class='update-order'>
         {
@@ -49,10 +49,10 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                     supportView ?
                     updateOrder({
                         _id: order._id, noOfApplications: noOfApplications.value, idExpert: idExpert.value, invoiceNo: invoiceNo.value,
-                        story: story.value, status: status.value, travelDate: travelDate.value
+                        story: story.value, travelDate: travelDate.value
                     }) :
                     updateOrder({
-                        _id: order._id, invoiceNo: invoiceNo.value, story: story.value, status: status.value, travelDate: travelDate.value
+                        _id: order._id, invoiceNo: invoiceNo.value, story: story.value,travelDate: travelDate.value
                     })
                 }} class="btn btn-primary show-requirements-button">
                     Update

@@ -27,16 +27,16 @@ class CreateCustomerCumOrder extends React.Component {
             apps : [],
             customer: {
                 channel: 'B2B',
-                name: null,
-                email: null,
-                phone: null
+                name: undefined,
+                email: undefined,
+                phone: undefined
             },
             order: {
-                idExpert: null,
+                idExpert: undefined,
                 orderType: 'Pickup Drop',
-                invoiceNo: null,
-                noOfApplications: null,
-                story: null,
+                invoiceNo: undefined,
+                noOfApplications: undefined,
+                story: undefined,
                 status: 'New'
             },
         }
@@ -52,186 +52,6 @@ class CreateCustomerCumOrder extends React.Component {
         })
     }
 
-    // render () {
-    //     let { experts, postCustomerCumOrder, database } = this.props
-    //     let { countries, purposes } = database
-        
-    //     return (
-    //         <div class="row login-form">
-    //         <div class="col-lg-12">
-    //             <form id="login_form" class="show-requirements" style={{fontSize: '16px'}}>
-    //             <h3>Create Customer Account & Order</h3>
-    //             <label>Channel : </label><select required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     customer: {
-    //                         ...this.state.customer,
-    //                         channel: event.target.value
-    //                     }
-    //                 })
-    //             }}>
-    //                 <option value='B2B'>B2B</option>
-    //                 <option value='B2C'>B2C</option>
-    //                 <option value='Corporate'>Corporate</option>
-    //             </select>
-    //             <label>Customer Name : </label><input type="text" required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     customer: {
-    //                         ...this.state.customer,
-    //                         name: event.target.value
-    //                     }
-    //                 })
-    //             }}/>
-    //             <label>Email : </label><input type="email" required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     customer: {
-    //                         ...this.state.customer,
-    //                         email: event.target.value
-    //                     }
-    //                 })
-    //             }} />
-    //             <label>Phone : </label><input type="text" required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     customer: {
-    //                         ...this.state.customer,
-    //                         phone: event.target.value
-    //                     }
-    //                 })
-    //             }} />
-    //             <label>Order Type : </label><select required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     order: {
-    //                         ...this.state.order,
-    //                         orderType: event.target.value
-    //                     }
-    //                 })
-    //             }}>
-    //                 <option value='Pickup Drop'>Pickup Drop</option>
-    //                 <option value='eVisa'>eVisa</option>
-    //                 <option value='Online Consultation'>Online Consultation</option>
-    //             </select>
-    //             <label>Invoice No : </label><input type="text" required="required"  onChange={event => {
-    //                 this.setState({...this.state,
-    //                     order: {
-    //                         ...this.state.order,
-    //                         invoiceNo: event.target.value
-    //                     }
-    //                 })
-    //             }} />
-    //             <label>Story : </label><input type="text" required="required" onChange={event => {
-    //                 this.setState({...this.state,
-    //                     order: {
-    //                         ...this.state.order,
-    //                         story: event.target.value
-    //                     }
-    //                 })
-    //                 console.log('Logging state from story', this.state)
-    //             }}/>
-    //             <label>No of Applications:</label><input type="number" required="required"
-    //                 onChange={event => {
-    //                     let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
-    //                         ({
-    //                             name: 'Customer'+(index+1),
-    //                             country: countries.countries ? countries.countries[0].name : undefined,
-    //                             visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
-    //                             travelDate: new Date().toISOString().slice(0,10),
-    //                             status: 'New Application'
-    //                         })
-    //                     )
-    //                     this.setState({...this.state,
-    //                         order: {
-    //                             ...this.state.order,
-    //                             noOfApplications: event.target.value
-    //                         },
-    //                         apps
-    //                     })
-    //                 }} />
-    //             {
-    //                 this.state.apps.map((app, index) =>
-    //                     <div key={index}>
-    //                         <input type='text' defaultValue={app.name} onChange = {event => {
-    //                             let apps = [...this.state.apps]
-    //                             let application = {...apps[index]}
-    //                             application.name = event.target.value
-    //                             apps[i] = application
-    //                             this.setState({...this.state, apps})
-    //                         }}/>
-    //                         <select onChange = {event => {
-    //                             let apps = [...this.state.apps];
-    //                             for(let i=index; i<apps.length; i++) {
-    //                                 let application = {...apps[i]};
-    //                                 application.country = event.target.value;
-    //                                 apps[i] = application;
-    //                             }
-    //                             this.setState({...this.state, apps});
-    //                         }} value={this.state.apps[index].country}>
-    //                             {countries.countries ? countries.countries.map(country => 
-    //                                 <option value={country.name} key={country._id}> {country.name} </option> 
-    //                             ) : null}
-    //                         </select>
-    //                         <select onChange = {event => {
-    //                                 let apps = [...this.state.apps];
-    //                                 for(let i=index; i<apps.length; i++) {
-    //                                     let application = {...apps[i]};
-    //                                     application.visaType = event.target.value;
-    //                                     apps[i] = application;
-    //                                 }
-    //                                 this.setState({...this.state, apps});
-    //                             }} value={this.state.apps[index].visaType}>
-    //                             {purposes.purposes ? purposes.purposes.map(purpose => 
-    //                                 <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
-    //                             ) : null}
-    //                         </select>
-    //                         <input type='date' value={this.state.apps[index].travelDate}
-    //                             onChange = {event => {
-    //                                 console.log('logging date from date', event.target.value)
-    //                                 let apps = [...this.state.apps];
-    //                                 for(let i=index; i<apps.length; i++) {
-    //                                     let application = {...apps[i]};
-    //                                     application.travelDate = event.target.value;
-    //                                     apps[i] = application;
-    //                                 }
-    //                                 this.setState({...this.state, apps});
-    //                             }}
-    //                         />
-    //                     </div>
-    //                 )
-    //             }
-    //             <label>Visa Expert : </label><select onChange={event => {
-    //                 this.setState({...this.state,
-    //                     order: {
-    //                         ...this.state.order,
-    //                         idExpert: event.target.value
-    //                     }
-    //                 })
-    //             }}>
-    //                 {
-    //                     experts.fetching ?
-    //                     null :
-    //                     experts.fetched ?
-    //                     experts.experts ?
-    //                     experts.experts.map(exp => 
-    //                         <option key={exp._id} value={exp._id} > {exp.name} </option>
-    //                     ) :
-    //                     null :
-    //                     null
-    //                 }
-    //             </select>
-    //             <button type='submit' onClick = {e => { e.preventDefault()
-    //                 let {name, email, phone} = this.state.customer
-    //                 let {noOfApplications} = this.state.order
-    //                 if(!name) return alert('Enter customer name')
-    //                 if(!email) return alert('Enter customer email')
-    //                 if(!phone) return alert('Enter customer phone')
-    //                 if(!noOfApplications) return alert('Enter no of Applications')
-    //                 postCustomerCumOrder(this.state)}} class="btn btn-primary show-requirements-button">
-    //                 Create Customer and Order
-    //             </button>
-    //             </form>
-    //         </div>
-    //         </div>
-    //     )
-    // }
-    
     render() {
         let { experts, postCustomerCumOrder, database } = this.props
          let { countries, purposes } = database
@@ -275,19 +95,20 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                    Invoice No :<div><input class='createOrder' type="text" required="required"  onChange={event => {
+                    Invoice No :<div><input class='createOrder' type="text" required="required" value={this.state.order.invoiceNo}  onChange={event => {
                     this.setState({...this.state,
                         order: {
                             ...this.state.order,
                             invoiceNo: event.target.value
                         }
                     })
+                    console.log('Logging state form invoice', this.state)
                 }} />
                 </div>
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Customer Name : <div><input class='createOrder' style={{width:'80%'}} type="text" required="required" onChange={event => {
+                Customer Name : <div><input class='createOrder' value={this.state.customer.name} style={{width:'80%'}} type="text" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -299,7 +120,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Email : <div><input class='createOrder' style={{width:'80%'}} type="email" required="required" onChange={event => {
+                Email : <div><input class='createOrder' style={{width:'80%'}} value={this.state.customer.email} type="email" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -311,7 +132,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
-                Phone : <div><input class='createOrder' style={{width:'80%'}} type="text" required="required" onChange={event => {
+                Phone : <div><input class='createOrder' style={{width:'80%'}} value={this.state.customer.phone} type="text" required="required" onChange={event => {
                     this.setState({...this.state,
                         customer: {
                             ...this.state.customer,
@@ -324,7 +145,7 @@ class CreateCustomerCumOrder extends React.Component {
                 <br/>
             </TabPanel>
             <TabPanel style={{paddingLeft:'3%', borderRadius:'4px'}}>
-            <div>Order Type: <select class='box' required="required" onChange={event => {
+            <div>Order Type: <select class='box' value={this.state.order.orderType} required="required" onChange={event => {
                     this.setState({...this.state,
                         order: {
                             ...this.state.order,
@@ -337,7 +158,7 @@ class CreateCustomerCumOrder extends React.Component {
                     <option value='Online Consultation'>Online Consultation</option>
                 </select>
                 </div>
-            <div>Story :<input type="text" class='createOrder' required="required" onChange={event => {
+            <div>Story :<input type="text" class='createOrder' value={this.state.order.story} required="required" onChange={event => {
                     this.setState({...this.state,
                         order: {
                             ...this.state.order,
@@ -347,13 +168,15 @@ class CreateCustomerCumOrder extends React.Component {
                     console.log('Logging state from story', this.state)
                 }}/></div>
             <div>
-                No of Applications:<input class='createOrder' type="number" required="required"
+                No of Applications:<input class='createOrder' type="number" value={this.state.order.noOfApplications} required="required"
                     onChange={event => {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
                                 name: 'Customer'+(index+1),
                                 country: countries.countries ? countries.countries[0].name : undefined,
-                                visaType: purposes.purposes ? purposes.purposes[0].name : undefined,
+                                countryCode: countries.countries ? countries.countries[0].countryId : undefined,
+                                visas: countries.countries ? countries.countries[0].visas : undefined,
+                                visaType: countries.countries ? countries.countries[0].visas[0] ? countries.countries[0].visas[0].name : undefined : undefined,
                                 travelDate: new Date().toISOString().slice(0,10),
                                 status: 'New Application'
                             })
@@ -384,6 +207,8 @@ class CreateCustomerCumOrder extends React.Component {
                                 for(let i=index; i<apps.length; i++) {
                                     let application = {...apps[i]};
                                     application.country = event.target.value;
+                                    application.countryCode = (countries.countries.find(c => c.name === event.target.value)).countryId
+                                    application.visas = (countries.countries.find(c => c.name === event.target.value)).visas
                                     apps[i] = application;
                                 }
                                 this.setState({...this.state, apps});
@@ -401,14 +226,13 @@ class CreateCustomerCumOrder extends React.Component {
                                     }
                                     this.setState({...this.state, apps});
                                 }} value={this.state.apps[index].visaType}>
-                                {purposes.purposes ? purposes.purposes.map(purpose => 
-                                    <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
+                                {this.state.apps[index].visas ? this.state.apps[index].visas.map(visa => 
+                                    <option value={visa.name} key={visa._id}> {visa.name} </option> 
                                 ) : null}
                             </select>
                             
                             <input class='col-lg-3 createOrder' style={{marginLeft:'2%'}} type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {
-                                    console.log('logging date from date', event.target.value)
                                     let apps = [...this.state.apps];
                                     for(let i=index; i<apps.length; i++) {
                                         let application = {...apps[i]};
@@ -427,26 +251,6 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
             </TabPanel>
             <TabPanel>
-            {/* <label>Visa Expert : </label><select onChange={event => {
-                    this.setState({...this.state,
-                        order: {
-                            ...this.state.order,
-                            idExpert: event.target.value
-                        }
-                    })
-                }}>
-                    {
-                        experts.fetching ?
-                        null :
-                        experts.fetched ?
-                        experts.experts ?
-                        experts.experts.map(exp => 
-                            <option key={exp._id} value={exp._id} > {exp.name} </option>
-                        ) :
-                        null :
-                        null
-                    }
-                </select> */}
                 <div>Visa Expert:
                     <div style={{padding:'5%'}}>
                         {

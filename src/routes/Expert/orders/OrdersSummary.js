@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 import '../order/ApplicationSummary.scss';
 
 function BorderColor(status){
@@ -24,13 +25,14 @@ function prettyDate(date){
     return date ? date.substring(1,11) : null;
 }
 
-const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
+let mapStateToProps = state => ({ supportCustomerView : state.expert.query.idCustomer })
+
+const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) => (
     <div class="expert-orders row">
         {
             orders ?
             orders.map(order =>
                 <div class='col-md-6 col-sm-12 col-lg-4' key={order._id}>
-                    {console.log("this is the order object", order)}
                     <Link style={{textDecoration:'none', color:'black'}}to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                         <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`,padding:'5%'}}>
                             <div class='sub-mask row'>
@@ -39,8 +41,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
                                     {`${order.orderType}-${order.country}`}
                                 </div>
                                 <div class='col-lg-4'>
-                                    {`Order Id:
-                                    SVGA1234`}
+                                Order Id: {order.orderCode}
                                 </div>
                                 <div class='col-lg-1' style={{backgroundColor:'#f44336', padding:'1%', borderRadius:'8px', color:'white'}}>
                                     {`${2}`}
@@ -55,6 +56,13 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
                                 <div class='col-lg-5'>
                                     {`Satus: ${order.status}`}
                                 </div>
+                                {
+                                    supportCustomerView ? 
+                                    <div class='col-lg-5'>
+                                        {`Assigned to: ${ order.expert.length ? order.expert[0].name : null }`}
+                                    </div> :
+                                    null
+                                }
                             </div>
                         </div>
                     </Link>
@@ -70,4 +78,4 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer}) => (
     </div>
 );
 
-export default OrdersSummary;
+export default connect(mapStateToProps)(OrdersSummary)
