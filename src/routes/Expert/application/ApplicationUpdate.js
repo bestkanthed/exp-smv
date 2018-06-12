@@ -10,10 +10,17 @@ function prettyDate(date){
 
 function borderColor(status){
     switch(status){
-        case "Submitted": return "#2196f3";
-        case "Pickup Scheduled": return "#ffc107";
-        case "Ready to Submit": return "#00bcd4";
-        case "Reviewed: NOT OKAY": return"#f44336";
+        case "Complete": return "#1ddaae";
+        case "Submitted": return "#1ddaae";
+        case "In Process": return "#ffc107";
+        case "New Application": return"#f44336";
+        case 'Pickup Scheduled': return '#ffc107';
+        case 'Under Review': return '#ffc107';
+        case 'Ready To Submit': return '#ffc107';
+        case 'Application Pack Couriered': return '#ffc107';
+        case 'Collected': return '#1ddaae';
+        case 'Delivered': return '#1ddaae';
+        case 'Decision Made': return '#1ddaae';
         default: return "#ffffff";
     }
 }
