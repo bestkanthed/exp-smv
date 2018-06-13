@@ -260,7 +260,7 @@ class CreateCustomerCumOrder extends React.Component {
                             experts.experts ?
                             experts.experts.map((exp, index) => 
                                 <label class='container1'>
-                                    <input  type='radio' name='Visa-Expert' defaultChecked={index===0 ? true : false} key={exp._id} value={exp._id} onChange={event => {
+                                    <input  type='radio' name='Visa-Expert' checked={this.state.order.idExpert} key={exp._id} value={exp._id} onChange={event => {
                                         this.setState({...this.state,
                                             order: {
                                                 ...this.state.order,
