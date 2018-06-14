@@ -6,8 +6,6 @@ import { loadPopup } from '../../actions/popup'
 import { logout } from '../../actions/login'
 import { seenNotifications } from '../../actions/notification'
 
-import Location from './header/Location'
-
 import { UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 const mapStateToProps = state => {

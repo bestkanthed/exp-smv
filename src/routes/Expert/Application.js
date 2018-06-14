@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
 
-import { fetchApplication, fetchOrderByIdApplication } from '../../actions/expert'
+import { fetchApplication, fetchOrderByIdApplication, setQuery } from '../../actions/expert'
 
 import DocumentsPreview from './application/DocumentsPreview'
 import DocumentAdd from './application/DocumentAdd'
@@ -20,35 +21,35 @@ const documentsOrder = [
 const mapStateToProps = state => ({
     order: state.expert.order,
     application: state.expert.application,
-    user: state.user
+    user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchApplication: idApplication => dispatch(fetchApplication(idApplication)),
-    fetchOrderByIdApplication: idApplication => dispatch(fetchOrderByIdApplication(idApplication))
+    fetchOrderByIdApplication: idApplication => dispatch(fetchOrderByIdApplication(idApplication)),
+    setQuery: query => dispatch(setQuery(query)),
 })
 
 class Application extends React.Component {
     
     componentWillMount() {
-        let { fetchApplication, idApplication } = this.props
+        let { fetchApplication, idApplication, fetchOrderByIdApplication } = this.props
         fetchApplication(idApplication)
-        let { order } = this.props.order        
+        let { order } = this.props.order
         if (!order) fetchOrderByIdApplication(idApplication)
     }
 
     render() {
-        let name, country, visaType, travelDate, employmentStatus, submissionDate, status
         let categories = null
         let documents = null
-        let { fetchApplication, idApplication, idCustomer } = this.props        
-        let { application, fetching, fetched, error, rerender } = this.props.application
+        let { fetchApplication, idApplication, idCustomer, setQuery } = this.props        
+        let { application, fetching, fetched, rerender } = this.props.application
         let { order } = this.props.order
         
         if (application) documents  = application.documents.sort((d1,d2) => ( documentsOrder.indexOf(d1.category) < documentsOrder.indexOf(d2.category) ? -1 : 1 ) )
         if(documents) categories = documents.map(document => document.category)
 
-        if(rerender) fetchApplication(idApplication) 
+        if(rerender) fetchApplication(idApplication)
         return (
             <div class='expert'>
                 {
@@ -58,7 +59,12 @@ class Application extends React.Component {
                         {
                             order ?
                             <h4>
-                                Home > {order.orderType} > {order.customer.length ? order.customer[0].name : null} > {application.name}
+                                <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}> Home </Link>
+                                >
+                                <Link to={idCustomer ? '/customer/orders' : '/expert/orders'} onClick={() => {if (!idCustomer) setQuery({ orderType: order.orderType }) }}> {order.orderType} </Link>
+                                >
+                                <Link to={(idCustomer ? '/customer' : '/expert' )+'/orders/'+order._id}> {order.customer.length ? order.customer[0].name : null} </ Link>
+                                > {application.name}
                             </h4> :
                             null
                         }
@@ -73,8 +79,8 @@ class Application extends React.Component {
                             }
                             </TabList>
                             {
-                                documents.map(document => 
-                                    <span key={document.category}><TabPanel >
+                                documents.map((document, index) => 
+                                    <span key={document.category}><TabPanel forceRender={index===0}>
                                         <DocumentsPreview idCustomer={idCustomer} documents={document.documents}/>
                                     </TabPanel></span>
                                 )

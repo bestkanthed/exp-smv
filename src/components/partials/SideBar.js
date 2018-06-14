@@ -1,13 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux'
-    import { loadPopup } from '../../actions/popup'
+import { loadPopup } from '../../actions/popup'
 import { logout } from '../../actions/login'
 import { seenNotifications } from '../../actions/notification'
-
-import Location from './header/Location'
-
-import { UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 import './partials.scss';
 

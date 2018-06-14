@@ -9,7 +9,15 @@ import Dropzone from 'react-dropzone'
 import PdfViewer from '../../../components/utilities/PdfViewer'
 
 import './Application.scss';
-import { Z_BLOCK } from 'zlib';
+
+const documentsOrder = [
+    'Mandatory Documents',
+    'Forms & Letters',
+    'Travel Proofs',
+    'Financial Documents',
+    'Occupation Proofs',
+    'Others'
+]
 
 const accpectedFileTypes = [
     'jpeg',
@@ -44,7 +52,7 @@ class DocumentPreview extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             btnDropright:'true'
         }
     }
@@ -54,46 +62,11 @@ class DocumentPreview extends React.Component {
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
         let details
-        console.log('-----000))))))))', document)
         return (
-            <div key={document._id}>
-                {/* <ButtonDropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }}>
-                    <DropdownToggle caret>
-                        <img src='../../../images/ic/more_vert/grey600.png'/>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <DropdownItem>
-                        { 
-                        idCustomer ? 
-                        null : 
-                        <div>
-                            Move to : <select name="category" id="category"
-                                ref = {node => {
-                                category = node;
-                                }}
-                            >
-                                <option value='Passport'>Passport</option>
-                                <option value='Photograph'>Photograph</option>
-                                <option value='Forms & Letters'>Forms & Letters</option>
-                                <option value='Financials'>Financials</option>
-                                <option value='Employment Proofs'>Employment Proofs</option>
-                                <option value='Booking'>Booking</option>
-                                <option value='Insurance'>Insurance</option>
-                                <option value='Additional'>Additional</option>
-                            </select> 
-                            <div class='row' style={{paddingLeft:'13%'}}>
-                                <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
-                                <button type='button' style={{marginLeft:'3%'}} onClick = {() => deleteDocument(document._id)} class="btn btn-primary col-lg-5"> Delete </button>  
-                            </div>
-                        </div>
-                    }
-                        </DropdownItem>
-                        <DropdownItem>Another Action</DropdownItem>
-                    </DropdownMenu>
-                </ButtonDropdown> */}
+            <div>
+                <p>{document.name}</p>
                 {
                     document.previewFileName ?
-                    
                     <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id}>
                         {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
@@ -120,19 +93,8 @@ class DocumentPreview extends React.Component {
                         idCustomer ? 
                         null : 
                         <div>
-                            Move to : <select name="category" id="category"
-                                ref = {node => {
-                                category = node;
-                                }}
-                            >
-                                <option value='Passport'>Passport</option>
-                                <option value='Photograph'>Photograph</option>
-                                <option value='Forms & Letters'>Forms & Letters</option>
-                                <option value='Financials'>Financials</option>
-                                <option value='Employment Proofs'>Employment Proofs</option>
-                                <option value='Booking'>Booking</option>
-                                <option value='Insurance'>Insurance</option>
-                                <option value='Additional'>Additional</option>
+                            Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
+                                { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
                             </select> 
                             <div class='row' style={{paddingLeft:'13%'}}>
                                 <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>

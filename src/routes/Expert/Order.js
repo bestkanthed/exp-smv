@@ -1,11 +1,10 @@
 import React from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchOrder, fetchLinkedOrders, linkedOrderClicked } from '../../actions/expert'
+import { fetchOrder, fetchLinkedOrders, linkedOrderClicked, setQuery } from '../../actions/expert'
 
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
-import ApplicationAdd from './order/ApplicationAdd'
 
 
 const mapStateToProps = state => ({
@@ -17,7 +16,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchOrder: idOrder => dispatch(fetchOrder(idOrder)),
     fetchLinkedOrders: idOrder => dispatch(fetchLinkedOrders(idOrder)),
-    linkedOrderClicked: () => dispatch(linkedOrderClicked())
+    linkedOrderClicked: () => dispatch(linkedOrderClicked()),
+    setQuery: query => dispatch(setQuery(query)),
 })
 
 function BorderColor(status){
@@ -48,7 +48,7 @@ class Order extends React.Component {
     render() {
         let { order, fetching, fetched, rerender } = this.props.order
         let { linkedOrders } = this.props.linkedOrders
-        let { fetchOrder, idOrder, supportView, idCustomer, user, linkedOrderClicked } = this.props
+        let { fetchOrder, idOrder, supportView, idCustomer, user, linkedOrderClicked, setQuery } = this.props
         if(rerender) fetchOrder(idOrder)
         
         return (
@@ -60,8 +60,12 @@ class Order extends React.Component {
                     order ?
                     <div>
                         <h4>
-                            {/*<Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'}> Home </Link>*/}
-                            Home > {order.orderType} > {order.customer.length ? order.customer[0].name : null}
+                            <Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'}> Home </Link>
+                            >
+                            <Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'} onClick={() => {if (!idCustomer) setQuery({ orderType: order.orderType }) }}> {order.orderType} </Link>
+                            >
+                            {order.customer.length ? order.customer[0].name : null}
+
                         </h4>
                         {
                             linkedOrders ?
