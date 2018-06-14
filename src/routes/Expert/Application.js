@@ -79,8 +79,8 @@ class Application extends React.Component {
                             }
                             </TabList>
                             {
-                                documents.map((document, index) => 
-                                    <span key={document.category}><TabPanel forceRender={index===0}>
+                                documents.map(document => 
+                                    <span key={document.category}><TabPanel>
                                         <DocumentsPreview idCustomer={idCustomer} documents={document.documents}/>
                                     </TabPanel></span>
                                 )

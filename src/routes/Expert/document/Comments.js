@@ -11,6 +11,8 @@ const mapDispatchToProps = dispatch => ({
 
 function prettyDate(date){
     let newDate = new Date(date)
+    let minutes = newDate.getMinutes()
+    if(minutes.length === 1) minutes = '0' + minutes
     const time = newDate.getHours()+':'+newDate.getMinutes();
     return (newDate.getDate()+'-'+(newDate.getMonth()+1)+'-'+(newDate.getFullYear())).concat(' on '.concat(time));
 }
