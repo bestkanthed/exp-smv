@@ -44,12 +44,16 @@ class CreateCustomerCumOrder extends React.Component {
     
     componentDidMount () {
         let { experts } = this.props.experts
-        if(experts) this.setState({...this.state,
+        if(experts) {this.setState({...this.state,
             order: {
                 ...this.state.order,
                 idExpert: experts[0]._id 
             }
         })
+        console.log('this is the id for the xpert in the state', this.state.order.idExpert);
+    } else{
+        console.log('This is messed up in state');
+    }
     }
 
     render() {
@@ -76,7 +80,7 @@ class CreateCustomerCumOrder extends React.Component {
                             channel: event.target.value
                         }
                     });
-                    }}>B2B{console.log('-----00000-----',event.target)}</button>
+                    }}>B2B{console.log('-----00000-----',this.state)}</button>
                 <button class='channel' value='B2C' style={{backgroundColor:`${this.state.customer.channel==='B2C'? '#eceff1':'#4a90e2'}`}} onClick={event => {
                     this.setState({...this.state,
                         customer: {
@@ -260,15 +264,27 @@ class CreateCustomerCumOrder extends React.Component {
                             experts.experts ?
                             experts.experts.map(exp => 
                                 <label class='container1'>
-                                    <input  type='radio' name='Visa-Expert' checked key={exp._id} value={exp._id} onChange={event => {
+                                    <input  type='radio' name='Visa-Expert' key={exp._id} value={exp._id}  defaultChecked={this.state.order.idExpert===exp._id} onClick={event => {
                                         this.setState({...this.state,
                                             order: {
                                                 ...this.state.order,
                                                 idExpert: event.target.value
                                             }
-                                        })
-                                    }}/>{exp.name}<span class='checkmark'/>
+                                        }) 
+                                    console.log('this is the value of the check box', event.target.value)
+                                    }
+                                    }/>{exp.name}<span class='checkmark'/>
                                 </label>
+                                // <div key={exp._id}>
+                                //     <button value={exp._id} onClick={event=>{
+                                //       this.setState({...this.state,
+                                //                     order: {
+                                //                         ...this.state.order,
+                                //                         idExpert: event.target.value
+                                //                     }
+                                //                 })   
+                                //     }}>{exp.name}</button>
+                                // </div>
                             ) :
                             null :
                             null

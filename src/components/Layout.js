@@ -35,13 +35,13 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor:'white', width:'97%'}}>
+            <div style={{backgroundColor:'white'}}>
                 <Popup />
-                <div class='row'>
-                    <div class='col-lg-3'>
+                <div>
+                    <div class='col-lg-3' style={{position:'fixed'}}>
                         <SideBar />
                     </div>
-                    <div class='col-lg-8'>
+                    <div class='col-lg-8' style={{marginLeft:'25%'}}>
                     <SearchBar/>
                     {/*<Header />*/}
                     {this.props.children}

@@ -32,9 +32,9 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
         {
             orders ?
             orders.map(order =>
-                <div class='col-md-6 col-sm-12 col-lg-3' key={order._id}>
+                <div class='col-md-6 col-sm-12 col-lg-4' key={order._id}>
                     <Link style={{textDecoration:'none', color:'black'}}to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
-                        <div class='mask row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`,padding:'5%'}}>
+                        <div class='mask-2 row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`,padding:'5%'}}>
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.customer[0] ? order.customer[0].name : null }  x{order.noOfApplications}<br/>
@@ -54,7 +54,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
                                     ${prettyDate(JSON.stringify(order.travelDate))}`}
                                 </div>
                                 <div class='col-lg-5'>
-                                    {`Satus: ${order.status}`}
+                                    {`Status: ${order.status}`}
                                 </div>
                                 {
                                     supportCustomerView ? 

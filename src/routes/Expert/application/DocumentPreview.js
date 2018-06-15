@@ -117,26 +117,34 @@ class DocumentPreview extends React.Component {
                         <p>{document.comments}</p>
                         <p>Status:{document.status}</p>
                     { 
-                        idCustomer ? 
-                        null : 
+                       
                         <div>
-                            Move to : <select name="category" id="category"
-                                ref = {node => {
-                                category = node;
-                                }}
-                            >
-                                <option value='Passport'>Passport</option>
-                                <option value='Photograph'>Photograph</option>
-                                <option value='Forms & Letters'>Forms & Letters</option>
-                                <option value='Financials'>Financials</option>
-                                <option value='Employment Proofs'>Employment Proofs</option>
-                                <option value='Booking'>Booking</option>
-                                <option value='Insurance'>Insurance</option>
-                                <option value='Additional'>Additional</option>
-                            </select> 
+                            {
+                                 idCustomer ? 
+                                 null : 
+                            <div>
+                                Move to : <select name="category" id="category"
+                                    ref = {node => {
+                                    category = node;
+                                    }}
+                                >
+                                    <option value='Mandatory Documents'>Mandatory Documents</option>
+                                    <option value='Forms & Letters'>Forms & Letters</option>
+                                    <option value='Travel Proofs'>Travel Proofs</option>
+                                    <option value='Financial Documents'>Financial Documents</option>
+                                    <option value='Occupation Proofs'>Occupation Proofs</option>
+                                    <option value='Others'>Others</option>
+                                </select> 
+                            </div>
+                            }
                             <div class='row' style={{paddingLeft:'13%'}}>
+                            {
+                                idCustomer ? null :
                                 <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
-                                <button type='button' style={{marginLeft:'3%'}} onClick = {() => deleteDocument(document._id)} class="btn btn-primary col-lg-5"> Delete </button>  
+                            }
+                                
+                                <button type='button' style={{marginLeft:'3%'}} onClick = {() => deleteDocument(document._id)} class="btn btn-primary col-lg-5"> Delete </button>
+
                             </div>
                         </div>
                     }

@@ -1,9 +1,17 @@
+.mask-2{
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #e0e0e0;
+  white-space: nowrap;
+  margin: 2%;
+}
+
 .mask{
   border-radius: 4px;
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
-
 }
+
 
 .pdf-view{
   width: 200px;
@@ -87,5 +95,5 @@ cursor: pointer;
 }
 
 body{
-  zoom:65%;
+  zoom:68%;
 }
