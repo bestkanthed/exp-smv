@@ -10,8 +10,11 @@ const mapDispatchToProps = dispatch => ({
 })
 
 function prettyDate(date){
-    const time = (((date.substring(0,10)).split('-')).reverse()).join('-');
-    return (date.substring(11, 16)).concat(' on '.concat(time));
+    let newDate = new Date(date)
+    let minutes = newDate.getMinutes()
+    if(minutes.length === 1) minutes = '0' + minutes
+    const time = newDate.getHours()+':'+newDate.getMinutes();
+    return (newDate.getDate()+'-'+(newDate.getMonth()+1)+'-'+(newDate.getFullYear())).concat(' on '.concat(time));
 }
 
 class Comments extends React.Component {
@@ -54,9 +57,9 @@ class Comments extends React.Component {
                     />
                     <button class='post-comment-button col-lg-2' onClick={e => {
                         e.preventDefault();
-                        postComment({text :newComment.value, idDocument, idCustomer});
+                        if(!newComment.value) return alert('Please write something in the comment')
+                        postComment({text: newComment.value, idDocument, idCustomer});
                         newComment.value = '';
-                        console.log('logging new comment', newComment.value)
                     }}>Fly</button>
                 </form>
             </div>

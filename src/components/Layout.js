@@ -10,12 +10,10 @@ import SearchBar from './partials/SearchBar'
 
 import { fetchCountries, fetchPurposes } from '../actions/database'
 import { fetchUser } from '../actions/user'
-import { fetchLocation } from '../actions/location'
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchUser: () => dispatch(fetchUser()),
-        fetchLocation: () => dispatch(fetchLocation()),
         fetchCountries: () => dispatch(fetchCountries()),
         fetchPurposes: () => dispatch(fetchPurposes())
     }
@@ -28,7 +26,6 @@ class Layout extends React.Component {
 
     componentWillMount() {
         this.props.fetchUser()
-        this.props.fetchLocation()
         this.props.fetchCountries()
         this.props.fetchPurposes()
     }

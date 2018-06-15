@@ -1,39 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
 import {deleteFile} from '../../actions/expert'
 
-import { fetchDocument, deleteDocument, changeDocumentStatus } from '../../actions/expert'
+import { fetchDocument, deleteDocument, changeDocumentStatus, fetchApplicationByIdDocument } from '../../actions/expert'
 
-import PdfViewer from '../../components/utilities/PdfViewer'
 import Comments from './document/Comments'
 import FilesView from './document/FilesView'
 import Switch from 'react-switch'
 
 import './document/Document.scss';
 
-const mapStateToProps = state => ({ document: state.expert.document })
+const mapStateToProps = state => ({
+    document: state.expert.document,
+    application: state.expert.application
+})
+
 const mapDispatchToProps = dispatch => ({
     fetchDocument: idDocument => dispatch(fetchDocument(idDocument)),
     deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
     showUploadDocumentPopup: () => dispatch(loadPopup('UploadDocument')),
     changeDocumentStatus: (status, idDocument) => dispatch(changeDocumentStatus(status, idDocument)),
-    deleteFile: idFile => dispatch(deleteFile(idFile))
+    deleteFile: idFile => dispatch(deleteFile(idFile)),
+    fetchApplicationByIdDocument: idDocument => dispatch(fetchApplicationByIdDocument(idDocument))
 })
 
 class Document extends React.Component {
 
     componentWillMount() {
-        let { fetchDocument, idDocument } = this.props
+        let { fetchDocument, idDocument, fetchApplicationByIdDocument } = this.props
         fetchDocument(idDocument)
+        let { application } = this.props.application
+        if (!application) fetchApplicationByIdDocument(idDocument)
     }
     
     render() {
         
-        let { idCustomer ,deleteDocument, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument, idComment } = this.props
+        let { idCustomer, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument } = this.props
         let { fetching, fetched, document, rerender } = this.props.document
+        let { application } = this.props.application
+
         if (rerender) fetchDocument(idDocument)
         return (
             <div class='document'>
@@ -46,6 +53,13 @@ class Document extends React.Component {
                         <div class='document-header'style={{paddingLeft:'1%'}}>
                         <br/>
                             <div class='header-mask row'>
+                                {
+                                    application ?
+                                    <div class='col-lg-2'>
+                                        {application.name} - {application.country} - {application.visaType}
+                                    </div> :
+                                    null
+                                }
                                 <div class='col-lg-2'>
                                 {document.category}
                                 </div>

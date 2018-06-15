@@ -113,8 +113,14 @@ export function deleteDocument (idDocument) {
     }
 }
 
+export function fetchApplicationByIdDocument (idDocument) {
+    return {
+        type: 'FETCH_APPLICATION',
+        payload: axios.get('/api/expert/applicationByIdDocument/'+idDocument, { withCredentials: true })
+    }
+}
+
 export function fetchApplication (idApplication) {
-    console.log('Logging id application', idApplication);
     return {
         type: 'FETCH_APPLICATION',
         payload: axios.get('/api/expert/applications/'+idApplication, { withCredentials: true })

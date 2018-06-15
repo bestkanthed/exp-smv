@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateApplication, deleteApplication } from '../../../actions/expert';
-import {Link} from 'react-router-dom';
 import './Application.scss';
 
 function prettyDate(date){
@@ -38,7 +37,6 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
   return (
     <div class='application-update-form'>
         <div>
-            {console.log('----------this is the application object---------',application)}
             <div>
             <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
                     <span class='col-lg-2'>
@@ -93,15 +91,13 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
     <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
             <div class='row'>
                 <p class='col-lg-3'> Name : <input type="text" defaultValue={application.name} required="required" ref = {node => { name = node}} /></p>
-                <p class='col-lg-3'>Country : <select defaultValue={application.country} ref = {node => { country = node }}>
-                    {countries.countries ? countries.countries.map(country => 
-                    <option value={country.name} key={country._id}> {country.name} </option> 
-                    ) : null}
-                    </select></p>
+                <p class='col-lg-3'>Country : {application.country} </p>
                 <p class='col-lg-3'>Visa : <select defaultValue={application.visaType} ref = {node => { visaType = node }}>
-                    {purposes.purposes ? purposes.purposes.map(purpose => 
-                    <option value={purpose.name} key={purpose._id}> {purpose.name} </option> 
-                     ) : null}
+                    {
+                        countries.countries ? (countries.countries.find(c => c.name === application.country)).visas.map(visa =>
+                            <option value={visa.name} key={visa._id}> {visa.name} </option> 
+                        ) : null
+                    }
                     </select>
                 </p>
             </div>
@@ -109,6 +105,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
             <div class='row'>
                 <p class='col-lg-3'> Travel Date : <input type="date" defaultValue={application.travelDate  ? application.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} /></p>
                 <p class='col-lg-3'> Employment Status : <select defaultValue={application.employmentStatus} ref = {node => { employmentStatus = node }}>
+                        <option value=''></option>
                         <option value='Employed'>Employed</option>
                         <option value='Self-Employed'>Self-Employed</option>
                         <option value='Student'>Student</option>

@@ -262,9 +262,9 @@ class CreateCustomerCumOrder extends React.Component {
                             null :
                             experts.fetched ?
                             experts.experts ?
-                            experts.experts.map(exp => 
+                            experts.experts.map((exp, index) => 
                                 <label class='container1'>
-                                    <input  type='radio' name='Visa-Expert' key={exp._id} value={exp._id}  defaultChecked={this.state.order.idExpert===exp._id} onClick={event => {
+                                    <input  type='radio' name='Visa-Expert' defaultChecked={this.state.order.idExpert === exp._id} key={exp._id} value={exp._id} onChange={event => {
                                         this.setState({...this.state,
                                             order: {
                                                 ...this.state.order,
@@ -294,11 +294,12 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <button type='submit' onClick = {e => { e.preventDefault()
                     let {name, email, phone} = this.state.customer
-                    let {noOfApplications} = this.state.order
+                    let { noOfApplications, idExpert } = this.state.order
                     if(!name) return alert('Enter customer name')
                     if(!email) return alert('Enter customer email')
                     if(!phone) return alert('Enter customer phone')
                     if(!noOfApplications) return alert('Enter no of Applications')
+                    if(!idExpert) return alert('No expert selected')
                     postCustomerCumOrder(this.state)}} class="btn btn-primary show-requirements-button">
                     Create Customer and Order
                 </button>
