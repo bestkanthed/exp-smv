@@ -62,6 +62,7 @@ class DocumentPreview extends React.Component {
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
         let details
+        console.log('This is the document object------------', document);
         return (
             <div>
                 <p>{document.name}</p>
