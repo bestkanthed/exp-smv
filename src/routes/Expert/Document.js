@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
-import {deleteFile} from '../../actions/expert'
+import { deleteFile } from '../../actions/expert'
 
 import { fetchDocument, deleteDocument, changeDocumentStatus, fetchApplicationByIdDocument } from '../../actions/expert'
 
