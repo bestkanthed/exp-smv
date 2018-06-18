@@ -90,12 +90,17 @@ class DocumentPreview extends React.Component {
                     <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                         <p>{document.comments}</p>
                         <p>Status:{document.status}</p>
-                    { 
+                     
                        
-                        <div>
-                            Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
-                                { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
-                            </select> 
+                            <div>
+                                {
+                                    idCustomer ? null :
+                                <div>
+                                    Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
+                                    { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
+                                    </select> 
+                               </div>
+                                }
                             <div class='row' style={{paddingLeft:'13%'}}>
                             {
                                 idCustomer ? null :
@@ -106,7 +111,7 @@ class DocumentPreview extends React.Component {
 
                             </div>
                         </div>
-                    }
+                    
                     </div>
             </div>
         );
