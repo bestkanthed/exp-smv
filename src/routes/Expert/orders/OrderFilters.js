@@ -44,18 +44,9 @@ class OrderFilters extends React.Component {
                     idCustomer ?
                     <div>
                         Orders:
-                        <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Active')}>
-                            Active
-                        </div>
-                        <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Complete')}>
-                            Past
-                        </div>
                     </div> :
                     <div>
                         <div class="col-md-12 col-lg-12 col-sm-12" style={{marginBottom:'2%'}}>
-                            <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All'); this.state.query}}>
-                                All
-                            </div>
                             <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>
                                 Pickup Drop
                             </div>
