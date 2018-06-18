@@ -77,7 +77,7 @@ class DocumentPreview extends React.Component {
                                 </div>
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
-                            <img src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                            <img  style={{height: '340px', width: '200px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
                             <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
                         }
                     </Link> :
