@@ -18,17 +18,17 @@ const mapDispatchToProps = dispatch => ({ deleteFile: idFile => dispatch(deleteF
 const FilesView = ({idCustomer, files, idDocument, fetchDocument, deleteFile}) => (
     <div>
         {
-            files.map(file =>
-                <div key={file._id}>
+            // files.map(file =>
+                <div key={files._id}>
                     {
-                        (file.uploadName.split('.').pop()).toLowerCase() === 'pdf' ?
-                        <PdfViewer file={'/api/expert/files/'+file._id} /> :
-                        imageTypes.indexOf((file.uploadName.split('.').pop()).toLowerCase()) !== -1 ?
-                        <img src={'/api/expert/files/'+file._id} /> :
-                        <a href={'/api/expert/files/'+file._id}>{file.uploadName}</a>
+                        (files.uploadName.split('.').pop()).toLowerCase() === 'pdf' ?
+                        <PdfViewer file={'/api/expert/files/'+files._id} /> :
+                        imageTypes.indexOf((files.uploadName.split('.').pop()).toLowerCase()) !== -1 ?
+                        <img src={'/api/expert/files/'+files._id} /> :
+                        <a href={'/api/expert/files/'+files._id}>{files.uploadName}</a>
                     }
                 </div>
-            )
+            //)
         }
     </div>
 )

@@ -196,7 +196,7 @@ class CreateCustomerCumOrder extends React.Component {
                         })
                     }} />
             </div>
-            <div style={{paddingTop:'3%'}}>
+            <div style={{paddingTop:'3%', overflow:'auto', height:'250px'}}>
                 {
                     this.state.apps.map((app, index) =>
                         <div key={index}>

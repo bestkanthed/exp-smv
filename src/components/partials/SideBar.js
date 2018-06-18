@@ -32,8 +32,8 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     user.teams.map(role =>
                         <Link style={{textDecoration:'none', color:'black'}} to={'/'+role}>
                         <div class='side-bar-content' key={role}>
-                        <img class='col-lg-3 fix-image' src={role==='support' ? '../../../images/ic/person/grey600.png':'../../../images/ic/home/grey600.png'}/>
-                        <span class='col-lg-9'>{role}</span>
+                        <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
+                        <span class=''>{role}</span>
                         </div>
                         </Link>
                     ) :
@@ -41,15 +41,15 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     ,
                         <Link style={{textDecoration:'none', color:'black'}} to='/notifications'>
                     <div class='side-bar-content' key='past-applications' onClick={() => {seenNotifications(user._id);}}>
-                        <img class='col-lg-3 fix-image' src='../../../images/ic/hourglass_empty/grey600.png' />
-                        <span class='col-lg-9'>Notifications</span>
+                        <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
+                        <span >Notifications</span>
                     </div>
                         </Link>
                     ,
-                    <Link style={{textDecoration:'none', color:'black'}} to='/notifications'>
+                    <Link  style={{textDecoration:'none', color:'black'}} to='/notifications'>
                     <div class='side-bar-content' key='notifications' onClick={() => seenNotifications(user._id)}>
-                        <img class='col-lg-3 fix-image' src='../../../images/ic/timeline/grey600.png' />
-                        <span class='col-lg-9'>Past Applications</span>
+                        <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
+                        <span>Past Applications</span>
                         </div> </Link>
                     ]
                 :

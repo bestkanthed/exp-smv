@@ -40,8 +40,9 @@ class Comments extends React.Component {
                     comments.map(comment => 
                         <div class={`comment alert ${comment.by==='expert' ? 'alert':'alert-info'}`} key={comment._id}>
                             <p>{comment.text}</p>
-                            <p>{comment.time}</p>
-                            <p>{`${comment.sentBy[0].name} commented at ${prettyDate(comment.updatedAt)}`}</p>
+                            <hr/>
+                            <p style={{display: 'inline'}}>{comment.time} {prettyDate(comment.updatedAt)}</p>
+                            <p style = {{float : 'right', margin:'0px'}}>{`${comment.sentBy[0].name}`}</p>
                         </div>
                     ) :
                     null :

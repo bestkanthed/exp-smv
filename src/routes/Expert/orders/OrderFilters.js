@@ -20,7 +20,8 @@ const serialize = object => {
     for (let property in object) {
         if (object[property] && object[property]!=='All') query = query.concat(property, '=', object[property], '&')
     }
-    return query
+    console.log('query-------------', query);
+    return query;
 }
 
 class OrderFilters extends React.Component {
@@ -36,25 +37,16 @@ class OrderFilters extends React.Component {
             setQuery({ status })
             fetchOrders(serialize({...query, status}));
         }
-        
+
         return (
             <div>
                 {
                     idCustomer ?
                     <div>
                         Orders:
-                        <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Active')}>
-                            Active
-                        </div>
-                        <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Complete')}>
-                            Past
-                        </div>
                     </div> :
                     <div>
                         <div class="col-md-12 col-lg-12 col-sm-12" style={{marginBottom:'2%'}}>
-                            <div class='filter-mask' onClick={()=>{handleServiceTypeChange('All')}}>
-                                All
-                            </div>
                             <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>
                                 Pickup Drop
                             </div>

@@ -29,6 +29,42 @@ const mapDispatchToProps = dispatch => ({
 
 class Document extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentFileIndex : 0
+        };
+       this.toggleNextFiles = this.toggleNextFiles.bind(this);
+       this.togglePrevFiles = this.togglePrevFiles.bind(this)
+    }
+
+    toggleNextFiles() {
+        // if (files.length >= this.state.currentFileIndex) {
+        //     this.setState({currentFileIndex: currentFileIndex++})
+        // } else {
+        //     this.setState({currentFileIndex: 0})
+        // }
+        const files = this.props.document.document.files;
+        console.log('-----------------------this is the currentIndex state', this.state.currentFileIndex);
+        let fileIndex = this.state.currentFileIndex;
+        fileIndex++;
+        //console.log('these are the props',files)
+        console.log('------------------------this is the fileIndex', fileIndex);
+        fileIndex<files.length ? this.setState({currentFileIndex : fileIndex}) : 0;
+        console.log('************************this is the currentIndex state', this.state.currentFileIndex);
+    }
+
+    togglePrevFiles(){
+        const files = this.props.document.document.files;
+        console.log('-----------------------this is the currentIndex state', this.state.currentFileIndex);
+        let fileIndex = this.state.currentFileIndex;
+        fileIndex--;
+        //console.log('these are the props',files)
+        console.log('------------------------this is the fileIndex', fileIndex)
+        fileIndex >= 0 ? this.setState({currentFileIndex : fileIndex}) : 0;
+        console.log('************************this is the currentIndex state', this.state.currentFileIndex);
+    }
+
     componentWillMount() {
         let { fetchDocument, idDocument, fetchApplicationByIdDocument } = this.props
         fetchDocument(idDocument)
@@ -41,7 +77,7 @@ class Document extends React.Component {
         let { idCustomer, showUploadDocumentPopup, changeDocumentStatus, fetchDocument, idDocument } = this.props
         let { fetching, fetched, document, rerender } = this.props.document
         let { application } = this.props.application
-
+        console.log('Application object in the document view', application);
         if (rerender) fetchDocument(idDocument)
         return (
             <div class='document'>
@@ -54,7 +90,7 @@ class Document extends React.Component {
                         <div class='document-header'style={{paddingLeft:'1%'}}>
                         <br/>
                             <div class='header-mask row'>
-                            <Link to='/expert/applications/'>
+                            <Link to={`/expert/applications/${application._id}`}>
                             <div class='col-lg-2'><img src='../../../images/ic/arrow_back/grey600.png' /></div>
                             </Link>
                                 {
@@ -89,12 +125,15 @@ class Document extends React.Component {
                             <br/>
                         </div>
                         <div class='row'>
-                            <div>
+                            <div>   
+                                <button onClick={this.toggleNextFiles}>next doc</button>
+                                <button onClick={this.togglePrevFiles}>prev doc</button>
+                                <p>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</p>
                                     <div class='col-lg-7 pdf-border'>
-                                    <FilesView idCustomer={idCustomer} files={document.files} idDocument={document._id}/>
+                                    <FilesView idCustomer={idCustomer} files={document.files[this.state.currentFileIndex]} idDocument={document._id}/>
                                     </div>
                             </div>
-                            <div class='col-lg-3'>
+                            <div class='col-lg-5'>
                                 <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
