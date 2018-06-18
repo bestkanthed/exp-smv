@@ -30,7 +30,7 @@ class Customers extends React.Component {
                                 <div class='col-lg-2 col-md-4 col-sm-12 mask'>
                                 <p>{customer.name}</p>
                                 <span >Ongoing Orders</span>
-                                <span style={{paddingLeft:'60%'}}>{customer.onGoingOrders}</span>
+                                <span style={{paddingLeft:'15%'}}>{customer.onGoingOrders}</span>
                                 </div>
                             </Link>
                     )

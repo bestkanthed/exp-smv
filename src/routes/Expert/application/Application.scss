@@ -3,6 +3,7 @@
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
   white-space: nowrap;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   margin: 2%;
 }
 
@@ -10,6 +11,8 @@
   border-radius: 4px;
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
 }
 
 
@@ -27,7 +30,7 @@
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
   width: 200px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .button-align{
@@ -92,8 +95,4 @@ cursor: pointer;
 
 .documents-preview{
   padding: left 10%;
-}
-
-body{
-  zoom:68%;
 }

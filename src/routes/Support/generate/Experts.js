@@ -31,7 +31,7 @@ class Experts extends React.Component {
                                 <div class='col-lg-2 col-md-4 col-sm-12 mask support' key={expert._id}>
                                 <p>{expert.name}</p>
                                 <span >Ongoing Orders</span>
-                                <span style={{paddingLeft:'60%'}}>{expert.onGoingOrders}</span>
+                                <span style={{paddingLeft:'15%'}}>{expert.onGoingOrders}</span>
                                 </div>
                             </Link>
                     )

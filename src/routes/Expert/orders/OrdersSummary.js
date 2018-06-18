@@ -41,7 +41,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
                                     {`${order.orderType}-${order.country}`} {console.log('999999999', order)}
                                 </div>
                                 <div class='col-lg-4'>
-                                Order Id: {order.orderCode}
+                                Order Id: <br/> {order.orderCode}
                                 </div>
                                 <div class='col-lg-1' style={{backgroundColor:'#f44336', padding:'1%', borderRadius:'8px', color:'white'}}>
                                     {`${2}`}
@@ -49,12 +49,12 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
                             </div>
                             <br/>
                             <div class='sub-mask row'>
-                                <div class='col-lg-7'>
-                                    {`Travel Date:
-                                    ${prettyDate(JSON.stringify(order.travelDate))}`}
+                                <div class='col-lg-7' style={{marginLeft:'3$'}}>
+                                    Travel Date:<br/>
+                                    {prettyDate(JSON.stringify(order.travelDate))}
                                 </div>
                                 <div class='col-lg-5'>
-                                    {`Status: ${order.status}`}
+                                    Status:<br/> {order.status}
                                 </div>
                                 {
                                     supportCustomerView ? 

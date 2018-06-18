@@ -25,13 +25,13 @@ class Generate extends React.Component {
 
     render() {
         return (
-            <div class=" support">
+            <div class="support">
                 <div>
                     <br/><br/>
                     <button class='button-mask' onClick={this.props.showCreateCustomerCumOrderPopup}>
                         Create Order
                     </button>
-                    <button class='button-mask' style={{marginLeft:'2%'}}>
+                    <button class='button-mask'>
                         <Link to='/support/new'>New Orders</Link>
                     </button>
                     <br/><br/>
