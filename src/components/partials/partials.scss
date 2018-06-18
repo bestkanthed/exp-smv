@@ -86,3 +86,12 @@ input.search-bar{
 .fix-image{
     transform: scale(0.5);
 }
+
+.pop-up-bg{
+    background-color: #ffffff;
+    position: relative;
+    left: -50%;
+    padding: 0;
+    border-radius: 16px;
+    top: 160px;
+}

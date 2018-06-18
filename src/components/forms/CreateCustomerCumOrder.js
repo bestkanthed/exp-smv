@@ -39,6 +39,7 @@ class CreateCustomerCumOrder extends React.Component {
                 story: undefined,
                 status: 'New'
             },
+            tabIndex : 0,
         }
     }
     
@@ -59,12 +60,13 @@ class CreateCustomerCumOrder extends React.Component {
     render() {
         let { experts, postCustomerCumOrder, database } = this.props
          let { countries, purposes } = database
+         let tabindex = 0;
         return(
-            <div>
-                <br/>
-                <div class='dimensions'>
+            <div class='dimensions'>
+            <br/>
                 <h4>Create Order</h4>
-        <Tabs style={{backgroundColor:'#ffffff'}}>
+            <hr/>
+        <Tabs style={{backgroundColor:'#ffffff'}} selectedIndex={this.state.tabIndex} onSelect={tabIndex=>this.setState({...this.state, tabIndex : tabIndex})}>
             <TabList style={{padding:'5%'}}>
                 <Tab style={{padding:'5%'}}>Basic Info</Tab>
                 <Tab style={{padding:'5%'}}>Visa Detail</Tab>
@@ -275,16 +277,6 @@ class CreateCustomerCumOrder extends React.Component {
                                     }
                                     }/>{exp.name}<span class='checkmark'/>
                                 </label>
-                                // <div key={exp._id}>
-                                //     <button value={exp._id} onClick={event=>{
-                                //       this.setState({...this.state,
-                                //                     order: {
-                                //                         ...this.state.order,
-                                //                         idExpert: event.target.value
-                                //                     }
-                                //                 })   
-                                //     }}>{exp.name}</button>
-                                // </div>
                             ) :
                             null :
                             null
@@ -304,9 +296,11 @@ class CreateCustomerCumOrder extends React.Component {
                     Create Customer and Order
                 </button>
             </TabPanel>
+            <div>
+            <button class='channel' style={{float:'right'}} onClick={(event)=>{this.state.tabIndex===0 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 2}):null}}>next</button>
+            <button class='channel' onClick={(event)=>{this.state.tabIndex===2 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 0}):null}}>prev</button>
+            </div>
         </Tabs>
-                </div>
-                <br/>
         </div>
         )
     }
