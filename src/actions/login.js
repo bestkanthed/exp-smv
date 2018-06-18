@@ -32,6 +32,17 @@ export function sendLoginRequest (credentials) {
     }
 }
 
+export function postChangePassword (credentials) {
+    return {
+        type: 'POST_CHANGE_PASSWORD',
+        payload: axios('/api/changePassword', {
+            method: 'post',
+            data: credentials,
+            withCredentials: true
+        })
+    }
+}
+
 export function forgotPassword (credentials) {
     return {
         type: 'FORGOT_PASSWORD',

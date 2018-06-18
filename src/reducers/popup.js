@@ -64,6 +64,11 @@ const popupReducer = (state = initialState, action) => {
                 display: true,
                 animation: showAnimation
             }
+            else if (!payload.data.passwordChanged) return {
+                content: 'ChangePassword',
+                display: true,
+                animation: showAnimation
+            }
             else return {...state, display: false}
         }
         case 'LOGIN_REQUEST_REJECTED' : {

@@ -6,6 +6,7 @@ import Flash from './popup/Flash'
 import GetStarted from '../forms/GetStarted'
 import Signup from '../forms/Signup'
 import Login from '../forms/Login'
+import ChangePassword from '../forms/ChangePassword'
 
 import CreateCustomerCumOrder from '../forms/CreateCustomerCumOrder'
 import UploadDocument from '../forms/UploadDocument'
@@ -22,6 +23,7 @@ function setPopupContent(content) {
         case 'GetStarted': return <GetStarted />
         case 'Signup': return <Signup />
         case 'Login': return <Login />
+        case 'ChangePassword': return <ChangePassword />
 
         case 'CreateCustomerCumOrder': return <CreateCustomerCumOrder />
         case 'UploadDocument': return <UploadDocument />

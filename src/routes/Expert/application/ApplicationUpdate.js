@@ -147,7 +147,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
             }); updateForm.style.display='none'}} id='updateApplication' class="btn btn-primary show-requirements-button">
                 Update
             </button>
-            <button style={{margin:'4px'}} type='button' onClick = {() => {deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} class="btn btn-primary show-requirements-button"> Delete </button>
+            <button style={{margin:'4px'}} type='button' onClick = {() => { if(confirm("Are you sure you want to delete")) { deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} } class="btn btn-primary show-requirements-button"> Delete </button>
             <button style={{margin:'4px'}} type='button' onClick={()=>{updateForm.style.display='none'}} class="btn btn-primary show-requirements-button">Cancel</button>
         </div>
     </div>
