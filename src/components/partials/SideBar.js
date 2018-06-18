@@ -30,8 +30,8 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                 [
                     user.teams ?
                     user.teams.map(role =>
-                        <Link style={{textDecoration:'none', color:'black'}} to={'/'+role}>
-                        <div class='side-bar-content' key={role}>
+                        <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
+                        <div class='side-bar-content' >
                         <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
                         <span class=''>{role}</span>
                         </div>
@@ -39,15 +39,8 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     ) :
                     null
                     ,
-                        <Link style={{textDecoration:'none', color:'black'}} to='/notifications'>
-                    <div class='side-bar-content' key='past-applications' onClick={() => {seenNotifications(user._id);}}>
-                        <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
-                        <span >Notifications</span>
-                    </div>
-                        </Link>
-                    ,
-                    <Link  style={{textDecoration:'none', color:'black'}} to='/notifications'>
-                    <div class='side-bar-content' key='notifications' onClick={() => seenNotifications(user._id)}>
+                    <Link key='notifications' style={{textDecoration:'none', color:'black'}} to='/notifications'>
+                    <div class='side-bar-content'>
                         <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
                         <span>Past Applications</span>
                         </div> </Link>
