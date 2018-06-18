@@ -42,7 +42,7 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     <Link key='notifications' style={{textDecoration:'none', color:'black'}} to='/notifications'>
                     <div class='side-bar-content'>
                         <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                        <span>Past Applications</span>
+                        <span>Notification</span>
                         </div> </Link>
                     ]
                 :
