@@ -108,7 +108,7 @@ class Document extends React.Component {
                                 </div>
                                 <div class='col-lg-3'>
                                 <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
-                                <button class='button-mask-btn' onClick={() => deleteFile(document.files[0]._id) }> Delete </button>
+                                <button class='button-mask-btn' onClick={() => { if(confirm("Are you sure you want to delete")) deleteFile(document.files[0]._id)} }> Delete </button>
                                 </div>
                                 <div class='col-lg-1'>
                                 {

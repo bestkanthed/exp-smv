@@ -32,8 +32,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, application, database }) => {
-  let name, country, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
-  let { countries, purposes } = database
+  let name, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
+  let { countries } = database
   return (
     <div class='application-update-form'>
         <div>
@@ -142,12 +142,12 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
             </div>
             <button  style={{margin:'4px'}} type='button' onClick = {() => { updateApplication({
                 idOrder: application.idOrder, id: application._id,
-                name: name.value, country: country.value, visaType: visaType.value, travelDate: travelDate.value,
+                name: name.value, visaType: visaType.value, travelDate: travelDate.value,
                 employmentStatus: employmentStatus.value, submissionDate: submissionDate.value, status: status.value
             }); updateForm.style.display='none'}} id='updateApplication' class="btn btn-primary show-requirements-button">
                 Update
             </button>
-            <button style={{margin:'4px'}} type='button' onClick = {() => {deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} class="btn btn-primary show-requirements-button"> Delete </button>
+            <button style={{margin:'4px'}} type='button' onClick = {() => { if(confirm("Are you sure you want to delete")) { deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} } class="btn btn-primary show-requirements-button"> Delete </button>
             <button style={{margin:'4px'}} type='button' onClick={()=>{updateForm.style.display='none'}} class="btn btn-primary show-requirements-button">Cancel</button>
         </div>
     </div>

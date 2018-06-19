@@ -33,7 +33,7 @@ class Profile extends React.Component {
                     <div class='profile-view'>                        
                         <p>{ JSON.stringify(user) }</p>
                         <p>{ user.name }</p>
-                        <button type='button' onClick = { () => {deleteUserProfile(user._id); window.location.replace('/admin/teams')}}> Delete User </button>
+                        <button type='button' onClick = { () => { if(confirm("Are you sure you want to delete")) { deleteUserProfile(user._id); window.location.replace('/admin/teams')}} }> Delete User </button>
                     </div> :
                     <p> No such user </p> :
                     <h2>Error connecting to the server</h2> 

@@ -100,25 +100,20 @@ class Order extends React.Component {
                                 <p>{order.applications[0].country} - {order.applications[0].visaType}</p>
                             </div>
                             <div style={{padding:'2%'}} class='col-lg-2 col-md-3'>
-                            <p>Travel Date : <br/>{order.applications[0].travelDate ? order.applications[0].travelDate.substring(0, 10) : null}</p>
+                            <p>Order Id : <br/>{order.orderCode}</p>
                             </div>
                             <div class='col-lg-2 col-md-3' style={{padding:'2%'}}>
-                            <p>Employment Status :</p><p>{order.applications[0].employmentStatus}</p>
+                            <p>Status :</p><p>{order.status}</p>
                             </div>
                             <div class='col-lg-2 col-md-3' style={{padding:'2%'}}>
-                            <p>Submission Date :</p><p>{order.applications[0].submissionDate ? order.applications[0].submissionDate.substring(0, 10) : null}</p>
-                            </div>
-                            <div class='col-lg-2 col-md-3' style={{padding:'2%'}}>
-                            <p>Status:</p><p>{order.applications[0].status}</p>
+                            <p>Invoice No :</p><p>{order.invoiceNo}</p>
                             </div>
                         </div>
                         </div>
                         <br/>
                         <div style={{overflowY:'scroll', height:idCustomer ? '65vh':'500px'}}>
-                        {console.log('-------########--------',supportView)}
                         <ApplicationsSummary idCustomer={idCustomer} applications={order.applications} />
                         </div>
-                        {/* {idCustomer ? null : <ApplicationAdd idOrder={order._id} />}  */}
                     </div> :
                     null :
                     <div> Loading </div>

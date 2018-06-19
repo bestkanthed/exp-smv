@@ -178,7 +178,7 @@ class CreateCustomerCumOrder extends React.Component {
                     onChange={event => {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
-                                name: 'Customer'+(index+1),
+                                name: index === 0 ? this.state.customer.name : 'Applicant'+(index),
                                 country: countries.countries ? countries.countries[0].name : undefined,
                                 countryCode: countries.countries ? countries.countries[0].countryId : undefined,
                                 visas: countries.countries ? countries.countries[0].visas : undefined,

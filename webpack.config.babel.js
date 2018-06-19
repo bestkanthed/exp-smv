@@ -37,18 +37,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './dist/index.html',
       inject: false
-    })//,
-    // new webpack.NamedModulesPlugin(),
-    // new UglifyJsPlugin({
-    //   uglifyOptions: {
-    //     compress: {
-    //       warnings: true
-    //     },
-    //     output: {
-    //       comments: false
-    //     },
-    //     sourceMap: false
-    //   }
-    // })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: true
+        },
+        output: {
+          comments: false
+        },
+        sourceMap: false
+      }
+    })
   ],
 }
