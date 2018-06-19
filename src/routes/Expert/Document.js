@@ -90,7 +90,7 @@ class Document extends React.Component {
                         <div class='document-header'style={{paddingLeft:'1%'}}>
                         <br/>
                             <div class='header-mask row'>
-                            <Link to={`/expert/applications/${application._id}`}>
+                            <Link to={application ? `/expert/applications/${application._id }`: '/expert/orders'}>
                             <div class='col-lg-2'><img src='../../../images/ic/arrow_back/grey600.png' /></div>
                             </Link>
                                 {

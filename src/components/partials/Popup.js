@@ -54,7 +54,7 @@ const Popup = ({popup, children, hidePopup}) => {
         <div class="popup" style={{display: popup.display ? 'inline' : 'none'}}>
             <div id="cover" onClick = {() => hidePopup()}></div>
             <div id="popup-frame">
-                <div class="pop-up-bg" style = {popup.animation}>
+                <div class="pop-up-bg" style = {popup.animation} style={{top: '80px'}}>
                     <div class="row">
                         <div class="cancel" onClick = {hidePopup}>✕</div>
                     </div>
