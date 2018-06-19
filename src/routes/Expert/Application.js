@@ -82,6 +82,7 @@ class Application extends React.Component {
                                 documents.map(document => 
                                     <span key={document.category}><TabPanel>
                                         <DocumentsPreview idCustomer={idCustomer} documents={document.documents}/>
+                                        {console.log('this is the docuuuuuu#########', application)}
                                     </TabPanel></span>
                                 )
                             }

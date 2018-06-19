@@ -59,22 +59,23 @@ class OrderFilters extends React.Component {
                         </div>
                         <div>
                             Status:
-                            <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('All')}>
+                            <div class='status-filter-mask ' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('All')}>
                                 All
                             </div>
-                            <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('Active')}>
+                            <div class='status-filter-mask ' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('Active')}>
                                 Active
                             </div>
-                            <div class='status-filter-mask 'onClick={() => handleStatusTypeChange('New')}>
+                            <div class='status-filter-mask' style={{backgroundColor:'#f44336', fontSize:'8px'}}onClick={() => handleStatusTypeChange('New')}>
                                 New
                             </div>
-                            <div  style={{backgroundColor:'#ffc107'}} class='status-filter-mask 'onClick={() => handleStatusTypeChange('In Process')}>
-                                
+                            <div  style={{backgroundColor:'#ffc107', fontSize:'8px'}} class='status-filter-mask 'onClick={() => handleStatusTypeChange('In Process')}>
+                                In Process
                             </div>
-                            <div style={{backgroundColor:'#00bcd4'}} class='status-filter-mask 'onClick={()=>handleStatusTypeChange('Submitted')}>
-                                
+                            <div style={{backgroundColor:'#2196f3', fontSize:'8px'}} class='status-filter-mask 'onClick={()=>handleStatusTypeChange('Submitted')}>
+                                Submitted
                             </div>
-                            <div style={{backgroundColor:'#2196f3'}} class='status-filter-mask ' onClick={()=>handleStatusTypeChange('Complete')}>
+                            <div style={{backgroundColor:'#1ddaae', fontSize:'8px'}} class='status-filter-mask ' onClick={()=>handleStatusTypeChange('Complete')}>
+                                Completed
                             </div>
                             <label style={{marginLeft:'2%'}}>Country</label><select defaultValue={query.country} onChange={event => {
                                 setQuery({ country : event.target.value })

@@ -5,17 +5,16 @@ import './ApplicationSummary.scss';
 function BorderColor(status){
     switch(status){
         case "Complete": return "#1ddaae";
-        case "Submitted": return "#1ddaae";
+        case "Submitted": return "#2196f3";
         case "In Process": return "#ffc107";
-        case "Ready to Submit": return 'purple';
-        case "New": return"#f44336";
+        case "New Application": return"#f44336";
         case 'Pickup Scheduled': return '#ffc107';
         case 'Under Review': return '#ffc107';
         case 'Ready To Submit': return '#ffc107';
         case 'Application Pack Couriered': return '#ffc107';
-        case 'Collected': return '#1ddaae';
-        case 'Delivered': return '#1ddaae';
-        case 'Decision Made': return '#1ddaae';
+        case 'Collected': return '#2196f3';
+        case 'Delivered': return '#2196f3';
+        case 'Decision Made': return '#2196f3';
         default: return "#ffffff";
     }
 }

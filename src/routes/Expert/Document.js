@@ -137,11 +137,11 @@ class Document extends React.Component {
                                 <button onClick={this.toggleNextFiles}>next doc</button>
                                 <button onClick={this.togglePrevFiles}>prev doc</button>
                                 <p>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</p>
-                                    <div class='col-lg-7 pdf-border'>
+                                    <div class='col-lg-8' style={{height: '70vh'}}>
                                     <FilesView idCustomer={idCustomer} files={document.files[this.state.currentFileIndex]} idDocument={document._id}/>
                                     </div>
                             </div>
-                            <div class='col-lg-5'>
+                            <div class='col-lg-4'>
                                 <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
