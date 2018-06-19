@@ -49,9 +49,9 @@ let Login = ({sendLoginRequest, forgotPassword}) => {
     //   </div>
     // </div>
     <div class='login'>
-        <img  style={{paddingLeft:'10%', paddingTop:'20%'}} src='../../../images/Logos.png'/>
-        <div style={{marginLeft:'40%', marginTop:'20%'}}><button style={{fontSize:'21px', border:'solid 1px #d8d8d8', padding:'5%'}}>Login</button></div>
-        <div style={{marginLeft:'18%', marginTop:'5%'}}>
+        <img  style={{paddingTop:'10%'}} src='../../../images/Logos.png'/>
+        <div style={{marginLeft:'40%', marginTop:'10%'}}><button style={{fontSize:'21px', border:'solid 1px #d8d8d8', padding:'5%'}}>Login</button></div>
+        <div style={{marginLeft:'16%', marginTop:'5%'}}>
           <input type="email" name="email" id="email" placeholder="Email ID" required="required" class="createOrder background"
                 ref = {node => {
                   email = node;
@@ -63,8 +63,8 @@ let Login = ({sendLoginRequest, forgotPassword}) => {
                 }}
               />
               <br/><br/>
-            <button style={{marginLeft:'5%'}} type='button' onClick = {() => sendLoginRequest({email: email.value, password: password.value})} id='submitLogin' class="btn btn-primary show-requirements-button">Login</button>
-            <button style={{marginLeft:'13%'}} type='button' onClick = {() => forgotPassword({email: email.value})} id='forgotPassword' class="btn btn-primary show-requirements-button">Forgot Password</button>
+            <button style={{marginLeft:'5%', marginBottom:'10%'}} type='button' onClick = {() => sendLoginRequest({email: email.value, password: password.value})} id='submitLogin' class="btn btn-primary show-requirements-button">Login</button>
+            <button style={{marginLeft:'13%', marginBottom:'10%'}} type='button' onClick = {() => forgotPassword({email: email.value})} id='forgotPassword' class="btn btn-primary show-requirements-button">Forgot Password</button>
         </div>
     </div>
   );

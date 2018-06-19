@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import {ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
 
 import { uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected } from '../../../actions/expert'
 
@@ -53,19 +53,44 @@ class DocumentPreview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            btnDropright:'true'
+            isOpen: false, 
+            category : 'Mandatory Documents'
         }
+        this.toggle = this.toggle.bind(this);
+        this.select = this.select.bind(this);
     }
+
+    toggle() {
+        this.setState({isOpen: !this.state.isOpen });
+    }
+
+    select (event) {
+        this.setState({category: event.target.innerText})
+        changeDocumentCategory(this.state.category, document._id);
+    }
+
+
 
     render() {
         let category
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
         let details
-        console.log('This is the document object------------', document);
+        console.log('This is the document object------------', documentsOrder);
         return (
             <div>
-                <p>{document.name}</p>
+                {/* <p>{document.name}</p>
+                <ButtonDropdown direction="right" isOpen={this.state.isOpen} toggle={this.toggle}>
+                <DropdownToggle caret>
+                Dropright
+                </DropdownToggle>
+                <DropdownMenu>
+                    {
+                        documentsOrder.map(category => <DropdownItem onClick={this.select}  key={category}>Move to:{category}</DropdownItem>
+                        )
+                    }
+                </DropdownMenu>
+                </ButtonDropdown> */}
                 {
                     document.previewFileName ?
                     <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id}>
@@ -90,12 +115,17 @@ class DocumentPreview extends React.Component {
                     <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                         <p>{document.comments}</p>
                         <p>Status:{document.status}</p>
-                    { 
+                     
                        
-                        <div>
-                            Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
-                                { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
-                            </select> 
+                            <div>
+                                {
+                                    idCustomer ? null :
+                                <div>
+                                    Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
+                                    { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
+                                    </select> 
+                               </div>
+                                }
                             <div class='row' style={{paddingLeft:'13%'}}>
                             {
                                 idCustomer ? null :
@@ -106,7 +136,7 @@ class DocumentPreview extends React.Component {
 
                             </div>
                         </div>
-                    }
+                    
                     </div>
             </div>
         );
