@@ -12,6 +12,7 @@ import FilesView from './document/FilesView'
 import Switch from 'react-switch'
 
 import './document/Document.scss';
+import { debug } from 'util';
 
 const mapStateToProps = state => ({
     document: state.expert.document,
@@ -108,7 +109,14 @@ class Document extends React.Component {
                                 </div>
                                 <div class='col-lg-3'>
                                 <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
-                                <button class='button-mask-btn' onClick={() => { if(confirm("Are you sure you want to delete")) deleteFile(document.files[0]._id)} }> Delete </button>
+                                <button class='button-mask-btn' onClick={() => {
+                                    if(confirm("Are you sure you want to delete"))
+                                    {
+                                        deleteFile(document.files[this.state.currentFileIndex]._id);
+                                        document.files.length === 1 && application ?
+                                        window.location.href = '/expert/applications/'+application._id:
+                                        window.location.href = '/expert/documents/'+document._id
+                                    }}}> Delete </button>
                                 </div>
                                 <div class='col-lg-1'>
                                 {

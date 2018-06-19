@@ -35,7 +35,8 @@ class FilesView extends React.Component {
                         <div key={files._id}>
                             {
                                 (files.uploadName.split('.').pop()).toLowerCase() === 'pdf' ?
-                                <PdfViewer file={'/api/expert/files/'+files._id} /> :
+                                //<PdfViewer file={'/api/expert/files/'+files._id} /> :
+                                <embed  src={'/api/expert/files/'+files._id} alt='pdf'/> :
                                 imageTypes.indexOf((files.uploadName.split('.').pop()).toLowerCase()) !== -1 ?
                                 <img style={{height:'50%', width:'50%'}} src={'/api/expert/files/'+files._id} /> :
                                 //<div><button onClick={() => { this.setState({ visible: !this.state.visible }); } }>show</button><Viewer visible={this.state.visible} images={'/api/expert/files/'+this.props.files._id} zoomable={true} onClose={() => {this.setState({visible : ! this.state.visible})}}/> </div>:
