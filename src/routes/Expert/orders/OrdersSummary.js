@@ -38,7 +38,7 @@ const OrdersSummary = ({orders, allowUpdate, idCustomer, supportCustomerView}) =
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.applications.length ? order.applications[0].name : null}  x{order.noOfApplications}<br/>
-                                    {`${order.orderType}-${order.country}`} {console.log('999999999', order)}
+                                    {`${order.orderType} - ${order.country}`}
                                 </div>
                                 <div class='col-lg-4'>
                                 Order Id: <br/> {order.orderCode}

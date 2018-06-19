@@ -90,9 +90,9 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
     </div>
     <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
             <div class='row'>
-                <p class='col-lg-3'> Name : <input type="text" defaultValue={application.name} required="required" ref = {node => { name = node}} /></p>
+                <p class='col-lg-3'>Name : <input type="text" key={application.name} defaultValue={application.name} ref = {node => { name = node}} /></p>
                 <p class='col-lg-3'>Country : {application.country} </p>
-                <p class='col-lg-3'>Visa : <select defaultValue={application.visaType} ref = {node => { visaType = node }}>
+                <p class='col-lg-3'>Visa : <select key={application.visaType} defaultValue={application.visaType} ref = {node => { visaType = node }}>
                     {
                         countries.countries ? (countries.countries.find(c => c.name === application.country)).visas.map(visa =>
                             <option value={visa.name} key={visa._id}> {visa.name} </option> 
@@ -103,21 +103,21 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
             </div>
             <br/>
             <div class='row'>
-                <p class='col-lg-3'> Travel Date : <input type="date" defaultValue={application.travelDate  ? application.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} /></p>
-                <p class='col-lg-3'> Employment Status : <select defaultValue={application.employmentStatus} ref = {node => { employmentStatus = node }}>
+                <p class='col-lg-3'> Travel Date : <input type="date" key={application.travelDate} defaultValue={application.travelDate  ? application.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} /></p>
+                <p class='col-lg-3'> Employment Status : <select key={application.employmentStatus} defaultValue={application.employmentStatus} ref = {node => { employmentStatus = node }}>
                         <option value=''></option>
                         <option value='Employed'>Employed</option>
                         <option value='Self-Employed'>Self-Employed</option>
                         <option value='Student'>Student</option>
                         <option value='Unemployed'>Unemployed</option>
                     </select></p>
-                <p class='col-lg-4'> Submission Date : <input type="date" defaultValue={application.submissionDate ? application.submissionDate.substring(0,10) : null } ref = {node => { submissionDate = node}} /></p>
+                <p class='col-lg-4'> Submission Date : <input type="date" key={application.submissionDate} defaultValue={application.submissionDate ? application.submissionDate.substring(0,10) : null } ref = {node => { submissionDate = node}} /></p>
            </div>
            <br/>
            <div>
                 <p> Status: {
                         application.orderType === 'Pickup Drop' ?
-                        <select defaultValue={application.status} ref = {node => { status = node }}>
+                        <select defaultValue={application.status} key={application.status} ref = {node => { status = node }}>
                             <option value='Pickup Scheduled'>Pickup Scheduled</option>
                             <option value='Under Review'>Under Review</option>
                             <option value='Ready to Submit'>Ready to Submit</option>
@@ -148,7 +148,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                 Update
             </button>
             <button style={{margin:'4px'}} type='button' onClick = {() => { if(confirm("Are you sure you want to delete")) { deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} } class="btn btn-primary show-requirements-button"> Delete </button>
-            <button style={{margin:'4px'}} type='button' onClick={()=>{updateForm.style.display='none'}} class="btn btn-primary show-requirements-button">Cancel</button>
+            <button style={{margin:'4px'}} type='button' onClick={() => {updateForm.style.display='none'}} class="btn btn-primary show-requirements-button">Cancel</button>
         </div>
     </div>
   )

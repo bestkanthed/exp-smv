@@ -10,11 +10,23 @@ const mapDispatchToProps = dispatch => ({
 })
 
 function prettyDate(date){
+    
     let newDate = new Date(date)
-    let minutes = newDate.getMinutes()
+    let mast = 'AM'
+    let minutes = (newDate.getMinutes()).toString()
+    let month = (newDate.getMonth() + 1).toString()
+    let dates = (newDate.getDate()).toString()
+    let hours = (newDate.getHours()).toString()
+    
     if(minutes.length === 1) minutes = '0' + minutes
-    const time = newDate.getHours()+':'+newDate.getMinutes();
-    return (newDate.getDate()+'-'+(newDate.getMonth()+1)+'-'+(newDate.getFullYear())).concat(' on '.concat(time));
+    if(month.length === 1) month = '0' + month
+    if(dates.length === 1) dates = '0' + dates
+    if(hours > 12) {
+        mast = 'PM'
+        hours = hours - 12
+    }
+
+    return ( hours+':'+minutes+mast+' '+(dates+'-'+month+'-'+(newDate.getFullYear())) )
 }
 
 class Comments extends React.Component {

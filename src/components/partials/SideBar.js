@@ -7,6 +7,12 @@ import { seenNotifications } from '../../actions/notification'
 
 import './partials.scss';
 
+const sideBarOrder = [
+    'expert',
+    'support',
+    'admin'
+]
+
 const mapStateToProps = state => {
     console.log("Logging the state form HEADER", state.user.user);
     return {
@@ -25,11 +31,10 @@ const mapDispatchToProps = dispatch => {
 const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
         <div class='side-bar'>
             {
-                
                 user ?
                 [
                     user.teams ?
-                    user.teams.map(role =>
+                    (user.teams.sort((d1, d2) => ( sideBarOrder.indexOf(d1) < sideBarOrder.indexOf(d2) ? -1 : 1 ))).map(role =>
                         <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
                         <div class='side-bar-content' >
                         <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
@@ -42,7 +47,7 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     <Link key='notifications' style={{textDecoration:'none', color:'black'}} to='/notifications'>
                     <div class='side-bar-content'>
                         <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                        <span>Notification</span>
+                        <span>Notifications</span>
                         </div> </Link>
                     ]
                 :

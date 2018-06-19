@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { postCustomerCumOrder } from '../../actions/support';
 import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
-import axios from 'axios';
 import './CreateOrder.scss';
 
 
@@ -178,7 +177,7 @@ class CreateCustomerCumOrder extends React.Component {
                     onChange={event => {
                         let apps = (Array(Number(event.target.value)).fill(null)).map((value, index) => 
                             ({
-                                name: index === 0 ? this.state.customer.name : 'Applicant'+(index),
+                                name: index === 0 ? this.state.customer.name : 'Applicant '+(index),
                                 country: countries.countries ? countries.countries[0].name : undefined,
                                 countryCode: countries.countries ? countries.countries[0].countryId : undefined,
                                 visas: countries.countries ? countries.countries[0].visas : undefined,
@@ -287,11 +286,18 @@ class CreateCustomerCumOrder extends React.Component {
                 <button type='submit' onClick = {e => { e.preventDefault()
                     let {name, email, phone} = this.state.customer
                     let { noOfApplications, idExpert } = this.state.order
+                    let applications = this.state.apps
                     if(!name) return alert('Enter customer name')
                     if(!email) return alert('Enter customer email')
                     if(!phone) return alert('Enter customer phone')
                     if(!noOfApplications) return alert('Enter no of Applications')
                     if(!idExpert) return alert('No expert selected')
+                    if(applications.length === 0) return alert('No application')
+                    
+                    for(let app of applications) {
+                        if(!app.travelDate) return alert('Invalid date entered')
+                    }
+                    
                     postCustomerCumOrder(this.state)}} class="btn btn-primary show-requirements-button">
                     Create Customer and Order
                 </button>

@@ -39,6 +39,7 @@ module.exports = {
       inject: false
     }),
     new webpack.NamedModulesPlugin(),
+    /*
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
@@ -50,5 +51,6 @@ module.exports = {
         sourceMap: false
       }
     })
+    */
   ],
 }
