@@ -9,10 +9,8 @@ import { fetchDocument, deleteDocument, changeDocumentStatus, fetchApplicationBy
 
 import Comments from './document/Comments'
 import FilesView from './document/FilesView'
-import Switch from 'react-switch'
 
 import './document/Document.scss';
-import { debug } from 'util';
 
 const mapStateToProps = state => ({
     document: state.expert.document,
@@ -91,7 +89,7 @@ class Document extends React.Component {
                         <div class='document-header'style={{paddingLeft:'1%'}}>
                         <br/>
                             <div class='header-mask row'>
-                            <Link to={application ? `/expert/applications/${application._id }`: '/expert/orders'}>
+                            <Link to={application ? (idCustomer ? '/customer' : '/expert') + `/applications/${application._id }`: (idCustomer ? '/customer' : '/expert') +'/orders'}>
                             <div class='col-lg-2'><img src='../../../images/ic/arrow_back/grey600.png' /></div>
                             </Link>
                                 {
@@ -122,11 +120,10 @@ class Document extends React.Component {
                                 {
                                     idCustomer ?
                                     null :
-                                    <Switch
-                                        onChange={status => changeDocumentStatus(status ? "Perfect" : "NOT OKAY", document._id)}
-                                        checked={document.status === "Perfect" ? true : false}
-                                        id="status-switch"
-                                    />
+                                    <div>
+                                        <button onClick={()=> changeDocumentStatus("Perfect", document._id)} style={{color: document.status === 'Perfect' ? 'green' : 'grey' }}> Perfect </button>
+                                        <button onClick={()=> changeDocumentStatus("NOT OKAY", document._id)} style={{color: document.status === 'NOT OKAY' ? 'red' : 'grey' }}> NOT OKAY </button>
+                                    </div>
                                 }
                                 </div>
                             </div>

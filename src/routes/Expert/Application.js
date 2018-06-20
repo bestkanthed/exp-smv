@@ -6,7 +6,6 @@ import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
 import { fetchApplication, fetchOrderByIdApplication, setQuery } from '../../actions/expert'
 
 import DocumentsPreview from './application/DocumentsPreview'
-import DocumentAdd from './application/DocumentAdd'
 import ApplicationUpdate from './application/ApplicationUpdate';
 
 const documentsOrder = [
@@ -32,6 +31,11 @@ const mapDispatchToProps = dispatch => ({
 
 class Application extends React.Component {
     
+    constructor (props) {
+        super(props)
+        this.state = { render : true }
+    }
+
     componentWillMount() {
         let { fetchApplication, idApplication, fetchOrderByIdApplication } = this.props
         fetchApplication(idApplication)
@@ -46,8 +50,8 @@ class Application extends React.Component {
         let { application, fetching, fetched, rerender } = this.props.application
         let { order } = this.props.order
         
-        if (application) documents  = application.documents.sort((d1,d2) => ( documentsOrder.indexOf(d1.category) < documentsOrder.indexOf(d2.category) ? -1 : 1 ) )
-        if(documents) categories = documents.map(document => document.category)
+        if (application) documents  = application.documents.sort((d1, d2) => ( documentsOrder.indexOf(d1.category) < documentsOrder.indexOf(d2.category) ? -1 : 1 ) )
+        if (documents) categories = idCustomer ? documents.map(document => document.category) : documentsOrder
 
         if(rerender) fetchApplication(idApplication)
         return (
@@ -70,26 +74,29 @@ class Application extends React.Component {
                         }
                         <ApplicationUpdate idCustomer={idCustomer} application={application}/>
                         <hr />
-                        <Tabs>
+                        <Tabs onSelect={() => this.setState({render : false})}>
                             <TabList>
                             {
-                             categories.map(category => 
+                                categories.map(category =>
                                     <Tab key={category}>{category}</Tab>
                                 )
                             }
                             </TabList>
                             {
-                                documents.map(document => 
-                                    <span key={document.category}><TabPanel>
-                                        <DocumentsPreview idCustomer={idCustomer} documents={document.documents}/>
-                                    </TabPanel></span>
+                                categories.map((category, index) =>
+                                    <span key={document.category}>
+                                        <TabPanel forceRender={index===0 ? this.state.render : false}>
+                                            <DocumentsPreview
+                                                idCustomer={idCustomer}
+                                                category={category}
+                                                idApplication={application._id}
+                                                documents={documents.find(document => document.category === category)}
+                                            />
+                                        </TabPanel>
+                                    </span>
                                 )
                             }
                         </Tabs>
-                        <hr/>
-                        {
-                            idCustomer ? null : <DocumentAdd idApplication = {idApplication}/>
-                        }
                     </div>:
                     <div> This application does not exist </div> :
                     fetching ?

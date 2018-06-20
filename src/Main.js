@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
@@ -18,6 +17,7 @@ import Result from './routes/Result';
 import Authorize from './routes/Authorize'
 import Unauthorized from './routes/Unauthorized'
 import Notification from './routes/Notification'
+import Past from './routes/Past'
 import Reset from './routes/Reset'
 
 store.subscribe(() => {
@@ -35,6 +35,7 @@ let Main = () =>
                     <Route exact path='/requirements/:country/:purpose' component={Result}></Route>
                     <Route path='/unauthorized' component={Unauthorized} />
                     <Route exact path='/notifications' component={Notification} />
+                    <Route exact path='/past' component={Past} />
                     <Route exact path='/reset/:token' component={Reset} />
                     
                     <Route exact path='/admin' render={() => <Redirect to='/admin/teams'/>}/>

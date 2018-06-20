@@ -44,11 +44,19 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     ) :
                     null
                     ,
-                    <Link key='notifications' style={{textDecoration:'none', color:'black'}} to='/notifications'>
+                    <Link key='notifications' onClick={() => seenNotifications(user._id)} style={{textDecoration:'none', color:'black'}} to='/notifications'>
                     <div class='side-bar-content'>
                         <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                        <span>Notifications</span>
-                        </div> </Link>
+                        <span>notifications</span>
+                    </div>
+                    </Link>
+                    ,
+                    <Link key='past' style={{textDecoration:'none', color:'black'}} to='/past'>
+                    <div class='side-bar-content'>
+                        <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
+                        <span>past</span>
+                    </div>
+                    </Link>
                     ]
                 :
                 null

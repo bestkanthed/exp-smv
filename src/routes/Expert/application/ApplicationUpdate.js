@@ -4,7 +4,7 @@ import { updateApplication, deleteApplication } from '../../../actions/expert';
 import './Application.scss';
 
 function prettyDate(date){
-    return date.substring(0,10);
+    return date ? date.substring(0,10) : undefined
 }
 
 function borderColor(status){

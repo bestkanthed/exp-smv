@@ -8,7 +8,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-
 let DocumentAdd = ({postDocument, idApplication}) => {
   let name, category,addDocument;
   return (

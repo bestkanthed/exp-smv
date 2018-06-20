@@ -79,7 +79,8 @@ class DocumentPreview extends React.Component {
         console.log('This is the document object------------', documentsOrder);
         return (
             <div>
-                {/* <p>{document.name}</p>
+                <p>{document.name}</p>
+                {/*
                 <ButtonDropdown direction="right" isOpen={this.state.isOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
                 Dropright
@@ -115,8 +116,6 @@ class DocumentPreview extends React.Component {
                     <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                         <p>{document.comments}</p>
                         <p>Status:{document.status}</p>
-                     
-                       
                             <div>
                                 {
                                     idCustomer ? null :
@@ -131,9 +130,7 @@ class DocumentPreview extends React.Component {
                                 idCustomer ? null :
                                 <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
                             }
-                                
                                 <button type='button' style={{marginLeft:'3%'}} onClick = {() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} } class="btn btn-primary col-lg-5"> Delete </button>
-
                             </div>
                         </div>
                     
