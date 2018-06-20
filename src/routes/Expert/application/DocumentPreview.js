@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import { uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected } from '../../../actions/expert'
 
@@ -45,7 +45,8 @@ const mapDispatchToProps = dispatch => ({
         else dispatch(uploadFile(file, idDocument, idCustomer))
     }),
     changeDocumentCategory: (category, idDocument) => dispatch(changeDocumentCategory(category, idDocument)),
-    deleteDocument: idDocument => dispatch(deleteDocument(idDocument))
+    deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
+    fetchDocument: idDocument => dispatch(fetchDocument(idDocument))
 })
 
 class DocumentPreview extends React.Component {
@@ -54,7 +55,6 @@ class DocumentPreview extends React.Component {
         super(props);
         this.state = {
             isOpen: false, 
-            category : 'Mandatory Documents'
         }
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
@@ -65,8 +65,8 @@ class DocumentPreview extends React.Component {
     }
 
     select (event) {
-        this.setState({category: event.target.innerText})
-        changeDocumentCategory(this.state.category, document._id);
+        //this.setState({category: event.target.innerText})
+        changeDocumentCategory(event.target.innerText, this.props.document._id);
     }
 
 
@@ -75,8 +75,9 @@ class DocumentPreview extends React.Component {
         let category
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
+        console.log('this the docxxxxxxxxx', document)
         let details
-        console.log('This is the document object------------', documentsOrder);
+        console.log('This is the document object------------', document);
         return (
             <div>
                 <p>{document.name}</p>
@@ -99,7 +100,8 @@ class DocumentPreview extends React.Component {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
                             <div>
                                 <div class='pdf-view'>
-                                    <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
+                                <embed style={{width:'-webkit-fill-available'}} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/>
+                                    {/* <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} /> */}
                                 </div>
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
