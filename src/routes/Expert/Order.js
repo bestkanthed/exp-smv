@@ -6,7 +6,6 @@ import { fetchOrder, fetchLinkedOrders, linkedOrderClicked, setQuery } from '../
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
 
-
 const mapStateToProps = state => ({
     order: state.expert.order,
     user: state.user.user,

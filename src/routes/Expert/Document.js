@@ -103,27 +103,31 @@ class Document extends React.Component {
                                 {document.category}
                                 </div>
                                 <div class='col-lg-5'>
-                                {document.name===null ? 'doc' :`${document.name}`}
+                                {document.name === null ? 'doc' :`${document.name}`}
                                 </div>
-                                <div class='col-lg-3'>
-                                <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
-                                <button class='button-mask-btn' onClick={() => {
-                                    if(confirm("Are you sure you want to delete"))
-                                    {
-                                        deleteFile(document.files[this.state.currentFileIndex]._id);
-                                        document.files.length === 1 && application ?
-                                        window.location.href = '/expert/applications/'+application._id:
-                                        window.location.href = '/expert/documents/'+document._id
-                                    }}}> Delete </button>
-                                </div>
+                                {
+                                    application ? application.status === 'Past' ? null :
+                                    <div class='col-lg-3'>
+                                        <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
+                                        <button class='button-mask-btn' onClick={() => {
+                                            if(confirm("Are you sure you want to delete"))
+                                            {
+                                                deleteFile(document.files[this.state.currentFileIndex]._id);
+                                                document.files.length === 1 && application ?
+                                                window.location.href = '/expert/applications/'+application._id:
+                                                window.location.href = '/expert/documents/'+document._id
+                                        }}}> Delete </button>
+                                    </div> : null
+                                }
                                 <div class='col-lg-1'>
                                 {
                                     idCustomer ?
                                     null :
+                                    application ? application.status === 'Past' ? null :
                                     <div>
                                         <button onClick={()=> changeDocumentStatus("Perfect", document._id)} style={{color: document.status === 'Perfect' ? 'green' : 'grey' }}> Perfect </button>
                                         <button onClick={()=> changeDocumentStatus("NOT OKAY", document._id)} style={{color: document.status === 'NOT OKAY' ? 'red' : 'grey' }}> NOT OKAY </button>
-                                    </div>
+                                    </div> : null
                                 }
                                 </div>
                             </div>
@@ -139,7 +143,7 @@ class Document extends React.Component {
                                     </div>
                             </div>
                             <div class='col-lg-4'>
-                                <Comments idCustomer={idCustomer} comments={document.comments} idDocument={document._id}/>
+                                <Comments idCustomer={idCustomer} past={application ? application.status === 'Past' : undefined} comments={document.comments} idDocument={document._id}/>
                             </div>
                         </div>
                     </div> :

@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const DocumentsPreview = ({ documents, idCustomer, category, idApplication, postDocument }) => {
+const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication, postDocument }) => {
     let name
     return (
         <div class='documents-preview row'>
@@ -26,6 +26,8 @@ const DocumentsPreview = ({ documents, idCustomer, category, idApplication, post
             }
             {
                 idCustomer ?
+                null :
+                past ?
                 null :
                 <div>
                     <input placeholder='New Document' ref = {node => { name = node }}/>

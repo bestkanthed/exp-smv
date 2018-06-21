@@ -81,6 +81,8 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         {
                             idCustomer ?
                             null :
+                            application.status === 'Past' ?
+                            null :
                             <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
                                 Edit
                             </span>
