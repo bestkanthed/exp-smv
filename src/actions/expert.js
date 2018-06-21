@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export function searchCustomer (query) {
+    return {
+        type: 'FETCH_ORDERS',
+        payload : axios.get('/api/expert/search?query='+query, { withCredentials: true })
+    }
+}
+
 export function fileTypeRejected () {
     return {
         type: 'SET_FLASH_MESSAGE',
