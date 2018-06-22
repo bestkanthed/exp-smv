@@ -1,5 +1,5 @@
 .side-bar{
-    height: 100%;
+    height: -webkit-fill-available;
     background-color:#eceff1;
     white-space: nowrap;
 }
@@ -43,7 +43,6 @@
     padding-bottom:10%;
     padding-left:30%;
     padding-right:47%;
-    margin-top:70%;
 }
 
 .serach-bar-image{

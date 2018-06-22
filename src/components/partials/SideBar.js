@@ -29,50 +29,48 @@ const mapDispatchToProps = dispatch => {
 }
 
 const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
-        <div class='side-bar'>
-            {
-                user ?
-                [
-                    user.teams ?
-                    (user.teams.sort((d1, d2) => ( sideBarOrder.indexOf(d1) < sideBarOrder.indexOf(d2) ? -1 : 1 ))).map(role =>
-                        <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
-                        <div class='side-bar-content' >
-                        <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
-                        <span class=''>{role}</span>
-                        </div>
-                        </Link>
-                    ) :
-                    null
-                    ,
-                    <Link key='notifications' onClick={() => seenNotifications(user._id)} style={{textDecoration:'none', color:'black'}} to='/notifications'>
-                    <div class='side-bar-content'>
-                        <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                        <span>notifications</span>
+    <div class='side-bar'>
+        {
+            user ?
+            [
+                user.teams ?
+                (user.teams.sort((d1, d2) => ( sideBarOrder.indexOf(d1) < sideBarOrder.indexOf(d2) ? -1 : 1 ))).map(role =>
+                    <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
+                    <div class='side-bar-content' >
+                    <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
+                    <span style={{textTransform: 'uppercase'}}>{role === 'customer' ? 'Dashboard' : role}</span>
                     </div>
                     </Link>
-                    ,
-                    <Link key='past' style={{textDecoration:'none', color:'black'}} to='/past'>
-                    <div class='side-bar-content'>
-                        <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                        <span>past</span>
-                    </div>
-                    </Link>
-                    ]
-                :
+                ) :
                 null
-            }
-            {
-                user ? 
-                    <Link style={{textDecoration:'none', color:'black'}} to='/'>
-                    <div class='side-bar-logout-option' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}>
-                    <span>Log Out</span>
-                    </div>
-                    </Link> 
-                            :
-                    <div class='side-bar-content' onClick= {e=>{e.preventDefault; showLoginPopup()}}>Login</div>
-            }
-            
-        </div>
+                ,
+                <Link key='notifications' onClick={() => seenNotifications(user._id)} style={{textDecoration:'none', color:'black'}} to='/notifications'>
+                <div class='side-bar-content'>
+                    <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
+                    <span>NOTIFICATIONS</span>
+                </div>
+                </Link>
+                ,
+                <Link key='past' style={{textDecoration:'none', color:'black'}} to='/past'>
+                <div class='side-bar-content'>
+                    <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
+                    <span>PAST ORDERS</span>
+                </div>
+                </Link>,
+                <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/'>
+                <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}>
+                    <img style={{marginRight:'25%'}} src='../../../images/ic/highlight_off/grey600.png' />
+                    <span>LOG OUT</span>
+                </div>
+                </Link>
+                ]
+            :
+            <div class='side-bar-content' onClick = {e => {e.preventDefault(); showLoginPopup()}}>
+                <img style={{marginRight:'25%'}} src='../../../images/ic/person/grey600.png' />
+                <span>LOGIN</span>
+            </div>
+        }
+    </div>
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);
