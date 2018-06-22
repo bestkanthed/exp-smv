@@ -90,7 +90,7 @@ class Order extends React.Component {
                         {idCustomer ? null : <OrderUpdate supportView={supportView} order={order}/>}
                         <hr/>
                         <div>
-                        <div class='mask row' style={{borderRight:`6px solid ${BorderColor(order.applications[0].status)}`}}>
+                        <div class='mask row' style={{borderRight:`6px solid ${BorderColor(order.applications.length ? order.applications[0].status : 'Past')}`}}>
                             <div class='col-lg-1' style={{padding:'2%'}}>
                                 <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}><img src='../../../images/ic/arrow_back/grey600.png'/></Link>
                             </div>
