@@ -94,10 +94,10 @@ class Order extends React.Component {
                             <div class='col-lg-1' style={{padding:'2%'}}>
                                 <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}><img src='../../../images/ic/arrow_back/grey600.png'/></Link>
                             </div>
-                            <div class='col-lg-2 col-md-2'  style={{borderLeft:'1px solid #e0e0e0',padding:'2%'}}>
+                            {order.applications.length ? <div class='col-lg-2 col-md-2'  style={{borderLeft:'1px solid #e0e0e0',padding:'2%'}}>
                                 <p>{order.applications[0].name}</p>
                                 <p>{order.applications[0].country} - {order.applications[0].visaType}</p>
-                            </div>
+                            </div> : null}
                             <div style={{padding:'2%'}} class='col-lg-2 col-md-3'>
                             <p>Order Id : <br/>{order.orderCode}</p>
                             </div>
