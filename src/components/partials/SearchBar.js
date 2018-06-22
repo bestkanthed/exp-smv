@@ -19,7 +19,9 @@ const SearchBar = ({ searchCustomer }) => {
             <div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>
                 <img src='./../../../images/ic/search/grey600.png'/>
                 <input class='search-bar' type='text' placeholder='Search By Name, Email ID, Phone' ref = {node => { query = node }}/>
-                <button class='search-button' onClick={() => searchCustomer(query.value)}>Search</button>
+                <Link to='/expert/orders'>
+                    <button class='search-button' onClick={() => searchCustomer(query.value)}>Search</button>
+                </Link>
             </div>
         </div>
     );
