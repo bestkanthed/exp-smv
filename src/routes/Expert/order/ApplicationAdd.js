@@ -76,7 +76,7 @@ let ApplicationAdd = ({postApplication, idOrder}) => {
               >
                 <option value='Pickup Scheduled'>Pickup Scheduled</option>
                 <option value='Ready to Submit'>Ready to Submit</option>
-                <option value='Reviewed: NOT OKAY'>Reviewed: NOT OKAY</option>
+                <option value='Reviewed: Not OK'>Reviewed: Not OK</option>
                 <option value='Submitted'>Submitted</option>
               </select>
             </div>

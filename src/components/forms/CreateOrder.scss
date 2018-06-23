@@ -1,3 +1,14 @@
+.react-tabs__tab-panel--selected {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.application-label {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
 .channel{
   width: 90px;
   height: 56px;
@@ -12,6 +23,7 @@
   margin: 8px;
   outline:none;
 }
+
 .channel:hover{
     background-color: #eceff1;
   border: solid 1px #e0e0e0;
@@ -35,11 +47,10 @@ input.zWidth{
 }
 
 .dimensions{
-    width:500px;
+    width: 900px;
+    padding: 36px;
     border-radius: 4px;
     background-color: #ffffff;
-    //box-shadow: 0 20px 70px 0 rgba(0, 0, 0, 0.3);
-  
 }
 
 .text-padding{

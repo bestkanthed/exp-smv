@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => {
 class CreateCustomerCumOrder extends React.Component {
     constructor (props) {
         super(props)
-        console.log("logging props from cc", props)
         this.state = {
             apps : [],
             customer: {
@@ -44,16 +43,12 @@ class CreateCustomerCumOrder extends React.Component {
     
     componentDidMount () {
         let { experts } = this.props.experts
-        if(experts) {this.setState({...this.state,
+        if(experts) this.setState({...this.state,
             order: {
                 ...this.state.order,
                 idExpert: experts[0]._id 
             }
         })
-        console.log('this is the id for the xpert in the state', this.state.order.idExpert);
-    } else{
-        console.log('This is messed up in state');
-    }
     }
 
     render() {
@@ -62,16 +57,16 @@ class CreateCustomerCumOrder extends React.Component {
          let tabindex = 0;
         return(
             <div class='dimensions'>
-            <br/>
-                <h4>Create Order</h4>
-            <hr/>
-        <Tabs style={{backgroundColor:'#ffffff'}} selectedIndex={this.state.tabIndex} onSelect={tabIndex=>this.setState({...this.state, tabIndex : tabIndex})}>
-            <TabList style={{padding:'5%'}}>
-                <Tab style={{padding:'5%'}}>Basic Info</Tab>
-                <Tab style={{padding:'5%'}}>Visa Detail</Tab>
-                <Tab style={{padding:'5%'}}>Assign To</Tab>
+                <div class='order-generation-header'>
+                    <h4>Create Order</h4>
+                </div>
+            <Tabs style={{backgroundColor:'#ffffff'}} selectedIndex={this.state.tabIndex} onSelect={tabIndex=>this.setState({...this.state, tabIndex : tabIndex})}>
+            <TabList>
+                <Tab> Basic Info </Tab>
+                <Tab> Visa Detail </Tab>
+                <Tab> Assign To </Tab>
             </TabList>
-            <TabPanel style={{padding:'5%'}}>
+            <TabPanel>
                 <div>
                     Channel:
                 <button class='channel'  value='B2B' style={{backgroundColor:`${this.state.customer.channel==='B2B'? '#eceff1':'#4a90e2'}`}} onClick={event => {
@@ -81,7 +76,7 @@ class CreateCustomerCumOrder extends React.Component {
                             channel: event.target.value
                         }
                     });
-                    }}>B2B{console.log('-----00000-----',this.state)}</button>
+                    }}>B2B</button>
                 <button class='channel' value='B2C' style={{backgroundColor:`${this.state.customer.channel==='B2C'? '#eceff1':'#4a90e2'}`}} onClick={event => {
                     this.setState({...this.state,
                         customer: {
@@ -96,7 +91,7 @@ class CreateCustomerCumOrder extends React.Component {
                             channel: event.target.value
                         }
                         
-                    })}}>{console.log('0000000',this.state.customer.channel)}Corporate</button>
+                    })}}>Corporate</button>
                 </div>
                 <br/>
                 <div style={{marginLeft:'10px'}}>
@@ -107,7 +102,6 @@ class CreateCustomerCumOrder extends React.Component {
                             invoiceNo: event.target.value
                         }
                     })
-                    console.log('Logging state form invoice', this.state)
                 }} />
                 </div>
                 </div>
@@ -149,7 +143,7 @@ class CreateCustomerCumOrder extends React.Component {
                 </div>
                 <br/>
             </TabPanel>
-            <TabPanel style={{paddingLeft:'3%', borderRadius:'4px'}}>
+            <TabPanel>
             <div>Order Type: <select class='box' value={this.state.order.orderType} required="required" onChange={event => {
                     this.setState({...this.state,
                         order: {
@@ -195,69 +189,79 @@ class CreateCustomerCumOrder extends React.Component {
                         })
                     }} />
             </div>
-            <div style={{paddingTop:'3%', overflow:'auto', height:'250px'}}>
+            <div style={{paddingTop:'3%', height:'250px'}}>
+                <div class='row application-label'>
+                    <label class='col-lg-3'> Name </label>
+                    <label class='col-lg-3'> Country </label>
+                    <label class='col-lg-3'> Visa </label>
+                    <label class='col-lg-2'> Travel Date </label>
+                </div>
                 {
                     this.state.apps.map((app, index) =>
-                        <div key={index}>
-                            <div class='row moveLeft'>
-                            <input class='col-lg-3 createOrder' type='text' defaultValue={app.name} onChange = {event => {
-                                let apps = [...this.state.apps]
-                                let application = {...apps[index]}
-                                application.name = event.target.value
-                                apps[i] = application
-                                this.setState({...this.state, apps})
-                            }}/>
-                            <select class='col-lg-2 box' style={{MarginLeft:'2%'}} onChange = {event => {
-                                let apps = [...this.state.apps];
-                                for(let i=index; i<apps.length; i++) {
-                                    let application = {...apps[i]};
-                                    application.country = event.target.value;
-                                    application.countryCode = (countries.countries.find(c => c.name === event.target.value)).countryId
-                                    application.visas = (countries.countries.find(c => c.name === event.target.value)).visas
-                                    apps[i] = application;
-                                }
-                                this.setState({...this.state, apps});
-                            }} value={this.state.apps[index].country}>
-                                {countries.countries ? countries.countries.map(country => 
-                                    <option value={country.name} key={country._id}> {country.name} </option> 
-                                ) : null}
-                            </select>
-                            <select class='col-lg-2 box' style={{marginLeft:'2%'}} onChange = {event => {
+                        <div key={index} class='row'>
+                            <div class='col-lg-3'>
+                                <input type='text' onChange = {event => {
+                                    let apps = [...this.state.apps]
+                                    let application = {...apps[index]}
+                                    application.name = event.target.value
+                                    apps[index] = application
+                                    this.setState({...this.state, apps})
+                                }} value={this.state.apps[index].name}/>
+                            </div>
+                            <div class='col-lg-3'>
+                                <select onChange = {event => {
                                     let apps = [...this.state.apps];
                                     for(let i=index; i<apps.length; i++) {
                                         let application = {...apps[i]};
-                                        application.visaType = event.target.value;
+                                        application.country = event.target.value;
+                                        application.countryCode = (countries.countries.find(c => c.name === event.target.value)).countryId
+                                        application.visas = (countries.countries.find(c => c.name === event.target.value)).visas
                                         apps[i] = application;
                                     }
                                     this.setState({...this.state, apps});
-                                }} value={this.state.apps[index].visaType}>
-                                {this.state.apps[index].visas ? this.state.apps[index].visas.map(visa => 
-                                    <option value={visa.name} key={visa._id}> {visa.name} </option> 
-                                ) : null}
-                            </select>
-                            
-                            <input class='col-lg-3 createOrder' style={{marginLeft:'2%'}} type='date' value={this.state.apps[index].travelDate}
-                                onChange = {event => {
-                                    let apps = [...this.state.apps];
-                                    for(let i=index; i<apps.length; i++) {
-                                        let application = {...apps[i]};
-                                        application.travelDate = event.target.value;
-                                        apps[i] = application;
-                                    }
-                                    this.setState({...this.state, apps});
-                                }}
-                            />
-                </div>
-                <br/>
-                </div>
-                
+                                }} value={this.state.apps[index].country}>
+                                    {countries.countries ? countries.countries.map(country => 
+                                        <option value={country.name} key={country._id}> {country.name} </option> 
+                                    ) : null}
+                                </select>
+                            </div>
+                            <div class='col-lg-3'>
+                                <select onChange = {event => {
+                                        let apps = [...this.state.apps];
+                                        for(let i=index; i<apps.length; i++) {
+                                            let application = {...apps[i]};
+                                            application.visaType = event.target.value;
+                                            apps[i] = application;
+                                        }
+                                        this.setState({...this.state, apps});
+                                    }} value={this.state.apps[index].visaType}>
+                                    {this.state.apps[index].visas ? this.state.apps[index].visas.map(visa => 
+                                        <option value={visa.name} key={visa._id}> {visa.name} </option> 
+                                    ) : null}
+                                </select>
+                            </div>
+                            <div class='col-lg-2'>
+                                <input type='date' value={this.state.apps[index].travelDate}
+                                    onChange = {event => {
+                                        let apps = [...this.state.apps];
+                                        for(let i=index; i<apps.length; i++) {
+                                            let application = {...apps[i]};
+                                            application.travelDate = event.target.value;
+                                            apps[i] = application;
+                                        }
+                                        this.setState({...this.state, apps});
+                                    }}
+                                    min={new Date().toISOString().split('T')[0]}
+                                />
+                            </div>
+                        </div>
                     )
                 }
-                </div>
+            </div>
             </TabPanel>
             <TabPanel>
                 <div>Visa Expert:
-                    <div style={{padding:'5%'}}>
+                    <div>
                         {
                             experts.fetching ?
                             null :
@@ -272,9 +276,7 @@ class CreateCustomerCumOrder extends React.Component {
                                                 idExpert: event.target.value
                                             }
                                         }) 
-                                    console.log('this is the value of the check box', event.target.value)
-                                    }
-                                    }/>{exp.name}<span class='checkmark'/>
+                                    }}/>{exp.name}<span class='checkmark'/>
                                 </label>
                             ) :
                             null :
@@ -303,8 +305,8 @@ class CreateCustomerCumOrder extends React.Component {
                 </button>
             </TabPanel>
             <div>
-            <button class='channel' style={{float:'right'}} onClick={(event)=>{this.state.tabIndex===0 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 2}):null}}>next</button>
-            <button class='channel' onClick={(event)=>{this.state.tabIndex===2 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 0}):null}}>prev</button>
+                <button class='channel' style={{float:'right'}} onClick={(event)=>{this.state.tabIndex === 0 ? this.setState({...this.state, tabIndex : 1}) : this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 2}) : null}}>Next</button>
+                <button class='channel' onClick={(event)=>{this.state.tabIndex===2 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 0}):null}}>Prev</button>
             </div>
         </Tabs>
         </div>

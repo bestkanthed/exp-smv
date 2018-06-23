@@ -30,14 +30,14 @@ class Reset extends React.Component {
                     {
                         reset.reset ?
                         <div class="row login-form">
-                            New password : <div class="col-sm-12">
+                            <label class="col-sm-3">New password </label><div class="col-sm-6">
                             <input type="password" required="required" class="form-control"
                                 ref = {node => {
                                 password = node;
                                 }}
                             />
                             </div>
-                            Confirm password : <div class="col-sm-12">
+                            <label class="col-sm-3">Confirm password </label><div class="col-sm-6">
                             <input type="password" required="required" class="form-control"
                                 ref = {node => {
                                 confirmPassword = node;
@@ -45,11 +45,11 @@ class Reset extends React.Component {
                             />
                             </div>
                             <div class="col-sm-6">
-                            <button type='button' onClick = {() => resetPassword({
+                            <button type='button' onClick = {() => {resetPassword({
                                 password: password.value,
                                 confirmPassword: confirmPassword.value,
                                 token : match.params.token
-                            })} class="btn btn-primary show-requirements-button">RESET</button>
+                            }); window.location.href = '/'}} class="btn btn-primary show-requirements-button">RESET</button>
                             </div>
                         </div> :
                         <div> Password reset token is invalid or has expired </div>

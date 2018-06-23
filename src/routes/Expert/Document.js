@@ -126,7 +126,7 @@ class Document extends React.Component {
                                     application ? application.status === 'Past' ? null :
                                     <div>
                                         <button onClick={()=> changeDocumentStatus("Perfect", document._id)} style={{color: document.status === 'Perfect' ? 'green' : 'grey' }}> Perfect </button>
-                                        <button onClick={()=> changeDocumentStatus("NOT OKAY", document._id)} style={{color: document.status === 'NOT OKAY' ? 'red' : 'grey' }}> NOT OKAY </button>
+                                        <button onClick={()=> changeDocumentStatus("Not OK", document._id)} style={{color: document.status === 'Not OK' ? 'red' : 'grey' }}> Not OK </button>
                                     </div> : null
                                 }
                                 </div>

@@ -29,7 +29,7 @@ class Customers extends React.Component {
                             <Link key={customer._id} to={'/customer/orders?idCustomer='+customer._id}>
                                 <div class='col-lg-2 col-md-4 col-sm-12 mask'>
                                 <p>{customer.name}</p>
-                                <span >Ongoing Orders</span>
+                                <p>Ongoing Orders</p>
                                 <span style={{paddingLeft:'15%'}}>{customer.onGoingOrders}</span>
                                 </div>
                             </Link>

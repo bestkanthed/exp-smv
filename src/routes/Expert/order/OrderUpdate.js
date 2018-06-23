@@ -31,21 +31,25 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
             </div> :
             null
         }
-            <div class='mask'>
-                <div class='sub-mask row'>
-                    <p class='col-lg-1'>InvoiceNo:</p> 
-                    <input class='col-lg-3'type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
+        { 
+            order.customer.length ?
+            <div class='mask row'>
+                <div class='col-lg-3'>
+                    <p><strong>{order.customer[0].name}</strong></p>
+                    <p><strong>{order.customer[0].phone}</strong></p>
+                    <p><strong>{order.customer[0].email}</strong></p>
                 </div>
-                <div class='sub-mask row'>
-                    <p class='col-lg-1'>Story:</p> 
-                    <input class='col-lg-3' type="text" defaultValue={order.story} ref = {node => { story = node }}/>
+                <div class='col-lg-6'>
+                    <div class='row'>
+                        <p class='col-lg-2'> Story </p>
+                        <input class='col-lg-12' type="text" defaultValue={order.story} ref = {node => { story = node }}/>
+                    </div>
                 </div>
-                <div class='sub-mask row'>
-                    <p class='col-lg-1'>Travel Date:</p> 
-                    <input class='col-lg-3' type="date" defaultValue={order.travelDate  ? order.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} />
+                <div class='col-lg-2'>
+                    <p>Invoice No </p> 
+                    <input type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
                 </div>
-                <br/>
-                <button type='button' onClick = {() => {
+                <button class='col-lg-1' type='button' onClick = {() => {
                     supportView ?
                     updateOrder({
                         _id: order._id, noOfApplications: noOfApplications.value, idExpert: idExpert.value, invoiceNo: invoiceNo.value,
@@ -57,7 +61,9 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                 }} class="btn btn-primary show-requirements-button">
                     Update
                 </button>
-            </div>
+            </div> :
+            null
+        }
     </div>
   );
 };

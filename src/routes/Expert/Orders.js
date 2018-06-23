@@ -43,10 +43,8 @@ class Orders extends React.Component {
                         fetched ?
                         orders ?
                         <div>
-                        <hr/>
-                        
-                            <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/> 
-                        
+                            <hr/>
+                            <OrdersSummary orders={orders} idCustomer={idCustomer} allowUpdate={idExpert ? true : false}/>
                         </div>:
                         null :
                         null

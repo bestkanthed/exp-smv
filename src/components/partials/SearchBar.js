@@ -13,7 +13,7 @@ const SearchBar = ({ searchCustomer }) => {
         <div class='row'>
             <div class='col-lg-6 search-bar-image'>
             <Link to='/'>
-                <img  style={{width:'60%'}} src='../../images/logos.png'/>
+                <img  style={{width:'60%'}} src='../../images/Logos.png'/>
             </Link>
             </div>
             <div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>
