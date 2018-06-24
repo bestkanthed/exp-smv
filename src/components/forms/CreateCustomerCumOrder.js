@@ -194,7 +194,7 @@ class CreateCustomerCumOrder extends React.Component {
                     <label class='col-lg-3'> Name </label>
                     <label class='col-lg-3'> Country </label>
                     <label class='col-lg-3'> Visa </label>
-                    <label class='col-lg-2'> Travel Date </label>
+                    <label class='col-lg-3'> Travel Date </label>
                 </div>
                 {
                     this.state.apps.map((app, index) =>
@@ -240,7 +240,7 @@ class CreateCustomerCumOrder extends React.Component {
                                     ) : null}
                                 </select>
                             </div>
-                            <div class='col-lg-2'>
+                            <div class='col-lg-3'>
                                 <input type='date' value={this.state.apps[index].travelDate}
                                     onChange = {event => {
                                         let apps = [...this.state.apps];

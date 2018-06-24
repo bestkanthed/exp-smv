@@ -30,10 +30,11 @@ const popupReducer = (state = initialState, action) => {
     let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
     let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
     let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'    
+    let uploadPending = type === 'UPLOAD_FILE_PENDING'    
 
     console.log('Logging form popup reducer', action, payload, postResponse)
 
-    if( flashMessage || postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse ) return {
+    if( flashMessage || postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse || uploadPending) return {
         ...state,
         content: 'Flash',
         display: true,

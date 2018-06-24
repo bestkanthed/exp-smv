@@ -27,6 +27,14 @@ export default function reducer(state = initialState, action) {
     }
     
     switch (type) {
+        case 'UPLOAD_FILE_PENDING' : {
+            return {
+                ...state,
+                messageType: 'info',
+                message: 'Please wait while file is being uploaded'
+            }
+        }
+        
         case 'SET_FLASH_MESSAGE' : {
             return {
                 ...state,
