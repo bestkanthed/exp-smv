@@ -87,6 +87,7 @@ class Application extends React.Component {
                                     <span key={document.category}>
                                         <TabPanel forceRender={index===0 ? this.state.render : false}>
                                             <DocumentsPreview
+                                                past = { application.status === 'Past'}
                                                 idCustomer={idCustomer}
                                                 category={category}
                                                 idApplication={application._id}

@@ -31,15 +31,15 @@ class Past extends React.Component {
     render() {
         let { user } = this.props.user
         let { orders, fetching, fetched } = this.props.orders
-        let idCustomer = user ? user.teams.indexOf('customer') === 1 ? user._id : undefined : undefined
+        let idCustomer = user ? user.teams.indexOf('customer') !== -1 ? user._id : undefined : undefined
         return (
             <div class='container-fluid expert'>
                 <hr/>
                 <div>
                     {
                         user ?
-                        user.teams.indexOf('customer') === 1 ?
-                        null :
+                        user.teams.indexOf('customer') !== -1 ?
+                        <h4> Past Applications </h4> :
                         <OrderFilters /> :
                         null
                     }

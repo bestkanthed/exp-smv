@@ -35,7 +35,7 @@ class Layout extends React.Component {
             <div style={{backgroundColor:'white'}}>
                 <Popup />
                 <div>
-                    <div class='col-lg-3' style={{position:'fixed'}}>
+                    <div class='col-lg-3' style={{position:'fixed', paddingLeft: 0}}>
                         <SideBar />
                     </div>
                     <div class='col-lg-8' style={{marginLeft:'25%'}}>
@@ -44,7 +44,7 @@ class Layout extends React.Component {
                     {this.props.children}
                     </div>
                 </div>
-                <Footer />
+                {/*<Footer />*/}
             </div>
         )
     }

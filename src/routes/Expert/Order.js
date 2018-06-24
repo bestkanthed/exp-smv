@@ -6,7 +6,6 @@ import { fetchOrder, fetchLinkedOrders, linkedOrderClicked, setQuery } from '../
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
 
-
 const mapStateToProps = state => ({
     order: state.expert.order,
     user: state.user.user,
@@ -91,14 +90,14 @@ class Order extends React.Component {
                         {idCustomer ? null : <OrderUpdate supportView={supportView} order={order}/>}
                         <hr/>
                         <div>
-                        <div class='mask row' style={{borderRight:`6px solid ${BorderColor(order.applications[0].status)}`}}>
+                        <div class='mask row' style={{borderRight:`6px solid ${BorderColor(order.applications.length ? order.applications[0].status : 'Past')}`}}>
                             <div class='col-lg-1' style={{padding:'2%'}}>
                                 <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}><img src='../../../images/ic/arrow_back/grey600.png'/></Link>
                             </div>
-                            <div class='col-lg-2 col-md-2'  style={{borderLeft:'1px solid #e0e0e0',padding:'2%'}}>
+                            {order.applications.length ? <div class='col-lg-2 col-md-2'  style={{borderLeft:'1px solid #e0e0e0',padding:'2%'}}>
                                 <p>{order.applications[0].name}</p>
                                 <p>{order.applications[0].country} - {order.applications[0].visaType}</p>
-                            </div>
+                            </div> : null}
                             <div style={{padding:'2%'}} class='col-lg-2 col-md-3'>
                             <p>Order Id : <br/>{order.orderCode}</p>
                             </div>

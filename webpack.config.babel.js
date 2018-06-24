@@ -39,16 +39,16 @@ module.exports = {
       inject: false
     }),
     new webpack.NamedModulesPlugin(),
-    // new UglifyJsPlugin({
-    //   uglifyOptions: {
-    //     compress: {
-    //       warnings: true
-    //     },
-    //     output: {
-    //       comments: false
-    //     },
-    //     sourceMap: false
-    //   }
-    // })
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: true
+        },
+        output: {
+          comments: false
+        },
+        sourceMap: false
+      }
+    })
   ],
 }

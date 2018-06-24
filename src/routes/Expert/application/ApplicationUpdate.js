@@ -36,10 +36,11 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
   let name, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
   let { countries } = database
   return (
+    application ?
     <div class='application-update-form'>
         <div>
             <div>
-            <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
+                <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
                     <span class='col-lg-2'>
                         <span>
                             {application.name}
@@ -76,20 +77,22 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             {application.submissionDate ? prettyDate(application.submissionDate) : 'Not Decided Yet'}
                         </span>
                     </span>
-                        <span class='col-lg-2'>
-                            Status:<br/>{application.status}            
-                        </span>
-                        {
-                            idCustomer ?
-                            null :
-                            <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`}}>
+                    <span class='col-lg-2'>
+                        Status:<br/>{application.status}            
+                    </span>
+                    {
+                        idCustomer ?
+                        null :
+                        application.status === 'Past' ?
+                        null :
+                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`}}>
                                <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit.
-                            </span>
-                        }
+                        </span>
+                    }
             </div>
         </div>
     </div>
-    <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
+        <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
             <div class='row'>
                 <p class='col-lg-3'>Name : <input type="text" key={application.name} defaultValue={application.name} ref = {node => { name = node}} /></p>
                 <p class='col-lg-3'>Country : {application.country} </p>
@@ -151,7 +154,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
             <button style={{margin:'4px'}} type='button' onClick = {() => { if(confirm("Are you sure you want to delete")) { deleteApplication(application._id); window.location.href = '/expert/orders/'+application.idOrder}} } class="btn btn-primary show-requirements-button"> Delete </button>
             <button style={{margin:'4px'}} type='button' onClick={() => {updateForm.style.display='none'}} class="btn btn-primary show-requirements-button">Cancel</button>
         </div>
-    </div>
+    </div> : null
   )
 }
 

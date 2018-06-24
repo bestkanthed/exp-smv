@@ -31,9 +31,11 @@ class Generate extends React.Component {
                     <button class='button-mask' onClick={this.props.showCreateCustomerCumOrderPopup}>
                         Create Order
                     </button>
-                    <button class='button-mask'>
-                        <Link to='/support/new'>New Orders</Link>
-                    </button>
+                    <Link to='/support/new' style={{color: '#4a4a4a', textDecoration: 'none'}}>
+                        <button class='button-mask'>
+                            New Orders
+                        </button>
+                    </Link>
                     <br/><br/>
                 </div>
                 <div>
