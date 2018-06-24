@@ -29,7 +29,7 @@
     "jquery": "^3.3.1",
     "location-bar": "^3.0.1",
     "prop-types": "^15.6.1",
-    "react": "^16.2.0",
+    "react": "^16.4.1",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
@@ -46,6 +46,7 @@
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.2.0",
+    "select": "^1.1.2",
     "socket.io-client": "^2.1.1",
     "superagent": "^3.8.3"
   }

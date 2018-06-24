@@ -15,21 +15,20 @@ const mapDispatchToProps = dispatch => {
 const DocumentsPreview = ({ documents, idCustomer, category, idApplication, postDocument }) => {
     let name
     return (
-        <div class='documents-preview row'>
+        <span style={{display:'inline-block'}} >
             {
                 documents ?
                 documents.documents.map(document => 
-                <div style={{marginRight:'150px', marginBottom:'30px'}} key={document._id} class='col-lg-1'>
+                <span style={{display : 'inline-block', margin:'1%'}} key={document._id}>
                     <DocumentPreview key={document._id} idCustomer={idCustomer} document={document} />
-                </div>) :
+                </span>) :
                 null
-            }
-            {
-                idCustomer ?
-                null :
-                <div>
-                    <input placeholder='New Document' ref = {node => { name = node }}/>
-                    <div onClick = {() => {
+            }  
+            <span style={{display:'inline-block'}}>
+                {
+                    <span>
+                        <input  placeholder='New Document' ref = {node => { name = node }}/>
+                    <div  onClick = {() => {
                         if(!name.value) return alert('Enter the name of the document')
                         postDocument({
                             idApplication,
@@ -38,10 +37,13 @@ const DocumentsPreview = ({ documents, idCustomer, category, idApplication, post
                             status: 'Pending'
                         })
                         name.value = ''
-                    }}> ++++++++++++++++++++++++++++++++ </div>
-                </div>
-            }
-        </div>
+                    }}>
+                        <img src='../../../images/ic/noun_1784458_cc.png' />
+                        </div>
+                    </span>
+                }
+                </span> 
+        </span>
     )
 }
 
