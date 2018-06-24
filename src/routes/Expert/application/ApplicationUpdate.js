@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateApplication, deleteApplication } from '../../../actions/expert';
 import './Application.scss';
 
+
 function prettyDate(date){
     return date ? date.substring(0,10) : undefined
 }
@@ -84,14 +85,13 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         null :
                         application.status === 'Past' ?
                         null :
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
-                            Edit
+                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`}}>
+                               <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit.
                         </span>
                     }
-                </div>
             </div>
         </div>
-    
+    </div>
         <div class='update-application mask' ref={node=>{updateForm=node}} style={{display:'none'}}>
             <div class='row'>
                 <p class='col-lg-3'>Name : <input type="text" key={application.name} defaultValue={application.name} ref = {node => { name = node}} /></p>

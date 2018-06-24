@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from 'react-select'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -100,20 +101,32 @@ class DocumentPreview extends React.Component {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
                             <div>
                                 <div class='pdf-view'>
-                                <embed style={{width:'-webkit-fill-available'}} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/>
-                                    {/* <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} /> */}
+                                {/* <embed  src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/> */}
+                                    <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
                                 </div>
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
-                            <img  style={{height: '340px', width: '200px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                            <img  style={{height: '270px', width: '200px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
                             <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
                         }
                     </Link> :
-                    <Dropzone onDrop={files => uploadFiles(files, document._id, idCustomer)}/>
+                    <div>
+                    <Dropzone style={{height:'270px', backgroundColor:'#eceff1'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
+                        <p style={{position:'relative', top:'40%', left:'20%', color:'#4a4a4a'}}>Click here to  add files</p>
+                    </Dropzone>
+                    </div>
                 }
-                <div class='details-mask row row-align'>
-                    <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
-                    <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span>
+                <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px',backgroundColor:'#fafafa'}}>
+                    {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
+                    <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
+                    <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}><img src='../../../images/ic/chat_bubble/grey600.png'/>{` 2`}<span style={{marginLeft:'20%'}}>Status:{idCustomer? document.status:(
+                    <select style={{width:'30%'}}>
+                        <option value='To be Reviewed'>To be Reviewed</option>
+                        <option value='Perfect'>Perfect</option>
+                        <option value='Not Ok'>Not Ok</option>
+                    </select>
+                    //<Select name='Status' value='Status'  optionClassName={{width:'30px'}} onChange={(newOption) => {console.log('this is the new option that is slected000000', newOption.value)}} options={[{value:'To be Reviewed', label:'To be Reviewed'},{value:'Perfect', label:'Perfect'},{value:'Not Ok', label:'Not Ok'}]}/>
+                )}</span></span>
                 </div>
                     <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
                         <p>{document.comments}</p>

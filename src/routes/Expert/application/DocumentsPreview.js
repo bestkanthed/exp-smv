@@ -15,13 +15,13 @@ const mapDispatchToProps = dispatch => {
 const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication, postDocument }) => {
     let name
     return (
-        <div class='documents-preview row'>
+        <span style={{display:'inline-block'}} >
             {
                 documents ?
                 documents.documents.map(document => 
-                <div style={{marginRight:'150px', marginBottom:'30px'}} key={document._id} class='col-lg-1'>
+                <span style={{display : 'inline-block', margin:'1%'}} key={document._id}>
                     <DocumentPreview key={document._id} idCustomer={idCustomer} document={document} />
-                </div>) :
+                </span>) :
                 null
             }
             {
@@ -40,10 +40,12 @@ const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication
                             status: 'Pending'
                         })
                         name.value = ''
-                    }}> ++++++++++++++++++++++++++++++++ </div>
-                </div>
-            }
-        </div>
+                    }}>
+                        <img src='../../../images/ic/noun_1784458_cc.png' />
+                        </div>
+                    </div>
+                }
+                </span> 
     )
 }
 

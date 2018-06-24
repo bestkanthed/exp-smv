@@ -53,6 +53,7 @@ class PdfViewer extends React.Component {
           //onPageComplete={this.onPageComplete}
           //page={this.state.page}
           fillWidth
+          // fillHeight
           loading={<div style={{margin:'40%'}}><DotLoader color={'#2196f3'}/></div>}
         />
         {/* {pagination} */}
