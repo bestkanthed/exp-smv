@@ -90,11 +90,13 @@ class Document extends React.Component {
                         <br/>
                             <div class='header-mask row'>
                             <Link to={application ? (idCustomer ? '/customer' : '/expert') + `/applications/${application._id }`: (idCustomer ? '/customer' : '/expert') +'/orders'}>
-                            <div class='col-lg-2'><img src='../../../images/ic/arrow_back/grey600.png' /></div>
+                            <div class='col-lg-1'>
+                            <img src='../../../images/ic/arrow_back/grey600.png' />
+                            </div>
                             </Link>
                                 {
                                     application ?
-                                    <div class='col-lg-2'>
+                                    <div class='col-lg-2' >
                                         {application.name} - {application.country} - {application.visaType}
                                     </div> :
                                     null
@@ -102,13 +104,13 @@ class Document extends React.Component {
                                 <div class='col-lg-2'>
                                 {document.category}
                                 </div>
-                                <div class='col-lg-5'>
+                                <div class='col-lg-2'>
                                 {document.name === null ? 'doc' :`${document.name}`}
                                 </div>
                                 {
                                     application ? application.status === 'Past' ? null :
                                     <div class='col-lg-3'>
-                                        <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}> Upload </button>
+                                        <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => showUploadDocumentPopup()}><img src='../../../images/ic/ic/ic_file_upload_24px.png' /> Upload </button>
                                         <button class='button-mask-btn' onClick={() => {
                                             if(confirm("Are you sure you want to delete"))
                                             {
@@ -116,16 +118,16 @@ class Document extends React.Component {
                                                 document.files.length === 1 && application ?
                                                 window.location.href = '/expert/applications/'+application._id:
                                                 window.location.href = '/expert/documents/'+document._id
-                                        }}}> Delete </button>
+                                        }}}><img src='../../../images/ic/ic/ic_edit_24px.png' /> Delete </button>
                                     </div> : null
                                 }
-                                <div class='col-lg-1'>
+                                <div class='col-lg-2'>
                                 {
                                     idCustomer ?
                                     null :
                                     application ? application.status === 'Past' ? null :
                                     <div>
-                                        <button onClick={()=> changeDocumentStatus("Perfect", document._id)} style={{color: document.status === 'Perfect' ? 'green' : 'grey' }}> Perfect </button>
+                                        <button onClick={()=> changeDocumentStatus("Perfect", document._id)} style={{color: document.status === 'Perfect' ? 'green' : 'grey', backgroundColor:'#1ddaae' }}> Perfect </button>
                                         <button onClick={()=> changeDocumentStatus("Not OK", document._id)} style={{color: document.status === 'Not OK' ? 'red' : 'grey' }}> Not OK </button>
                                     </div> : null
                                 }
@@ -135,12 +137,17 @@ class Document extends React.Component {
                         </div>
                         <div class='row'>
                             <div>   
-                                <button onClick={this.toggleNextFiles}>next doc</button>
-                                <button onClick={this.togglePrevFiles}>prev doc</button>
-                                <p>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</p>
-                                    <div class='col-lg-8' style={{height: '70vh'}}>
-                                    <FilesView idCustomer={idCustomer} files={document.files[this.state.currentFileIndex]} idDocument={document._id}/>
+                                <div class='col-lg-8' style={{height: '75vh'}}>
+                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</div>
+                                    <div class='row' style={{backgroundColor:'#4A4A4A'}}>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}>Next doc</p></div>
+                                        <div class='col-lg-10' style={{backgroundColor:'#4A4A4A'}}>
+                                        <FilesView idCustomer={idCustomer} files={document.files[this.state.currentFileIndex]} idDocument={document._id}/>
+                                        </div>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}>Prev doc</p></div>
                                     </div>
+                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</div>
+                                </div>
                             </div>
                             <div class='col-lg-4'>
                                 <Comments idCustomer={idCustomer} past={application ? application.status === 'Past' : undefined} comments={document.comments} idDocument={document._id}/>

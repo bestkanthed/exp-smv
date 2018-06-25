@@ -81,7 +81,18 @@ class DocumentPreview extends React.Component {
         console.log('This is the document object------------', document);
         return (
             <div>
-                <p>{document.name}</p>
+                <p>
+                {document.name}
+                <span>
+                <img style={{float:'right'}} src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                </span>
+                <span onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                <img style={{float:'right'}}  src='../../../images/ic/delete.png'/>
+                </span>
+                <span>
+                <img style={{float:'right'}} src='../../../images/ic/ic/ic_edit_24px.png'/>
+                </span>
+                </p>
                 {/*
                 <ButtonDropdown direction="right" isOpen={this.state.isOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
@@ -106,7 +117,7 @@ class DocumentPreview extends React.Component {
                                 </div>
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
-                            <img  style={{height: '270px', width: '200px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                            <img  style={{height: '270px', width: '200px',borderRadius:'4px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
                             <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
                         }
                     </Link> :

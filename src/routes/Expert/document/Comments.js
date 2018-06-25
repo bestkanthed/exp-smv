@@ -43,7 +43,7 @@ class Comments extends React.Component {
         if (rerender) fetchComments(idDocument)
         return (
             <div >
-            <div class='comments' style={{height:'80vh'}}>
+            <div class='comments' style={{height:'70vh', overflow:'scroll'}}>
                 {
                     fetching ?
                     null :
@@ -64,7 +64,7 @@ class Comments extends React.Component {
                 
 
                 { past ? null : <div style={{paddingLeft:'5%'}}>
-                    <form class='post-comment row' style={{position:'absolute',bottom: '7%',backgroundColor:'#f0f0f2', padding:'5%'}}>
+                    <form class='post-comment row' style={{position:'relative',bottom: '7%',backgroundColor:'#f0f0f2', padding:'5%'}}>
                         <input style={{width:'80%', height:'20%', borderRadius:'10px'}}class='col-lg-10'type="text" name="comment" id="comment" placeholder="Add comment" required="required"
                             ref = {node => {
                             newComment = node;
@@ -75,7 +75,7 @@ class Comments extends React.Component {
                             if(!newComment.value) return alert('Please write something in the comment')
                             postComment({text: newComment.value, idDocument, idCustomer});
                             newComment.value = '';
-                        }}>Fly</button>
+                        }}><img src='../../../images/ic/ic/ic_send_24px.png' style={{border:'none'}}/></button>
                     </form>
                 </div> }
         </div>

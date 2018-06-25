@@ -85,7 +85,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         null :
                         application.status === 'Past' ?
                         null :
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`}}>
+                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`, color:`${borderColor(application.status)}`}}>
                                <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit.
                         </span>
                     }
