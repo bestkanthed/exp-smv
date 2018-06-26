@@ -28,8 +28,7 @@ class Customers extends React.Component {
                     customers.map(customer =>        
                             <Link key={customer._id} to={'/customer/orders?idCustomer='+customer._id}>
                                 <div class='col-lg-2 col-md-4 col-sm-12 mask'>
-                                <p>{customer.name}</p>
-                                <p>Ongoing Orders</p>
+                                    <p>{customer.name}</p>
                                 <span style={{paddingLeft:'15%'}}>{customer.onGoingOrders}</span>
                                 </div>
                             </Link>

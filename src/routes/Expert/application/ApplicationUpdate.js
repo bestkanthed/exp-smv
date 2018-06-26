@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
     deleteApplication: id => dispatch(deleteApplication(id))
 })
 
-let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, application, database }) => {
+let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, application, database, order }) => {
   let name, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
   let { countries } = database
   return (
@@ -41,7 +41,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
         <div>
             <div>
                 <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
-                    <span class='col-lg-2'>
+                    <span class='col-lg-2' style={{whiteSpace:'normal'}}>
                         <span>
                             {application.name}
                         </span>
@@ -50,7 +50,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             {`${application.country} - ${application.visaType}`}
                         </span>
                     </span>
-                    <span class='col-lg-2'>
+                    <span class='col-lg-1'>
                         <span>
                             Travel Date:
                         </span>
@@ -77,7 +77,17 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             {application.submissionDate ? prettyDate(application.submissionDate) : 'Not Decided Yet'}
                         </span>
                     </span>
-                    <span class='col-lg-2'>
+                    {
+                        order ? [
+                            <span key='orderId' class='col-lg-1'>
+                                Order Id:<br/>{order.orderCode}            
+                            </span>,
+                            <span key='invoiceNo' class='col-lg-1'>
+                                Invoice No:<br/>{order.invoiceNo}            
+                            </span>
+                        ] : null
+                    }
+                    <span class='col-lg-1'>
                         Status:<br/>{application.status}            
                     </span>
                     {
@@ -85,8 +95,8 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         null :
                         application.status === 'Past' ?
                         null :
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`}}>
-                               <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit.
+                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
+                               &nbps; <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit
                         </span>
                     }
             </div>

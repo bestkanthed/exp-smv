@@ -46,18 +46,15 @@ class PdfViewer extends React.Component {
     //   pagination = this.renderPagination(this.state.page, this.state.pages);
     // }
     return (
-      <div>
         <PDF
           file={this.props.file}
           onDocumentComplete={this.onDocumentComplete}
           //onPageComplete={this.onPageComplete}
           //page={this.state.page}
           fillWidth
-          // fillHeight
+          fillHeight
           loading={<div style={{margin:'40%'}}><DotLoader color={'#2196f3'}/></div>}
         />
-        {/* {pagination} */}
-      </div>
     )
   }
 }

@@ -72,7 +72,7 @@ class Application extends React.Component {
                             </h4> :
                             null
                         }
-                        <ApplicationUpdate idCustomer={idCustomer} application={application}/>
+                        <ApplicationUpdate idCustomer={idCustomer} application={application} order={order}/>
                         <hr />
                         <Tabs onSelect={() => this.setState({render : false})}>
                             <TabList>
@@ -84,10 +84,10 @@ class Application extends React.Component {
                             </TabList>
                             {
                                 categories.map((category, index) =>
-                                    <span key={document.category}>
+                                    <span key={category}>
                                         <TabPanel forceRender={index===0 ? this.state.render : false}>
                                             <DocumentsPreview
-                                                past = { application.status === 'Past'}
+                                                past = {application.status === 'Past'}
                                                 idCustomer={idCustomer}
                                                 category={category}
                                                 idApplication={application._id}
