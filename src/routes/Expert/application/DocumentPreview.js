@@ -99,31 +99,36 @@ class DocumentPreview extends React.Component {
                     <input style={{display:'none'}} defaultValue={document.name} onChange={this.editDocName} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                     <div>
                         <span ref={node => {name = node}}>{document.name}</span>
+                        {
+                            idCustomer? null : 
+                        <span>
                             <div style={{display:'inline-block'}}>
-                            <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                <DropdownToggle>
-                            <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <div class='dropDownItem'>Move this Document to...</div>
-                                    {documentsOrder.map(category => {
-                                        return (
-                                            <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
-                                                {category}
-                                            </div>
-                                        )
-                                    })}
-                                </DropdownMenu>
-                            </Dropdown>
+                                <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                                    <DropdownToggle>
+                                <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <div class='dropDownItem'>Move this Document to...</div>
+                                        {documentsOrder.map(category => {
+                                            return (
+                                                <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
+                                                    {category}
+                                                </div>
+                                            )
+                                        })}
+                                    </DropdownMenu>
+                                </Dropdown>
                             </div>
                         
-                        <div style={{display:'inline-block'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
-                            <img src='../../../images/ic/delete.png'/>
-                        </div>
+                            <div style={{display:'inline-block'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                                <img src='../../../images/ic/delete.png'/>
+                            </div>
                         
-                        <div style={{display:'inline-block'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
-                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
-                        </div>
+                            <div style={{display:'inline-block'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
+                                <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                            </div>
+                        </span>
+                        }
                     </div>
                 </div>
                 {
@@ -152,7 +157,8 @@ class DocumentPreview extends React.Component {
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
                     <img src='../../../images/ic/chat_bubble/grey600.png'/>{` 2`}
-                    <span style={{marginLeft:'20%'}}>Status:{document.status}</span>
+                    <span style={{marginLeft:'20%'}}>Status:</span>
+                    <span style={{color:`${document.status==='To Be Reviewed'? '#f36b51':document.status==='Not Ok'? '#7ed321':'#4a4a4a'}`}}>{document.status}</span>
                 </span>
                     </div>
             </div>
