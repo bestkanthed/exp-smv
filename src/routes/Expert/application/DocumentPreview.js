@@ -54,10 +54,13 @@ class DocumentPreview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false, 
+            isOpen: false,
+            isEditable: true 
         }
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
+        this.setEditable = this.setEditable.bind(this);
+        this.editDocName = this.editDocName.bind(this);
     }
 
     toggle() {
@@ -68,12 +71,54 @@ class DocumentPreview extends React.Component {
         changeDocumentCategory(event.target.innerText, this.props.document._id);
     }
 
+    setEditable(name) {
+        this.setState({...this.state, isEditable: !this.state.isEditable})
+        console.log('this is the staetetetete', name.value)
+    }
+
     render() {
         let category
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer, changeDocumentStatus } = this.props
         let document = this.props.document
+        let details
+        let name
+        let docuName
         return (
             <div class='col-lg-3'>
+                <input style={{display:'none'}} defaultValue={document.name} onChange={this.editDocName} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
+                <div>
+                    <span ref={node => {name = node}}>{document.name}</span>
+                    {
+                        idCustomer? null : 
+                    <span>
+                        <div style={{display:'inline-block'}}>
+                            <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                                <DropdownToggle>
+                            <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <div class='dropDownItem'>Move this Document to...</div>
+                                    {documentsOrder.map(category => {
+                                        return (
+                                            <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
+                                                {category}
+                                            </div>
+                                        )
+                                    })}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </div>
+                    
+                        <div style={{display:'inline-block'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                            <img src='../../../images/ic/delete.png'/>
+                        </div>
+                    
+                        <div style={{display:'inline-block'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
+                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                        </div>
+                    </span>
+                    }
+                </div>
                 <span>{document.name}</span>
                 <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                 <button onClick={() => this.upload.click()}>upload</button>
@@ -123,35 +168,23 @@ class DocumentPreview extends React.Component {
                 <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px',backgroundColor:'#fafafa'}}>
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
-                    <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}><img src='../../../images/ic/chat_bubble/grey600.png'/>{JSON.stringify(document.comments.length)}<span style={{marginLeft:'20%'}}>Status:{idCustomer? document.status:(
-                    <select value={document.status} onChange={(event) => changeDocumentStatus(event.target.value, document._id)}>
-                        <option value='To be Reviewed'>To be Reviewed</option>
-                        <option value='Perfect'>Perfect</option>
-                        <option value='Not Ok'>Not Ok</option>
-                    </select>
-                    //<Select name='Status' value='Status'  optionClassName={{width:'30px'}} onChange={(newOption) => {console.log('this is the new option that is slected000000', newOption.value)}} options={[{value:'To be Reviewed', label:'To be Reviewed'},{value:'Perfect', label:'Perfect'},{value:'Not Ok', label:'Not Ok'}]}/>
-                )}</span></span>
-                </div>
-                    <div class='details-mask' style={{display:'none'}}>
-                        <p>Status:{document.status}</p>
-                            <div>
-                                {
-                                    idCustomer ? null :
-                                <div>
-                                    Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
-                                    { documentsOrder.map(category => <option key={category} value={category}>{category}</option> ) }
-                                    </select> 
-                               </div>
-                                }
-                            <div class='row' style={{paddingLeft:'13%'}}>
-                            {
-                                idCustomer ? null :
-                                <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
+                    <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
+                        <img src='../../../images/ic/chat_bubble/grey600.png'/>{JSON.stringify(document.comments.length)}
+                        <span style={{marginLeft:'20%'}}>
+                            Status: {
+                                idCustomer?
+                                document.status:
+                                <select value={document.status}
+                                onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
+                                style={{color:`${document.status==='To Be Reviewed'? '#f36b51':document.status==='Not Ok'? '#7ed321':'#4a4a4a'}`}}>
+                                    <option value='To be Reviewed'>To be Reviewed</option>
+                                    <option value='Perfect'>Perfect</option>
+                                    <option value='Not Ok'>Not Ok</option>
+                                </select>
                             }
-                                <button type='button' style={{marginLeft:'3%'}} onClick = {() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} } class="btn btn-primary col-lg-5"> Delete </button>
-                            </div>
-                        </div>
-                    </div>
+                        </span>
+                    </span>
+                </div>
             </div>
         );
     }

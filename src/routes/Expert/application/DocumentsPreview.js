@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import DocumentPreview from './DocumentPreview';
 
+import Dropzone from 'react-dropzone'
+
 import { postDocument } from '../../../actions/expert';
 
 import './Application.scss';

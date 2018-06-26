@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { updateApplication, deleteApplication } from '../../../actions/expert';
 import './Application.scss';
 
@@ -41,7 +42,12 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
         <div>
             <div>
                 <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
-                    <span class='col-lg-2' style={{whiteSpace:'normal'}}>
+                    <Link to={idCustomer? '/customers/orders/': '/expert/orders'}>
+                    <span class='col-lg-2'>
+                        <img src='../../../images/ic/arrow_back/grey600.png' />
+                    </span>
+                    </Link>
+                    <span class='col-lg-2'>
                         <span>
                             {application.name}
                         </span>
@@ -68,7 +74,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         {application.employmentStatus} 
                         </span>
                     </span>
-                    <span class='col-lg-3' style={{borderRight:'solid 1px #e3e4e6'}}>
+                    <span class='col-lg-2' style={{borderRight:'solid 1px #e3e4e6'}}>
                         <span>
                             Submission/Interview Date:
                         </span>
@@ -95,8 +101,8 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         null :
                         application.status === 'Past' ?
                         null :
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}}>
-                               &nbps; <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit
+                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{border:`solid 1px ${borderColor(application.status)}`, color:`${borderColor(application.status)}`}}>
+                               <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit
                         </span>
                     }
             </div>
