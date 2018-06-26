@@ -101,3 +101,19 @@ cursor: pointer;
 .option{
   color:'red'
 }
+
+.dropDownItem{
+  padding:1%; 
+  border:solid 1px #f0f0f2;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+
+.dropDownItem :hover{
+  background-color: #eceff1;
+}

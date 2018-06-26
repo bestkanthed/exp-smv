@@ -55,10 +55,13 @@ class DocumentPreview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false, 
+            isOpen: false,
+            isEditable: true 
         }
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
+        this.setEditable = this.setEditable.bind(this);
+        this.editDocName = this.editDocName.bind(this);
     }
 
     toggle() {
@@ -70,41 +73,59 @@ class DocumentPreview extends React.Component {
         changeDocumentCategory(event.target.innerText, this.props.document._id);
     }
 
+    editDocName(event) {
+        console.log('==========@@@@@@@@@==========',this.state.isEditable)
+        this.state.isEditable? 
+        console.log('nope'):
+        console.log('this is the docu name', event.target.value)
+    }
 
+    setEditable(name) {
+        this.setState({...this.state, isEditable: !this.state.isEditable})
+        console.log('this is the staetetetete', name.value)
+    }
 
     render() {
-        let category
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
         console.log('this the docxxxxxxxxx', document)
         let details
+        let name
+        let docuName
         console.log('This is the document object------------', document);
         return (
             <div>
-                <p>
-                {document.name}
-                <span>
-                <img style={{float:'right'}} src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
-                </span>
-                <span onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
-                <img style={{float:'right'}}  src='../../../images/ic/delete.png'/>
-                </span>
-                <span>
-                <img style={{float:'right'}} src='../../../images/ic/ic/ic_edit_24px.png'/>
-                </span>
-                </p>
-                {/*
-                <ButtonDropdown direction="right" isOpen={this.state.isOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
-                Dropright
-                </DropdownToggle>
-                <DropdownMenu>
-                    {
-                        documentsOrder.map(category => <DropdownItem onClick={this.select}  key={category}>Move to:{category}</DropdownItem>
-                        )
-                    }
-                </DropdownMenu>
-                </ButtonDropdown> */}
+                <div style={{display:'inline'}}>
+                    <input style={{display:'none'}} defaultValue={document.name} onChange={this.editDocName} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
+                    <div>
+                        <div ref={node => {name = node}}>{document.name}</div>
+                            <div style={{float:'right'}}>
+                            <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                                <DropdownToggle>
+                            <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <div class='dropDownItem'>Move this Document to...</div>
+                                    {documentsOrder.map(category => {
+                                        return (
+                                            <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
+                                                {category}
+                                            </div>
+                                        )
+                                    })}
+                                </DropdownMenu>
+                            </Dropdown>
+                            </div>
+                        
+                        <div style={{float:'right'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                            <img src='../../../images/ic/delete.png'/>
+                        </div>
+                        
+                        <div style={{float:'right'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
+                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                        </div>
+                    </div>
+                </div>
                 {
                     document.previewFileName ?
                     <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id}>
@@ -112,7 +133,6 @@ class DocumentPreview extends React.Component {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
                             <div>
                                 <div class='pdf-view'>
-                                {/* <embed  src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/> */}
                                     <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
                                 </div>
                             </div> :
@@ -130,36 +150,10 @@ class DocumentPreview extends React.Component {
                 <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px',backgroundColor:'#fafafa'}}>
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
-                    <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}><img src='../../../images/ic/chat_bubble/grey600.png'/>{` 2`}<span style={{marginLeft:'20%'}}>Status:{idCustomer? document.status:(
-                    <select style={{width:'30%'}}>
-                        <option value='To be Reviewed'>To be Reviewed</option>
-                        <option value='Perfect'>Perfect</option>
-                        <option value='Not Ok'>Not Ok</option>
-                    </select>
-                    //<Select name='Status' value='Status'  optionClassName={{width:'30px'}} onChange={(newOption) => {console.log('this is the new option that is slected000000', newOption.value)}} options={[{value:'To be Reviewed', label:'To be Reviewed'},{value:'Perfect', label:'Perfect'},{value:'Not Ok', label:'Not Ok'}]}/>
-                )}</span></span>
-                </div>
-                    <div class='details-mask' style={{display:'none'}} ref={node=>{details=node}}>
-                        <p>{document.comments}</p>
-                        <p>Status:{document.status}</p>
-                            <div>
-                                {
-                                    idCustomer ? null :
-                                <div>
-                                    Move to : <select name="category" id="category" ref = {node => { category = node }} defaultValue = {document.status}>
-                                    { documentsOrder.map(category =>  <option key={category} value={category}>{category}</option> ) }
-                                    </select> 
-                               </div>
-                                }
-                            <div class='row' style={{paddingLeft:'13%'}}>
-                            {
-                                idCustomer ? null :
-                                <button type='button' onClick = {() => changeDocumentCategory(category.value, document._id )} class="btn btn-primary col-lg-5"> Move </button>
-                            }
-                                <button type='button' style={{marginLeft:'3%'}} onClick = {() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} } class="btn btn-primary col-lg-5"> Delete </button>
-                            </div>
-                        </div>
-                    
+                    <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
+                    <img src='../../../images/ic/chat_bubble/grey600.png'/>{` 2`}
+                    <span style={{marginLeft:'20%'}}>Status:{document.status}</span>
+                </span>
                     </div>
             </div>
         );

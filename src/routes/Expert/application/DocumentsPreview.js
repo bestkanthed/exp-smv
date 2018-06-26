@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import DocumentPreview from './DocumentPreview';
 
+import Dropzone from 'react-dropzone'
+
 import { postDocument } from '../../../actions/expert';
 
 import './Application.scss';
@@ -15,11 +17,11 @@ const mapDispatchToProps = dispatch => {
 const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication, postDocument }) => {
     let name
     return (
-        <span style={{display:'inline-block'}} >
+        <span>
             {
                 documents ?
                 documents.documents.map(document => 
-                <span style={{display : 'inline-block', margin:'1%'}} key={document._id}>
+                <span style={{display : 'inline-block', padding:'1%'}} key={document._id}>
                     <DocumentPreview key={document._id} idCustomer={idCustomer} document={document} />
                 </span>) :
                 null
