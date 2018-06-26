@@ -98,8 +98,8 @@ class DocumentPreview extends React.Component {
                 <div style={{display:'inline'}}>
                     <input style={{display:'none'}} defaultValue={document.name} onChange={this.editDocName} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                     <div>
-                        <div ref={node => {name = node}}>{document.name}</div>
-                            <div style={{float:'right'}}>
+                        <span ref={node => {name = node}}>{document.name}</span>
+                            <div style={{display:'inline-block'}}>
                             <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                                 <DropdownToggle>
                             <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
@@ -117,11 +117,11 @@ class DocumentPreview extends React.Component {
                             </Dropdown>
                             </div>
                         
-                        <div style={{float:'right'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                        <div style={{display:'inline-block'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
                             <img src='../../../images/ic/delete.png'/>
                         </div>
                         
-                        <div style={{float:'right'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
+                        <div style={{display:'inline-block'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
                             <img src='../../../images/ic/ic/ic_edit_24px.png'/>
                         </div>
                     </div>

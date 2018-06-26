@@ -140,11 +140,11 @@ class Document extends React.Component {
                                 <div class='col-lg-8' style={{height: '75vh'}}>
                                     <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</div>
                                     <div class='row' style={{backgroundColor:'#4A4A4A'}}>
-                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}>Next doc</p></div>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}>Prev doc</p></div>
                                         <div class='col-lg-10' style={{backgroundColor:'#4A4A4A'}}>
                                         <FilesView idCustomer={idCustomer} files={document.files[this.state.currentFileIndex]} idDocument={document._id}/>
                                         </div>
-                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}>Prev doc</p></div>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}>Next doc</p></div>
                                     </div>
                                     <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files.length}`}</div>
                                 </div>
