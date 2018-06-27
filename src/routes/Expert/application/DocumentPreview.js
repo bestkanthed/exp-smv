@@ -50,6 +50,15 @@ const mapDispatchToProps = dispatch => ({
     fetchDocument: idDocument => dispatch(fetchDocument(idDocument))
 })
 
+function setDocImg(name = '') {
+    switch(name) {
+        case 'doc' : return '../../../images/ic/ic/word.png';
+        case 'docx' : return '../../../images/ic/ic/word.png';
+        case 'xls' : return '../../../images/ic/ic/excel_icon.png';
+        case 'xlsx' : return '../../../images/ic/ic/excel_icon.png';
+    }
+}
+
 class DocumentPreview extends React.Component {
 
     constructor(props) {
@@ -143,7 +152,7 @@ class DocumentPreview extends React.Component {
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
                             <img  style={{height: '270px', width: '200px',borderRadius:'4px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
-                            <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
+                            <a href={'/api/expert/documents/'+document._id+'/preview'}><div class='pdf-view'><img style={{position:'relative', top:'37%', left:'37%'}} src={`${setDocImg(document.previewFileName.split('.')[1])}`} />{document.previewFileName}</div></a>
                         }
                     </Link> :
                     <div>
