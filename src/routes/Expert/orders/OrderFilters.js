@@ -20,7 +20,7 @@ const serialize = object => {
     for (let property in object) {
         if (object[property] && object[property]!=='All') query = query.concat(property, '=', object[property], '&')
     }
-    console.log('query-------------', query);
+    
     return query;
 }
 

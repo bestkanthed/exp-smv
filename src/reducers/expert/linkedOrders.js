@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_LINKED_ORDERS_FULFILLED' : {
-            console.log('fetch linkedOrders fulfilled', action.payload.data)
+            
             return action.payload.data.error ? {
                 ...state,
                 fetching: false,

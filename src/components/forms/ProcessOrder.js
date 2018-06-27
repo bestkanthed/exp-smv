@@ -136,7 +136,7 @@ class ProcessOrder extends React.Component {
                             
                             <input class='col-lg-3' style={{paddingLeft:'2%'}} type='date' value={this.state.apps[index].travelDate}
                                 onChange = {event => {
-                                    console.log('logging date from date', event.target.value)
+                                    
                                     let apps = [...this.state.apps];
                                     for(let i=index; i<apps.length; i++) {
                                         let application = {...apps[i]};

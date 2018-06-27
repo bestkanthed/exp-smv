@@ -32,8 +32,6 @@ const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                {
-                console.log('this is the user object-------************************', user)}
                     {
                         user ?
                         [

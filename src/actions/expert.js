@@ -185,7 +185,7 @@ export function fetchLinkedOrders (idOrder) {
 }
 
 export function fetchOrder (idOrder) {
-    console.log('Logging idOrder', idOrder)
+    
     return {
         type: 'FETCH_ORDER',
         payload: axios.get('/api/expert/orders/'+idOrder, { withCredentials: true })
@@ -211,7 +211,7 @@ export function deleteOrder (id) {
 }
 
 export function fetchOrders (query) {
-    console.log('loggig query from fetchOrders', query)
+    
     if (query) return {
         type: 'FETCH_ORDERS',
         payload: axios.get('/api/expert/orders?'+query, { withCredentials: true })

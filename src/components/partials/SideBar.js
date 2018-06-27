@@ -14,7 +14,7 @@ const sideBarOrder = [
 ]
 
 const mapStateToProps = state => {
-    console.log("Logging the state form HEADER", state.user.user);
+    
     return {
         user : state.user.user
     }

@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
             return {...state, fetching: false}
         }
         case 'FETCH_USER_FULFILLED' : {
-            console.log('FETCH_USER_FULFILLED', action.payload.data);
+            
             return {
                 ...state,
                 fetching: false,

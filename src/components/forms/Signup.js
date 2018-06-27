@@ -38,7 +38,7 @@ class Signup extends React.Component {
                             <input type='email' ref = {node => { email = node }} placeholder='Email' />
                             <input type='number' ref = {node => { phone = node }} placeholder='Phone' onChange = { e => {
                                 let { value } = phone
-                                console.log('Logging nu,ber and the type of nubmer', phone.value, typeof phone.value)
+                                
                                 if(value && value.length === 10) setSendOtp(true)
                                 else setSendOtp(false)
                             }} />

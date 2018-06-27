@@ -41,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
     uploadFiles: (files, idDocument, idCustomer) => files.map(file => {
         let extension = file.name.split('.').pop()
         extension = extension ? extension.toLowerCase() : 'none'
-        console.log('Logging file name and extension', file.name, file.name.split('.').pop())
+        
         if ( accpectedFileTypes.indexOf(extension) === -1 ) dispatch(fileTypeRejected())
         else dispatch(uploadFile(file, idDocument, idCustomer))
     }),
@@ -83,7 +83,6 @@ class DocumentPreview extends React.Component {
     }
 
     editDocName(event) {
-        console.log('==========@@@@@@@@@==========',this.state.isEditable)
         this.state.isEditable? 
         console.log('nope'):
         console.log('this is the docu name', event.target.value)
@@ -91,17 +90,17 @@ class DocumentPreview extends React.Component {
 
     setEditable(name) {
         this.setState({...this.state, isEditable: !this.state.isEditable})
-        console.log('this is the staetetetete', name.value)
+        
     }
 
     render() {
         let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
         let document = this.props.document
-        console.log('this the docxxxxxxxxx', document)
+        
         let details
         let name
         let docuName
-        console.log('This is the document object------------', document);
+        
         return (
             <div>
                 <div style={{display:'inline'}}>
