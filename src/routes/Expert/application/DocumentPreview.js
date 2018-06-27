@@ -85,7 +85,9 @@ class DocumentPreview extends React.Component {
             <div class='col-lg-3'>
                 <input style={{display:'none'}} defaultValue={document.name} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                 <div>
-                    <span ref={node => {name = node}}>{document.name}</span>
+                    <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
+                        <span ref={node => {name = node}}>{document.name}</span>
+                    </Link>
                     {
                         idCustomer? null : 
                     <span>
@@ -124,10 +126,10 @@ class DocumentPreview extends React.Component {
                             docuName.style.display=`${this.state.isEditable? 'inline':'none'}`;
                             name.style.display=`${this.state.isEditable? 'none':'inline'}`
                         }}>
-                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                            <img class='black' src='../../../images/ic/ic/ic_edit_24px.png'/>
                         </div>
                         <div class='application-icon' onClick={() => this.upload.click()}>
-                            <img src='../../../images/ic/ic/ic_file_upload_24px.png'/>
+                            <img class='black' src='../../../images/ic/ic/ic_file_upload_24px.png'/>
                             <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                         </div>
                     </span>
@@ -135,35 +137,33 @@ class DocumentPreview extends React.Component {
                 </div>
                 {
                     document.previewFileName ?
-                    <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
-                        {
-                            (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
-                            <div class='pdf-view'>
-                                <embed style={{height: '270px', maxWidth: '100%'}} onClick={() => console.log('embed clicked')} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/>
-                                {/*<PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />*/}
-                            </div> :
-                            imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
-                            <img  style={{height: '270px', maxWidth: '100%', borderRadius: '8px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
-                            <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
-                        }
-                    </Link> :
+                    (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
+                    <div class='pdf-view' onMouseUp={() => console.log('embed clicked')}>
+                        {/*<embed type="application/pdf" style={{height: '260px', maxWidth: '100%'}} src={'/api/expert/documents/'+document._id+'/preview'} alt='pdf' />*/}
+                        <embed style={{height: '270px', maxWidth: '100%'}} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf' />
+                    </div> :
+                    imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
+                    <img style={{height: '270px', maxWidth: '100%', borderRadius: '8px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                    <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a> :
                     <div>
-                    <Dropzone style={{height:'270px', backgroundColor:'#eceff1'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
-                        <p style={{position:'relative', top:'40%', left:'20%', color:'#4a4a4a'}}>Click here to  add files</p>
-                    </Dropzone>
+                        <Dropzone style={{height:'270px', backgroundColor:'#eceff1'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
+                            <p style={{position:'relative', top:'40%', left:'20%', color:'#4a4a4a'}}>Click here to  add files</p>
+                        </Dropzone>
                     </div>
                 }
+
                 <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px',backgroundColor:'#fafafa'}}>
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
                         {
                             user ?
-                            (document.comments.find(comment => comment.seenBy.indexOf(user._id) !== -1)).length !== 0 ?
-                            <img style={{}} src='../../../images/ic/chat_bubble/grey600.png'/> :
+                            document.comments.find(comment => comment.idSeenBy.indexOf(user._id) === -1) ?
+                            <img class='red' src='../../../images/ic/chat_bubble/grey600.png'/> :
                             <img src='../../../images/ic/chat_bubble/grey600.png'/> :
                             null
                         }
+                        { document.comments.length }
                         <span style={{marginLeft:'20%'}}>
                             Status: {
                                 idCustomer?
