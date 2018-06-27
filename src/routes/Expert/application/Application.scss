@@ -1,3 +1,9 @@
+.application-icon{
+  box-shadow: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
 .mask-2{
   border-radius: 4px;
   background-color: #ffffff;
@@ -17,7 +23,6 @@
 
 
 .pdf-view{
-  width: 200px;
   height: 270px;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -26,12 +31,17 @@
   border: solid 1px #e0e0e0;
 }
 
+canvas.undefined {
+  border-radius: 8px;
+  height: 270px !important;
+}
+
 .details-mask{
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
-  width: 200px;
+  //width: 200px;
   font-size: 14px;
 }
 
@@ -66,13 +76,12 @@ cursor: pointer;
 } 
 .react-tabs__tab--selected {
  background: #fff; border-bottom: 4px solid #4a90e2;
-
 } 
 .react-tabs__tab-panel {
    display: inline; 
   } 
 .react-tabs__tab-panel--selected { 
-  display: inline-block; 
+  display: block; 
 }
  .react-tabs__tab--disabled
 { 

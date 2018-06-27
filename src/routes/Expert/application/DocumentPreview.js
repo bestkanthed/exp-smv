@@ -1,10 +1,9 @@
 import React from 'react'
-import Select from 'react-select'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-import { uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected } from '../../../actions/expert'
+import { updateDocument, uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected, changeDocumentStatus, seenComments } from '../../../actions/expert'
 
 import Dropzone from 'react-dropzone'
 import PdfViewer from '../../../components/utilities/PdfViewer'
@@ -41,13 +40,23 @@ const mapDispatchToProps = dispatch => ({
     uploadFiles: (files, idDocument, idCustomer) => files.map(file => {
         let extension = file.name.split('.').pop()
         extension = extension ? extension.toLowerCase() : 'none'
+<<<<<<< HEAD
         
+=======
+>>>>>>> d6d39bd5aa972170b3387fdd30c12567885a785f
         if ( accpectedFileTypes.indexOf(extension) === -1 ) dispatch(fileTypeRejected())
         else dispatch(uploadFile(file, idDocument, idCustomer))
     }),
+    updateDocument: document => dispatch(updateDocument(document)),
+    changeDocumentStatus: (status, idDocument) => dispatch(changeDocumentStatus(status, idDocument)),
     changeDocumentCategory: (category, idDocument) => dispatch(changeDocumentCategory(category, idDocument)),
     deleteDocument: idDocument => dispatch(deleteDocument(idDocument)),
-    fetchDocument: idDocument => dispatch(fetchDocument(idDocument))
+    fetchDocument: idDocument => dispatch(fetchDocument(idDocument)),
+    seenComments: idDocument => dispatch(seenComments(idDocument)),
+})
+
+const mapStateToProps = state => ({
+    user: state.user.user
 })
 
 function setDocImg(name = '') {
@@ -69,8 +78,6 @@ class DocumentPreview extends React.Component {
         }
         this.toggle = this.toggle.bind(this);
         this.select = this.select.bind(this);
-        this.setEditable = this.setEditable.bind(this);
-        this.editDocName = this.editDocName.bind(this);
     }
 
     toggle() {
@@ -78,10 +85,10 @@ class DocumentPreview extends React.Component {
     }
 
     select (event) {
-        //this.setState({category: event.target.innerText})
         changeDocumentCategory(event.target.innerText, this.props.document._id);
     }
 
+<<<<<<< HEAD
     editDocName(event) {
         this.state.isEditable? 
         console.log('nope'):
@@ -93,65 +100,91 @@ class DocumentPreview extends React.Component {
         
     }
 
+=======
+>>>>>>> d6d39bd5aa972170b3387fdd30c12567885a785f
     render() {
-        let { uploadFiles, changeDocumentCategory, deleteDocument, idCustomer } = this.props
+        let category
+        let { user, uploadFiles, updateDocument, changeDocumentCategory, deleteDocument, idCustomer, changeDocumentStatus, seenComments } = this.props
         let document = this.props.document
+<<<<<<< HEAD
         
         let details
         let name
         let docuName
         
+=======
+        let name
+        let docuName
+>>>>>>> d6d39bd5aa972170b3387fdd30c12567885a785f
         return (
-            <div>
-                <div style={{display:'inline'}}>
-                    <input style={{display:'none'}} defaultValue={document.name} onChange={this.editDocName} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
-                    <div>
-                        <span ref={node => {name = node}}>{document.name}</span>
-                        {
-                            idCustomer? null : 
-                        <span>
-                            <div style={{display:'inline-block'}}>
-                                <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                    <DropdownToggle>
-                                <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <div class='dropDownItem'>Move this Document to...</div>
-                                        {documentsOrder.map(category => {
-                                            return (
-                                                <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
-                                                    {category}
-                                                </div>
-                                            )
-                                        })}
-                                    </DropdownMenu>
-                                </Dropdown>
-                            </div>
-                        
-                            <div style={{display:'inline-block'}} onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
-                                <img src='../../../images/ic/delete.png'/>
-                            </div>
-                        
-                            <div style={{display:'inline-block'}} onClick={() => {this.setEditable(docuName);docuName.style.display=`${this.state.isEditable? 'inline':'none'}`; name.style.display=`${this.state.isEditable? 'none':'inline'}`}}>
-                                <img src='../../../images/ic/ic/ic_edit_24px.png'/>
-                            </div>
-                        </span>
-                        }
-                    </div>
+            <div class='col-lg-3'>
+                <input style={{display:'none'}} defaultValue={document.name} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
+                <div>
+                    <span ref={node => {name = node}}>{document.name}</span>
+                    {
+                        idCustomer? null : 
+                    <span>
+                        <div style={{display:'inline-block'}}>
+                            <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                                <DropdownToggle style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
+                                    <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <div class='dropDownItem'>Move this Document to...</div>
+                                    {documentsOrder.map(category => {
+                                        return (
+                                            <div class='dropDownItem' key={category} onClick={(event) => {changeDocumentCategory(category, document._id ); this.toggle()}}>
+                                                {category}
+                                            </div>
+                                        )
+                                    })}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </div>
+                    
+                        <div class='application-icon' onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                            <img src='../../../images/ic/delete.png'/>
+                        </div>
+                    
+                        <div class='application-icon' onClick={() => {
+                            if(!this.state.isEditable) {
+                                if(!docuName.value) return alert('Document name cannot be empty')
+                                name.innerText = docuName.value
+                                updateDocument({
+                                    _id: document._id,
+                                    name: docuName.value
+                                })
+                            }
+                            this.setState({...this.state, isEditable: !this.state.isEditable});
+                            docuName.style.display=`${this.state.isEditable? 'inline':'none'}`;
+                            name.style.display=`${this.state.isEditable? 'none':'inline'}`
+                        }}>
+                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                        </div>
+                        <div class='application-icon' onClick={() => this.upload.click()}>
+                            <img src='../../../images/ic/ic/ic_file_upload_24px.png'/>
+                            <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
+                        </div>
+                    </span>
+                    }
                 </div>
                 {
                     document.previewFileName ?
-                    <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id}>
+                    <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
                         {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
-                            <div>
-                                <div class='pdf-view'>
-                                    <PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />
-                                </div>
+                            <div class='pdf-view'>
+                                <embed style={{height: '270px', maxWidth: '100%'}} onClick={() => console.log('embed clicked')} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf'/>
+                                {/*<PdfViewer file={'/api/expert/documents/'+document._id+'/preview'} />*/}
                             </div> :
                             imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
+<<<<<<< HEAD
                             <img  style={{height: '270px', width: '200px',borderRadius:'4px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
                             <a href={'/api/expert/documents/'+document._id+'/preview'}><div class='pdf-view'><img style={{position:'relative', top:'37%', left:'37%'}} src={`${setDocImg(document.previewFileName.split('.')[1])}`} />{document.previewFileName}</div></a>
+=======
+                            <img  style={{height: '270px', maxWidth: '100%', borderRadius: '8px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                            <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a>
+>>>>>>> d6d39bd5aa972170b3387fdd30c12567885a785f
                         }
                     </Link> :
                     <div>
@@ -164,14 +197,31 @@ class DocumentPreview extends React.Component {
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
-                    <img src='../../../images/ic/chat_bubble/grey600.png'/>{` 2`}
-                    <span style={{marginLeft:'20%'}}>Status:</span>
-                    <span style={{color:`${document.status==='To Be Reviewed'? '#f36b51':document.status==='Not Ok'? '#7ed321':'#4a4a4a'}`}}>{document.status}</span>
-                </span>
-                    </div>
+                        {
+                            user ?
+                            (document.comments.find(comment => comment.seenBy.indexOf(user._id) !== -1)).length !== 0 ?
+                            <img style={{}} src='../../../images/ic/chat_bubble/grey600.png'/> :
+                            <img src='../../../images/ic/chat_bubble/grey600.png'/> :
+                            null
+                        }
+                        <span style={{marginLeft:'20%'}}>
+                            Status: {
+                                idCustomer?
+                                document.status:
+                                <select value={document.status}
+                                onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
+                                style={{color:`${document.status==='To Be Reviewed' ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>
+                                    <option style={{color:'#4a4a4a'}} value='To Be Reviewed'>To Be Reviewed</option>
+                                    <option style={{color:'#7ed321'}} value='Perfect'>Perfect</option>
+                                    <option style={{color:'#f36b51'}} value='Not OK'>Not OK</option>
+                                </select>
+                            }
+                        </span>
+                    </span>
+                </div>
             </div>
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(DocumentPreview)
+export default connect(mapStateToProps, mapDispatchToProps)(DocumentPreview)

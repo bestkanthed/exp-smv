@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Tab, TabPanel, TabList, Tabs } from 'react-tabs'
 
-import { fetchApplication, fetchOrderByIdApplication, setQuery } from '../../actions/expert'
+import { fetchApplication, fetchOrderByIdApplication, setQuery, setActiveTab } from '../../actions/expert'
 
 import DocumentsPreview from './application/DocumentsPreview'
 import ApplicationUpdate from './application/ApplicationUpdate';
@@ -21,12 +21,14 @@ const mapStateToProps = state => ({
     order: state.expert.order,
     application: state.expert.application,
     user: state.user,
+    activeTab: state.expert.activeTab
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchApplication: idApplication => dispatch(fetchApplication(idApplication)),
     fetchOrderByIdApplication: idApplication => dispatch(fetchOrderByIdApplication(idApplication)),
     setQuery: query => dispatch(setQuery(query)),
+    setActiveTab: index => dispatch(setActiveTab(index))
 })
 
 class Application extends React.Component {
@@ -46,7 +48,7 @@ class Application extends React.Component {
     render() {
         let categories = null
         let documents = null
-        let { fetchApplication, idApplication, idCustomer, setQuery } = this.props        
+        let { fetchApplication, idApplication, idCustomer, setQuery, setActiveTab, activeTab } = this.props        
         let { application, fetching, fetched, rerender } = this.props.application
         let { order } = this.props.order
         
@@ -72,9 +74,9 @@ class Application extends React.Component {
                             </h4> :
                             null
                         }
-                        <ApplicationUpdate idCustomer={idCustomer} application={application}/>
+                        <ApplicationUpdate idCustomer={idCustomer} application={application} order={order}/>
                         <hr />
-                        <Tabs onSelect={() => this.setState({render : false})}>
+                        <Tabs onSelect={index => setActiveTab(index)} defaultIndex={activeTab}>
                             <TabList>
                             {
                                 categories.map(category =>
@@ -84,10 +86,10 @@ class Application extends React.Component {
                             </TabList>
                             {
                                 categories.map((category, index) =>
-                                    <span key={document.category}>
-                                        <TabPanel forceRender={index===0 ? this.state.render : false}>
+                                    <span key={category}>
+                                        <TabPanel forceRender={index === activeTab}>
                                             <DocumentsPreview
-                                                past = { application.status === 'Past'}
+                                                past = {application.status === 'Past'}
                                                 idCustomer={idCustomer}
                                                 category={category}
                                                 idApplication={application._id}
