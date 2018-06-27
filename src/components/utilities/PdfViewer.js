@@ -1,5 +1,5 @@
 import React from 'react';
-import PDF from 'react-pdf-js';
+//import PDF from 'react-pdf-js';
 import {DotLoader} from 'react-spinners';
  
 class PdfViewer extends React.Component {
@@ -46,6 +46,8 @@ class PdfViewer extends React.Component {
     //   pagination = this.renderPagination(this.state.page, this.state.pages);
     // }
     return (
+        <div>test</div>
+        /*
         <PDF
           file={this.props.file}
           onDocumentComplete={this.onDocumentComplete}
@@ -55,6 +57,7 @@ class PdfViewer extends React.Component {
           fillHeight
           loading={<div style={{margin:'40%'}}><DotLoader color={'#2196f3'}/></div>}
         />
+        */
     )
   }
 }

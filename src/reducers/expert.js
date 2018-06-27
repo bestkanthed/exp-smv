@@ -6,6 +6,7 @@ import application from './expert/application'
 import document from './expert/document'
 import comments from './expert/comments'
 
+import activeTab from './expert/activeTab'
 import linkedOrders from './expert/linkedOrders'
 import query from './expert/query'
 
@@ -15,6 +16,7 @@ export default combineReducers({
     application,
     document,
     comments,
+    activeTab,
     linkedOrders,
     query
 });

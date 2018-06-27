@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchOrder, fetchLinkedOrders, linkedOrderClicked, setQuery } from '../../actions/expert'
+import { fetchOrder, fetchLinkedOrders, linkedOrderClicked, setQuery, setActiveTab } from '../../actions/expert'
 
 import OrderUpdate from './order/OrderUpdate'
 import ApplicationsSummary from './order/ApplicationsSummary'
@@ -18,14 +18,16 @@ const mapDispatchToProps = dispatch => ({
     fetchLinkedOrders: idOrder => dispatch(fetchLinkedOrders(idOrder)),
     linkedOrderClicked: () => dispatch(linkedOrderClicked()),
     setQuery: query => dispatch(setQuery(query)),
+    setActiveTab: index => dispatch(setActiveTab(index))
 })
 
 class Order extends React.Component {
     
     componentWillMount() {
-        let { fetchOrder, idOrder, fetchLinkedOrders } = this.props
+        let { fetchOrder, idOrder, fetchLinkedOrders, setActiveTab } = this.props
         fetchOrder(idOrder)
         fetchLinkedOrders(idOrder)
+        setActiveTab(0)
     }
 
     render() {

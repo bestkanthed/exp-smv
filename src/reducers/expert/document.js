@@ -38,12 +38,7 @@ export default function reducer(state = initialState, action) {
             return {...state, rerender: true}
         }
         case 'CHANGE_DOCUMENT_STATUS_FULFILLED' : {
-            return action.payload.data.error ? 
-            state :
-            {
-                ...state,
-                document: action.payload.data
-            }
+            return {...state, rerender: true}
         }
         default : return state;
     }

@@ -17,10 +17,24 @@ export function fileTypeRejected () {
     }
 }
 
+export function setActiveTab (index) {
+    return {
+        type: 'SET_ACTIVE_TAB',
+        payload : index
+    }
+}
+
 export function setQuery (query) {
     return {
         type: 'SET_QUERY',
         payload : query
+    }
+}
+
+export function seenComments (idDocument) {
+    return {
+        type: 'SEEN_COMMENTS',
+        payload : axios.put('/api/expert/comments/'+idDocument+'/seen', { withCredentials: true })
     }
 }
 
@@ -88,6 +102,18 @@ export function loadDocument (idDocument) {
     return {
         type: 'LOAD_DOCUMENT',
         payload: axios.get('/api/expert/documents/'+idDocument+'/file', { withCredentials: true })
+    }
+}
+
+export function updateDocument (document) {
+    console.log('Logging document from update document', document)
+    return {
+        type: 'UPDATE_DOCUMENT',
+        payload: axios('/api/expert/documents', {
+            method: 'put',
+            data: document,
+            withCredentials: true
+        })
     }
 }
 

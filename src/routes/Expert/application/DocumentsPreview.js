@@ -30,19 +30,17 @@ const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication
                 null :
                 <div class='col-lg-3'>
                     <input placeholder='New Document' ref = {node => { name = node }}/>
-                        <div onClick = {() => {
-                            if(!name.value) return alert('Enter the name of the document')
-                            postDocument({
-                                idApplication,
-                                name: name.value,
-                                category,
-                                status: 'Pending'
-                            })
-                            name.value = ''
-                        }}>
-                        <img src='../../../images/ic/addDoc.png' />
-                        </div>
-                    </div>
+                    <img style={{height: '280px', maxWidth: '100%', paddingTop: '10px'}} onClick = {() => {
+                        if(!name.value) return alert('Enter the name of the document')
+                        postDocument({
+                            idApplication,
+                            name: name.value,
+                            category,
+                            status: 'Pending'
+                        })
+                        name.value = ''
+                    }} src='../../../images/ic/addDoc.png' />
+                </div>
                 }
                 </div> 
     )
