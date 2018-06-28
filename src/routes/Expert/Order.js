@@ -47,9 +47,7 @@ class Order extends React.Component {
                         <h4>
                             <Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'}> Home </Link>
                             >
-                            <Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'} onClick={() => {if (!idCustomer) setQuery({ orderType: order.orderType }) }}> {order.orderType} </Link>
-                            >
-                            {order.customer.length ? order.customer[0].name : null}
+                            {order.applications.length ? order.applications[0].name : null}x{order.noOfApplications}
                         </h4>
                         <OrderDescription linkedOrders={linkedOrders} order={order} idCustomer={idCustomer}/>
                         <br/>

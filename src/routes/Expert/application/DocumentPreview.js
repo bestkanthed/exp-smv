@@ -85,12 +85,12 @@ class DocumentPreview extends React.Component {
             <div class='col-lg-3'>
                 <input style={{display:'none'}} defaultValue={document.name} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                 <div>
-                    <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
+                    <Link class='preview-docname' to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
                         <span ref={node => {name = node}}>{document.name}</span>
                     </Link>
                     {
                         idCustomer? null : 
-                    <span>
+                    <span style={{float:'right'}}>
                         <div style={{display:'inline-block'}}>
                             <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                                 <DropdownToggle style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
@@ -152,7 +152,7 @@ class DocumentPreview extends React.Component {
                     </div>
                 }
 
-                <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px',backgroundColor:'#fafafa'}}>
+                <div class='details-mask' style={{position:'relative',zIndex:'1', height:'40px',backgroundColor:'#fafafa'}}>
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
