@@ -35,8 +35,9 @@ const OrdersSummary = ({user, orders, allowUpdate, idCustomer, supportCustomerVi
             orders ?
             orders.map(order =>
                 <div class='col-md-6 col-sm-12 col-lg-4' key={order._id}>
-                    <Link style={{textDecoration:'none', color:'black'}}to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
-                        <div class='mask-2 row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`,padding:'5%'}}>
+                {console.log('------------', order)}
+                    <Link style={{textDecoration:'none', color:'black'}} to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
+                        <div class='mask-2 row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`, padding:'5%'}}>
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.applications.length ? order.applications[0].name : null}  x{order.noOfApplications}<br/>
@@ -45,13 +46,15 @@ const OrdersSummary = ({user, orders, allowUpdate, idCustomer, supportCustomerVi
                                 <div class='col-lg-4'>
                                 Order Id: <br/> {order.orderCode}
                                 </div>
-                                {(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length ? <div class='col-lg-1' style={{backgroundColor:'#f44336', padding:'1%', borderRadius:'8px', color:'white'}}>
-                                    {`${(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length}`}
-                                </div> : null}
+                                {/* {(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length ?  */}
+                                <span style={{backgroundColor:'red', padding:'1%', borderRadius:'4px', color:'white'}}>
+                                    {/* {`${(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length}`} */}
+                                    3
+                                </span> 
                             </div>
                             <br/>
                             <div class='sub-mask row'>
-                                <div class='col-lg-7' style={{marginLeft:'3$'}}>
+                                <div class='col-lg-7'>
                                     Travel Date:<br/>
                                     {prettyDate(JSON.stringify(order.travelDate))}
                                 </div>

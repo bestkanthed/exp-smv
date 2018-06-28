@@ -24,10 +24,8 @@ const ApplicationsSummary = ({applications, idCustomer}) => (
     {
     applications.map(application =>
         <Link style={{color:'black', textDecoration:'none'}} to={(idCustomer ? '/customer' : '/expert') + '/applications/'+application._id} key={application._id}>
-            <div class="mask row" style={{borderRight:`solid 6px ${BorderColor(application.status)}`}}>
-                <div class='col-lg-1'>
-                </div>
-                <div class='col-lg-3'>
+            <div class="mask row mask-padding" style={{borderRight:`solid 6px ${BorderColor(application.status)}`}}>
+                <div class='col-lg-4'>
                     <p>{application.name}</p>
                     <p>{application.country} - {application.visaType}</p>
                 </div>

@@ -57,7 +57,7 @@
 input.search-bar{
     border:none;
     padding: 10%;
-    width: 72%;
+    width: 55%;
     height: 90PX;
     background-color: #fafafa;
     font-size: 16px;
@@ -80,6 +80,9 @@ input.search-bar{
     letter-spacing: 2px;
     text-align: center;
     color: #ffffff;
+    position: absolute;
+    top:30%;
+    right: 10%;
 }
 
 .fix-image{

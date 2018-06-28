@@ -30,7 +30,7 @@ const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication
                 null :
                 <div class='col-lg-3'>
                     <input placeholder='New Document' ref = {node => { name = node }}/>
-                    <img style={{height: '280px', maxWidth: '100%', paddingTop: '10px'}} onClick = {() => {
+                    <img class='new-doc-img' onClick = {() => {
                         if(!name.value) return alert('Enter the name of the document')
                         postDocument({
                             idApplication,

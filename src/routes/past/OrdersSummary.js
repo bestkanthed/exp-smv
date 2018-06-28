@@ -5,7 +5,7 @@ import '../Expert/order/ApplicationSummary.scss';
 
 function BorderColor(status){
     switch(status){
-        default: return "#ffffff";
+        default: return "#c8c9cc";
     }
 }
 

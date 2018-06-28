@@ -11,6 +11,10 @@
     display: flex;
 }
 
+.mask-padding{
+    padding: 2%;
+}
+
 .order-back{
     display: flex;
     justify-content: center;
@@ -19,6 +23,11 @@
 
 .order-back-div{
     height: auto;
+}
+
+.order-back-div-2{
+    height: 100%;
+    width: 100%;
 }
 
 .shift{
@@ -32,4 +41,11 @@
 .sub-mask-button{
     position: absolute;
     left: 5%;
+}
+
+.order-notifs-filter{
+    background-color:#f44336;
+    padding: 1%;
+    border-radius: 8px;
+    color: white;
 }

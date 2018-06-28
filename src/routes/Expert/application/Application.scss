@@ -24,6 +24,7 @@
 
 .pdf-view{
   height: 270px;
+  width: 200px;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
@@ -125,4 +126,14 @@ cursor: pointer;
 
 .dropDownItem :hover{
   background-color: #eceff1;
+}
+
+.new-doc-img{
+  height: 280px; 
+  max-width: 100%;
+  padding-top: 10px;
+}
+
+.invisible-input{
+  display: none;
 }
