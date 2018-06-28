@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => {
 const Popup = ({popup, children, hidePopup}) => {
     return (
         <div class="popup" style={{display: popup.display ? 'inline' : 'none'}}>
-            <div id="cover" onClick = {() => hidePopup()}></div>
+            <div id="cover" style={{background: popup.content === 'Flash' ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.8)'}} onClick = {() => hidePopup()}></div>
             <div id="popup-frame">
                 <div class="pop-up-bg" style = {popup.animation} style={{top: '80px'}}>
                     <div class="row">

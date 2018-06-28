@@ -107,11 +107,18 @@ class DocumentPreview extends React.Component {
             <div class='col-lg-4'>
                 <input class='invisible-input' defaultValue={document.name} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                 <div>
-                    <span ref={node => {name = node}}>{document.name}</span>
+                    <Link class='preview-docname' to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
+                        <span ref={node => {name = node}}>{document.name}</span>
+                    </Link>
                     {
                         idCustomer? null : 
+<<<<<<< HEAD
                     <span>
                         <div data-tip data-for='move' style={{display:'inline-block'}}>
+=======
+                    <span style={{float:'right'}}>
+                        <div style={{display:'inline-block'}}>
+>>>>>>> 3e2ec4f3ec62e4dafe3adc7442d16c0783e7650e
                             <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                                 <DropdownToggle style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
                                     <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
@@ -146,11 +153,16 @@ class DocumentPreview extends React.Component {
                             docuName.style.display=`${this.state.isEditable? 'inline':'none'}`;
                             name.style.display=`${this.state.isEditable? 'none':'inline'}`
                         }}>
-                            <img src='../../../images/ic/ic/ic_edit_24px.png'/>
+                            <img class='black' src='../../../images/ic/ic/ic_edit_24px.png'/>
                         </div>
+<<<<<<< HEAD
                         <ReactTooltip id='edit'  place="top" type="info" effect="solid">Edit</ReactTooltip>
                         <div data-tip data-for='upload' class='application-icon' onClick={() => this.upload.click()}>
                             <img src='../../../images/ic/ic/ic_file_upload_24px.png'/>
+=======
+                        <div class='application-icon' onClick={() => this.upload.click()}>
+                            <img class='black' src='../../../images/ic/ic/ic_file_upload_24px.png'/>
+>>>>>>> 3e2ec4f3ec62e4dafe3adc7442d16c0783e7650e
                             <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                         </div>
                         <ReactTooltip id='upload'  place="top" type="info" effect="solid">Upload</ReactTooltip>
@@ -159,6 +171,7 @@ class DocumentPreview extends React.Component {
                 </div>
                 {
                     document.previewFileName ?
+<<<<<<< HEAD
                     <Link to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
                         {
                             (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
@@ -179,18 +192,42 @@ class DocumentPreview extends React.Component {
                     </div>
                 }
                 <div class='details-mask' style={{position:'relative',zIndex:'1', top:'-40px', height:'40px', width:'200px',backgroundColor:'#fafafa'}}>
+=======
+                    (document.previewFileName.split('.').pop()).toLowerCase() === 'pdf' ?
+                    <div class='pdf-view' onMouseUp={() => console.log('embed clicked')}>
+                        {/*<embed type="application/pdf" style={{height: '260px', maxWidth: '100%'}} src={'/api/expert/documents/'+document._id+'/preview'} alt='pdf' />*/}
+                        <embed style={{height: '270px', maxWidth: '100%'}} src={'https://drive.google.com/viewerng/viewer?embedded=true&url=test.stampmyvisa.com/api/expert/documents/'+document._id+'/preview'} alt='pdf' />
+                    </div> :
+                    imageTypes.indexOf((document.previewFileName.split('.').pop()).toLowerCase()) !== -1 ?
+                    <img style={{height: '270px', maxWidth: '100%', borderRadius: '8px'}} src={'/api/expert/documents/'+document._id+'/preview'} /> :
+                    <a href={'/api/expert/documents/'+document._id+'/preview'}>{document.previewFileName}</a> :
+                    <div>
+                        <Dropzone style={{height:'270px', backgroundColor:'#eceff1'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
+                            <p style={{position:'relative', top:'40%', left:'20%', color:'#4a4a4a'}}>Click here to  add files</p>
+                        </Dropzone>
+                    </div>
+                }
+
+                <div class='details-mask' style={{position:'relative',zIndex:'1', height:'40px',backgroundColor:'#fafafa'}}>
+>>>>>>> 3e2ec4f3ec62e4dafe3adc7442d16c0783e7650e
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
                     {console.log('sfsdf^^^^^^^^^^^', document)}
                         {
                             user ?
+<<<<<<< HEAD
                             //(document.comments.find(comment => comment.seenBy.indexOf(user._id) !== -1)).length !== 0 ? bug here, the bracket of length seems misplaced
                             document.comments.length !== 0 ?
                             <span><img style={{backgroundColor:'red'}} src='../../../images/ic/chat_bubble/grey600.png'/>{document.comments.length}</span> :
+=======
+                            document.comments.find(comment => comment.idSeenBy.indexOf(user._id) === -1) ?
+                            <img class='red' src='../../../images/ic/chat_bubble/grey600.png'/> :
+>>>>>>> 3e2ec4f3ec62e4dafe3adc7442d16c0783e7650e
                             <img src='../../../images/ic/chat_bubble/grey600.png'/> :
                             null
                         }
+                        { document.comments.length }
                         <span style={{marginLeft:'20%'}}>
                             Status: {
                                 //idCustomer?

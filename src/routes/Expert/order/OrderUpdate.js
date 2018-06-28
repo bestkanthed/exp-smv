@@ -39,7 +39,7 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                     <p><strong>{order.customer[0].phone}</strong></p>
                     <p><strong>{order.customer[0].email}</strong></p>
                 </div>
-                <div class='col-lg-6'>
+                <div class='col-lg-5'>
                     <div class='row'>
                         <p class='col-lg-2'> Story </p>
                         <input class='col-lg-12' type="text" defaultValue={order.story} ref = {node => { story = node }}/>
@@ -49,7 +49,7 @@ let OrderUpdate = ({ updateOrder, deleteOrder, order, supportView, experts }) =>
                     <p>Invoice No </p> 
                     <input type="text" defaultValue={order.invoiceNo} ref = {node => { invoiceNo = node }}/>
                 </div>
-                <button class='col-lg-1' type='button' onClick = {() => {
+                <button class='col-lg-2' type='button' onClick = {() => {
                     supportView ?
                     updateOrder({
                         _id: order._id, noOfApplications: noOfApplications.value, idExpert: idExpert.value, invoiceNo: invoiceNo.value,

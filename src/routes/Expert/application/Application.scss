@@ -1,14 +1,31 @@
+.preview-docname{
+  white-space: nowrap; 
+  width: 50px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .application-icon{
   box-shadow: none;
   display: inline-block;
   cursor: pointer;
 }
 
+.red {
+  -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
+  filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
+}
+
+.black {
+  -webkit-filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+  filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+}
+
 .mask-2{
   border-radius: 4px;
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
-  white-space: nowrap;
+  //white-space: nowrap;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   margin: 2%;
 }
@@ -18,7 +35,7 @@
   background-color: #ffffff;
   border: solid 1px #e0e0e0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
+  //white-space: nowrap;
 }
 
 
@@ -26,10 +43,10 @@
   height: 270px;
   width: 200px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  //box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   border-radius: 4px;
-  border: solid 1px #e0e0e0;
+  //border: solid 1px #e0e0e0;
 }
 
 canvas.undefined {

@@ -67,9 +67,9 @@ class Application extends React.Component {
                             <h4>
                                 <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}> Home </Link>
                                 >
-                                <Link to={idCustomer ? '/customer/orders' : '/expert/orders'} onClick={() => {if (!idCustomer) setQuery({ orderType: order.orderType }) }}> {order.orderType} </Link>
-                                >
-                                <Link to={(idCustomer ? '/customer' : '/expert' )+'/orders/'+order._id}> {order.customer.length ? order.customer[0].name : null} </ Link>
+                                <Link to={(idCustomer ? '/customer' : '/expert' )+'/orders/'+order._id}>
+                                    {order.applications.length ? order.applications[0].name : null}x{order.noOfApplications}
+                                </ Link>
                                 > {application.name}
                             </h4> :
                             null
