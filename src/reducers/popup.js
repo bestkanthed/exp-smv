@@ -32,7 +32,7 @@ const popupReducer = (state = initialState, action) => {
     let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'    
     let uploadPending = type === 'UPLOAD_FILE_PENDING'    
 
-    console.log('Logging form popup reducer', action, payload, postResponse)
+    
 
     if( flashMessage || postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse || uploadPending) return {
         ...state,

@@ -20,7 +20,7 @@ export default function locationReducer (state = initialState, action) {
             return {...state, fetching: false}            
         }
         case 'FETCH_LOCATION_FULFILLED' : {
-            console.log('fetch location fullfilled', action.payload);
+            
             return {
                 ...state,
                 fetching: false,

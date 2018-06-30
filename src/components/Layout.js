@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
 
 class Layout extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     componentWillMount() {
@@ -35,11 +35,12 @@ class Layout extends React.Component {
             <div style={{backgroundColor:'white'}}>
                 <Popup />
                 <div>
-                    <div class='col-lg-3' style={{position:'fixed', paddingLeft: 0}}>
-                        <SideBar />
+                    <div class={`${window.location.pathname.split('/')[2]==='documents'? '':'col-lg-3'}`} style={{position:'fixed', paddingLeft: 0}}>
+                    {window.location.pathname.split('/')[2]==='documents'? null:<SideBar/>}
                     </div>
-                    <div class='col-lg-8' style={{marginLeft:'25%'}}>
-                    <SearchBar/>
+                    <div class={`${window.location.pathname.split('/')[2]==='documents'? '':'col-lg-8'}`} style={{marginLeft:`${window.location.pathname.split('/')[2]==='documents'? '0%':'25%'}`}}>
+                    
+                    {window.location.pathname.split('/')[2]==='documents'? null:<SearchBar/>}
                     {/*<Header />*/}
                     {this.props.children}
                     </div>

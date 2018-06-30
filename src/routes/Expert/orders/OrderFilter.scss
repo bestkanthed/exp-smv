@@ -20,3 +20,36 @@ line-height: 60px;
   font-size: 10px;
   margin-left: 2%;
 }
+
+.status-filter-mask-new{
+  background-color:#f44336;
+  font-size: 8px;
+  color:white;
+}
+
+
+.status-filter-mask-in-process{
+  background-color:#ffc107;
+  font-size: 8px;
+  color:white;
+}
+
+.status-filter-mask-submitted{
+  background-color:#2196f3;
+  font-size: 8px;
+  color:white;
+}
+
+.status-filter-mask-completed{
+  background-color:#1ddaae;
+  font-size: 8px;
+  color:white;
+}
+
+.status-filter-mask-active{
+  font-size: 8px;
+}
+
+.selectedFilter{
+  background-color: #cfd8dc;
+}

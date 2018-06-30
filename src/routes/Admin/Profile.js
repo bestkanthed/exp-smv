@@ -17,7 +17,7 @@ class Profile extends React.Component {
 
     componentWillMount () {
         let { fetchUserProfile, idUser } = this.props
-        console.log('Loggin id from profile', idUser)
+        
         fetchUserProfile(idUser);
     }
     render () {

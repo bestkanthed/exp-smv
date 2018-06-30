@@ -164,7 +164,7 @@ class CreateCustomerCumOrder extends React.Component {
                             story: event.target.value
                         }
                     })
-                    console.log('Logging state from story', this.state)
+                    
                 }}/></div>
             <div>
                 No of Applications:<input class='createOrder' type="number" value={this.state.order.noOfApplications} required="required"

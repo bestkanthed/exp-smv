@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 class News extends React.Component {
     
     componentWillMount() {
-        console.log('Now the news component will mount')
+        
         this.props.fetchNews()
         this.props.fetchExperts()
     }

@@ -46,12 +46,12 @@ class OrderDescription extends React.Component {
                     <div class='col-lg-2' style={{padding:'2%'}}>
                         <p>Invoice No :</p><p>{order.invoiceNo}</p>
                     </div>
-                    {idCustomer ? null : <div class='col-lg-2' style={{padding:'2%'}}>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <DropdownToggle caret>
-                                Linked Orders
+                    {idCustomer ? null :
+                        <Dropdown direction='left' class='order-back col-lg-2' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                            <DropdownToggle class='order-back-div-2' caret>
+                                <img src='../../../images/ic/ic/ic_link_24px.png' />
                             </DropdownToggle>
-                            <DropdownMenu style={{minWidth:'360px'}}>
+                            <DropdownMenu style={{minWidth:'360px',overflow:'scroll'}}>
                                 {
                                     linkedOrders ?
                                     linkedOrders.map(order => 
@@ -84,7 +84,7 @@ class OrderDescription extends React.Component {
                                 }
                             </DropdownMenu>
                         </Dropdown>
-                    </div>}
+                    }
                 </div>
             </div>
         )

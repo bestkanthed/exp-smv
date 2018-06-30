@@ -5,6 +5,12 @@ import { fetchOrders, setQuery } from '../../../actions/expert';
 
 import './OrderFilter.scss';
 
+const orderTypes = [
+    'Pickup Drop',
+    'Online Consultation',
+    'eVisa'
+]
+
 const mapStateToProps = state => ({
     countries: state.database.countries,
     query: state.expert.query
@@ -20,11 +26,18 @@ const serialize = object => {
     for (let property in object) {
         if (object[property] && object[property]!=='All') query = query.concat(property, '=', object[property], '&')
     }
-    console.log('query-------------', query);
+    
     return query;
 }
 
 class OrderFilters extends React.Component {
+
+    setQueryFilters() {
+        switch(this.props.query){
+            case '' : return 
+        }
+    }
+    
 
     render () {
         let { idExpert, idCustomer, fetchOrders, countries, query, setQuery } = this.props
@@ -37,7 +50,7 @@ class OrderFilters extends React.Component {
             setQuery({ status })
             fetchOrders(serialize({...query, status}));
         }
-
+        let pd, oc, ev
         return (
             <div>
                 {
@@ -47,37 +60,44 @@ class OrderFilters extends React.Component {
                     </div> :
                     <div>
                         <div class="col-md-12 col-lg-12 col-sm-12" style={{marginBottom:'2%'}}>
-                            <div  class='filter-mask' onClick={()=>handleServiceTypeChange('Pickup Drop')}>
+                            {
+                                orderTypes.map(orderType =>  (
+                                <div key={orderType} class={`filter-mask ${query.orderType===orderType? 'selectedFilter':''}`} onClick={()=>{handleServiceTypeChange(orderType)}}>
+                                    {orderType}
+                                </div>
+                            ))
+                            }
+                            {/* <div class='filter-mask' onClick={(event)=>{handleServiceTypeChange('Pickup Drop');}}>
                                 Pickup Drop
                             </div>
-                            <div class='filter-mask' onClick={()=>handleServiceTypeChange('Online Consultation')}>
-                                Online Consulatation
+                            <div class={`filter-mask ${query.orderType==='Online Consul'}`} onClick={()=>handleServiceTypeChange('Online Consultation')}>
+                                Online Consultation
                             </div>
-                            <div class='filter-mask' onClick={()=>handleServiceTypeChange('eVisa')}>
+                            <div class='filter-mask' onClick={(event)=>{handleServiceTypeChange('eVisa'); query.orderType==='eVisa'? event.target.style.backgroundColor='red':null}}>
                                 eVisa
-                            </div>
+                            </div> */}
                         </div>
                         <div>
                             Status:
-                            <div class='status-filter-mask ' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('All')}>
+                            <div class='status-filter-mask status-filter-mask-active' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('All')}>
                                 All
                             </div>
-                            <div class='status-filter-mask ' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('Active')}>
+                            <div class='status-filter-mask status-filter-mask-active' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('Active')}>
                                 Active
                             </div>
-                            <div class='status-filter-mask' style={{backgroundColor:'#f44336', fontSize:'8px'}}onClick={() => handleStatusTypeChange('New')}>
+                            <div class='status-filter-mask status-filter-mask-new' onClick={() => handleStatusTypeChange('New')}>
                                 New
                             </div>
-                            <div  style={{backgroundColor:'#ffc107', fontSize:'8px'}} class='status-filter-mask 'onClick={() => handleStatusTypeChange('In Process')}>
+                            <div class='status-filter-mask status-filter-mask-in-process'onClick={() => handleStatusTypeChange('In Process')}>
                                 In Process
                             </div>
-                            <div style={{backgroundColor:'#2196f3', fontSize:'8px'}} class='status-filter-mask 'onClick={()=>handleStatusTypeChange('Submitted')}>
+                            <div class='status-filter-mask status-filter-mask-submitted'onClick={()=>handleStatusTypeChange('Submitted')}>
                                 Submitted
                             </div>
-                            <div style={{backgroundColor:'#1ddaae', fontSize:'8px'}} class='status-filter-mask ' onClick={()=>handleStatusTypeChange('Complete')}>
+                            <div class='status-filter-mask status-filter-mask-completed' onClick={()=>handleStatusTypeChange('Complete')}>
                                 Completed
                             </div>
-                            <label style={{marginLeft:'2%'}}>Country</label><select defaultValue={query.country} onChange={event => {
+                            <label style={{marginLeft:'2%'}}>Country:</label><select style={{ backgroundColor:'white', border:'none', maxWidth:'15%'}} defaultValue={query.country} onChange={event => {
                                 setQuery({ country : event.target.value })
                                 fetchOrders(serialize({...query, country : event.target.value}))
                             }}>

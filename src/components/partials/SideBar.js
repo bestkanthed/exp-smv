@@ -14,7 +14,7 @@ const sideBarOrder = [
 ]
 
 const mapStateToProps = state => {
-    console.log("Logging the state form HEADER", state.user.user);
+    
     return {
         user : state.user.user
     }
@@ -38,7 +38,7 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                     <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
                     <div class='side-bar-content' >
                     <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
-                    <span style={{textTransform: 'uppercase'}}>{role === 'customer' ? 'Dashboard' : role}</span>
+                    <span>{role === 'customer' ? 'Dashboard' : role}</span>
                     </div>
                     </Link>
                 ) :
@@ -46,21 +46,21 @@ const SideBar = ({user, showLoginPopup, logout, seenNotifications}) => (
                 ,
                 <Link key='notifications' onClick={() => seenNotifications(user._id)} style={{textDecoration:'none', color:'black'}} to='/notifications'>
                 <div class='side-bar-content'>
-                    <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
-                    <span>NOTIFICATIONS</span>
+                    <img style={{marginRight:'25%'}} src='../../../images/ic/ic/notifications/grey600.png' />
+                    <span>Notifications</span>
                 </div>
                 </Link>
                 ,
                 <Link key='past' style={{textDecoration:'none', color:'black'}} to='/past'>
                 <div class='side-bar-content'>
-                    <img style={{marginRight:'25%'}} src='../../../images/ic/timeline/grey600.png' />
-                    <span>PAST ORDERS</span>
+                    <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
+                    <span>Past Applications</span>
                 </div>
                 </Link>,
                 <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/'>
                 <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}>
                     <img style={{marginRight:'25%'}} src='../../../images/ic/highlight_off/grey600.png' />
-                    <span>LOG OUT</span>
+                    <span>Log out</span>
                 </div>
                 </Link>
                 ]
