@@ -8,7 +8,7 @@ import { searchCustomer } from '../../actions/expert'
 const mapDispatchToProps = dispatch => ({ searchCustomer : query => dispatch(searchCustomer(query)) })
 
 const SearchBar = ({ searchCustomer }) => {
-    let query
+    let query, searchButton
     return(
         <div class='row'>
             <div class='col-lg-6 search-bar-image'>
@@ -18,9 +18,11 @@ const SearchBar = ({ searchCustomer }) => {
             </div>
             <div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>
                 <img src='./../../../images/ic/search/grey600.png'/>
-                <input class='search-bar' type='text' placeholder='Search By Name, Email ID, Phone' ref = {node => { query = node }}/>
+                <input class='search-bar' type='text' placeholder='Search By Name, Email ID, Phone'
+                ref = {node => { query = node }}
+                onKeyPress={e => {if (e.key === 'Enter') searchButton.click()} }/>
                 <Link to='/expert/orders'>
-                    <button class='search-button' onClick={() => searchCustomer(query.value)}>Search</button>
+                    <button class='search-button' ref = {node => { searchButton = node }} onClick={() => searchCustomer(query.value)}>Search</button>
                 </Link>
             </div>
         </div>

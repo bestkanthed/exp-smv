@@ -49,20 +49,29 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const Popup = ({popup, children, hidePopup}) => {
-    return (
-        <div class="popup" style={{display: popup.display ? 'inline' : 'none'}}>
-            <div id="cover" style={{background: popup.content === 'Flash' ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.8)'}} onClick = {() => hidePopup()}></div>
-            <div id="popup-frame">
-                <div class="pop-up-bg" style = {popup.animation} style={{top: '80px'}}>
-                    <div class="row">
-                        <div class="cancel" onClick = {hidePopup}>✕</div>
+class Popup extends React.Component {
+    componentDidUpdate () {
+        let { popup, hidePopup } = this.props
+        let { content, display } = popup
+        if( content === 'Flash' && display === true ) setTimeout(() => hidePopup(), 3000)
+    }
+
+    render () {
+        let {popup, hidePopup} = this.props
+        return (
+            <div class="popup" style={{display: popup.display ? 'inline' : 'none'}}>
+                <div id="cover" style={{background: popup.content === 'Flash' ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,0.8)'}} onClick = {() => hidePopup()}></div>
+                <div id="popup-frame">
+                    <div class="pop-up-bg" style = {popup.animation} style={{top: '80px'}}>
+                        <div class="row">
+                            <div class="cancel" onClick = {hidePopup}>✕</div>
+                        </div>
+                        {setPopupContent(popup.content)}
                     </div>
-                    {setPopupContent(popup.content)}
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default connect(

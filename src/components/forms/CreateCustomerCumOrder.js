@@ -297,7 +297,7 @@ class CreateCustomerCumOrder extends React.Component {
                     if(applications.length === 0) return alert('No application')
                     
                     for(let app of applications) {
-                        if(!app.travelDate) return alert('Invalid date entered')
+                        if(!app.travelDate || app.travelDate < new Date().toISOString().split('T')[0]) return alert('Invalid date entered')
                     }
                     
                     postCustomerCumOrder(this.state)}} class="btn btn-primary show-requirements-button">
