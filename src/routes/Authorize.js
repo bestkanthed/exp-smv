@@ -2,6 +2,8 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import Login from './Login'
+
 import Teams from './Admin/Teams'
 import Profile from './Admin/Profile'
 
@@ -14,12 +16,22 @@ import Generate from './Support/Generate'
 import News from './Support/News'
 
 import { setQuery } from '../actions/expert'
+import { hidePopupDone } from '../actions/popup'
 
 function renderRoute (props) {
   
-  let { user, teams, page, match, location, setQuery } = props
+
+  let { user, teams, page, match, location, setQuery, hidePopupDone } = props
+  hidePopupDone()
   if (!user.user) return <Redirect to='/unauthorized' />
   
+  if(page === 'home') {
+    if (user.user.teams.indexOf('customer') !== -1) return <Redirect to='/customer' />
+    if (user.user.teams.indexOf('expert') !== -1) return <Redirect to='/expert' />
+    if (user.user.teams.indexOf('support') !== -1) return <Redirect to='/support' />
+    if (user.user.teams.indexOf('admin') !== -1) return <Redirect to='/admin' />
+  }
+
   let authorize = false;
   for (let team of teams) {
     if (user.user.teams.indexOf(team) !== -1) authorize = true
@@ -78,13 +90,14 @@ const mapStateToProp = state => ({
 })
 
 const mapDispatchToProp = dispatch => ({
-  setQuery: query => dispatch(setQuery(query))
+  setQuery: query => dispatch(setQuery(query)),
+  hidePopupDone: () => dispatch(hidePopupDone())
 })
 
 class Authorize extends React.Component {
   render() {
     console.log('Logging props from Autorize', this.props)
-    return this.props.user.user ? renderRoute(this.props) : <div> Unauthorized </div>
+    return this.props.user.user ? renderRoute(this.props) : <Login />
   }
 }
 

@@ -9,10 +9,12 @@ import Layout from './components/Layout'
 
 import './styles/css/main.scss'
 
+/*
 import Home from './routes/Home'
 import About from './routes/About';
 import Faq from './routes/Faq';
 import Result from './routes/Result';
+*/
 
 import Authorize from './routes/Authorize'
 import Unauthorized from './routes/Unauthorized'
@@ -29,10 +31,7 @@ let Main = () =>
         <Router>
             <Layout>
                 <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/about' component={About}></Route>
-                    <Route exact path='/faq' component={Faq}></Route>
-                    <Route exact path='/requirements/:country/:purpose' component={Result}></Route>
+                    <Route exact path='/' render={() => <Authorize teams={[]} page='home'/>} />
                     <Route path='/unauthorized' component={Unauthorized} />
                     <Route exact path='/notifications' component={Notification} />
                     <Route exact path='/past' component={Past} />

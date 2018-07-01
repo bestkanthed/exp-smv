@@ -33,7 +33,6 @@ class Orders extends React.Component {
         let { orders, fetching, fetched } = this.props.orders
         return (
             <div class='container-fluid expert'>
-                <hr/>
                 <div>
                      <OrderFilters idCustomer={idCustomer} idExpert={idExpert} />
                     {

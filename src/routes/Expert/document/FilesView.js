@@ -1,14 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import  PdfObject  from 'pdfobject'
 
 import { deleteFile } from '../../../actions/expert'
-
-import Dropzone from 'react-dropzone'
-
-import  PdfRender  from '../../../components/utilities/PdfRender'
-import PdfViewer from '../../../components/utilities/PdfViewer'
 
 const imageTypes = [
     'jpeg',

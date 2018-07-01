@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export function fetchNotification () {    
+    return {
+        type: 'FETCH_NOTIFICATIONS',
+        payload: axios.get('/api/users/notifications', { withCredentials: true })
+    }
+}
+
 export function fetchNotifications (idUser) {    
     return {
         type: 'FETCH_NOTIFICATIONS',

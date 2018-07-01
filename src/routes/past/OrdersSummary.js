@@ -28,13 +28,10 @@ const OrdersSummary = ({user, orders, idCustomer}) => (
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.applications.length ? order.applications[0].name : null}  x{order.noOfApplications}<br/>
-                                    {`${order.orderType} - ${order.country}`}
+                                    {order.orderType} <br /> {order.country}
                                 </div>
                                 <div class='col-lg-4'>
                                 Order Id: <br/> {order.orderCode}
-                                </div>
-                                <div class='col-lg-1' style={{backgroundColor:'#f44336', padding:'1%', borderRadius:'8px', color:'white'}}>
-                                    {`${(order.notifications.filter(n => ( n.idFor === user._id && !n.seen ) )).length}`}
                                 </div>
                             </div>
                             <br/>

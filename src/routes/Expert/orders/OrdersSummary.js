@@ -46,11 +46,13 @@ const OrdersSummary = ({user, orders, allowUpdate, idCustomer, supportCustomerVi
                                 <div class='col-lg-4'>
                                 Order Id: <br/> {order.orderCode}
                                 </div>
-                                {/* {(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length ?  */}
-                                <span style={{backgroundColor:'red', padding:'1%', borderRadius:'4px', color:'white'}}>
-                                    {/* {`${(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length}`} */}
-                                    3
-                                </span> 
+                                {
+                                    (order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length ?
+                                    <span style={{backgroundColor:'red', padding:'1%', borderRadius:'4px', color:'white'}}>
+                                        {`${(order.notifications.filter(n => (n.idFor === user._id  && !n.seen) )).length}`}
+                                    </span> :
+                                    null
+                                }
                             </div>
                             <br/>
                             <div class='sub-mask row'>

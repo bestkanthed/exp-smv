@@ -46,14 +46,13 @@ class OrderDescription extends React.Component {
                     <div class='col-lg-2' style={{padding:'2%'}}>
                         <p>Invoice No :</p><p>{order.invoiceNo}</p>
                     </div>
-                    {idCustomer ? null :
+                    {idCustomer ? null : linkedOrders ? linkedOrders.length > 1 ?
                         <Dropdown direction='left' class='order-back col-lg-2' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle class='order-back-div-2' caret>
                                 <img src='../../../images/ic/ic/ic_link_24px.png' />
                             </DropdownToggle>
                             <DropdownMenu style={{minWidth:'360px',overflow:'scroll'}}>
                                 {
-                                    linkedOrders ?
                                     linkedOrders.map(order => 
                                         <Link style={{textDecoration:'none', color:'black'}} to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                                             <div class='mask-2 row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`}}>
@@ -79,11 +78,10 @@ class OrderDescription extends React.Component {
                                                 </div>
                                             </div>
                                         </Link>
-                                    ) :
-                                    null
+                                    )
                                 }
                             </DropdownMenu>
-                        </Dropdown>
+                        </Dropdown> : null : null
                     }
                 </div>
             </div>

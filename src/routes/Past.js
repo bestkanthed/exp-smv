@@ -34,7 +34,6 @@ class Past extends React.Component {
         let idCustomer = user ? user.teams.indexOf('customer') !== -1 ? user._id : undefined : undefined
         return (
             <div class='container-fluid expert'>
-                <hr/>
                 <div>
                     {
                         user ?

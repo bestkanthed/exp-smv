@@ -21,7 +21,7 @@ export function fetchUserProfile (idUser) {
 export function updateUserProfile (idUser, formData) {
     return {
         type: 'UPDATE_USER_PROFILE',
-        payload: axios('/api/admin/users'+idUser, {
+        payload: axios('/api/admin/users/'+idUser, {
             method: 'put',
             data: formData,
             withCredentials: true
