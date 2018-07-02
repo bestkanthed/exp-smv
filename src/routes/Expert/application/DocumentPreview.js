@@ -113,7 +113,7 @@ class DocumentPreview extends React.Component {
                     </Link>
                     {
                         idCustomer? null : 
-                        <span style={{float:'right'}}>
+                        <span>
                             <div style={{display:'inline-block'}}>
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                                     <DropdownToggle style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
@@ -178,7 +178,6 @@ class DocumentPreview extends React.Component {
                     {/* <span class='col-lg-6' onClick={()=>{details.style.display='block'}}>Show</span>
                     <span class='col-lg-6' onClick={()=>{details.style.display='none'}}>Hide</span> */}
                     <span style={{backgroundColor:'#fafafa', margin:'20px', fontSize:'9px'}}>
-                    {console.log('sfsdf^^^^^^^^^^^', document)}
                         {
                             user ?
                             document.comments.find(comment => comment.idSeenBy.indexOf(user._id) === -1) ?
@@ -187,17 +186,17 @@ class DocumentPreview extends React.Component {
                             null
                         }
                         { document.comments.length }
-                        <span style={{marginLeft:'20%'}}>
-                            Status: {
-                                //idCustomer?
-                                document.status
-                                // <select value={document.status}
-                                // onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
-                                // style={{color:`${document.status==='To Be Reviewed' ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>
-                                //     <option style={{color:'#4a4a4a'}} value='To Be Reviewed'>To Be Reviewed</option>
-                                //     <option style={{color:'#7ed321'}} value='Perfect'>Perfect</option>
-                                //     <option style={{color:'#f36b51'}} value='Not OK'>Not OK</option>
-                                // </select>
+                        <span> Status:
+                            {' '}{
+                                idCustomer ?
+                                document.status :
+                                <select value={document.status}
+                                onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
+                                style={{color:`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>
+                                    <option style={{color:'#4a4a4a'}} value='To Be Reviewed'>To Be Reviewed</option>
+                                    <option style={{color:'#7ed321'}} value='Perfect'>Perfect</option>
+                                    <option style={{color:'#f36b51'}} value='Not OK'>Not OK</option>
+                                </select>
                             }
                         </span>
                     </span>

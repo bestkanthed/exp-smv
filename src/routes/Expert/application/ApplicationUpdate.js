@@ -41,7 +41,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
     <div class='application-update-form'>
         <div>
             <div>
-                <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`, padding}}>
+                <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`, paddingTop:'4px', paddingBottom:'4px'}}>
                     <Link to={ (idCustomer ? '/customers/orders/': '/expert/orders/') + (order ? order._id : '') }>
                     <span class='col-lg-1'>
                         <img src='../../../images/ic/arrow_back/grey600.png' />
