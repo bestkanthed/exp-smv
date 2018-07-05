@@ -25,29 +25,57 @@ line-height: 60px;
   background-color:#f44336;
   font-size: 8px;
   color:white;
+  border: none;
 }
 
+.status-filter-mask-new:hover{
+  box-shadow: 0px 0px 5px 5px #f44336;
+  border:none;
+}
 
 .status-filter-mask-in-process{
   background-color:#ffc107;
   font-size: 8px;
   color:white;
+  border: none;
+}
+
+.status-filter-mask-in-process:hover{
+  box-shadow: 0px 0px 5px 5px #ffc107;
+  border:none;
 }
 
 .status-filter-mask-submitted{
   background-color:#2196f3;
   font-size: 8px;
   color:white;
+  border: none;
+}
+
+.status-filter-mask-submitted:hover{
+  box-shadow: 0px 0px 5px 5px #2196f3;
+  border:none;
 }
 
 .status-filter-mask-completed{
   background-color:#1ddaae;
   font-size: 8px;
   color:white;
+  border: none;
+}
+
+.status-filter-mask-completed:hover{
+  box-shadow: 0px 0px 5px 5px #1ddaae;
+  border:none;
 }
 
 .status-filter-mask-active{
   font-size: 8px;
+}
+
+.status-filter-mask-active:hover{
+  box-shadow: 0px 0px 5px 5px #cfd8dc;
+  border:none;
 }
 
 .selectedFilter{

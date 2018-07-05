@@ -4,8 +4,17 @@ import { NavLink as Link } from 'react-router-dom';
 import './partials.scss';
 
 import { searchCustomer } from '../../actions/expert'
+import { PassThrough } from 'stream';
 
 const mapDispatchToProps = dispatch => ({ searchCustomer : query => dispatch(searchCustomer(query)) })
+
+function location(path=''){
+    switch(path) {
+        case '/expert/orders' : return 'Visa Expert Dashboard';
+        case '/expert/notifications' : return 'Notifications';
+        case '/expert/applications' : return 'Application';        
+    }
+}
 
 const SearchBar = ({ searchCustomer }) => {
     let query, searchButton
@@ -13,8 +22,9 @@ const SearchBar = ({ searchCustomer }) => {
         <div class='row'>
             <div class='col-lg-6 search-bar-image'>
             <Link to='/'>
-                <img style={{maxWidth:'100%'}} src='../../images/Logos.png'/>
-            </Link>
+                <img style={{maxWidth:'50%', marginRight:'3%'}} src='../../images/Logos.png'/>
+            </Link> 
+            Visa Expert Dashboard
             </div>
             <div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>
                 <img src='./../../../images/ic/search/grey600.png'/>

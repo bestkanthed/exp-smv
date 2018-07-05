@@ -67,15 +67,6 @@ class OrderFilters extends React.Component {
                                 </div>
                             ))
                             }
-                            {/* <div class='filter-mask' onClick={(event)=>{handleServiceTypeChange('Pickup Drop');}}>
-                                Pickup Drop
-                            </div>
-                            <div class={`filter-mask ${query.orderType==='Online Consul'}`} onClick={()=>handleServiceTypeChange('Online Consultation')}>
-                                Online Consultation
-                            </div>
-                            <div class='filter-mask' onClick={(event)=>{handleServiceTypeChange('eVisa'); query.orderType==='eVisa'? event.target.style.backgroundColor='red':null}}>
-                                eVisa
-                            </div> */}
                         </div>
                         <div>
                             Status:

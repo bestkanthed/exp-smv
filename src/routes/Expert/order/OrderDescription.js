@@ -51,7 +51,7 @@ class OrderDescription extends React.Component {
                             <DropdownToggle class='order-back-div-2' caret>
                                 <img src='../../../images/ic/ic/ic_link_24px.png' />
                             </DropdownToggle>
-                            <DropdownMenu style={{minWidth:'360px',overflow:'scroll'}}>
+                            <DropdownMenu style={{minWidth:'360px',overflow:'scroll', height:'50px'}}>
                                 {
                                     linkedOrders.map(order => 
                                         <Link style={{textDecoration:'none', color:'black'}} to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
