@@ -70,22 +70,22 @@ class OrderFilters extends React.Component {
                         </div>
                         <div>
                             Status:
-                            <div class='status-filter-mask status-filter-mask-active' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('All')}>
+                            <div class={`status-filter-mask status-filter-mask-active ${query.status==='All'? 'status-select-filter':''}`} style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('All')}>
                                 All
                             </div>
-                            <div class='status-filter-mask status-filter-mask-active' style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('Active')}>
+                            <div class={`status-filter-mask status-filter-mask-active ${query.status==='Active'? 'status-select-filter':''}`} style={{fontSize:'8px'}} onClick={() => handleStatusTypeChange('Active')}>
                                 Active
                             </div>
-                            <div class='status-filter-mask status-filter-mask-new' onClick={() => handleStatusTypeChange('New')}>
+                            <div class={`status-filter-mask status-filter-mask-new ${query.status==='New'? 'status-select-new':''}`} onClick={() => handleStatusTypeChange('New')}>
                                 New
                             </div>
-                            <div class='status-filter-mask status-filter-mask-in-process'onClick={() => handleStatusTypeChange('In Process')}>
+                            <div class={`status-filter-mask status-filter-mask-in-process ${query.status==='In Process'? 'status-select-in-process':''}`} onClick={() => handleStatusTypeChange('In Process')}>
                                 In Process
                             </div>
-                            <div class='status-filter-mask status-filter-mask-submitted'onClick={()=>handleStatusTypeChange('Submitted')}>
+                            <div class={`status-filter-mask status-filter-mask-submitted ${query.status==='Submitted'? 'status-select-submitted':''}`}onClick={()=>handleStatusTypeChange('Submitted')}>
                                 Submitted
                             </div>
-                            <div class='status-filter-mask status-filter-mask-completed' onClick={()=>handleStatusTypeChange('Complete')}>
+                            <div class={`status-filter-mask status-filter-mask-completed ${query.status==='Complete'? 'status-select-completed':''}`} onClick={()=>handleStatusTypeChange('Complete')}>
                                 Completed
                             </div>
                             <label style={{marginLeft:'2%'}}>Country:</label><select style={{ backgroundColor:'white', border:'none', maxWidth:'15%'}} defaultValue={query.country} onChange={event => {
