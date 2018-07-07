@@ -87,12 +87,6 @@ class DocumentPreview extends React.Component {
         changeDocumentCategory(event.target.innerText, this.props.document._id);
     }
 
-    editDocName(event) {
-        this.state.isEditable? 
-        console.log('nope'):
-        console.log('this is the docu name', event.target.value)
-    }
-
     setEditable(name) {
         this.setState({...this.state, isEditable: !this.state.isEditable})
         

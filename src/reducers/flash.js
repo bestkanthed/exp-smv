@@ -13,7 +13,6 @@ export default function reducer(state = initialState, action) {
     let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'
 
     if( postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse) {
-        console.log('Logging data flash after response fullfiled', action, payload)
         if(payload.data && payload.data.error) return {
             ...state,
             messageType: 'error',

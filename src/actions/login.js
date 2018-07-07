@@ -8,9 +8,6 @@ export function checkResetToken (token) {
 }
 
 export function resetPassword (credentials) {
-    
-    console.log('Logging credentials from resetpassword', credentials)
-
     return {
         type: 'RESET_PASSWORD',
         payload: axios('/api/reset', {

@@ -96,7 +96,6 @@ const mapDispatchToProp = dispatch => ({
 
 class Authorize extends React.Component {
   render() {
-    console.log('Logging props from Autorize', this.props)
     return this.props.user.user ? renderRoute(this.props) : <Login />
   }
 }

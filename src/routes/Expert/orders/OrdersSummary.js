@@ -35,7 +35,6 @@ const OrdersSummary = ({user, orders, allowUpdate, idCustomer, supportCustomerVi
             orders ?
             orders.map(order =>
                 <div class='col-md-6 col-sm-12 col-lg-4' key={order._id}>
-                {console.log('------------', order)}
                     <Link style={{textDecoration:'none', color:'black'}} to={(idCustomer ? '/customer' : '/expert') + '/orders/'+order._id} >
                         <div class='mask-2 row' style={{borderRight:`solid 4px ${BorderColor(order.status)}`, padding:'5%'}}>
                             <div class='sub-mask row'>

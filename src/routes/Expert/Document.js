@@ -55,24 +55,16 @@ class Document extends React.Component {
 
     toggleNextFiles() {
         const files = this.props.document.document.files;
-        console.log('-----------------------this is the currentIndex state', this.state.currentFileIndex);
         let fileIndex = this.state.currentFileIndex;
         fileIndex++;
-        //console.log('these are the props',files)
-        console.log('------------------------this is the fileIndex', fileIndex);
         fileIndex<files.length ? this.setState({currentFileIndex : fileIndex}) : 0;
-        console.log('************************this is the currentIndex state', this.state.currentFileIndex);
     }
 
     togglePrevFiles(){
         const files = this.props.document.document.files;
-        console.log('-----------------------this is the currentIndex state', this.state.currentFileIndex);
         let fileIndex = this.state.currentFileIndex;
         fileIndex--;
-        //console.log('these are the props',files)
-        console.log('------------------------this is the fileIndex', fileIndex)
         fileIndex >= 0 ? this.setState({currentFileIndex : fileIndex}) : 0;
-        console.log('************************this is the currentIndex state', this.state.currentFileIndex);
     }
 
     componentWillMount() {
@@ -173,7 +165,6 @@ class Document extends React.Component {
                     null :
                     <h2>Error connecting to the server</h2>
                 }
-                {console.log('These are the props',this.props)}
             </div>
         );
     }

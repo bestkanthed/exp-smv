@@ -9,7 +9,6 @@ import { seenNotifications } from '../../actions/notification'
 import { UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 const mapStateToProps = state => {
-    console.log("Logging the state form HEADER", state.user.user);
     return {
         user : state.user.user
     }

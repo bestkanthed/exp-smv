@@ -22,9 +22,11 @@ import Notification from './routes/Notification'
 import Past from './routes/Past'
 import Reset from './routes/Reset'
 
+/*
 store.subscribe(() => {
     console.log(store.getState())
 });
+*/
 
 let Main = () =>
     <Provider store = {store}>

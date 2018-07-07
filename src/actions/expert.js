@@ -106,7 +106,6 @@ export function loadDocument (idDocument) {
 }
 
 export function updateDocument (document) {
-    console.log('Logging document from update document', document)
     return {
         type: 'UPDATE_DOCUMENT',
         payload: axios('/api/expert/documents', {

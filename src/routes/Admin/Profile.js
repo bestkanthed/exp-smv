@@ -31,7 +31,6 @@ class Profile extends React.Component {
                     fetched ?
                     user ?
                     <div class='profile-view'>                        
-                        <p>{ console.log('logging teams', user.teams) }</p>
                         <form id="update-user-form" >
                             <h3>Update User</h3>
                             <div class="row user-form">
