@@ -1,17 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import PDFObject from 'pdfobject';
 
 class PdfRender extends Component {
   componentDidMount() {
-    const { pdfBlob, containerId } = this.props;
-
-    PDFObject.embed(pdfBlob, `#${containerId}`);
+    const { pdfBlob } = this.props;
+    PDFObject.embed(pdfBlob, '#pdf-viewer');
   }
 
   render() {
-    const { width, height, containerId } = this.props;
-
-    return <div style={{ width:'100%', height:'100%' }} id={'pdf-viewer'} />;
+    return <div style={{height:'-webkit-fill-available', width:'-webkit-fill-available'}} id={'pdf-viewer'} />;
   }
 }
 
