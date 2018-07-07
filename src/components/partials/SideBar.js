@@ -46,7 +46,7 @@ class SideBar extends React.Component {
                             <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role}>
                             <div class='side-bar-content' >
                             <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
-                            <span style={{textTransform: 'capitalize'}}>{role === 'customer' ? 'Dashboard' : role}</span>
+                            <span>{role === 'customer' ? 'Dashboard' : role}</span>
                             </div>
                             </Link>
                         ) :
@@ -54,8 +54,8 @@ class SideBar extends React.Component {
                         ,
                         <Link key='notifications' onClick={() => seenNotifications(user._id)} style={{textDecoration:'none', color:'black'}} to='/notifications'>
                         <div class='side-bar-content'>
-                            <img style={{marginRight:'25%'}} src='../../../images/ic/ic/notifications/grey600.png' />
-                            <span> Notifications
+                            <img style={{marginRight:'25%', marginLeft:'2%'}} src='../../../images/ic/ic/notifications/grey600.png' />
+                            <span>Notifications{'\u00A0'}
                                 {
                                     unseen.length ?
                                     <span style={{backgroundColor:'#f44336', padding:'2%', margin:'1%', borderRadius:'12px', color:'white'}}>{unseen.length === 100 ? '99+' : unseen.length}</span>
@@ -67,13 +67,13 @@ class SideBar extends React.Component {
                         ,
                         <Link key='past' style={{textDecoration:'none', color:'black'}} to='/past'>
                         <div class='side-bar-content'>
-                            <img style={{marginRight:'25%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
+                            <img style={{marginRight:'24%', marginLeft:'1%'}} src='../../../images/ic/hourglass_empty/grey600.png' />
                             <span>Past Applications</span>
                         </div>
                         </Link>,
                         <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/'>
                         <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}>
-                            <img style={{marginRight:'25%'}} src='../../../images/ic/highlight_off/grey600.png' />
+                            <img style={{marginRight:'25%', marginLeft:'2%'}} src='../../../images/ic/highlight_off/grey600.png' />
                             <span>Log out</span>
                         </div>
                         </Link>
@@ -81,7 +81,7 @@ class SideBar extends React.Component {
                     :
                     <div class='side-bar-content' onClick = {e => {e.preventDefault(); showLoginPopup()}}>
                         <img style={{marginRight:'25%'}} src='../../../images/ic/person/grey600.png' />
-                        <span>LOGIN</span>
+                        <span>Login</span>
                     </div>
                 }
             </div>

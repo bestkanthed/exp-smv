@@ -24,7 +24,7 @@ import Reset from './routes/Reset'
 
 /*
 store.subscribe(() => {
-    console.log(store.getState())
+    console.log('this right here is the state----',store.getState())
 });
 */
 

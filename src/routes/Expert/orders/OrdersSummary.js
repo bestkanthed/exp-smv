@@ -40,7 +40,7 @@ const OrdersSummary = ({user, orders, allowUpdate, idCustomer, supportCustomerVi
                             <div class='sub-mask row'>
                                 <div class='col-lg-7 container-fluid'>
                                     {order.applications.length ? order.applications[0].name : null}  x{order.noOfApplications}<br/>
-                                    {order.orderType}<br/>{order.country}
+                                    <span style={{whiteSpace:'nowrap'}}>{order.orderType}</span><br/>{order.country}
                                 </div>
                                 <div class='col-lg-4'>
                                 Order Id: <br/> {order.orderCode}

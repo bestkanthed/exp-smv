@@ -154,3 +154,13 @@ cursor: pointer;
 .invisible-input{
   display: none;
 }
+
+.show-tooltip{
+  display: block;
+  z-index: 1;
+  position: relative;
+}
+
+.hide-tooltip{
+  display: none
+}
