@@ -19,6 +19,7 @@
 .black {
   -webkit-filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
   filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+  z-index: -1;
 }
 
 .mask-2{

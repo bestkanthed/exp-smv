@@ -187,7 +187,7 @@ class DocumentPreview extends React.Component {
                         <span> Status:
                             {' '}{
                                 idCustomer ?
-                                document.status :
+                                <span style={{color :`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>document.status</span> :
                                 <select value={document.status}
                                 onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
                                 style={{color:`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>
