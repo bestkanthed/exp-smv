@@ -20,12 +20,34 @@ class SearchBar extends React.Component {
         let query, searchButton
         return(
             <div class='row'>
-                <div class='col-lg-6 search-bar-image'>
+                <div class={`${
+                     this.props.user?
+                        this.props.user.teams.find((elem) => {
+                            return elem === 'customer'
+                        })? 'col-lg-8':'col-lg-6'
+                        : null
+                 
+                } search-bar-image`}>
                 <Link to='/'>
                     <img style={{maxWidth:'50%', marginRight:'3%'}} src='../../images/Logos.png'/>
-                </Link> 
-                 Dashboard
+                </Link>
+                {
+                     this.props.user?
+                        this.props.user.teams.find((elem) => {
+                            return elem === 'customer'
+                        })? '':'Visa Expert Dasboard'
+                        : null
+                 
+                } 
                 </div> 
+                {
+                     this.props.user?
+                        this.props.user.teams.find((elem) => {
+                            return elem === 'customer'
+                        })? <div class='col-lg-4'style={{marginTop: '4%'}}>For any escalations call +91 8291999116</div>:null
+                        : null
+                 
+                }
                 {
                     this.props.user? 
                        this.props.user.teams.find((element) => {
