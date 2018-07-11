@@ -34,7 +34,8 @@ let Main = () =>
             <Layout>
                 <Switch>
                     <Route exact path='/' render={() => <Authorize teams={[]} page='home'/>} />
-                    <Route path='/unauthorized' component={Unauthorized} />
+                    <Route exact path='/login' render={() => <Authorize teams={[]} page='home'/>} />
+                    <Route exact path='/unauthorized' component={Unauthorized} />
                     <Route exact path='/notifications' component={Notification} />
                     <Route exact path='/past' component={Past} />
                     <Route exact path='/reset/:token' component={Reset} />
