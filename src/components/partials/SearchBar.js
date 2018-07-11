@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
                  
                 } search-bar-image`}>
                 <Link to='/'>
-                    <img style={{maxWidth:'50%', marginRight:'3%'}} src='../../images/Logos.png'/>
+                    <img style={{maxWidth:'50%', marginRight:'3%'}} src='../../ops-app/images/Logos.png'/>
                 </Link>
                 {
                      this.props.user?
@@ -53,7 +53,7 @@ class SearchBar extends React.Component {
                        this.props.user.teams.find((element) => {
                            return element === 'customer'
                        }) ? null :<div class='col-lg-6' style={{backgroundColor:'#fafafa'}}>
-                       <img src='./../../../images/ic/search/grey600.png'/>
+                       <img src='./../../../ops-app/images/ic/search/grey600.png'/>
                        <input class='search-bar' type='text' placeholder='Search By Name, Email ID, Phone'
                        ref = {node => { query = node }}
                        onKeyPress={e => {if (e.key === 'Enter') searchButton.click()} }/>

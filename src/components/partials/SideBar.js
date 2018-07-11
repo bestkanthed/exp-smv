@@ -57,7 +57,7 @@ class SideBar extends React.Component {
                         (user.teams.sort((d1, d2) => ( sideBarOrder.indexOf(d1) < sideBarOrder.indexOf(d2) ? -1 : 1 ))).map(role =>
                             <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role} onClick={() => this.toggle(role)}>
                             <div class={`side-bar-content ${this.state.currentTile===role? 'selected':''}`} >
-                            <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../ops-app/images/ic/support.png':role === 'admin'? '../../../images/ic/person/grey600.png' : '../../../images/ic/home/grey600.png'}/>
+                            <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../ops-app/images/ic/support.png':role === 'admin'? '../../../ops-app/images/ic/person/grey600.png' : '../../../ops-app/images/ic/home/grey600.png'}/>
                             <span>{role === 'customer' ? 'Dashboard' : role.charAt(0).toUpperCase() + role.slice(1)}</span>
                             </div>
                             </Link>
