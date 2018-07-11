@@ -66,11 +66,11 @@ class Application extends React.Component {
                             order ?
                             <h4>
                                 <Link to={idCustomer ? '/customer/orders' : '/expert/orders'}>Home</Link>
-                                <span>{' '}<img src='/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span> 
+                                <span>{' '}<img src='/ops-app/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span> 
                                 <Link to={(idCustomer ? '/customer' : '/expert' )+'/orders/'+order._id}>
                                     {order.applications.length ? order.applications[0].name : null}x{order.noOfApplications} 
                                 </ Link>
-                                <span>{' '}<img src='/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span> 
+                                <span>{' '}<img src='/ops-app/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span> 
                                 {application.name}
                             </h4> :
                             null

@@ -29,7 +29,7 @@ let FlagScroll = ({flagScrollCountries, showPopup}) => (
             {flagScrollCountries ? flagScrollCountries.map(country =>
                 <li class="flag-item" key = {country.code}>
                     <a onClick = {() => showPopup(country.name)} class="flag-link">
-                        <img src = {"/images/flags/"+country.code+".png"} class="flag-image"/>
+                        <img src = {"/ops-app/images/flags/"+country.code+".png"} class="flag-image"/>
                         <br/>
                         <span class="flag-item-text">{country.name}</span>
                     </a>

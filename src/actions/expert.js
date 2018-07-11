@@ -12,7 +12,7 @@ export function fileTypeRejected () {
         type: 'SET_FLASH_MESSAGE',
         payload : {
             messageType: 'error',
-            message: 'Unable to upload because the file type is incompatiple. Accepted file types are images, .pdf, .doc, .docx, .xls, .xlsx'
+            message: 'Unable to upload because the file type is incompatiple. Accepted file types are ops-app/images, .pdf, .doc, .docx, .xls, .xlsx'
         }
     }
 }

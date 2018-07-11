@@ -75,7 +75,7 @@ class Comments extends React.Component {
                             if(!newComment.value) return alert('Please write something in the comment')
                             postComment({text: newComment.value, idDocument, idCustomer});
                             newComment.value = '';
-                        }}><img src='../../../images/ic/ic/ic_send_24px.png' style={{border:'none'}}/></button>
+                        }}><img src='../../../ops-app/images/ic/ic/ic_send_24px.png' style={{border:'none'}}/></button>
                     </form>
                 </div> }
         </div>

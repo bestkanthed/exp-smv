@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
 let GetStarted = ({countries, getStarted, setGetStartedCountry, setGetStartedPurpose}) => {
     return (
         <div class="row get-started-row">
-            <div class="col-lg-5 form-image"><img src="/images/go.png" width="100%" class="go"/></div>
+            <div class="col-lg-5 form-image"><img src="/ops-app/images/go.png" width="100%" class="go"/></div>
             <div class="col-lg-7">
             <form method="POST" id="show_requirements_form" class="show-requirements">
                 <input type="hidden" name="_csrf"/>

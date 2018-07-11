@@ -1,31 +1,31 @@
 @font-face {
     font-family:Avenir-Light;
-    src: url(/fonts/AvenirNextLTPro-Regular.otf);
+    src: url(/ops-app/fonts/AvenirNextLTPro-Regular.otf);
 }
 
 @font-face {
     font-family:Avenir-Book;
-    src: url(/fonts/AvenirLTStd-Book.otf);
+    src: url(/ops-app/fonts/AvenirLTStd-Book.otf);
 }
 
 @font-face {
     font-family:Avenir-Medium;
-    src: url(/fonts/AvenirLTStd-Medium.otf);
+    src: url(/ops-app/fonts/AvenirLTStd-Medium.otf);
 }
 
 @font-face {
     font-family:Avenir-Medium;
-    src: url(/fonts/AvenirLTStd-Medium.otf);
+    src: url(/ops-app/fonts/AvenirLTStd-Medium.otf);
 }
 
 @font-face {
     font-family: Demi;
-    src: url(/fonts/AvenirNextLTPro-Demi.otf);
+    src: url(/ops-app/fonts/AvenirNextLTPro-Demi.otf);
 }
 
 @font-face {
     font-family: Avenir-Roman;
-    src: url(/fonts/AvenirLTStd-Roman.otf);
+    src: url(/ops-app/fonts/AvenirLTStd-Roman.otf);
     font-weight: 900;
 }
 
@@ -364,7 +364,7 @@ input.city-typeahead {
 }
 
 .landing-row{
-  background-image: url("/images/internal-bg.png");
+  background-image: url("/ops-app/images/internal-bg.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 100% auto;
@@ -617,7 +617,7 @@ li.visa-type > a{
   }
 
   .landing-row{
-    background-image: url("/images/internal-bg.png");
+    background-image: url("/ops-app/images/internal-bg.png");
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;

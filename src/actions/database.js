@@ -7,14 +7,14 @@ export function fetchVisas (params) {
     }
 }
 
-export function fetchCountries () {    
+export function fetchCountries () {
     return {
         type: 'FETCH_COUNTRIES',
         payload: axios.get('/api/countries', {withCredentials: true})
     }
 }
 
-export function fetchPurposes () {    
+export function fetchPurposes () {
     return {
         type: 'FETCH_PURPOSES',
         payload: axios.get('/api/purposes', {withCredentials: true})

@@ -28,7 +28,7 @@ class OrderDescription extends React.Component {
             <div>       
                 <div class='mask row' style={{borderRight:`6px solid ${BorderColor(order.applications.length ? order.applications[0].status : 'Past')}`}}>
                     <Link class='col-lg-1 order-back' to={idCustomer ? '/customer/orders' : '/expert/orders'}>
-                        <div class='order-back-div'><img src='../../../images/ic/arrow_back/grey600.png'/></div>
+                        <div class='order-back-div'><img src='../../../ops-app/images/ic/arrow_back/grey600.png'/></div>
                     </Link>
                     {
                         order.applications.length ?
@@ -49,7 +49,7 @@ class OrderDescription extends React.Component {
                     {idCustomer ? null : linkedOrders ? linkedOrders.length > 1 ?
                         <Dropdown direction='left' class='order-back col-lg-2' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle class='order-back-div-2' caret>
-                                <img src='../../../images/ic/ic/ic_link_24px.png' />
+                                <img src='../../../ops-app/images/ic/ic/ic_link_24px.png' />
                             </DropdownToggle>
                             <DropdownMenu style={{minWidth:'360px',overflow:'scroll', height:'50px'}}>
                                 {

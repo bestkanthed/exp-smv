@@ -71,13 +71,13 @@ figure {
 }
 
 
-// Images
+// ops-app/images
 
 img {
   vertical-align: middle;
 }
 
-// Responsive images (ensure images don't scale beyond their parents)
+// Responsive ops-app/images (ensure ops-app/images don't scale beyond their parents)
 .img-responsive {
   @include img-responsive;
 }

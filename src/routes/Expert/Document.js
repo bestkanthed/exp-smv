@@ -94,7 +94,7 @@ class Document extends React.Component {
                             <div class='header-mask row'>
                             <Link to={application ? (idCustomer ? '/customer' : '/expert') + `/applications/${application._id }`: (idCustomer ? '/customer' : '/expert') +'/orders'}>
                             <div class='col-lg-1'>
-                            <img src='../../../images/ic/arrow_back/grey600.png' />
+                            <img src='../../../ops-app/images/ic/arrow_back/grey600.png' />
                             </div>
                             </Link>
                                 {
@@ -113,7 +113,7 @@ class Document extends React.Component {
                                 {
                                     application ? application.status === 'Past' ? null :
                                     <div class='col-lg-3'>
-                                        <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => this.upload.click()}><img src='../../../images/ic/ic/ic_file_upload_24px.png' /> Upload </button>
+                                        <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => this.upload.click()}><img src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png' /> Upload </button>
                                         <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                                         <button class='button-mask-btn' onClick={() => {
                                             if(confirm("Are you sure you want to delete") && document.files) {
@@ -122,7 +122,7 @@ class Document extends React.Component {
                                                 window.location.href = '/expert/applications/'+application._id :
                                                 null
                                             }
-                                        }}><img src='../../../images/ic/ic/ic_edit_24px.png' /> Delete </button>
+                                        }}><img src='../../../ops-app/images/ic/ic/ic_edit_24px.png' /> Delete </button>
                                     </div> : null
                                 }
                                 <div class='col-lg-2'>
@@ -144,7 +144,7 @@ class Document extends React.Component {
                                 <div class='col-lg-7' style={{height: '75vh',  marginLeft:'2%'}}>
                                     <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
                                     <div class='row' style={{backgroundColor:'#4A4A4A'}}>
-                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../images/ic/ic/ic_chevron_left_24px.png'/></p></div>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../ops-app/images/ic/ic/ic_chevron_left_24px.png'/></p></div>
                                         <div class='col-lg-10' style={{backgroundColor:'#4A4A4A'}}>
                                         {
                                             document.files ?
@@ -152,7 +152,7 @@ class Document extends React.Component {
                                             null
                                         }
                                         </div>
-                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../images/ic/ic/ic_chevron_right_24px.png'/></p></div>
+                                        <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../ops-app/images/ic/ic/ic_chevron_right_24px.png'/></p></div>
                                     </div>
                                     <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
                                 </div>

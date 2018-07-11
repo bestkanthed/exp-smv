@@ -23,7 +23,7 @@ class Signup extends React.Component {
         let name, email, password, phone, userOtp
         return (
             <div class='container login-register'>
-                <div class='row brand-icon'><img src="/images/Logos.png" width="180" /></div>
+                <div class='row brand-icon'><img src="/ops-app/images/Logos.png" width="180" /></div>
                 <Tabs style={{backgroundColor:'rgba(0, 0, 0, 0.05)'}}>
                     <TabList>
                         <Tab>Login</Tab>

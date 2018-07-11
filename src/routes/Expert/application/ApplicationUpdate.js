@@ -44,7 +44,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                 <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`, paddingTop:'4px', paddingBottom:'4px'}}>
                     <Link to={ (idCustomer ? '/customers/orders/': '/expert/orders/') + (order ? order._id : '') }>
                     <span class='col-lg-1'>
-                        <img src='../../../images/ic/arrow_back/grey600.png' />
+                        <img src='../../../ops-app/images/ic/arrow_back/grey600.png' />
                     </span>
                     </Link>
                     <span class='col-lg-2'>
@@ -102,7 +102,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         application.status === 'Past' ?
                         null :
                         <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{color:`${borderColor(application.status)}`}}>
-                            <img src='../../../images/ic/ic/ic_edit_24px.png' /> Edit
+                            <img src='../../../ops-app/images/ic/ic/ic_edit_24px.png' /> Edit
                         </span>
                     }
             </div>

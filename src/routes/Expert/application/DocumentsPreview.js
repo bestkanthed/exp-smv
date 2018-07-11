@@ -39,7 +39,7 @@ const DocumentsPreview = ({ past, documents, idCustomer, category, idApplication
                             status: 'Pending'
                         })
                         name.value = ''
-                    }} src='../../../images/ic/addDoc.png' />
+                    }} src='../../../ops-app/images/ic/addDoc.png' />
                 </div>
                 }
                 </div> 

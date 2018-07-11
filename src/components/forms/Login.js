@@ -49,7 +49,7 @@ let Login = ({sendLoginRequest, forgotPassword}) => {
     //   </div>
     // </div>
     <div class='login'>
-        <img  style={{paddingTop:'10%'}} src='../../../images/Logos.png'/>
+        <img  style={{paddingTop:'10%'}} src='../../../ops-app/images/Logos.png'/>
         <div style={{marginLeft:'40%', marginTop:'10%'}}><button style={{fontSize:'21px', border:'solid 1px #d8d8d8', padding:'5%'}}>Login</button></div>
         <div style={{marginLeft:'16%', marginTop:'5%'}}>
           <input type="email" name="email" id="email" placeholder="Email ID" required="required" class="createOrder background"

@@ -13,7 +13,7 @@ let ChangePassword = ({postChangePassword}) => {
   let password, confirmPassword;
   return (
     <div class='login'>
-        <img  style={{paddingLeft:'10%', paddingTop:'20%'}} src='../../../images/Logos.png'/>
+        <img  style={{paddingLeft:'10%', paddingTop:'20%'}} src='../../../ops-app/images/Logos.png'/>
         <div style={{marginLeft:'40%', marginTop:'20%'}}><button style={{fontSize:'21px', border:'solid 1px #d8d8d8', padding:'5%'}}>Change Password</button></div>
         <div style={{marginLeft:'18%', marginTop:'5%'}}>
           <input type="password" placeholder="New Password" class="createOrder background" ref = { node => { password = node; }} /> <br/>

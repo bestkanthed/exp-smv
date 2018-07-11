@@ -38,7 +38,7 @@ class VisaType extends React.Component {
                                         <div class="col-lg-12 tag-visa-value">{visa.name}</div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2"><img src="/images/arrow_right.svg" style={{float:'right'}}/></div>
+                                    <div class="col-lg-2"><img src="/ops-app/images/arrow_right.svg" style={{float:'right'}}/></div>
                                     </div>
                                 </a>
                             </li>

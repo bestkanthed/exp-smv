@@ -46,7 +46,7 @@ class Order extends React.Component {
                     <div>
                         <h4>
                             <Link to={idCustomer ? '/customer/orders' : supportView ? '/expert/orders+idExpert='+order.idExpert : '/expert/orders'}>Home</Link>
-                            <span>{' '}<img src='/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span>
+                            <span>{' '}<img src='/ops-app/images/ic/ic/ic_chevron_right_24px.png' />{' '}</span>
                             {order.applications.length ? order.applications[0].name : null}x{order.noOfApplications}
                         </h4>
                         <OrderDescription linkedOrders={linkedOrders} order={order} idCustomer={idCustomer}/>

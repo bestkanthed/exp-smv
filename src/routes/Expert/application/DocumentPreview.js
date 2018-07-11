@@ -59,10 +59,10 @@ const mapStateToProps = state => ({
 
 function setDocImg(name = '') {
     switch(name) {
-        case 'doc' : return '../../../images/ic/ic/word.png';
-        case 'docx' : return '../../../images/ic/ic/word.png';
-        case 'xls' : return '../../../images/ic/ic/excel_icon.png';
-        case 'xlsx' : return '../../../images/ic/ic/excel_icon.png';
+        case 'doc' : return '../../../ops-app/images/ic/ic/word.png';
+        case 'docx' : return '../../../ops-app/images/ic/ic/word.png';
+        case 'xls' : return '../../../ops-app/images/ic/ic/excel_icon.png';
+        case 'xlsx' : return '../../../ops-app/images/ic/ic/excel_icon.png';
     }
 }
 
@@ -115,7 +115,7 @@ class DocumentPreview extends React.Component {
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
                                     <DropdownToggle onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
                                         <div class={`${this.state.hoverMove? 'show-tooltip':'hide-tooltip'}`}>Move</div>
-                                        <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
+                                        <img src='../../../ops-app/images/ic/ic/ic_drive_file_move_24px.png'/>
                                     </DropdownToggle>
                                     <DropdownMenu>
                                         <div class='dropDownItem'>Move this Document to...</div>
@@ -131,7 +131,7 @@ class DocumentPreview extends React.Component {
                             </div>
                             <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false,hoverMove:false,hoverUpload:false ,hoverDelete:true})} onMouseLeave={() => this.setState({...this.state,hoverDelete:false})}  onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
                             <div class={`${this.state.hoverDelete? 'show-tooltip':'hide-tooltip'}`}>delete</div>
-                                <img src='../../../images/ic/delete.png'/>
+                                <img src='../../../ops-app/images/ic/delete.png'/>
                             </div>
                             <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverMove:false, hoverDelete:false,hoverUpload:false,hoverEdit:true})} onMouseLeave={() => this.setState({...this.state, hoverEdit:false})} onClick={() => {
                                 if(!this.state.isEditable) {
@@ -147,11 +147,11 @@ class DocumentPreview extends React.Component {
                                 name.style.display=`${this.state.isEditable? 'none':'inline'}`
                             }}>
                             <div class={`${this.state.hoverEdit? 'show-tooltip':'hide-tooltip'}`}>Edit</div>
-                                <img class='black' src='../../../images/ic/ic/ic_edit_24px.png'/>
+                                <img class='black' src='../../../ops-app/images/ic/ic/ic_edit_24px.png'/>
                             </div>
                             <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false, hoverMove:false, hoverUpload:true, hoverDelete:false})} onMouseLeave={() => this.setState({...this.state, hoverUpload:false})} onClick={() => this.upload.click()}>
                                 <div class={`${this.state.hoverUpload? 'show-tooltip':'hide-tooltip'}`}>upload</div>
-                                <img class='black' src='../../../images/ic/ic/ic_file_upload_24px.png'/>
+                                <img class='black' src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png'/>
                                 <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                             </div>
                         </span>
@@ -179,8 +179,8 @@ class DocumentPreview extends React.Component {
                         {
                             user ?
                             document.comments.find(comment => comment.idSeenBy.indexOf(user._id) === -1) ?
-                            <img class='red' src='../../../images/ic/chat_bubble/grey600.png'/> :
-                            <img src='../../../images/ic/chat_bubble/grey600.png'/> :
+                            <img class='red' src='../../../ops-app/images/ic/chat_bubble/grey600.png'/> :
+                            <img src='../../../ops-app/images/ic/chat_bubble/grey600.png'/> :
                             null
                         }
                         { document.comments.length }

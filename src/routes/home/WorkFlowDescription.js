@@ -12,11 +12,11 @@ const WorkFlowDescription = () => (
                 </ul><span>AND DONE!</span>
             </h3>
             </div>
-            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/images/easy.png" class="workflow-image"/></div>
+            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/ops-app/images/easy.png" class="workflow-image"/></div>
         </div>
         <hr/>
         <div class="row workflow-row">
-            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/images/expert.png" class="workflow-image"/></div>
+            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/ops-app/images/expert.png" class="workflow-image"/></div>
             <div class="col-md-6 col-sm-12 workflow-column-description">
             <h2 class="workflow-heading">Expert Guidance</h2>
             <h3 class="workflow-description"> <span>Get your documents reviewed. Negate the mistakes.</span><br/><br/>
@@ -39,7 +39,7 @@ const WorkFlowDescription = () => (
                 </ul><span>Be assured of a seamless experience at the lowest cost.</span>
             </h3>
             </div>
-            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/images/logistic.png" class="workflow-image"/></div>
+            <div class="col-md-6 col-sm-12 workflow-column-image"><img src="/ops-app/images/logistic.png" class="workflow-image"/></div>
         </div>
     </div>
 );
