@@ -113,8 +113,7 @@ class DocumentPreview extends React.Component {
                         <span>
                             <div style={{display:'inline-block'}}>
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                    <DropdownToggle onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
-                                        <div class={`${this.state.hoverMove? 'show-tooltip':'hide-tooltip'}`}>Move</div>
+                                    <DropdownToggle data-tooltip='Move' onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
                                         <img src='../../../images/ic/ic/ic_drive_file_move_24px.png'/>
                                     </DropdownToggle>
                                     <DropdownMenu>
@@ -129,11 +128,11 @@ class DocumentPreview extends React.Component {
                                     </DropdownMenu>
                                 </Dropdown>
                             </div>
-                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false,hoverMove:false,hoverUpload:false ,hoverDelete:true})} onMouseLeave={() => this.setState({...this.state,hoverDelete:false})}  onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
-                            <div class={`${this.state.hoverDelete? 'show-tooltip':'hide-tooltip'}`}>delete</div>
+                            <div data-tooltip='Delete' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false,hoverMove:false,hoverUpload:false ,hoverDelete:true})} onMouseLeave={() => this.setState({...this.state,hoverDelete:false})}  onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                            {/* <div class={`${this.state.hoverDelete? 'show-tooltip':'hide-tooltip'}`}><img src='../../../images/ic/tooltip.png' class='tooltipss' />delete</div> */}
                                 <img src='../../../images/ic/delete.png'/>
                             </div>
-                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverMove:false, hoverDelete:false,hoverUpload:false,hoverEdit:true})} onMouseLeave={() => this.setState({...this.state, hoverEdit:false})} onClick={() => {
+                            <div  data-tooltip='Edit' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverMove:false, hoverDelete:false,hoverUpload:false,hoverEdit:true})} onMouseLeave={() => this.setState({...this.state, hoverEdit:false})} onClick={() => {
                                 if(!this.state.isEditable) {
                                     if(!docuName.value) return alert('Document name cannot be empty')
                                     name.innerText = docuName.value
@@ -146,11 +145,9 @@ class DocumentPreview extends React.Component {
                                 docuName.style.display=`${this.state.isEditable? 'inline':'none'}`;
                                 name.style.display=`${this.state.isEditable? 'none':'inline'}`
                             }}>
-                            <div class={`${this.state.hoverEdit? 'show-tooltip':'hide-tooltip'}`}>Edit</div>
                                 <img class='black' src='../../../images/ic/ic/ic_edit_24px.png'/>
                             </div>
-                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false, hoverMove:false, hoverUpload:true, hoverDelete:false})} onMouseLeave={() => this.setState({...this.state, hoverUpload:false})} onClick={() => this.upload.click()}>
-                                <div class={`${this.state.hoverUpload? 'show-tooltip':'hide-tooltip'}`}>upload</div>
+                            <div  data-tooltip='Upload' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false, hoverMove:false, hoverUpload:true, hoverDelete:false})} onMouseLeave={() => this.setState({...this.state, hoverUpload:false})} onClick={() => this.upload.click()}>
                                 <img class='black' src='../../../images/ic/ic/ic_file_upload_24px.png'/>
                                 <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                             </div>
