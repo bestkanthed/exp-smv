@@ -142,7 +142,7 @@ class Document extends React.Component {
                         <div class='row'>
                             <div>   
                                 <div class='col-lg-7' style={{height: '75vh',  marginLeft:'2%'}}>
-                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
+                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2%', marginRight:'-2%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
                                     <div class='row' style={{backgroundColor:'#4A4A4A'}}>
                                         <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white', position:'relative'}} onClick={this.togglePrevFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../ops-app/images/ic/ic/ic_chevron_left_24px.png'/></p></div>
                                         <div class='col-lg-10' style={{backgroundColor:'#4A4A4A'}}>
@@ -154,7 +154,7 @@ class Document extends React.Component {
                                         </div>
                                         <div class='col-lg-1' style={{backgroundColor:'#4A4A4A', height:'75vh', color:'white'}} onClick={this.toggleNextFiles}><p style={{position:'relative', top:'45%'}}><img src='../../../ops-app/images/ic/ic/ic_chevron_right_24px.png'/></p></div>
                                     </div>
-                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2.4%', marginRight:'-2.38%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
+                                    <div style={{backgroundColor:'#4A4A4A', color:'white', textAlign:'center', verticalAlign:'middle',marginLeft:'-2%', marginRight:'-2%', padding:'1%'}}>{`${this.state.currentFileIndex + 1}/${document.files ? document.files.length : null}`}</div>
                                 </div>
                             </div>
                             <div class='col-lg-4'>

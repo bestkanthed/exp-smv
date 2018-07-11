@@ -20,7 +20,7 @@ class Teams extends React.Component {
         let { teams, fetching, error } = this.props.teams
         return (
             <div class="faq">
-                <h1>Admin Pannel</h1>
+                <h1>Admin Panel</h1>
                 <hr/>
                 <UserAdd />
                 <div class="row manage">
