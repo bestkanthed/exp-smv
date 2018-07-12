@@ -176,7 +176,7 @@ cursor: pointer;
 
 [data-tooltip] {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
 }
 
@@ -184,8 +184,6 @@ cursor: pointer;
 [data-tooltip]:before,
 [data-tooltip]:after {
   visibility: hidden;
-  // -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  // filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
   pointer-events: none;
 }
@@ -207,7 +205,7 @@ cursor: pointer;
   color: #fff;
   content: attr(data-tooltip);
   text-align: center;
-  font-size: 14px;
+  font-size: px;
   line-height: 1.2;
 }
 
@@ -231,8 +229,6 @@ cursor: pointer;
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after {
   visibility: visible;
-  // -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  // filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
 
