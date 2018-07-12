@@ -41,6 +41,8 @@ const popupReducer = (state = initialState, action) => {
         animation: showAnimation
     }
 
+    console.log('Logging action from popup reducer', type, action)
+
     switch (type) {
         case 'LOAD_POPUP' : {
             return {
