@@ -105,9 +105,7 @@ class DocumentPreview extends React.Component {
             <div class='col-lg-4'>
                 <input class='invisible-input' defaultValue={document.name} placeholder={document.name} ref={node =>{docuName=node}} autoFocus/>
                 <div>
-                    <Link class='preview-docname' to={(idCustomer ? '/customer' : '/expert')+'/documents/'+document._id} onClick={() => seenComments(document._id)}>
-                        <span ref={node => {name = node}}>{document.name}</span>
-                    </Link>
+                    <span ref={node => {name = node}}>{document.name}</span>
                     {
                         idCustomer? null : 
                         <span>
@@ -184,7 +182,7 @@ class DocumentPreview extends React.Component {
                         <span> Status:
                             {' '}{
                                 idCustomer ?
-                                <span style={{color :`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>document.status</span> :
+                                <span style={{color :`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>{document.status}</span> :
                                 <select value={document.status}
                                 onChange={(event) => changeDocumentStatus(event.target.value, document._id)}
                                 style={{color:`${ (document.status==='To Be Reviewed' || document.status==='Pending') ? '#4a4a4a' : (document.status==='Not OK' ? '#f36b51': '#7ed321')}`}}>

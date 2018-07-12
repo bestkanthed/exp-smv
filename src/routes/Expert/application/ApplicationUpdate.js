@@ -126,9 +126,12 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                 <p class='col-lg-3'> Travel Date : <input type="date" key={application.travelDate} defaultValue={application.travelDate  ? application.travelDate.substring(0,10) : null } ref = {node => { travelDate = node}} /></p>
                 <p class='col-lg-3'> Employment Status : <select key={application.employmentStatus} defaultValue={application.employmentStatus} ref = {node => { employmentStatus = node }}>
                         <option value=''></option>
-                        <option value='Employed'>Employed</option>
+                        <option value='Salaried'>Salaried</option>
                         <option value='Self-Employed'>Self-Employed</option>
+                        <option value='Freelancer'>Freelancer</option>
+                        <option value='Retired'>Retired</option>
                         <option value='Student'>Student</option>
+                        <option value='Homemaker'>Homemaker</option>
                         <option value='Unemployed'>Unemployed</option>
                     </select></p>
                 <p class='col-lg-4'> Submission Date : <input type="date" key={application.submissionDate} defaultValue={application.submissionDate ? application.submissionDate.substring(0,10) : null } ref = {node => { submissionDate = node}} /></p>

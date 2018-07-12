@@ -55,9 +55,12 @@ let ApplicationAdd = ({postApplication, idOrder}) => {
                     employmentStatus = node;
                 }}
               >
-                <option value='Employed'>Employed</option>
+                <option value='Salaried'>Salaried</option>
                 <option value='Self-Employed'>Self-Employed</option>
+                <option value='Freelancer'>Freelancer</option>
+                <option value='Retired'>Retired</option>
                 <option value='Student'>Student</option>
+                <option value='Homemaker'>Homemaker</option>
                 <option value='Unemployed'>Unemployed</option>
               </select>
             </div>
