@@ -21,7 +21,8 @@ import { hidePopupDone } from '../actions/popup'
 function renderRoute (props) {
   
 
-  let { user, teams, page, match, location, setQuery } = props
+  let { user, teams, page, match, location, setQuery, hidePopupDone } = props
+  hidePopupDone()
   if (!user.user) return <Redirect to='/unauthorized' />
   
   if(page === 'home') {
@@ -85,8 +86,7 @@ function renderRoute (props) {
 }
 
 const mapStateToProp = state => ({
-  user: state.user,
-  popup: state.popup
+  user: state.user
 })
 
 const mapDispatchToProp = dispatch => ({
@@ -95,12 +95,6 @@ const mapDispatchToProp = dispatch => ({
 })
 
 class Authorize extends React.Component {
-  
-  componentWillMount () {
-    console.log('Mounting component')
-    let { hidePopupDone, popup } = this.props
-    if (popup.content !== 'ChangePassword') hidePopupDone()
-  }
   render() {
     return this.props.user.user ? renderRoute(this.props) : <Login />
   }
