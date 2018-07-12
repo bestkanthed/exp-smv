@@ -41,8 +41,6 @@ const popupReducer = (state = initialState, action) => {
         animation: showAnimation
     }
 
-    console.log('Logging action from popup reducer', type, action)
-
     switch (type) {
         case 'LOAD_POPUP' : {
             return {
@@ -62,20 +60,15 @@ const popupReducer = (state = initialState, action) => {
             return {...state, display: false}            
         }
         case 'LOGIN_REQUEST_FULFILLED' : {
-            
-            console.log('Login req fulfilled', payload.data)
             if (payload.data.error) return {
                 content: 'Flash',
                 display: true,
                 animation: showAnimation
             }
-            else if (!payload.data.passwordChanged) {
-                console.log('Now will return ChangePassword')
-                return {
-                    content: 'ChangePassword',
-                    display: true,
-                    animation: showAnimation
-                }
+            else if (!payload.data.passwordChanged) return {
+                content: 'ChangePassword',
+                display: true,
+                animation: showAnimation
             }
             else return {...state, display: false}
         }
