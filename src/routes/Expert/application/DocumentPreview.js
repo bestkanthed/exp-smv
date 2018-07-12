@@ -162,7 +162,7 @@ class DocumentPreview extends React.Component {
                         }
                     </Link> :
                     <div>
-                    <Dropzone style={{height:'270px', width:'200px',backgroundColor:'#eceff1', borderRadius:'8px'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
+                    <Dropzone style={{height:'270px', width:'200px',backgroundColor:'#eceff1', borderRadius:'8px', cursor:'pointer'}} onDrop={files => uploadFiles(files, document._id, idCustomer)}>
                         <p style={{position:'relative', top:'40%', left:'20%', color:'#4a4a4a'}}>Click here to  add files</p>
                     </Dropzone>
                     </div>

@@ -45,11 +45,13 @@ class Reset extends React.Component {
                             />
                             </div>
                             <div class="col-sm-6">
-                            <button type='button' onClick = {() => {resetPassword({
-                                password: password.value,
-                                confirmPassword: confirmPassword.value,
-                                token : match.params.token
-                            }); window.location.href = '/'}} class="btn btn-primary show-requirements-button">RESET</button>
+                            <button type='button' onClick = {() => {
+                                resetPassword({
+                                    password: password.value,
+                                    confirmPassword: confirmPassword.value,
+                                    token : match.params.token
+                                }); window.location.href = '/'}
+                            } class="btn btn-primary show-requirements-button">RESET</button>
                             </div>
                         </div> :
                         <div> Password reset token is invalid or has expired </div>

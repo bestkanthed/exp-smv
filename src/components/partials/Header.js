@@ -27,7 +27,7 @@ const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
         <div class="container">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <Link to="/" class="navbar-brand"><img src="/ops-app/images/smv_logo.png" width="180"/></Link>
+                <Link to="/login" class="navbar-brand"><img src="/ops-app/images/smv_logo.png" width="180"/></Link>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -52,7 +52,7 @@ const Header = ({user, showLoginPopup, logout, seenNotifications}) => (
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem>
-                                        <Link to='' onClick={e => {e.preventDefault(); logout(); window.location.href = '/'}}>Logout</Link>
+                                        <Link to='' onClick={e => {e.preventDefault(); logout(); window.location.href = '/login'}}>Logout</Link>
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>

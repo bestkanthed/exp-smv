@@ -23,16 +23,13 @@ const popupReducer = (state = initialState, action) => {
     
     let { type, payload } = action
 
-
     let flashMessage = type === 'SET_FLASH_MESSAGE'
     let postResponse = type.startsWith('POST_') && type.endsWith('_FULFILLED')
     let deleteResponse = type.startsWith('DELETE_') && type.endsWith('_FULFILLED')
     let uploadResponse = type.startsWith('UPLOAD_') && type.endsWith('_FULFILLED')
     let updateResponse = type.startsWith('UPDATE_') && type.endsWith('_FULFILLED')
     let forgotResponse = type === 'FORGOT_PASSWORD_FULFILLED'    
-    let uploadPending = type === 'UPLOAD_FILE_PENDING'    
-
-    
+    let uploadPending = type === 'UPLOAD_FILE_PENDING'
 
     if( flashMessage || postResponse || deleteResponse || uploadResponse || updateResponse || forgotResponse || uploadPending) return {
         ...state,
@@ -40,6 +37,8 @@ const popupReducer = (state = initialState, action) => {
         display: true,
         animation: showAnimation
     }
+
+    console.log('Logging action', type, payload)
 
     switch (type) {
         case 'LOAD_POPUP' : {

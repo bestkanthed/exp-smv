@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
                         : null
                  
                 } search-bar-image`}>
-                <Link to='/'>
+                <Link to='/login'>
                     <img style={{maxWidth:'50%', marginRight:'3%'}} src='../../ops-app/images/Logos.png'/>
                 </Link>
                 {

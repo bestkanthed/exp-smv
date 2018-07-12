@@ -19,10 +19,9 @@ import { setQuery } from '../actions/expert'
 import { hidePopupDone } from '../actions/popup'
 
 function renderRoute (props) {
-  
 
-  let { user, teams, page, match, location, setQuery, hidePopupDone } = props
-  hidePopupDone()
+  let { user, teams, page, match, location, setQuery, hidePopupDone, popup } = props
+  if (popup.display && popup.content !== 'ChangePassword') hidePopupDone()
   if (!user.user) return <Redirect to='/unauthorized' />
   
   if(page === 'home') {
@@ -86,7 +85,8 @@ function renderRoute (props) {
 }
 
 const mapStateToProp = state => ({
-  user: state.user
+  user: state.user,
+  popup: state.popup
 })
 
 const mapDispatchToProp = dispatch => ({

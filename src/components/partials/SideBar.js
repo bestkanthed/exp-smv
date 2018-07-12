@@ -83,8 +83,8 @@ class SideBar extends React.Component {
                             <span>Past Applications</span>
                         </div>
                         </Link>,
-                        <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/'>
-                        <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/'}}>
+                        <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/login'>
+                        <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/login'}}>
                             <img style={{marginRight:'25%', marginLeft:'2%'}} src='../../../ops-app/images/ic/highlight_off/grey600.png' />
                             <span>Log out</span>
                         </div>
