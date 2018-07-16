@@ -21,7 +21,14 @@ import { hidePopupDone } from '../actions/popup'
 function renderRoute (props) {
 
   let { user, teams, page, match, location, setQuery, hidePopupDone, popup } = props
-  if (popup.display && popup.content !== 'ChangePassword') hidePopupDone()
+  if (
+    popup.display &&
+    popup.content !== 'ChangePassword' &&
+    popup.content !== 'CreateCustomerCumOrder' &&
+    popup.content !== 'UploadDocument' &&
+    popup.content !== 'ProcessOrder' &&
+    popup.content !== 'GetStarted'
+  ) hidePopupDone()
   if (!user.user) return <Redirect to='/unauthorized' />
   
   if(page === 'home') {
