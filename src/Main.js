@@ -59,6 +59,7 @@ let Main = () =>
                     <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
                     <Route exact path='/support/new' render={() => <Authorize teams={['support']} page='new'/>}/>
                     <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
+                    <Route exact path ='/support/payments' render = {() => <Authorize teams = {['support']} page = 'payments'/>} />
                 </Switch>
             </Layout>
         </Router>

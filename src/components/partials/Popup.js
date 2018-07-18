@@ -43,6 +43,7 @@ const mapDispatchToProps = dispatch => {
     hidePopup : () => {
         dispatch(hidePopupStart())
         setTimeout(() => {
+            console.log('i have been called')
            dispatch(hidePopupDone())
         }, 400)
     }
@@ -53,7 +54,7 @@ class Popup extends React.Component {
     componentDidUpdate () {
         let { popup, hidePopup } = this.props
         let { content, display } = popup
-        if( content === 'Flash' && display === true ) setTimeout(() => hidePopup(), 3000)
+        //if( content === 'Flash' && display === true ) setTimeout(() => hidePopup(), 3000)
     }
 
     render () {
@@ -66,6 +67,7 @@ class Popup extends React.Component {
                         <div class="row">
                             <div class="cancel" onClick = {hidePopup}>✕</div>
                         </div>
+                        {console.log(popup, '-----------1111111--------', popup.display)}
                         {setPopupContent(popup.content)}
                     </div>
                 </div>

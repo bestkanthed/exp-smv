@@ -38,15 +38,14 @@ const popupReducer = (state = initialState, action) => {
         animation: showAnimation
     }
 
-    console.log('Logging action', type, payload)
+    console.log('Logging action ***********', type, payload)
 
     switch (type) {
         case 'LOAD_POPUP' : {
             return {
-                ...state,
-                content: payload,
                 display: true,
-                animation: showAnimation
+                animation: showAnimation,
+                content: payload
             }
         }
         case 'HIDE_POPUP_START' : {

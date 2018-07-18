@@ -14,6 +14,7 @@ import Document from './Expert/Document'
 
 import Generate from './Support/Generate'
 import News from './Support/News'
+import Payments from './Support/Payments'
 
 import { setQuery } from '../actions/expert'
 import { hidePopupDone } from '../actions/popup'
@@ -71,6 +72,7 @@ function renderRoute (props) {
       switch (page) { 
         case 'generate': return <Generate />
         case 'new': return <News />
+        case 'payments' : return <Payments />
         default: return <div> Invalid Page </div>
       }
     }
