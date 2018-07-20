@@ -42,8 +42,8 @@ class Comments extends React.Component {
         let { fetching, fetched, comments, rerender } = this.props.comments
         if (rerender) fetchComments(idDocument)
         return (
-            <div >
-            <div class='comments' style={{height:'70vh', overflow:'scroll'}}>
+            <div>
+            <div class='comments' style={{height:'73.4vh', overflow:'scroll'}}>
                 {
                     fetching ?
                     null :
@@ -63,19 +63,19 @@ class Comments extends React.Component {
                 </div>
                 
 
-                { past ? null : <div style={{paddingLeft:'5%'}}>
-                    <form class='post-comment row' style={{position:'relative',bottom: '7%',backgroundColor:'#f0f0f2', padding:'5%'}}>
-                        <input style={{width:'80%', height:'20%', borderRadius:'10px'}}class='col-lg-10'type="text" name="comment" id="comment" placeholder="Add comment" required="required"
+                { past ? null : <div>
+                    <form class='post-comment' style={{backgroundColor:'#f0f0f2', padding:'5%'}}>
+                        <input style={{width:'85%', padding:'2%', border : 'none', borderRadius:'6px', outline : 'none'}} type="text" name="comment" id="comment" placeholder="Add comment" required="required"
                             ref = {node => {
                             newComment = node;
                             }}
                         />
-                        <button class='post-comment-button col-lg-2' onClick={e => {
+                        <div style={{backgroundColor : '#f0f0f2', display : 'inline'}} onClick={e => {
                             e.preventDefault();
                             if(!newComment.value) return alert('Please write something in the comment')
                             postComment({text: newComment.value, idDocument, idCustomer});
                             newComment.value = '';
-                        }}><img src='../../../ops-app/images/ic/ic/ic_send_24px.png' style={{border:'none'}}/></button>
+                        }}><img src='../../../ops-app/images/send-button-hover.png' style={{marginLeft : '7%', border:'none'}}/></div>
                     </form>
                 </div> }
         </div>
