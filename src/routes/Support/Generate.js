@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { loadPopup } from '../../actions/popup'
-import { fetchExperts } from '../../actions/support'
+import { fetchExperts, startAuthtenication } from '../../actions/support'
 
 import Experts from './generate/Experts'
 import Customers from './generate/Customers'
@@ -13,12 +13,23 @@ import './support.scss';
 const mapDispatchToProps = dispatch => {
     return {
         showCreateCustomerCumOrderPopup: () => dispatch(loadPopup('CreateCustomerCumOrder')),
-        fetchExperts: () => dispatch(fetchExperts())
+        fetchExperts: () => dispatch(fetchExperts()), 
+        startAuthentication : (supportId) => dispatch(startAuthtenication(supportId))
     }
 }
 
+const mapStateToProps = state => ({
+    user : state.user.user, 
+    payments : state.support.payments
+})
+
 class Generate extends React.Component {
     
+    constructor(props) {
+        super(props)
+        this.props.startAuthentication(this.props.user._id)
+    }
+
     componentWillMount() {
         this.props.fetchExperts()
     }
@@ -36,6 +47,9 @@ class Generate extends React.Component {
                             New Orders
                         </button>
                     </Link>
+                    <button onClick={() => {window.location=this.props.payments.data}}>
+                        generate payments
+                    </button>
                     <br/><br/>
                 </div>
                 <div>
@@ -51,4 +65,4 @@ class Generate extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Generate);
+export default connect(mapStateToProps, mapDispatchToProps)(Generate);

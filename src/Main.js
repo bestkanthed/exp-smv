@@ -21,6 +21,7 @@ import Unauthorized from './routes/Unauthorized'
 import Notification from './routes/Notification'
 import Past from './routes/Past'
 import Reset from './routes/Reset'
+import Payments from './routes/Payments'
 
 /*
 store.subscribe(() => {
@@ -59,7 +60,9 @@ let Main = () =>
                     <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
                     <Route exact path='/support/new' render={() => <Authorize teams={['support']} page='new'/>}/>
                     <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
-                    <Route exact path ='/support/payments' render = {() => <Authorize teams = {['support']} page = 'payments'/>} />
+                    <Route exact path='/support/payments' render = {() => <Authorize teams = {['support']} page = 'payments'/>} />
+
+                    <Route exact path='/payments/:id' component={Payments}/>
                 </Switch>
             </Layout>
         </Router>

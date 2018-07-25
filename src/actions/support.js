@@ -53,3 +53,54 @@ export function postCustomerCumOrder (formData) {
     }
     
 }
+
+export function getServices (supportId) {
+    return {
+        type : 'GET_SERVICES', 
+        payload : axios(`http://localhost:5369/payments/services/${supportId}`, 
+        {
+            method : 'get', 
+            withCredentials : true
+        })
+    }
+}
+
+export function startAuthtenication (supportId) {
+    return {
+        type : 'START_AUTH', 
+        payload : axios(`http://localhost:5369/payments/authorization/authorizationToken/${supportId}`, 
+        {
+            method : 'get', 
+            withCredentials : true
+        })
+    }
+}
+
+export function addNewItem(item){
+    return {
+        type : 'ADD_NEW_ITEM', 
+        payload : item
+    }
+}
+
+export function postBill(bill) {
+    return {
+        type: 'POST_BILL',
+        payload : axios('http://localhost:5369/payments/billing/', {
+            method: 'post',
+            data: bill,
+            withCredentials: true
+        })
+    }
+}
+
+export function getBill(id){
+    return {
+        type : 'GET_BILL', 
+        payload : axios(`http://localhost:5369/payments/billing/${id}`, 
+        {
+            method : 'get', 
+            withCredentials : true
+        })
+    }
+}
