@@ -56,7 +56,7 @@ class CreateCustomerCumOrder extends React.Component {
          let { countries, purposes } = database
          let tabindex = 0;
         return(
-            <div class='dimensions'>
+            <div class='dimensions' style={{paddingBottom : `${this.state.tabIndex===0 ? '65px':''}`}}>
                 <div class='order-generation-header'>
                     <h4>Create Order</h4>
                 </div>
@@ -305,8 +305,8 @@ class CreateCustomerCumOrder extends React.Component {
                 </button>
             </TabPanel>
             <div>
-                <button class='channel' style={{float:'right'}} onClick={(event)=>{this.state.tabIndex === 0 ? this.setState({...this.state, tabIndex : 1}) : this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 2}) : null}}>Next</button>
-                <button class='channel' onClick={(event)=>{this.state.tabIndex===2 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 0}):null}}>Prev</button>
+                <button class='channel' style={{float:'right', display : `${this.state.tabIndex===2 ? 'none' : ''}`}} onClick={(event)=>{this.state.tabIndex === 0 ? this.setState({...this.state, tabIndex : 1}) : this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 2}) : null}}>Next</button>
+                <button class='channel' style={{display : `${this.state.tabIndex===0 ? 'none':''}`}} onClick={(event)=>{this.state.tabIndex===2 ? this.setState({...this.state, tabIndex : 1}):this.state.tabIndex===1 ? this.setState({...this.state, tabIndex : 0}):null}}>Prev</button>
             </div>
         </Tabs>
         </div>

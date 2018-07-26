@@ -93,6 +93,12 @@ border-bottom: 2px; bottom: -1px; position: relative; list-style: none; padding:
 background: #eceff1;
 cursor: pointer; 
 } 
+
+.react-tabs__tab:hover{
+  background-color: #fff;
+  border-bottom: solid 4px #f44336;
+}
+
 .react-tabs__tab--selected {
  background: #fff; border-bottom: 4px solid #4a90e2;
 } 

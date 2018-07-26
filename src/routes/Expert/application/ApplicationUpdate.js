@@ -41,22 +41,18 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
     <div class='application-update-form'>
         <div>
             <div>
-                <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`, paddingTop:'4px', paddingBottom:'4px'}}>
+                <div class='mask row' style={{borderRight:`solid 8px ${borderColor(application.status)}`}}>
                     <Link to={ (idCustomer ? '/customers/orders/': '/expert/orders/') + (order ? order._id : '') }>
-                    <span class='col-lg-1'>
-                        <img src='../../../ops-app/images/ic/arrow_back/grey600.png' />
+                    <span class='col-lg-1' style={{paddingTop : '1%', paddingBottom : '1%'}}>
+                        <img style={{marginTop : '15px'}} src='../../../ops-app/images/ic/arrow_back/grey600.png' />
                     </span>
                     </Link>
-                    <span class='col-lg-2'>
-                        <span>
-                            {application.name}
-                        </span>
-                        <br/>
+                    <span style={{borderLeft : 'solid 1px #e3e4e6', paddingTop:'1%', paddingBottom : '1%'}} class='col-lg-2'>
                         <span>
                             {`${application.country} - ${application.visaType}`}
                         </span>
                     </span>
-                    <span class='col-lg-2'>
+                    <span class='col-lg-2' style={{paddingTop : '1%', paddingBottom : '1%'}}>
                         <span>
                             Travel Date:
                         </span>
@@ -65,7 +61,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             {prettyDate(application.travelDate)}
                         </span>
                     </span>
-                    <span class='col-lg-2'>
+                    <span class='col-lg-2' style={{paddingTop : '1%', paddingBottom : '1%'}}>
                         <span>
                             Profession:
                         </span>
@@ -74,7 +70,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         {application.employmentStatus} 
                         </span>
                     </span>
-                    <span class='col-lg-2' style={{borderRight:'solid 1px #e3e4e6'}}>
+                    <span class='col-lg-2' style={{paddingTop : '1%', paddingBottom : '1%'}}>
                         <span>
                             Submission/Interview Date:
                         </span>
@@ -83,17 +79,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             {application.submissionDate ? prettyDate(application.submissionDate) : 'Not Decided Yet'}
                         </span>
                     </span>
-                    {
-                        order ? [
-                            <span key='orderId' class='col-lg-1'>
-                                Order Id:<br/>{order.orderCode}            
-                            </span>,
-                            <span key='invoiceNo' class='col-lg-1'>
-                                Invoice No:<br/>{order.invoiceNo}            
-                            </span>
-                        ] : null
-                    }
-                    <span class='col-lg-1'>
+                    <span class='col-lg-1' style={{borderLeft : 'solid 1px #e3e4e6', marginLeft : '3%', marginRight : '3%', paddingTop :'1%', paddingBottom : '1%'}}>
                         Status:<br/>{application.status}            
                     </span>
                     {
@@ -101,8 +87,8 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                         null :
                         application.status === 'Past' ?
                         null :
-                        <span class='col-lg-1' onClick={()=>{updateForm.style.display='block'}} style={{color:`${borderColor(application.status)}`}}>
-                            <img src='../../../ops-app/images/ic/ic/ic_edit_24px.png' /> Edit
+                        <span class='col-lg-2' onClick={()=>{updateForm.style.display='block'}} style={{color:`${borderColor(application.status)}`, paddingTop : '1%', paddingBottom : '1%'}}>
+                            <span><img src='../../../ops-app/images/ic/ic/ic_edit_24px.png' /> Edit</span>
                         </span>
                     }
             </div>
