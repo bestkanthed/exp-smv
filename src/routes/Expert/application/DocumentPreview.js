@@ -110,7 +110,7 @@ class DocumentPreview extends React.Component {
                         idCustomer? null : 
                         <span>
                             <div style={{display:'inline-block'}}>
-                                <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                                <Dropdown style={{zIndex : '-3'}} isOpen={this.state.isOpen} toggle={this.toggle}>
                                     <DropdownToggle data-tooltip='Move' onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
                                         <img src='../../../ops-app/images/ic/ic/ic_drive_file_move_24px.png'/>
                                     </DropdownToggle>

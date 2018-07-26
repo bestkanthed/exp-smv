@@ -7,6 +7,7 @@ import { fetchApplication, fetchOrderByIdApplication, setQuery, setActiveTab } f
 
 import DocumentsPreview from './application/DocumentsPreview'
 import ApplicationUpdate from './application/ApplicationUpdate';
+import './order/ApplicationSummary.scss'
 
 const documentsOrder = [
     'Mandatory Documents',
@@ -81,7 +82,7 @@ class Application extends React.Component {
                             <TabList>
                             {
                                 categories.map(category =>
-                                    <Tab key={category}>{category}</Tab>
+                                    <Tab style={{padding:'2%'}} key={category}>{category}</Tab>
                                 )
                             }
                             </TabList>
