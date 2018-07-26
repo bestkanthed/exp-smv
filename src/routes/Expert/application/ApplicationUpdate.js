@@ -100,7 +100,7 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                 <p class='col-lg-3'>Country : {application.country} </p>
                 <p class='col-lg-3'>Visa : <select key={application.visaType} defaultValue={application.visaType} ref = {node => { visaType = node }}>
                     {
-                        countries.countries ? (countries.countries.find(c => c.name === application.country)).visas.map(visa =>
+                        countries.countries && application.country ? (countries.countries.find(c => c.name === application.country)).visas.map(visa =>
                             <option value={visa.name} key={visa._id}> {visa.name} </option> 
                         ) : null
                     }
