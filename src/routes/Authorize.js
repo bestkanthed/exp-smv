@@ -68,7 +68,7 @@ function renderRoute (props) {
     }
 
     case 'support': {
-      switch (page) { 
+      switch (page) {
         case 'generate': return <Generate />
         case 'new': return <News />
         default: return <div> Invalid Page </div>
