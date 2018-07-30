@@ -10,6 +10,7 @@ import user from './user'
 import notifications from './notifications'
 import reset from './reset'
 import location from './location'
+import search from './search'
 
 import flash from './flash'
 import popup from './popup'
@@ -25,5 +26,6 @@ export default combineReducers({
     reset,
     location,
     flash,
-    popup
+    popup, 
+    search
 });

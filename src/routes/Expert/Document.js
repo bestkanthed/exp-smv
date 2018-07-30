@@ -91,7 +91,7 @@ class Document extends React.Component {
                     <div class='document-page-view'>
                         <div class='document-header'style={{paddingLeft:'1%'}}>
                         <br/>
-                            <div class='header-mask row'>
+                            <div class='header-mask row' style={{marginLeft :'', marginRight:''}}>
                             <Link to={application ? (idCustomer ? '/customer' : '/expert') + `/applications/${application._id }`: (idCustomer ? '/customer' : '/expert') +'/orders'}>
                             <div class='col-lg-1'>
                             <img src='../../../ops-app/images/ic/arrow_back/grey600.png' />
@@ -166,7 +166,7 @@ class Document extends React.Component {
                     <h2>Error connecting to the server</h2>
                 }
             </div>
-        );
+        )
     }
 }
 
