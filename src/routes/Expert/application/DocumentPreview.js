@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import Tooltip from 'react-tooltip';
 
 import { updateDocument, uploadFile, changeDocumentCategory, deleteDocument, fileTypeRejected, changeDocumentStatus, seenComments } from '../../../actions/expert'
 
@@ -108,10 +109,10 @@ class DocumentPreview extends React.Component {
                     <span ref={node => {name = node}}>{document.name}</span>
                     {
                         idCustomer? null : 
-                        <span>
+                        <span style={{marginLeft : '5%'}}>
                             <div style={{display:'inline-block'}}>
-                                <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                    <DropdownToggle data-tooltip='Move' onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', paddingRight: 0}}>
+                                <Dropdown data-tip data-for='move' isOpen={this.state.isOpen} toggle={this.toggle}>
+                                    <DropdownToggle id='move' onMouseEnter={() => this.setState({...this.state, hoverDelete:false,hoverUpload:false,hoverEdit:false, hoverMove:true})} onMouseLeave={() => this.setState({...this.state, hoverMove:false})} style={{backgroundColor: 'white', boxShadow: 'none', padding : 0}}>
                                         <img src='../../../ops-app/images/ic/ic/ic_drive_file_move_24px.png'/>
                                     </DropdownToggle>
                                     <DropdownMenu>
@@ -125,12 +126,15 @@ class DocumentPreview extends React.Component {
                                         })}
                                     </DropdownMenu>
                                 </Dropdown>
+                                <Tooltip id='move' type='info' effect='solid'>Move</Tooltip>
                             </div>
-                            <div data-tooltip='Delete' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false,hoverMove:false,hoverUpload:false ,hoverDelete:true})} onMouseLeave={() => this.setState({...this.state,hoverDelete:false})}  onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
+                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false,hoverMove:false,hoverUpload:false ,hoverDelete:true})} onMouseLeave={() => this.setState({...this.state,hoverDelete:false})}  onClick={() => { if(confirm("Are you sure you want to delete")) deleteDocument(document._id)} }>
                             {/* <div class={`${this.state.hoverDelete? 'show-tooltip':'hide-tooltip'}`}><img src='../../../images/ic/tooltip.png' class='tooltipss' />delete</div> */}
-                                <img src='../../../ops-app/images/ic/delete.png'/>
+                                <img data-tip data-for='Delete' src='../../../ops-app/images/ic/delete.png'/>
+                                <Tooltip id='Delete' type='info' effect='solid'>Delete</Tooltip>
                             </div>
-                            <div  data-tooltip='Edit' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverMove:false, hoverDelete:false,hoverUpload:false,hoverEdit:true})} onMouseLeave={() => this.setState({...this.state, hoverEdit:false})} onClick={() => {
+                            <div style={{display : 'inline'}}>
+                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverMove:false, hoverDelete:false,hoverUpload:false,hoverEdit:true})} onMouseLeave={() => this.setState({...this.state, hoverEdit:false})} onClick={() => {
                                 if(!this.state.isEditable) {
                                     if(!docuName.value) return alert('Document name cannot be empty')
                                     name.innerText = docuName.value
@@ -143,11 +147,14 @@ class DocumentPreview extends React.Component {
                                 docuName.style.display=`${this.state.isEditable? 'inline':'none'}`;
                                 name.style.display=`${this.state.isEditable? 'none':'inline'}`
                             }}>
-                                <img class='black' src='../../../ops-app/images/ic/ic/ic_edit_24px.png'/>
+                                <img data-tip data-for='Edit' class='black' src='../../../ops-app/images/ic/ic/ic_edit_24px.png'/>
+                                <Tooltip id='Edit' type='info' effect='solid'>Edit</Tooltip>
                             </div>
-                            <div  data-tooltip='Upload' class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false, hoverMove:false, hoverUpload:true, hoverDelete:false})} onMouseLeave={() => this.setState({...this.state, hoverUpload:false})} onClick={() => this.upload.click()}>
-                                <img class='black' src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png'/>
+                            </div>
+                            <div class='application-icon' onMouseEnter={() => this.setState({...this.state,hoverEdit:false, hoverMove:false, hoverUpload:true, hoverDelete:false})} onMouseLeave={() => this.setState({...this.state, hoverUpload:false})} onClick={() => this.upload.click()}>
+                                <img data-tip data-for='Upload' class='black' src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png'/>
                                 <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
+                                <Tooltip id='Upload' type='info' effect='solid'>Upload</Tooltip>
                             </div>
                         </span>
                     }

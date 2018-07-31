@@ -56,7 +56,7 @@ class SideBar extends React.Component {
                         user.teams ?
                         (user.teams.sort((d1, d2) => ( sideBarOrder.indexOf(d1) < sideBarOrder.indexOf(d2) ? -1 : 1 ))).map(role =>
                             <Link key={role} style={{textDecoration:'none', color:'black'}} to={'/'+role} onClick={() => this.toggle(role)}>
-                            <div class={`side-bar-content ${this.state.currentTile===role? 'selected':''}`} >
+                            <div class={`sidebar-content ${this.state.currentTile===role? 'selected':''}`} >
                             <img  style={{marginRight:'25%'}} class='' src={role === 'support' ? '../../../ops-app/images/ic/support.png':role === 'admin'? '../../../ops-app/images/ic/person/grey600.png' : '../../../ops-app/images/ic/home/grey600.png'}/>
                             <span>{role === 'customer' ? 'Dashboard' : role.charAt(0).toUpperCase() + role.slice(1)}</span>
                             </div>
@@ -65,7 +65,7 @@ class SideBar extends React.Component {
                         null
                         ,
                         <Link key='notifications' onClick={() => {seenNotifications(user._id); this.toggle('notifications')}} style={{textDecoration:'none', color:'black'}} to='/notifications'>
-                        <div class={`side-bar-content ${this.state.currentTile==='notifications'? 'selected':''}`}>
+                        <div class={`sidebar-content ${this.state.currentTile==='notifications'? 'selected':''}`}>
                             <img style={{marginRight:'25%', marginLeft:'2%'}} src='../../../ops-app/images/ic/ic/notifications/grey600.png' />
                             <span>Notifications{'\u00A0'}
                                 {
@@ -78,13 +78,13 @@ class SideBar extends React.Component {
                         </Link>
                         ,
                         <Link key='past' onClick={() => {this.toggle('past')}} style={{textDecoration:'none', color:'black'}} to='/past'>
-                        <div class={`side-bar-content ${this.state.currentTile==='past' ? 'selected':''}`}>
+                        <div class={`sidebar-content ${this.state.currentTile==='past' ? 'selected':''}`}>
                             <img style={{marginRight:'24%', marginLeft:'1%'}} src='../../../ops-app/images/ic/hourglass_empty/grey600.png' />
                             <span>Past Applications</span>
                         </div>
                         </Link>,
                         <Link key='logout' style={{textDecoration:'none', color:'black'}} to='/login'>
-                        <div class='side-bar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/login'}}>
+                        <div class='sidebar-content' onClick = {e => {e.preventDefault(); logout(); window.location.href='/login'}}>
                             <img style={{marginRight:'25%', marginLeft:'2%'}} src='../../../ops-app/images/ic/highlight_off/grey600.png' />
                             <span>Log out</span>
                         </div>
