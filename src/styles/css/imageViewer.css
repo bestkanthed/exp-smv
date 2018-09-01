@@ -1,0 +1,61 @@
+.viewer {
+	width: 650px;
+    height: 470px;
+    overflow-x: auto;
+    overflow-Y: auto;
+}
+
+.image-view {
+	width: 620px;
+    height: 470px;
+    position:relative; 
+    left:-1%; 
+}
+.rotate {
+	position: absolute;
+    top: 60%; 
+    width: 40px;
+    margin: 0 auto;
+    right: 20px;
+    z-index: 100;
+    display: none;
+}
+
+.zoom-in {
+	position: absolute;
+    top: 70%; 
+    width: 40px;
+    margin: 0 auto;
+    right: 20px;
+    z-index: 100;
+    display: none;
+}
+
+.zoom-out {
+	position: absolute;
+    top: 80%; 
+    width: 40px;
+    margin: 0 auto;
+    right: 20px;
+    z-index: 100;
+    display: none;
+}
+.displayZoom {
+    	display: block;
+ }
+
+ .rotate-image90 {
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg); 
+  -webkit-transform: rotate(90deg); 
+} 
+ .rotate-image180 {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg); 
+  -webkit-transform: rotate(180deg); 
+} 
+ .rotate-image270{
+  transform: rotate(270deg);
+  -ms-transform: rotate(270deg); 
+  -webkit-transform: rotate(270deg); 
+} 
