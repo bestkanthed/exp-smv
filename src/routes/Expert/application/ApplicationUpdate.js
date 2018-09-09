@@ -33,6 +33,10 @@ const mapDispatchToProps = dispatch => ({
     deleteApplication: id => dispatch(deleteApplication(id))
 })
 
+ function donwloadApplicationDocuments(applicationId) {
+        window.location.replace(`/api/expert/applications/${applicationId}/download`)
+    }
+
 let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, application, database, order }) => {
   let name, visaType, travelDate, employmentStatus, submissionDate, status, updateForm
   let { countries } = database
@@ -91,6 +95,13 @@ let ApplicationUpdate = ({idCustomer, updateApplication, deleteApplication, appl
                             <span><img src='../../../ops-app/images/ic/ic/ic_edit_24px.png' /> Edit</span>
                         </span>
                     }
+                    {   idCustomer ?
+                        null :
+                        <span class='col-lg-2' onClick={()=>{donwloadApplicationDocuments(application._id)}} style={{ paddingTop : '1%', paddingBottom : '1%', paddingRight: '1%',  paddingLeft: '1%'}}>
+                            <span><img style={{transform: 'rotate(180deg)' }} src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png' /> Download</span>
+                        </span>
+                    }
+
             </div>
         </div>
     </div>

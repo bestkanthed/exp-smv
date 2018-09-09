@@ -51,6 +51,7 @@ class Document extends React.Component {
         };
        this.toggleNextFiles = this.toggleNextFiles.bind(this);
        this.togglePrevFiles = this.togglePrevFiles.bind(this)
+       this.onClickdownloadDocument = this.onClickdownloadDocument.bind(this)
     }
 
     toggleNextFiles() {
@@ -67,6 +68,10 @@ class Document extends React.Component {
         fileIndex >= 0 ? this.setState({currentFileIndex : fileIndex}) : 0;
     }
 
+    onClickdownloadDocument() {
+        window.location.replace(`/api/expert/documents/${this.props.idDocument}/download`)
+    }
+
     componentWillMount() {
         let { fetchDocument, idDocument, fetchApplicationByIdDocument } = this.props
         fetchDocument(idDocument)
@@ -80,7 +85,6 @@ class Document extends React.Component {
         let { fetching, fetched, document, rerender } = this.props.document
         let { application } = this.props.application
         if (rerender) fetchDocument(idDocument)
-        
         return (
             <div class='document'>
                 {
@@ -113,6 +117,7 @@ class Document extends React.Component {
                                 {
                                     application ? application.status === 'Past' ? null :
                                     <div class='col-lg-3'>
+                                        { idCustomer ? null : <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => this.onClickdownloadDocument()}><img style={{transform: 'rotate(180deg)' }} src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png' /> Download </button> }
                                         <button class='button-mask-btn' style={{marginRight:'4px'}} onClick={() => this.upload.click()}><img src='../../../ops-app/images/ic/ic/ic_file_upload_24px.png' /> Upload </button>
                                         <input type="file" onChange={e => uploadFiles([...e.target.files], document._id, idCustomer)} ref={ref => this.upload = ref} style={{ display: 'none' }} />
                                         <button class='button-mask-btn' onClick={() => {
