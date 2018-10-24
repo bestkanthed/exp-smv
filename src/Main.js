@@ -21,6 +21,7 @@ import Unauthorized from './routes/Unauthorized'
 import Notification from './routes/Notification'
 import Past from './routes/Past'
 import Reset from './routes/Reset'
+import TrackUSVisa from './routes/TackUsVisa'
 
 /*
 store.subscribe(() => {
@@ -59,6 +60,8 @@ let Main = () =>
                     <Route exact path='/support' render={() => <Redirect to='/support/generate'/>}/>
                     <Route exact path='/support/new' render={() => <Authorize teams={['support']} page='new'/>}/>
                     <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
+
+                    <Route exact path="/TrackUSVisa" component={TrackUSVisa} />
                 </Switch>
             </Layout>
         </Router>
