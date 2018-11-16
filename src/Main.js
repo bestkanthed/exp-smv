@@ -61,7 +61,7 @@ let Main = () =>
                     <Route exact path='/support/new' render={() => <Authorize teams={['support']} page='new'/>}/>
                     <Route exact path='/support/generate' render={() => <Authorize teams={['support']} page='generate'/>}/>
 
-                    <Route exact path="/track-us-visa" component={TrackUSVisa} />
+                    {/* <Route exact path="/track-us-visa" component={TrackUSVisa} /> */}
                 </Switch>
             </Layout>
         </Router>
