@@ -6,8 +6,6 @@
 }
 
 .image-view {
-	width: 620px;
-    height: 470px;
     position:relative; 
     left:-1%; 
 }
