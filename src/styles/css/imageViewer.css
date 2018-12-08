@@ -1,13 +1,15 @@
 .viewer {
 	width: 650px;
-    height: 470px;
-    overflow-x: auto;
-    overflow-Y: auto;
+  height: 470px;
+  overflow-x: auto;
+  overflow-Y: auto;
 }
 
 .image-view {
     position:relative; 
     left:-1%; 
+    height: 470px; 
+    width: auto;
 }
 .rotate {
 	position: absolute;
