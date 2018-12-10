@@ -25,9 +25,10 @@ class ImageViewer extends React.Component {
   zoomIn(){
     let docImage = document.getElementById('documentImage'),
       currWidth = docImage.clientWidth,
-      currHeight = docImage.clientHeight
+      currHeight = docImage.clientHeight,
+      aspectRatio = currHeight/currWidth
     docImage.style.width = (currWidth + 50) + 'px';
-    docImage.style.height = (currHeight + 50) + 'px';
+    docImage.style.height = (aspectRatio * (currWidth + 50)) + 'px';
   }
 
   zoomOut() {
@@ -35,11 +36,11 @@ class ImageViewer extends React.Component {
       currWidth = docImage.clientWidth,
       currHeight = docImage.clientHeight;
     if(currWidth>200) {
-      docImage.style.width = (currWidth - 50) + "px";
+      let aspectRatio = currHeight/currWidth
+      docImage.style.width = (currWidth - 50) + 'px';
+      docImage.style.height = (aspectRatio * (currWidth - 50)) + 'px';
     }
-    if(currHeight>80) {
-      docImage.style.height = (currWidth - 50) + "px";
-    }
+   
   }
 
   rotate() {
